@@ -13,14 +13,20 @@ Search southwest.com via Patchright (undetected Playwright fork). Southwest is t
 **Must run headed (headless=False).** SW detects headless browsers even with Patchright. On macOS, a Chrome window briefly appears and closes. For background operation with no popup, use Docker:
 
 ```bash
-# Pre-built image (no build needed)
+# Search new flights (default, no login needed)
 docker run --rm ghcr.io/borski/sw-fares --origin SJC --dest DEN --depart 2026-05-15
-docker run --rm ghcr.io/borski/sw-fares --origin SJC --dest DEN --depart 2026-05-15 --return 2026-05-18 --points
-docker run --rm ghcr.io/borski/sw-fares --origin SJC --dest DEN --depart 2026-05-15 --points --json
+docker run --rm ghcr.io/borski/sw-fares --origin SJC --dest DEN --depart 2026-05-15 --return 2026-05-18 --points --json
 
-# Or build locally
+# Check existing reservation for price drops (requires SW login)
+docker run --rm -e SW_USERNAME -e SW_PASSWORD \
+  ghcr.io/borski/sw-fares change --conf ABC123 --first Jane --last Doe --json
+
+# List all upcoming trips
+docker run --rm -e SW_USERNAME -e SW_PASSWORD \
+  ghcr.io/borski/sw-fares change --list --json
+
+# Build locally
 docker build -t sw-fares skills/southwest/
-docker run --rm sw-fares --origin SJC --dest DEN --depart 2026-05-15 --points
 ```
 
 The Docker image uses xvfb to create a virtual display inside the container. Patchright runs "headed" against xvfb, bypassing SW's headless detection without opening any windows on your machine.
@@ -171,3 +177,70 @@ The script handles everything: homepage warmup, cookie dismissal, result extract
 - **~20 seconds per search.** Homepage warmup + page render time. Slower than API sources.
 - **Prices change frequently.** SW uses dynamic pricing. Results are point-in-time.
 - **One-way searches only return departing flights.** For round-trip, the script fetches departure fares. Return flight fare search would require a second URL load (future enhancement).
+
+## Change Flight Price Monitor (check_change.py)
+
+**READ-ONLY script. NEVER modifies, changes, or cancels any flight.**
+
+Logs into southwest.com, looks up an existing reservation, and reads the Change Flight page to check if prices have dropped below what was paid.
+
+### Docker Usage (No Popup Window)
+
+```bash
+# Set your SW credentials however you like (env vars, 1Password, etc.)
+export SW_USERNAME="your_username"
+export SW_PASSWORD="your_password"
+
+# List all upcoming trips (auto-discover confirmation numbers)
+docker run --rm -e SW_USERNAME -e SW_PASSWORD \
+  ghcr.io/borski/sw-fares change --list --json
+
+# Check a specific reservation for price drops
+docker run --rm -e SW_USERNAME -e SW_PASSWORD \
+  ghcr.io/borski/sw-fares change --conf ABC123 --first Jane --last Doe --json
+
+# Local (opens Chrome window, for debugging only)
+SW_USERNAME=your_user SW_PASSWORD=your_pass \
+  python3 scripts/check_change.py --conf ABC123 --first Jane --last Doe --debug
+```
+
+### Important: Use Legal Names
+
+SW bookings use the legal name on the reservation, not nicknames. Use the exact first and last name that appears on the booking.
+
+### How It Works
+
+1. Logs into southwest.com via header login flyout
+2. For `--list`: clicks My Account, expands accordion for each trip, extracts confirmation numbers
+3. For `--conf`: navigates to Change Flight page, fills lookup form, selects both legs, clicks "Explore options"
+4. Reads the change results page which shows **fare differences** for every available flight:
+   - `CURRENT FLIGHT` = your booked flight (Basic cell shows "CURRENT", no change)
+   - `+2,000` = this flight costs 2,000 points MORE than what you paid
+   - `-2,000` = this flight costs 2,000 points LESS (savings, rebook opportunity)
+   - `Unavail` = fare class sold out
+5. Flags any flight with a negative diff as a savings opportunity
+
+### Safety Guardrails
+
+1. **DANGEROUS_LABELS blocklist**: "change this flight", "confirm", "cancel", "book", "purchase", etc.
+2. **is_dangerous_click()** check on every button click after the login and lookup phases
+3. **extract_results()** is read-only. Zero clicks after the leg selection + "Explore options" step
+4. The script selects legs and views alternatives but NEVER selects a replacement flight or confirms any change
+
+### Verified Working Selectors (Apr 5, 2026)
+
+**Login flyout:**
+- Trigger: `button:has-text('Log in')`
+- Username: `input[aria-label*='Account']`
+- Password: `input[name='password']`
+- Submit: `button[type='submit']:has-text('Log in')`
+
+**Change flight lookup form:**
+- Confirmation: `input[id*='confirmationNumber']`
+- First name: `input#passengerFirstName`
+- Last name: `input#passengerLastName`
+- Submit: `button#form-mixin--submit-button` (text: "Continue")
+
+**Leg selection:**
+- Checkboxes: `label:has(input[type='checkbox'])` (visible labels, hidden inputs)
+- Continue: `button#form-mixin--submit-button` (text: "Explore options")

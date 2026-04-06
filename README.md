@@ -25,6 +25,13 @@ For the Southwest skill (optional), pull the pre-built Docker image:
 
 ```bash
 docker pull ghcr.io/borski/sw-fares:latest
+
+# Search new flights
+docker run --rm ghcr.io/borski/sw-fares --origin SJC --dest DEN --depart 2026-05-15 --points --json
+
+# Monitor existing reservations for price drops (requires SW login)
+docker run --rm -e SW_USERNAME -e SW_PASSWORD ghcr.io/borski/sw-fares change --list --json
+docker run --rm -e SW_USERNAME -e SW_PASSWORD ghcr.io/borski/sw-fares change --conf ABC123 --first Jane --last Doe --json
 ```
 
 Then launch your tool:
@@ -58,7 +65,7 @@ The `--strict-mcp-config` flag tells Claude Code to load MCP servers from the co
 |-------|-------------|---------|
 | **google-flights** | Browser-automated Google Flights search. Covers ALL airlines including Southwest. | None (free, requires [agent-browser](https://github.com/AidenLiminalAI/agent-browser)) |
 | **ignav** | Fast REST API flight search with booking links. Market selection for price arbitrage. | [Ignav](https://ignav.com) (1,000 free) |
-| **southwest** | Southwest.com fare classes, points pricing, Companion Pass data. All 4 fare classes, cash + points. | None (free, requires [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright). Docker support included.) |
+| **southwest** | Southwest.com fare classes, points pricing, Companion Pass data. All 4 fare classes, cash + points. Includes logged-in change flight monitor to catch price drops on existing reservations. | None (free, requires [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright). Docker support included.) |
 | **duffel** | Real-time GDS flight search across airlines via Duffel API | [Duffel](https://duffel.com) |
 | **seats-aero** | Award flight availability across 25+ mileage programs | [Seats.aero](https://seats.aero) Pro/Partner |
 | **awardwallet** | Loyalty program balances, elite status, history | [AwardWallet](https://business.awardwallet.com) Business |
@@ -102,6 +109,7 @@ The core question: **"Should I burn points or pay cash?"**
 "Find me the cheapest business class award from SFO to Tokyo in August"
 "Compare points vs cash for a round trip JFK to London next March"
 "What are my United miles and Chase UR balances?"
+"Check my Southwest reservations for price drops"
 "Find hidden gems near Lisbon"
 "How do I get from Oslo to Bergen by train?"
 ```
@@ -137,6 +145,13 @@ travel-hacking-toolkit/
 │   │   ├── SKILL.md
 │   │   ├── ao.mjs
 │   │   └── package.json
+│   ├── southwest/                  # Southwest fares + change monitoring
+│   │   ├── SKILL.md
+│   │   ├── Dockerfile
+│   │   └── scripts/
+│   │       ├── search_fares.py     # New flight search
+│   │       ├── check_change.py     # Logged-in price drop monitor (read-only)
+│   │       └── entrypoint.sh       # Docker entrypoint (routes search/change)
 │   └── scandinavia-transit/        # Nordic trains/buses/ferries
 │       └── SKILL.md
 ├── scripts/

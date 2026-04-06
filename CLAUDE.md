@@ -46,7 +46,7 @@ You are a travel hacking agent. You don't just answer questions. You proactively
 - **duffel** — GDS flight search via Duffel API. Real airline inventory with cabin class, multi-city, time preferences.
 - **google-flights** — Browser-automated Google Flights search via agent-browser. Covers ALL airlines including Southwest. Free, no API key. Supports economy/business comparison, market selection, and booking link extraction.
 - **ignav** — Fast REST API flight search. 1,000 free requests. Structured JSON with prices, itineraries, booking links. Supports market selection for price arbitrage.
-- **southwest** — Southwest.com fare search via Patchright (undetected Playwright). The ONLY way to get SW fare class breakdown (WGA/WGA+/Anytime/Business Select), points pricing, and Companion Pass qualification data. Requires headed mode or Docker+xvfb.
+- **southwest** — Southwest.com fare search via Patchright (undetected Playwright). The ONLY way to get SW fare class breakdown (WGA/WGA+/Anytime/Business Select), points pricing, and Companion Pass qualification data. Also includes a logged-in change flight monitor that checks existing reservations for price drops. Requires headed mode or Docker+xvfb.
 - **seats-aero** — Award flight availability across 25+ mileage programs. The crown jewel. Shows how many miles a flight costs.
 - **awardwallet** — Loyalty program balances, elite status, transaction history across all programs.
 - **serpapi** — Google Hotels search and destination discovery (Google Travel Explore). Optional. NOT needed for flight prices (Duffel, Ignav, and Google Flights skill are all better). Still the best tool for hotel metasearch and "where should I go?" style queries.
@@ -73,6 +73,8 @@ You are a travel hacking agent. You don't just answer questions. You proactively
 **For a standard flight search:** Run ALL of these: Duffel + Ignav + Google Flights + Skiplagged + Kiwi in parallel. Always add Seats.aero for award comparison. Always run the Southwest skill if SW flies the route. Don't skip sources. Don't assume one source has everything. Present the combined results with the best options highlighted regardless of which source found them.
 
 **For Southwest specifically:** Use the southwest skill (`docker run --rm ghcr.io/borski/sw-fares` or `python3 skills/southwest/scripts/search_fares.py`). Returns all 4 fare classes, cash and points pricing. Google Flights via google-flights skill is a faster fallback for SW cash prices only.
+
+**For monitoring existing SW reservations:** Use `docker run --rm -e SW_USERNAME -e SW_PASSWORD ghcr.io/borski/sw-fares change --conf ABC123 --first Jane --last Doe --json`. Logs in, selects both legs, and shows fare diffs for every available flight. Negative diffs = savings opportunity. Use `--list` to discover all upcoming confirmation numbers. Read-only. Never modifies reservations.
 
 ## Output Format
 
@@ -268,7 +270,7 @@ Tools go down. APIs break. Have a backup plan for every search:
 | Skiplagged | 502/timeout (Cloudflare issues) | Kiwi.com MCP, Duffel, Ignav |
 | Kiwi.com | Server error | Skiplagged MCP, Duffel |
 | Seats.aero | API error or stale data | Check airline website directly, use Duffel for GDS inventory |
-| Southwest | Patchright blocked | Google Flights skill for SW cash prices. Ask user for SW screenshots for points. |
+| Southwest | SW rate limiting or bot detection | Wait a few minutes and retry. Use Docker (`ghcr.io/borski/sw-fares`) if running locally fails. Google Flights skill for SW cash prices as a fast fallback. |
 | SerpAPI | Rate limit (100/mo free) | Trivago for hotels, web search for destination discovery |
 | Trivago | Server error | LiteAPI for hotels, SerpAPI Google Hotels |
 | LiteAPI | Auth error (401) | Trivago MCP, SerpAPI Google Hotels |
