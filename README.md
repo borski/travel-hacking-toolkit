@@ -31,17 +31,17 @@ The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work imm
 | `SEATS_AERO_API_KEY` | Award flight search. The main event. | No (Pro ~$8/mo) |
 | `SERPAPI_API_KEY` | Cash price comparison for "points or cash?" decisions | Yes (100 searches/mo) |
 
-For the Southwest skill (optional), pull the pre-built Docker image:
+For the Southwest and American Airlines skills (optional), pull the pre-built Docker images:
 
 ```bash
+# Southwest: fare search + price drop monitoring
 docker pull ghcr.io/borski/sw-fares:latest
-
-# Search new flights
 docker run --rm ghcr.io/borski/sw-fares --origin SJC --dest DEN --depart 2026-05-15 --points --json
-
-# Monitor existing reservations for price drops (requires SW login)
-docker run --rm -e SW_USERNAME -e SW_PASSWORD ghcr.io/borski/sw-fares change --list --json
 docker run --rm -e SW_USERNAME -e SW_PASSWORD ghcr.io/borski/sw-fares change --conf ABC123 --first Jane --last Doe --json
+
+# American Airlines: AAdvantage balance + elite status (not in AwardWallet)
+docker pull ghcr.io/borski/aa-miles-check:latest
+docker run --rm -e AA_USERNAME=your_number -e AA_PASSWORD=your_pass ghcr.io/borski/aa-miles-check --json
 ```
 
 Then launch your tool:
@@ -85,6 +85,7 @@ The `--strict-mcp-config` flag tells Claude Code to load MCP servers from the co
 | **scandinavia-transit** | Trains, buses, ferries in Norway/Sweden/Denmark | [Entur](https://developer.entur.org) + [Trafiklab](https://www.trafiklab.se) |
 | **wheretocredit** | Mileage earning rates by airline and booking class across 50+ FF programs | None (free) |
 | **seatmaps** | Aircraft seat maps, cabin dimensions, seat recommendations via SeatMaps.com + AeroLOPA | None (free, requires [agent-browser](https://github.com/AidenLiminalAI/agent-browser)) |
+| **american-airlines** | AAdvantage balance, elite status, loyalty points. AwardWallet doesn't support AA. | None (free, requires [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright). Docker support included.) |
 
 ## How It Works
 
@@ -124,6 +125,7 @@ The core question: **"Should I burn points or pay cash?"**
 "Find hidden gems near Lisbon"
 "How do I get from Oslo to Bergen by train?"
 "What's the seat pitch on Air France 83 in business class?"
+"How many AAdvantage miles do I have?"
 ```
 
 ## Project Structure
@@ -165,6 +167,11 @@ travel-hacking-toolkit/
 │   │       ├── check_change.py     # Logged-in price drop monitor (read-only)
 │   │       └── entrypoint.sh       # Docker entrypoint (routes search/change)
 │   ├── seatmaps/SKILL.md           # Seat maps + cabin dimensions
+│   ├── american-airlines/          # AA AAdvantage balance checker
+│   │   ├── SKILL.md
+│   │   ├── Dockerfile
+│   │   └── scripts/
+│   │       └── check_balance.py    # Balance + status extractor
 │   └── scandinavia-transit/        # Nordic trains/buses/ferries
 │       └── SKILL.md
 ├── scripts/

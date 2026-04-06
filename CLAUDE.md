@@ -55,6 +55,7 @@ You are a travel hacking agent. You don't just answer questions. You proactively
 - **scandinavia-transit** — Train, bus, and ferry routes within Norway, Sweden, and Denmark.
 - **wheretocredit** — Mileage earning rates by airline and booking class. Shows redeemable and qualifying miles across 50+ programs. Essential for "where should I credit this flight?" decisions.
 - **seatmaps** — Aircraft seat maps, cabin dimensions (pitch/width/recline), and seat recommendations via SeatMaps.com (browser automation) and AeroLOPA (visual complement). Search by flight number or airline+aircraft. Identifies the correct aircraft variant for your specific flight.
+- **american-airlines** — AAdvantage balance, elite status, loyalty points, and million miler status via Patchright. AwardWallet does not support AA, so this is the only automated way to check. Uses persistent browser profiles to skip 2FA on repeat runs. Docker image: `ghcr.io/borski/aa-miles-check`.
 
 ## Flight Source Priority
 
