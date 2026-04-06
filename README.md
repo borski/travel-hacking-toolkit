@@ -29,7 +29,8 @@ The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work imm
 | Key | Why | Free Tier |
 |-----|-----|-----------|
 | `SEATS_AERO_API_KEY` | Award flight search. The main event. | No (Pro ~$8/mo) |
-| `SERPAPI_API_KEY` | Cash price comparison for "points or cash?" decisions | Yes (100 searches/mo) |
+| `DUFFEL_API_KEY_LIVE` | Primary cash flight prices. Real GDS data. | Yes (search free, pay per booking) |
+| `IGNAV_API_KEY` | Secondary cash flight prices. Fast REST API. | Yes (1,000 free requests) |
 
 For the Southwest and American Airlines skills (optional), pull the pre-built Docker images:
 
