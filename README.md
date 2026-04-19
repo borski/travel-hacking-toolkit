@@ -14,7 +14,7 @@ cd travel-hacking-toolkit
 
 The setup script walks you through everything: picks your tool (OpenCode, Claude Code, or both), creates your API key config files, installs dependencies, and optionally installs skills system-wide.
 
-The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work immediately with zero API keys. For the full experience, add at minimum:
+The 6 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb, FlightSeatMap) work immediately with zero API keys. For the full experience, add at minimum:
 
 | Key | Why | Free Tier |
 |-----|-----|-----------|
@@ -76,6 +76,7 @@ The `--strict-mcp-config` flag tells Claude Code to load MCP servers from the co
 | [Trivago](https://mcp.trivago.com/docs) | Hotel metasearch across booking sites | None (free) |
 | [Ferryhopper](https://ferryhopper.github.io/fh-mcp/) | Ferry routes across 33 countries, 190+ operators | None (free) |
 | [Airbnb](https://github.com/openbnb-org/mcp-server-airbnb) | Search Airbnb listings, property details, pricing. Includes geocoding fix, property type filter, and DISABLE_GEOCODING opt-out. | None (free) |
+| [FlightSeatMap](https://mcp.flightseatmap.com) | Aircraft seat maps, preference-based seat scoring, and seat recommendations by flight number | None (free) |
 | [LiteAPI](https://mcp.liteapi.travel) | Hotel search with live rates and booking | [LiteAPI](https://liteapi.travel) |
 
 ### Skills (API knowledge for your AI)
@@ -310,6 +311,7 @@ travel-hacking-toolkit/
 - [SerpAPI](https://serpapi.com) — Google search result APIs
 - [RapidAPI](https://rapidapi.com) — API marketplace
 - [atlas-obscura-api](https://github.com/bartholomej/atlas-obscura-api) by [@bartholomej](https://github.com/bartholomej) — Atlas Obscura scraper
+- [FlightSeatMap MCP](https://mcp.flightseatmap.com) by [FlightSeatMap](https://flightseatmap.com) — Aircraft seat maps with preference-based scoring
 - [Skiplagged MCP](https://mcp.skiplagged.com) — Flight search with hidden city fares
 - [Kiwi.com MCP](https://www.kiwi.com/stories/kiwi-mcp-connector/) — Flight search with virtual interlining
 - [Trivago MCP](https://mcp.trivago.com/docs) — Hotel metasearch

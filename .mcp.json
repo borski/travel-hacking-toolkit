@@ -26,6 +26,10 @@
     "airbnb": {
       "command": "npx",
       "args": ["-y", "@openbnb/mcp-server-airbnb@latest", "--ignore-robots-txt"]
+    },
+    "flightseatmap": {
+      "type": "http",
+      "url": "https://mcp.flightseatmap.com/mcp"
     }
   }
 }
