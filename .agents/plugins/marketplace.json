@@ -1,0 +1,20 @@
+{
+  "name": "travel-hacking-toolkit",
+  "interface": {
+    "displayName": "Travel Hacking Toolkit"
+  },
+  "plugins": [
+    {
+      "name": "travel-hacking-toolkit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/travel-hacking-toolkit"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

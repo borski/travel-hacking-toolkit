@@ -1,6 +1,6 @@
 # Travel Hacking Toolkit
 
-AI-powered travel hacking with points, miles, and award flights. Drop-in skills and MCP servers for [OpenCode](https://opencode.ai) and [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
+AI-powered travel hacking with points, miles, and award flights. Drop-in skills and MCP servers for [Codex](https://openai.com/codex/), [OpenCode](https://opencode.ai), and [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
 Ask your AI to find you a 60,000-mile business class flight to Tokyo. It'll search award availability across 25+ programs, compare against cash prices, check your loyalty balances, and tell you the best play.
 
@@ -12,7 +12,7 @@ cd travel-hacking-toolkit
 ./scripts/setup.sh
 ```
 
-The setup script walks you through everything: picks your tool (OpenCode, Claude Code, or both), creates your API key config files, installs dependencies, and optionally installs skills system-wide.
+The setup script walks you through everything: picks your tool (OpenCode, Claude Code, Codex, or all three), creates your API key config files, installs dependencies, installs the Codex plugin when selected, and optionally installs skills system-wide for OpenCode and Claude Code.
 
 The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work immediately with zero API keys. For the full experience, add at minimum:
 
@@ -56,6 +56,9 @@ docker run --rm -v ~/.amex-travel-profiles:/profiles \
 Then launch your tool:
 
 ```bash
+# Codex
+source .env && codex
+
 # OpenCode
 opencode
 
@@ -64,6 +67,8 @@ claude --strict-mcp-config --mcp-config .mcp.json
 ```
 
 The `--strict-mcp-config` flag tells Claude Code to load MCP servers from the config file directly. This is more reliable than auto-discovery ([known issue](https://github.com/anthropics/claude-code/issues/5037)).
+
+For Codex, `./scripts/setup.sh` installs a local plugin symlink at `~/.codex/plugins/travel-hacking-toolkit` and adds a marketplace entry at `~/.agents/plugins/marketplace.json`. The plugin exposes the repo's `skills/` directory and the travel MCP servers as one installable bundle.
 
 ## What's Included
 
@@ -141,15 +146,17 @@ Also use **tripadvisor** (under Destinations) for hotel ratings, rankings, subra
 
 ### Skills
 
-Skills are markdown files that teach your AI how to call travel APIs. They contain endpoint documentation, curl examples, useful jq filters, and workflow guidance. Both OpenCode and Claude Code support skills natively.
+Skills are markdown files that teach your AI how to call travel APIs. They contain endpoint documentation, curl examples, useful jq filters, and workflow guidance. Codex, OpenCode, and Claude Code can all load them.
 
 The `skills/` directory is the canonical source. The setup script either:
+- Installs a Codex plugin that points at the repo's skills and MCP config
 - Copies them to your tool's global skills directory (`~/.config/opencode/skills/` or `~/.claude/skills/`)
 - Or creates project-level symlinks so they load when you work from this directory
 
 ### MCP Servers
 
 MCP (Model Context Protocol) servers give your AI real-time tools it can call directly. The configs are in:
+- `plugins/travel-hacking-toolkit/.mcp.json` for Codex plugin installs
 - `opencode.json` for OpenCode
 - `.mcp.json` for Claude Code
 
@@ -217,16 +224,22 @@ The core question: **"Should I burn points or pay cash?"**
 
 ```
 travel-hacking-toolkit/
+├── .agents/plugins/marketplace.json # Repo-local Codex marketplace entry
 ├── AGENTS.md -> CLAUDE.md          # OpenCode project instructions (symlink)
 ├── CLAUDE.md                       # Project instructions and workflow guidance
 ├── opencode.json                   # OpenCode MCP server config
 ├── .mcp.json                       # Claude Code MCP server config
-├── .env.example                    # API key template (OpenCode)
+├── .env.example                    # API key template (OpenCode/Codex)
 ├── .claude/
 │   ├── settings.local.json.example # API key template (Claude Code)
 │   └── skills -> ../skills         # Symlink to skills
 ├── .opencode/
 │   └── skills -> ../skills         # Symlink to skills
+├── plugins/
+│   └── travel-hacking-toolkit/
+│       ├── .codex-plugin/plugin.json # Codex plugin manifest
+│       ├── .mcp.json                 # Codex MCP server config
+│       └── skills -> ../../skills    # Codex skill bundle
 ├── data/
 │   ├── alliances.json              # Airline alliance membership + booking relationships
 │   ├── hotel-chains.json           # Hotel chains, sub-brands, loyalty programs, reverse lookup

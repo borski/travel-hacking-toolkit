@@ -1,0 +1,44 @@
+{
+  "name": "travel-hacking-toolkit",
+  "version": "0.1.0",
+  "description": "Travel hacking skills and MCP servers for flights, hotels, points, miles, and award planning.",
+  "author": {
+    "name": "borski",
+    "email": "borski@users.noreply.github.com",
+    "url": "https://github.com/borski/travel-hacking-toolkit"
+  },
+  "homepage": "https://github.com/borski/travel-hacking-toolkit",
+  "repository": "https://github.com/borski/travel-hacking-toolkit",
+  "license": "MIT",
+  "keywords": [
+    "travel",
+    "flights",
+    "hotels",
+    "points",
+    "miles",
+    "award-travel"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Travel Hacking Toolkit",
+    "shortDescription": "Search flights, hotels, awards, points, and loyalty programs",
+    "longDescription": "Use travel-hacking workflows inside Codex to compare cash and award flights, search hotels and portal inventory, inspect loyalty balances, optimize transfers, and plan trips with real-time MCP servers plus reusable skills.",
+    "developerName": "Travel Hacking Toolkit",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/borski/travel-hacking-toolkit",
+    "privacyPolicyURL": "https://github.com/borski/travel-hacking-toolkit",
+    "termsOfServiceURL": "https://github.com/borski/travel-hacking-toolkit/blob/main/LICENSE",
+    "defaultPrompt": [
+      "Plan a trip to Paris with the best flights, hotels, and points strategy",
+      "Compare all award and cash options for SFO to Tokyo",
+      "Find the best hotel booking path with FHR, Edit, and points"
+    ],
+    "brandColor": "#0F766E",
+    "screenshots": []
+  }
+}
