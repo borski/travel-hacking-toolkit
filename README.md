@@ -9,10 +9,17 @@ Ask your AI to find you a 60,000-mile business class flight to Tokyo. It'll sear
 ```bash
 git clone https://github.com/borski/travel-hacking-toolkit.git
 cd travel-hacking-toolkit
+
+# macOS / Linux / WSL / Git Bash
 ./scripts/setup.sh
+
+# Windows (PowerShell or cmd)
+.\scripts\setup.cmd
 ```
 
 The setup script walks you through everything: picks your tool (OpenCode, Claude Code, or both), creates your API key config files, installs dependencies, and optionally installs skills system-wide.
+
+On Windows the `.cmd` wrapper launches `scripts\setup.ps1` with an ExecutionPolicy bypass so nothing needs to be unblocked first. You can also run the PowerShell script directly: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1`.
 
 The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work immediately with zero API keys. For the full experience, add at minimum:
 
@@ -293,7 +300,9 @@ travel-hacking-toolkit/
 │   ├── scandinavia-transit/SKILL.md # Nordic trains/buses/ferries
 │   └── tripadvisor/SKILL.md        # Ratings, reviews, nearby restaurants
 ├── scripts/
-│   └── setup.sh                    # Interactive installer
+│   ├── setup.sh                    # Interactive installer (macOS/Linux/WSL/Git Bash)
+│   ├── setup.ps1                   # Interactive installer (Windows PowerShell)
+│   └── setup.cmd                   # Windows launcher (invokes setup.ps1)
 └── LICENSE                         # MIT
 ```
 
