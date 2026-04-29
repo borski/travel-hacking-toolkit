@@ -126,12 +126,28 @@ Write-Host ""
 Write-Host "Which AI coding tool do you use?"
 Write-Host "  1) OpenCode"
 Write-Host "  2) Claude Code"
-Write-Host "  3) Both"
+Write-Host "  3) Codex"
+Write-Host "  4) All"
 Write-Host ""
-$ToolChoice = Read-Host "Choice [1-3]"
-if ($ToolChoice -notin @('1', '2', '3')) {
+$ToolChoice = Read-Host "Choice [1-4]"
+if ($ToolChoice -notin @('1', '2', '3', '4')) {
     Write-Host "Invalid choice. Exiting." -ForegroundColor Red
     exit 1
+}
+
+$UseOpenCode = $false
+$UseClaude   = $false
+$UseCodex    = $false
+
+switch ($ToolChoice) {
+    '1' { $UseOpenCode = $true }
+    '2' { $UseClaude   = $true }
+    '3' { $UseCodex    = $true }
+    '4' {
+        $UseOpenCode = $true
+        $UseClaude   = $true
+        $UseCodex    = $true
+    }
 }
 
 # --- API key setup ---
@@ -139,18 +155,18 @@ function Setup-ApiKeys {
     Write-Host ""
     Write-Host "Setting up API keys..."
 
-    if ($ToolChoice -eq '1' -or $ToolChoice -eq '3') {
+    if ($UseOpenCode -or $UseCodex) {
         $envFile    = Join-Path $RepoDir '.env'
         $envExample = Join-Path $RepoDir '.env.example'
         if (-not (Test-Path $envFile)) {
             Copy-Item -LiteralPath $envExample -Destination $envFile
-            Write-Host "  Created .env (OpenCode). Edit it to add your API keys."
+            Write-Host "  Created .env (OpenCode/Codex). Edit it to add your API keys."
         } else {
             Write-Host "  .env already exists. Skipping."
         }
     }
 
-    if ($ToolChoice -eq '2' -or $ToolChoice -eq '3') {
+    if ($UseClaude) {
         $claudeSettings = Join-Path $RepoDir '.claude\settings.local.json'
         $claudeExample  = Join-Path $RepoDir '.claude\settings.local.json.example'
         if (-not (Test-Path $claudeSettings)) {
@@ -310,10 +326,10 @@ function Offer-GlobalInstall {
     $globalChoice = Read-Host "Install globally? [y/N]"
 
     if ($globalChoice -match '^[Yy]$') {
-        if ($ToolChoice -eq '1' -or $ToolChoice -eq '3') {
+        if ($UseOpenCode) {
             Install-SkillsTo (Join-Path $HOME '.config\opencode\skills')
         }
-        if ($ToolChoice -eq '2' -or $ToolChoice -eq '3') {
+        if ($UseClaude) {
             Install-SkillsTo (Join-Path $HOME '.claude\skills')
         }
     } else {
@@ -321,30 +337,165 @@ function Offer-GlobalInstall {
     }
 }
 
+# --- Codex plugin install ---
+function Install-CodexPlugin {
+    $pluginName  = 'travel-hacking-toolkit'
+    $pluginSrc   = Join-Path $RepoDir "plugins\$pluginName"
+    $codexHome   = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME '.codex' }
+    $codexPlugDir = Join-Path $codexHome 'plugins'
+    $codexPlugPath = Join-Path $codexPlugDir $pluginName
+    $marketplaceRoot = if ($env:CODEX_MARKETPLACE_ROOT) { $env:CODEX_MARKETPLACE_ROOT } else { Join-Path $HOME '.agents' }
+    $marketplaceDir  = Join-Path $marketplaceRoot 'plugins'
+    $marketplacePath = Join-Path $marketplaceDir 'marketplace.json'
+
+    Write-Host ""
+    Write-Host "Installing Codex plugin..."
+
+    $pythonCmd = Resolve-PythonCommand
+    if (-not $pythonCmd) {
+        Write-Host "  python3 not found. Skipping Codex plugin install." -ForegroundColor Yellow
+        Write-Host "  Install Python (https://www.python.org/downloads/ or 'winget install Python.Python.3.12') and re-run setup." -ForegroundColor Yellow
+        return
+    }
+
+    New-Item -ItemType Directory -Force -Path $codexPlugDir | Out-Null
+    New-Item -ItemType Directory -Force -Path $marketplaceDir | Out-Null
+
+    if (Test-Path -LiteralPath $codexPlugPath) {
+        Remove-Item -LiteralPath $codexPlugPath -Recurse -Force
+    }
+
+    # Two install methods on Windows. Symlink needs admin or Developer Mode but
+    # auto-propagates toolkit updates. Copy works everywhere but is a snapshot,
+    # so updates require re-running this script.
+    Write-Host ""
+    Write-Host "  Codex plugin install method:"
+    Write-Host "    1) Symlink (recommended). Auto-propagates toolkit updates."
+    Write-Host "       Requires admin OR Developer Mode (Settings -> Privacy & security -> For developers)."
+    Write-Host "    2) Copy. Works without admin. Re-run setup after pulling toolkit updates."
+    Write-Host ""
+    $methodChoice = Read-Host "  Choice [1/2]"
+
+    if ($methodChoice -eq '1') {
+        try {
+            New-Item -ItemType SymbolicLink -Path $codexPlugPath -Target $pluginSrc -ErrorAction Stop | Out-Null
+            Write-Host "  Plugin symlinked to $codexPlugPath"
+        } catch {
+            Write-Host "  Symlink failed: $($_.Exception.Message)" -ForegroundColor Yellow
+            Write-Host "  Enable Developer Mode (Settings -> Privacy & security -> For developers)" -ForegroundColor Yellow
+            Write-Host "  or relaunch this script as administrator, then try again." -ForegroundColor Yellow
+            Write-Host "  Or re-run and choose option 2 (Copy) to install without admin." -ForegroundColor Yellow
+            return
+        }
+    } elseif ($methodChoice -eq '2') {
+        Copy-Item -LiteralPath $pluginSrc -Destination $codexPlugPath -Recurse -Force
+        Write-Host "  Plugin copied to $codexPlugPath"
+        Write-Host "  Re-run setup.cmd after 'git pull' to refresh." -ForegroundColor Yellow
+    } else {
+        Write-Host "  Invalid choice. Skipping Codex plugin install." -ForegroundColor Yellow
+        return
+    }
+
+    # Marketplace JSON merge (idempotent: replaces existing entry by name, else appends)
+    $pythonScript = @'
+import json
+import os
+import sys
+
+path = sys.argv[1]
+entry = {
+    "name": "travel-hacking-toolkit",
+    "source": {
+        "source": "local",
+        "path": "./plugins/travel-hacking-toolkit"
+    },
+    "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+    },
+    "category": "Productivity"
+}
+
+if os.path.exists(path):
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+else:
+    data = {
+        "name": "local-plugins",
+        "interface": {
+            "displayName": "Local Plugins"
+        },
+        "plugins": []
+    }
+
+data.setdefault("name", "local-plugins")
+data.setdefault("interface", {})
+data["interface"].setdefault("displayName", "Local Plugins")
+plugins = data.setdefault("plugins", [])
+
+for idx, plugin in enumerate(plugins):
+    if plugin.get("name") == entry["name"]:
+        plugins[idx] = entry
+        break
+else:
+    plugins.append(entry)
+
+with open(path, "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2)
+    f.write("\n")
+'@
+
+    $tempScript = [IO.Path]::GetTempFileName() + '.py'
+    try {
+        Set-Content -LiteralPath $tempScript -Value $pythonScript -Encoding UTF8
+        $result = Invoke-Native -FilePath $pythonCmd -Arguments @($tempScript, $marketplacePath)
+        if ($result.ExitCode -ne 0) {
+            Write-Host "  Failed to update marketplace.json (python exit $($result.ExitCode))." -ForegroundColor Yellow
+            if ($result.Output) { Write-Host ($result.Output.Trim()) -ForegroundColor DarkGray }
+            return
+        }
+    } finally {
+        Remove-Item -LiteralPath $tempScript -ErrorAction SilentlyContinue
+    }
+
+    Write-Host "  Marketplace updated at $marketplacePath"
+    Write-Host "  Launch Codex from this repo after editing .env"
+}
+
 # --- Run ---
 Setup-ApiKeys
 Install-AtlasDeps
 Install-OptionalTools
-Offer-GlobalInstall
+
+if ($UseCodex) {
+    Install-CodexPlugin
+}
+
+if ($UseOpenCode -or $UseClaude) {
+    Offer-GlobalInstall
+}
 
 Write-Host ""
 Write-Host "=== Setup complete! ==="
 Write-Host ""
 Write-Host "Launch your tool from this directory:"
 
-if ($ToolChoice -eq '1' -or $ToolChoice -eq '3') {
+if ($UseOpenCode) {
     Write-Host "  OpenCode:    opencode"
 }
-if ($ToolChoice -eq '2' -or $ToolChoice -eq '3') {
+if ($UseClaude) {
     Write-Host "  Claude Code: claude --strict-mcp-config --mcp-config .mcp.json"
+}
+if ($UseCodex) {
+    Write-Host "  Codex:       codex"
 }
 
 Write-Host ""
 
-if ($ToolChoice -eq '1' -or $ToolChoice -eq '3') {
+if ($UseOpenCode -or $UseCodex) {
     Write-Host "Add your API keys:  edit .env"
 }
-if ($ToolChoice -eq '2' -or $ToolChoice -eq '3') {
+if ($UseClaude) {
     Write-Host "Add your API keys:  edit .claude\settings.local.json"
 }
 
