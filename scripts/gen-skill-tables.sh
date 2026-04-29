@@ -240,7 +240,10 @@ HEADER
   docker_table_rows
 }
 
-# Signup links map. Skills not listed here have no external API to sign up for.
+# Signup links map. Real external APIs and accounts only.
+# Skills that just use Patchright, agent-browser, or other dev tooling are NOT
+# included here. Browser automation tools have no API key and aren't a signup
+# step the user takes; they're handled by the prebuilt Docker images.
 # Format: skill_name|Display Name|URL|optional notes
 signup_links_data() {
   cat <<'DATA'
@@ -251,15 +254,9 @@ rapidapi|RapidAPI|https://rapidapi.com|Marketplace; subscribe to Booking.com Liv
 serpapi|SerpAPI|https://serpapi.com|Google Flights, Google Hotels, Travel Explore.
 tripadvisor|TripAdvisor|https://www.tripadvisor.com/developers|Hotel/restaurant/attraction data. 5K calls/month free.
 awardwallet|AwardWallet|https://business.awardwallet.com|Loyalty program balance aggregator. Business tier required.
-google-flights|agent-browser|https://github.com/AidenLiminalAI/agent-browser|Browser automation CLI. Install with npm.
-seatmaps|agent-browser|https://github.com/AidenLiminalAI/agent-browser|Same agent-browser CLI as google-flights.
-southwest|Patchright|https://github.com/Kaliiiiiiiiii-Vinyzu/patchright|Undetected Playwright fork. Auto-installed by Docker image.
-american-airlines|Patchright|https://github.com/Kaliiiiiiiiii-Vinyzu/patchright|Same as southwest. Use the prebuilt Docker image.
-chase-travel|Patchright|https://github.com/Kaliiiiiiiiii-Vinyzu/patchright|Same as southwest. Use the prebuilt Docker image.
-amex-travel|Patchright|https://github.com/Kaliiiiiiiiii-Vinyzu/patchright|Same as southwest. Use the prebuilt Docker image.
-ticketsatwork|Patchright + TaW account|https://github.com/Kaliiiiiiiiii-Vinyzu/patchright|Browser auto via Patchright. TaW credentials are corporate-perks accounts (also Working Advantage, Plum, Beneplace).
+ticketsatwork|TicketsAtWork|https://www.ticketsatwork.com|Corporate-perks portal. Account requires employer affiliation. Same credentials work for Working Advantage, Plum, Beneplace (shared EBG backend).
 scandinavia-transit|Entur (Norway)|https://developer.entur.org|Norway transit. Free, no auth.
-scandinavia-transit|Trafiklab (Sweden)|https://www.trafiklab.se|Sweden transit. Free with API key.
+scandinavia-transit|Trafiklab (Sweden)|https://www.trafiklab.se|Sweden transit. Free, requires API key.
 scandinavia-transit|Rejseplanen (Denmark)|https://labs.rejseplanen.dk|Denmark transit. Free, no auth.
 DATA
 }
