@@ -20,13 +20,37 @@ Search 4,659 premium hotel properties across three credit card programs. Find wh
 
 | Program | Card Required | Key Benefits | Properties |
 |---------|--------------|--------------|------------|
-| **FHR** (Fine Hotels & Resorts) | Amex Platinum | $100+ property credit, room upgrade, noon check-in, 4pm checkout, daily breakfast for 2, complimentary wifi | 1,807 |
-| **THC** (The Hotel Collection) | Amex Platinum | $100 property credit on 2+ night stays for dining/spa/resort activities | 1,299 |
-| **Chase Edit** (Sapphire Hotel Collection) | Chase Sapphire Reserve | $50 annual hotel credit, elevated experience perks. Select Hotels add $250 one-time 2026 credit + 10x points. | 1,553 |
+| **FHR** (Fine Hotels & Resorts) | Amex Platinum | $600/yr Plat credit (2x $300 semi-annual), $100 property credit, daily breakfast for 2, 12pm checkin, guaranteed 4pm checkout, room upgrade, wifi | 1,807 |
+| **THC** (The Hotel Collection) | Amex Platinum | $600/yr Plat credit (2x $300 semi-annual, shared with FHR), $100 property credit, 12pm checkin, room upgrade, late checkout (2-night min) | 1,299 |
+| **Chase Edit** (Sapphire Reserve) | Chase Sapphire Reserve | $500/yr statement credit (2x $250), $100 property credit, daily breakfast, wifi, room upgrade, early/late checkout. Select Hotels add $250 one-time 2026 credit + 10x points. | 1,553 |
 
 ### Stacking
 
-Hotels in BOTH FHR/THC AND Chase Edit can stack benefits. Book through one program and use the other card's credits separately. Look for hotels that appear in multiple programs.
+Hotels in BOTH FHR/THC AND Chase Edit can stack benefits. Book through one program and use the other card's credits separately. Look for hotels that appear in multiple programs. Use [awardhelper.com/csr-hotels](https://www.awardhelper.com/csr-hotels) to find stackable properties.
+
+## Chase Sapphire Reserve Hotel Credits (2026)
+
+**The Edit credit: $500/yr** (two separate $250 credits, usable anytime during the calendar year). Two-night minimum, prepaid through Chase Travel. Each stay also gets the $100 property credit + daily breakfast + room upgrade. Points Boost gives 2cpp when redeeming UR at Edit hotels. **Always compare Chase Travel rates against direct booking.**
+
+**Select Hotels credit: $250 one-time (2026 only).** Prepaid 2+ night stay at: IHG, Minor Hotels, Montage, Omni, Pan Pacific, Pendry, or Virgin Hotels. Booked through Chase Travel. Expires Dec 31, 2026. Earns hotel loyalty points AND elite night credits on the full purchase amount.
+
+**Stacking strategy:** Properties that are both Edit hotels AND one of the 7 Select Hotels brands can trigger BOTH credits on a single stay ($250 Edit + $250 Select = $500 back).
+
+**Budget option:** Use the $250 Select Hotels credit at affordable IHG properties (Holiday Inn, Holiday Inn Express). A 2-night prepaid stay around $250 total gets nearly fully covered by the credit alone.
+
+## Amex Platinum Hotel Credit Mechanics (FHR or THC)
+
+**$600 annual total, split $300 per half-year (Jan-Jun and Jul-Dec).** Use it or lose it, does not roll over. Prepaid bookings through Amex Travel with Platinum or Business Platinum. FHR and THC share the same $600 pool.
+
+- **FHR = 1-night minimum.** THC = 2-night minimum.
+- **Credit triggers on booking/prepayment, not stay date.** Book in June for a September trip and the H1 credit still fires.
+- **5x MR points still earned** on Amex Travel bookings that trigger the credit.
+- **No enrollment needed.** Just book through Amex Travel and pay with your Platinum.
+- **Can split across multiple bookings** if a stay costs less than $300 per half.
+- **Cancellation = clawback** unless you rebook before the credit expires.
+- **Elite status recognition is hit or miss** through Amex Travel. Plug in loyalty numbers anyway.
+- **MaxFHR.com** is a great tool for finding the cheapest FHR/THC properties by date and destination.
+- **Always compare Amex Travel rates against booking direct.** Portal rates can be higher.
 
 ## Searching by City
 
@@ -133,17 +157,21 @@ echo "$FHR" "$THC" "$CHASE" | jq -s 'add | group_by(.name) | map({
 
 - Flag which hotels appear in multiple programs (stacking opportunity)
 - Note the key benefit differences: FHR includes breakfast + upgrade + late checkout. THC is credit only on 2+ nights. Chase Edit varies.
-- If booking through FHR, mention the Amex Platinum $200 annual FHR credit (up to $200 statement credit per calendar year)
-- If booking through Chase Edit, mention the $50 annual hotel credit and whether "Select Hotels" $250 credit applies (one-time 2026 benefit)
+- If booking through FHR or THC, mention the Amex Platinum $600 annual hotel credit (split 2x $300 semi-annual, FHR/THC share the pool)
+- If booking through Chase Edit, mention the $500 annual hotel credit (split 2x $250) and whether "Select Hotels" $250 one-time 2026 credit also applies for stacking
 - Link to Amex reservation page if available in the data
 
 ## Data Sources
 
-- `data/fhr-properties.json` (1,807 properties, coordinates + Amex reservation links)
+- `data/fhr-properties.json` (1,807 properties, coordinates + Amex reservation links + Google Travel price calendar links + credit details)
 - `data/thc-properties.json` (1,299 properties, coordinates + Amex reservation links)
-- `data/chase-edit-properties.json` (1,553 properties, text locations)
+- `data/chase-edit-properties.json` (1,553 properties, text locations, 190 tagged `budget_friendly` from "Potentially Cheaper Ones" category)
 
-Data sourced from Google My Maps KML exports by Scott at 美卡指南 (US Card Guide). Last updated Dec 2025. Property lists change periodically. Always verify current availability on the Amex or Chase booking portal before making decisions.
+**Data source:** 美卡指南 (US Card Guide) Google My Maps, maintained by Scott. To refresh, re-pull the KML files:
+- FHR/THC: `https://www.google.com/maps/d/kml?mid=1HygPCP9ghtDptTNnpUpd_C507Mq_Fhec&forcekml=1`
+- Chase Edit: `https://www.google.com/maps/d/kml?mid=1Ickidw1Z6ACres9EnbM2CmPObYsuijM&forcekml=1`
+
+Property lists change periodically. Always verify current availability on the Amex or Chase booking portal before making decisions.
 
 ## Notes
 

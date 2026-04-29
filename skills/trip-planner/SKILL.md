@@ -3,6 +3,15 @@ name: trip-planner
 description: Unified trip planning that combines flight comparison, hotel comparison, and points optimization into one complete trip cost analysis. Use when the user says "plan a trip" or wants the full picture for a destination.
 ---
 
+**Companion reference skills.** Load these for deeper context:
+- `flight-search-strategy` — full search workflow and source priority
+- `lessons-learned` — Seats.aero workflow and common failure modes (load before any award search)
+- `points-valuations` — CPP rules, opportunity cost
+- `partner-awards` — reachability through alliance + bilateral partnerships
+- `award-sweet-spots` — flag legendary redemptions
+- `booking-guidance` — booking flow + phone numbers + the "hold before transfer" rule
+
+
 # Trip Planner
 
 "Plan a trip to Paris Aug 11-15" answered with one complete cost breakdown.

@@ -3,6 +3,13 @@ name: compare-hotels
 description: Unified hotel comparison across portals, direct booking, and Airbnb. Searches Chase Edit, Amex FHR/THC, SerpAPI/Google Hotels, and Airbnb. Highlights premium program benefits, stacking opportunities, and points value.
 ---
 
+**Companion reference skills.** Load these for deeper context:
+- `hotel-chains` — branded property to loyalty program mapping
+- `premium-hotels` — FHR / THC / Chase Edit credits and stacking strategy
+- `points-valuations` — CPP floor/ceiling for hotel programs (Hyatt 1.5cpp, Hilton 0.4cpp, etc.)
+- `fallback-and-resilience` — recovery when a hotel source fails
+
+
 # Compare Hotels
 
 Search every available source for accommodation and present one unified comparison. Combines portal premium programs (Chase Edit, Amex FHR/THC), cash pricing, and Airbnb alternatives into a single view.

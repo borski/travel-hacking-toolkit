@@ -9,6 +9,13 @@ Search every available source for a route and present one unified comparison. Co
 
 **This is an orchestration skill.** It tells the agent which tools to run and how to combine results. No standalone script.
 
+**Companion reference skills.** Load these for deeper context:
+- `flight-search-strategy` — full source priority, market selection, source accuracy hierarchy
+- `points-valuations` — CPP rules, floor/ceiling, surcharge programs, transfer bonuses
+- `partner-awards` — alliance + bilateral partnership reachability
+- `lessons-learned` — Seats.aero workflow, Southwest specifics, Companion Pass math
+- `fallback-and-resilience` — what to do when a source fails
+
 ## When to Use
 
 - "Find me the best way to get from SFO to CDG in August"

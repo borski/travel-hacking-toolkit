@@ -150,11 +150,34 @@ Also use **tripadvisor** (under Destinations) for hotel ratings, rankings, subra
 | **scandinavia-transit** | Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing. | [Entur](https://developer.entur.org) + [Trafiklab](https://www.trafiklab.se) + [Rejseplanen](https://labs.rejseplanen.dk) |
 | **tripadvisor** | Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month. | [TripAdvisor](https://www.tripadvisor.com/developers) |
 
+#### Reference and Operations (auto-loaded on demand)
+
+These skills carry the deep institutional knowledge that used to live in CLAUDE.md. They auto-load when the agent encounters relevant triggers, so the main config stays lean.
+
+| Skill | What It Covers |
+|-------|---------------|
+| **flight-search-strategy** | The canonical multi-source search workflow. Source priority (Duffel > Ignav > Google Flights > others), market selection for international routes, source accuracy hierarchy, common failure modes. |
+| **points-valuations** | CPP formula, floor/ceiling rules, surcharge-heavy programs to avoid, transfer bonus considerations, Chase Points Boost dynamics, opportunity cost. |
+| **partner-awards** | Which programs ticket which airlines (alliance + bilateral). Cross-references credit card currencies to booking programs. Reachability workflow. |
+| **alliances** | Star Alliance, oneworld, SkyTeam membership and recent shifts (SAS to SkyTeam, ITA to Star, Hawaiian/Fiji to oneworld). Key cross-alliance booking relationships. |
+| **award-sweet-spots** | Catalog of legendary, excellent, and good award redemptions with current rates and devaluation history. |
+| **cabin-codes** | IATA cabin codes (F/J/W/Y) and saver fare class codes (X/I/O) for partner-bookable inventory. |
+| **hotel-chains** | Maps brand names (Westin, Holiday Inn, etc.) to chain families and loyalty programs. |
+| **fallback-and-resilience** | What to do when each tool fails. Tool-by-tool fallback paths. |
+| **booking-guidance** | The booking flow, "hold before transfer" rule, phone numbers for major programs. |
+| **lessons-learned** | Hard-won knowledge from real searches: the mandatory Seats.aero workflow, Southwest specifics, Companion Pass math, source accuracy, small-market caveats, Duffel limitations. Load before any award flight search. |
+
 ## How It Works
 
 ### Skills
 
-Skills are markdown files that teach your AI how to call travel APIs. They contain endpoint documentation, curl examples, useful jq filters, and workflow guidance. OpenCode, Claude Code, and Codex can all load them.
+Skills are markdown files that teach your AI how to call travel APIs and apply travel-hacking knowledge. They contain endpoint documentation, curl examples, useful jq filters, and workflow guidance. OpenCode, Claude Code, and Codex can all load them.
+
+**Two flavors:**
+- **Tool skills** (duffel, seats-aero, southwest, etc.) wrap APIs and external tools.
+- **Reference skills** (flight-search-strategy, points-valuations, alliances, lessons-learned, etc.) carry the institutional knowledge that decides when and how to use the tool skills.
+
+Skills use **progressive disclosure**: each one's name and short description are loaded into context at session start. The agent reads the full SKILL.md only when it decides to use a skill. This keeps the always-loaded context small and lets the toolkit grow without bloating the agent's prompt.
 
 The `skills/` directory is the canonical source. The setup script either:
 - Installs a Codex plugin that points at the repo's skills and MCP config
@@ -323,7 +346,19 @@ travel-hacking-toolkit/
 │   │   ├── ao.mjs
 │   │   └── package.json
 │   ├── scandinavia-transit/SKILL.md # Nordic trains/buses/ferries
-│   └── tripadvisor/SKILL.md        # Ratings, reviews, nearby restaurants
+│   ├── tripadvisor/SKILL.md        # Ratings, reviews, nearby restaurants
+│   │
+│   │  # ── Reference & Operations (auto-load on demand) ──
+│   ├── flight-search-strategy/SKILL.md  # Canonical multi-source search workflow
+│   ├── points-valuations/SKILL.md       # CPP rules, surcharge programs, transfer bonuses
+│   ├── partner-awards/SKILL.md          # Which programs ticket which airlines
+│   ├── alliances/SKILL.md               # Star/oneworld/SkyTeam + cross-alliance plays
+│   ├── award-sweet-spots/SKILL.md       # Legendary redemptions catalog
+│   ├── cabin-codes/SKILL.md             # F/J/W/Y + saver fare classes (X/I/O)
+│   ├── hotel-chains/SKILL.md            # Brand → loyalty program mapping
+│   ├── fallback-and-resilience/SKILL.md # Tool failure recovery paths
+│   ├── booking-guidance/SKILL.md        # Booking flow + phone numbers
+│   └── lessons-learned/SKILL.md         # Hard-won knowledge from real searches
 ├── scripts/
 │   ├── setup.sh                    # Interactive installer (macOS/Linux/WSL/Git Bash)
 │   ├── setup.ps1                   # Interactive installer (Windows PowerShell)
