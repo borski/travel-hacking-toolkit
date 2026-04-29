@@ -37,6 +37,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 
 <!-- BEGIN: llms:portals -->
 - [Amex Travel](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/amex-travel/SKILL.md): Amex MR portal for flights, hotels, IAP discounts, FHR/THC benefits. Requires Platinum. Docker: `ghcr.io/borski/amex-travel`.
+- [Bilt](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/bilt/SKILL.md): Bilt Rewards travel portal for hotels and flights. 1.25 cpp on Bilt Points. Home Away From Home properties give $300+ in benefits to Gold/Platinum members.
 - [Chase Travel](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/chase-travel/SKILL.md): Chase UR portal for flights, hotels, Points Boost, Edit benefits. Requires Sapphire. Docker: `ghcr.io/borski/chase-travel`.
 <!-- END: llms:portals -->
 

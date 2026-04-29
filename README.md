@@ -98,6 +98,7 @@ Start here: the **orchestration skills** call everything else automatically.
 | Skill | What It Does | API Key |
 |-------|-------------|---------|
 | **amex-travel** | Amex MR portal for flights, hotels, IAP discounts, FHR/THC benefits. Requires Platinum. Docker: `ghcr.io/borski/amex-travel`. | None (requires Patchright) |
+| **bilt** | Bilt Rewards travel portal for hotels and flights. 1.25 cpp on Bilt Points. Home Away From Home properties give $300+ in benefits to Gold/Platinum members. | None (public API) |
 | **chase-travel** | Chase UR portal for flights, hotels, Points Boost, Edit benefits. Requires Sapphire. Docker: `ghcr.io/borski/chase-travel`. | None (requires Patchright) |
 <!-- END: readme:portals -->
 

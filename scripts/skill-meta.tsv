@@ -11,6 +11,7 @@ seats-aero	flights	Award availability across 27 mileage programs.	Seats.aero Pro
 seatmaps	flights	Aircraft seat maps, cabin dimensions, seat recommendations.	None (requires agent-browser)	
 southwest	flights	SW fare classes, points pricing, Companion Pass. Change flight price drop monitor.	None (requires Patchright)	ghcr.io/borski/sw-fares
 amex-travel	portals	Amex MR portal for flights, hotels, IAP discounts, FHR/THC benefits. Requires Platinum.	None (requires Patchright)	ghcr.io/borski/amex-travel
+bilt	portals	Bilt Rewards travel portal for hotels and flights. 1.25 cpp on Bilt Points. Home Away From Home properties give $300+ in benefits to Gold/Platinum members.	None (public API)	
 chase-travel	portals	Chase UR portal for flights, hotels, Points Boost, Edit benefits. Requires Sapphire.	None (requires Patchright)	ghcr.io/borski/chase-travel
 premium-hotels	hotels	Search 4,659 Amex FHR/THC + Chase Edit hotels by city. Stacking opportunities.	None (local data)	
 rapidapi	hotels	Booking.com hotel prices.	RapidAPI	

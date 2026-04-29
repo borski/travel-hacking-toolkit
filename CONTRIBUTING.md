@@ -155,7 +155,7 @@ Use `.env` for local secrets. Use `.env.example` to document required env vars. 
 - **Small, focused PRs.** One skill per PR. One bug fix per PR. Avoid grab-bags.
 - **Describe the why.** What problem does this solve? What's the alternative if not merged?
 - **Show your work.** If you added a skill, paste sample output. If you fixed a bug, paste before/after.
-- **Update relevant docs.** New skill? Add the row to `skills/skill-meta.tsv` and run the generator. New env var? Update `.env.example`.
+- **Update relevant docs.** New skill? Add the row to `scripts/skill-meta.tsv` and run the generator. New env var? Update `.env.example`.
 - **Pass smoke tests.** All static checks must be green. Agent checks are best-effort if you don't have all 3 CLIs installed.
 
 ## Local Development Setup
