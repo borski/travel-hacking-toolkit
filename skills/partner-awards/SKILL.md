@@ -39,5 +39,3 @@ When checking if a user can actually book an award flight:
 - Assuming an airline "can't be booked with points" because the user has zero direct balance. Always check transfer reachability first.
 - Recommending a transfer without verifying the path. Some routes that "seem like they should work" don't (e.g., Amex MR does NOT transfer to United).
 - Missing cross-alliance plays. United metal flights can be booked via Turkish M&S, Avianca LifeMiles, Aeroplan, ANA, and others, often at very different rates.
-</content>
-</invoke>

@@ -91,5 +91,3 @@ Store their answers and apply to all subsequent searches in the session.
 - **Offers expire in 15-30 minutes.** Don't cache Duffel results across sessions.
 - **60 requests per 60 seconds rate limit.** Parallel searches are fine but don't go crazy.
 - **Returns multiple fare classes for the same flight.** This is a feature. You'll see basic economy at one price and main cabin at another for the same routing. Use the cheapest bookable class for cpp comparison unless the user specifies a fare preference.
-</content>
-</invoke>

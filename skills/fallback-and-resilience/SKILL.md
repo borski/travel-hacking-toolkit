@@ -50,5 +50,3 @@ These hit websites directly with an undetected browser. Common failure modes:
 If `docker pull ghcr.io/borski/...` fails:
 - **`unauthorized`:** Run `docker logout ghcr.io` then retry. Or login with a GitHub PAT that has `read:packages`. Or build locally with `docker build -t <tag> skills/<skill>/`.
 - **Network timeout:** Retry with `--platform linux/amd64` if you're on ARM and getting checksum mismatches.
-</content>
-</invoke>

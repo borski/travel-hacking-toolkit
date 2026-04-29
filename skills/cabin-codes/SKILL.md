@@ -29,5 +29,3 @@ These are critical for partner bookings. If you see these fare codes available o
 Partner award rates are often dramatically lower than the operating airline's own rates. United business saver (I class) bookable through Turkish Miles&Smiles is a classic example: a route that costs 80,000 United miles might only cost 45,000 Turkish miles. But Turkish (and other partners) only sees the saver inventory. If only "standard" or "everyday" fares show on united.com, partners cannot book that flight.
 
 When checking award availability for a flight you found on a partner program (Turkish, Aeroplan, ANA, etc.), verify the saver class is open on the operating airline's site before transferring points.
-</content>
-</invoke>

@@ -36,5 +36,3 @@ Mention transfer opportunities. "Your Chase UR transfers 1:1 to Hyatt. That 25K/
 ## Booking Windows for Hotels
 
 Reference `data/sweet-spots.json` `booking_windows` section if a user wants to know how far in advance to book.
-</content>
-</invoke>

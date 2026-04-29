@@ -90,5 +90,3 @@ When sources disagree on cash prices:
 - Skipping Southwest because "no GDS has it" — exactly why you need the SW skill.
 - Skipping Seats.aero because the user "doesn't have those points" — they may have them via transfer, see the `partner-awards` skill.
 - Single-market search on international routes (always try at least 2 markets).
-</content>
-</invoke>

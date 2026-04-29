@@ -146,5 +146,3 @@ If you change skills, CLAUDE.md, or MCP config, run `bash scripts/smoke-test.sh`
 - For tool failure recovery, load the `fallback-and-resilience` skill.
 - For institutional knowledge from past searches (Seats.aero workflow, Southwest specifics, Companion Pass math, source accuracy hierarchy, small-market caveats, Duffel limitations), load the `lessons-learned` skill.
 - For booking flow, phone numbers, and the "hold before transfer" rule, load the `booking-guidance` skill.
-</content>
-</invoke>

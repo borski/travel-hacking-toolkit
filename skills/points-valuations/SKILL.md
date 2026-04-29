@@ -79,5 +79,3 @@ This is the whole game. If 60K miles via transfer gets you a flight that would c
 ## Opportunity Cost
 
 Burning Chase UR on a 1.2cpp portal redemption is wasteful when you could transfer to Hyatt at 2.0cpp for hotels. Mention when points have better uses elsewhere.
-</content>
-</invoke>

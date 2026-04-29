@@ -40,5 +40,3 @@ Examples of cross-alliance plays:
 ## Partner Awards Reference
 
 For the full picture of which programs ticket which airlines, plus bilateral partnerships outside alliances, load the `partner-awards` skill or read `data/partner-awards.json` directly.
-</content>
-</invoke>

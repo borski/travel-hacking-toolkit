@@ -40,7 +40,7 @@ Run these in parallel where possible. **Never fail silently.** If a source error
 
 **Skiplagged and Kiwi:** Use web search (tavily or exa) to find their prices. They don't have MCP skills but their URLs are predictable. Always note that Skiplagged fares have restrictions (can't check bags, must use the "missed" connection city as destination).
 
-**Southwest:** Check if SW flies the route first (major US domestic, Mexico, Caribbean, Central America). If yes, run the `southwest` skill. If no, skip and note "Southwest does not fly this route." Southwest returns BOTH cash prices AND Rapid Rewards points prices for all 4 fare classes (Wanna Get Away, WGA+, Anytime, Business Select). Include SW points in the comparison table as a separate currency. SW points are NOT transferable from UR/MR. They're earned directly or via Chase UR transfer (1:1). Companion Pass doubles the value.
+**Southwest:** Run the `southwest` skill if SW flies the route. Include SW Rapid Rewards points in the comparison table as a separate currency. The `lessons-learned` skill has the full details on SW specifics (fare class requirements, Companion Pass math, GDS gap).
 
 **SerpAPI is optional.** Only use if the user asks for Google Hotels or destination discovery.
 

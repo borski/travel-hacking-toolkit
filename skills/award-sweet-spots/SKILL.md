@@ -34,5 +34,3 @@ When a user's search returns options that match a known sweet spot:
 ## Booking Windows
 
 `data/sweet-spots.json` also has a `booking_windows` section. When a user asks about flights far in advance, check when award space opens for that airline. Some programs (Aeroplan) release space 358 days out. Others release 11 months. Knowing the window prevents wasted searches.
-</content>
-</invoke>
