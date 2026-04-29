@@ -255,9 +255,9 @@ serpapi|SerpAPI|https://serpapi.com|Google Flights, Google Hotels, Travel Explor
 tripadvisor|TripAdvisor|https://www.tripadvisor.com/developers|Hotel/restaurant/attraction data. 5K calls/month free.
 awardwallet|AwardWallet|https://business.awardwallet.com|Loyalty program balance aggregator. Business tier required.
 ticketsatwork|TicketsAtWork|https://www.ticketsatwork.com|Corporate-perks portal. Account requires employer affiliation. Same credentials work for Working Advantage, Plum, Beneplace (shared EBG backend).
-scandinavia-transit|Entur (Norway)|https://developer.entur.org|Norway transit. Free, no auth.
-scandinavia-transit|Trafiklab (Sweden)|https://www.trafiklab.se|Sweden transit. Free, requires API key.
-scandinavia-transit|Rejseplanen (Denmark)|https://labs.rejseplanen.dk|Denmark transit. Free, no auth.
+scandinavia-transit|Entur (Norway)|https://developer.entur.org|Norway transit. No key, but ET-Client-Name header is required. Set ENTUR_CLIENT_NAME in .env.
+scandinavia-transit|Trafiklab (Sweden)|https://www.trafiklab.se|Sweden transit. Free API key. 30,000 calls/month.
+scandinavia-transit|Rejseplanen (Denmark)|https://labs.rejseplanen.dk|Denmark transit. Free API key (application required). 50,000 calls/month, non-commercial only.
 DATA
 }
 
