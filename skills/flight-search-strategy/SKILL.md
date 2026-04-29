@@ -1,6 +1,8 @@
 ---
 name: flight-search-strategy
 description: The canonical strategy for flight searches. Covers source priority across all skills (Duffel, Ignav, Google Flights, Skiplagged, Kiwi, Seats.aero, Southwest), parallel search workflow, market selection for international routes (different country markets return different prices), and how to combine cash + award results. Load whenever running a flight search, designing a parallel search plan, or deciding which sources to query for a specific route. Triggers on "search flights", "flight search", "find flights", "compare flights", "cheapest flight to", "award and cash", "which sources should I check", "market selection", "international flight pricing", or any flight-discovery task.
+category: reference
+summary: The canonical multi-source search workflow. Source priority (Duffel > Ignav > Google Flights > others), market selection for international routes, source accuracy hierarchy, common failure modes.
 ---
 
 # Flight Search Strategy

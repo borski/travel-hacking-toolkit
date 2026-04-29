@@ -1,6 +1,8 @@
 ---
 name: fallback-and-resilience
 description: Reference for what to do when a tool fails, an API hits a rate limit, or a website blocks scraping. Maps every primary tool to its best fallback so a single tool failure does not block the user. Load when an MCP returns an error, a curl command times out, a docker image fails to pull, a Patchright login is rejected, or a search returns no results suspiciously. Triggers on "tool failed", "API error", "rate limit", "fallback", "Skiplagged 502", "Kiwi server error", "Cloudflare blocked", "Seats.aero stale", "tried X but it failed", or any tool failure context.
+category: reference
+summary: What to do when each tool fails. Tool-by-tool fallback paths.
 ---
 
 # Fallback and Resilience

@@ -1,6 +1,10 @@
 ---
 name: southwest
 description: Search Southwest Airlines for flight prices, points pricing, and fare classes via Patchright (undetected Playwright). Use when user asks about Southwest flights, fare classes, SW points pricing, or Companion Pass value. Southwest is NOT in any GDS or API. This skill and google-flights are the only ways to get SW data. Triggers on "southwest", "SW flights", "wanna get away", "companion pass", "southwest points", "basic vs choice".
+category: flights
+summary: SW fare classes, points pricing, Companion Pass. Change flight price drop monitor.
+api_key: None (requires Patchright)
+docker_image: ghcr.io/borski/sw-fares
 allowed-tools: Bash(python3 *), Bash(docker *)
 ---
 

@@ -1,6 +1,9 @@
 ---
 name: compare-flights
 description: Unified flight comparison across all sources. Searches cash prices (Duffel, Ignav), award availability (seats.aero), and portal pricing (Chase UR, Amex MR) in parallel. Applies transfer partner optimization automatically. Outputs one comparison table with recommendations.
+category: orchestration
+summary: Unified flight comparison across ALL sources in parallel. Auto-applies transfer optimization.
+api_key: Uses individual skill keys
 ---
 
 # Compare Flights

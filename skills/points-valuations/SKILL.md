@@ -1,6 +1,8 @@
 ---
 name: points-valuations
 description: Reference for cents-per-point (cpp) valuations across all major loyalty programs, sourced from four publications with different bias profiles. Provides floor/ceiling rules for deciding when a redemption is good, mediocre, or exceptional. Load when computing cpp on award redemptions, deciding whether to burn points or pay cash, comparing portal rates against transfer-based bookings, or whenever the question "is this a good redemption?" comes up. Triggers on "cpp", "cents per point", "is this a good redemption", "points valuation", "floor cpp", "ceiling cpp", "TPG value", "OMAAT value", "View From The Wing", or any decision involving the relative value of points.
+category: reference
+summary: CPP formula, floor/ceiling rules, surcharge-heavy programs to avoid, transfer bonus considerations, Chase Points Boost dynamics, opportunity cost.
 ---
 
 # Points Valuations

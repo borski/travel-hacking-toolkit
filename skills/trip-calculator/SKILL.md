@@ -1,6 +1,9 @@
 ---
 name: trip-calculator
 description: Compare the total cost of a trip using cash vs points. Factors in transfer ratios, taxes, fees, point valuations, and opportunity cost to recommend the best redemption strategy.
+category: orchestration
+summary: Cash vs points decision answered with math. Transfer ratios, taxes, opportunity cost.
+api_key: None (free, local data)
 ---
 
 # Trip Cost Calculator

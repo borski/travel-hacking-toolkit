@@ -1,6 +1,9 @@
 ---
 name: duffel
 description: Real-time GDS flight search via Duffel API. Accurate per-fare-class pricing, cabin selection, multi-city, time preferences. Primary cash price source. Does not include Southwest.
+category: flights
+summary: Primary cash prices. Real GDS per-fare-class data.
+api_key: Duffel
 allowed-tools: Bash(curl *)
 ---
 

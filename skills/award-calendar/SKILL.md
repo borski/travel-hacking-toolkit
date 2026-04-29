@@ -1,6 +1,9 @@
 ---
 name: award-calendar
 description: Find the cheapest award dates for a route over a date range. Searches seats.aero across all programs, groups by date, and shows a calendar grid of the best deals. Use when dates are flexible and you want to find the sweet spot.
+category: orchestration
+summary: Cheapest award dates for a route across a date range. Calendar grid view.
+api_key: Seats.aero Pro
 ---
 
 # Award Calendar

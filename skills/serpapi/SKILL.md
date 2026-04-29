@@ -1,6 +1,9 @@
 ---
 name: serpapi
 description: Search Google Flights for cash prices, Google Hotels for accommodation, and Google Travel Explore for destination discovery. Use when comparing award flights vs pay-with-points portal pricing, searching hotels, or exploring travel options. Triggers on "cash price", "how much does the flight cost", "hotel search", "Google Flights", "Chase portal comparison", "pay with points portal", "cheapest flight", "flight schedule", or any question about actual dollar prices for flights or hotels.
+category: hotels
+summary: Google Hotels search and destination discovery.
+api_key: SerpAPI
 license: MIT
 ---
 

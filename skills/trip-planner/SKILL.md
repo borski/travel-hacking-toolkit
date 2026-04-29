@@ -1,6 +1,9 @@
 ---
 name: trip-planner
 description: Unified trip planning that combines flight comparison, hotel comparison, and points optimization into one complete trip cost analysis. Use when the user says "plan a trip" or wants the full picture for a destination.
+category: orchestration
+summary: Full trip planning. Flights + hotels + points in one shot.
+api_key: Uses individual skill keys
 ---
 
 **Companion reference skills.** Load these for deeper context:

@@ -1,6 +1,9 @@
 ---
 name: compare-hotels
 description: Unified hotel comparison across portals, direct booking, and Airbnb. Searches Chase Edit, Amex FHR/THC, SerpAPI/Google Hotels, and Airbnb. Highlights premium program benefits, stacking opportunities, and points value.
+category: orchestration
+summary: Unified hotel comparison across portals, metasearch, and Airbnb. FHR/Edit stacking detection.
+api_key: Uses individual skill keys
 ---
 
 **Companion reference skills.** Load these for deeper context:

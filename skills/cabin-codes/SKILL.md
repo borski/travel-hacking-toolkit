@@ -1,6 +1,8 @@
 ---
 name: cabin-codes
 description: Reference for IATA cabin codes (F/J/W/Y) and fare class codes (X/I/O) used in Seats.aero results, GDS data, and partner award bookings. Load when reading award inventory, parsing flight search results, or determining whether a fare is bookable through partners. Triggers on "fare class", "cabin code", "F/J/W/Y", "saver award", "X class", "I class", "O class", "saver fare", or any award redemption discussion that references letter codes.
+category: reference
+summary: IATA cabin codes (F/J/W/Y) and saver fare class codes (X/I/O) for partner-bookable inventory.
 ---
 
 # Cabin Codes

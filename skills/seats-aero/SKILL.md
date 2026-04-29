@@ -1,6 +1,9 @@
 ---
 name: seats-aero
 description: Search award flight availability across mileage programs via Seats.aero Partner API. Use when planning trips on points, searching for award flights, or comparing mileage costs across programs. Triggers on "award flight", "miles cost", "points for flights", "cheapest award", "seats.aero", "mileage program availability", "United miles", "Flying Blue", "Aeroplan", or any question about how many miles/points a specific flight costs.
+category: flights
+summary: Award availability across 27 mileage programs.
+api_key: Seats.aero Pro/Partner
 license: MIT
 ---
 

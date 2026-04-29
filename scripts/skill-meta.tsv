@@ -1,0 +1,35 @@
+name	category	summary	api_key	docker_image
+award-calendar	orchestration	Cheapest award dates for a route across a date range. Calendar grid view.	Seats.aero Pro	
+compare-flights	orchestration	Unified flight comparison across ALL sources in parallel. Auto-applies transfer optimization.	Uses individual skill keys	
+compare-hotels	orchestration	Unified hotel comparison across portals, metasearch, and Airbnb. FHR/Edit stacking detection.	Uses individual skill keys	
+trip-calculator	orchestration	Cash vs points decision answered with math. Transfer ratios, taxes, opportunity cost.	None (free, local data)	
+trip-planner	orchestration	Full trip planning. Flights + hotels + points in one shot.	Uses individual skill keys	
+duffel	flights	Primary cash prices. Real GDS per-fare-class data.	Duffel	
+google-flights	flights	Browser-automated Google Flights. All airlines including Southwest.	None (requires agent-browser)	
+ignav	flights	Fast REST API cash prices. Market selection for arbitrage.	Ignav (1,000 free)	
+seats-aero	flights	Award availability across 27 mileage programs.	Seats.aero Pro/Partner	
+seatmaps	flights	Aircraft seat maps, cabin dimensions, seat recommendations.	None (requires agent-browser)	
+southwest	flights	SW fare classes, points pricing, Companion Pass. Change flight price drop monitor.	None (requires Patchright)	ghcr.io/borski/sw-fares
+amex-travel	portals	Amex MR portal for flights, hotels, IAP discounts, FHR/THC benefits. Requires Platinum.	None (requires Patchright)	ghcr.io/borski/amex-travel
+chase-travel	portals	Chase UR portal for flights, hotels, Points Boost, Edit benefits. Requires Sapphire.	None (requires Patchright)	ghcr.io/borski/chase-travel
+premium-hotels	hotels	Search 4,659 Amex FHR/THC + Chase Edit hotels by city. Stacking opportunities.	None (local data)	
+rapidapi	hotels	Booking.com hotel prices.	RapidAPI	
+serpapi	hotels	Google Hotels search and destination discovery.	SerpAPI	
+ticketsatwork	hotels	TicketsAtWork (EBG) corporate-perks portal. Hotels, theme park tickets, attractions, live events. Often beats portals by 10-30%.	None (requires TaW account + Patchright)	ghcr.io/borski/ticketsatwork
+american-airlines	loyalty	AAdvantage balance and elite status. AwardWallet does not support AA.	None (requires Patchright)	ghcr.io/borski/aa-miles-check
+awardwallet	loyalty	All loyalty balances, elite status, history.	AwardWallet Business	
+transfer-partners	loyalty	Cheapest transfer path from credit card points to mileage programs.	None (local data)	
+wheretocredit	loyalty	Mileage earning rates by airline and booking class across 50+ programs.	None (free)	
+atlas-obscura	destinations	Hidden gems and unusual attractions near any destination.	None (free)	
+scandinavia-transit	destinations	Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing.	Entur + Trafiklab + Rejseplanen	
+tripadvisor	destinations	Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month.	TripAdvisor	
+flight-search-strategy	reference	The canonical multi-source search workflow. Source priority (Duffel > Ignav > Google Flights > others), market selection for international routes, source accuracy hierarchy, common failure modes.		
+points-valuations	reference	CPP formula, floor/ceiling rules, surcharge-heavy programs to avoid, transfer bonus considerations, Chase Points Boost dynamics, opportunity cost.		
+partner-awards	reference	Which programs ticket which airlines (alliance + bilateral). Cross-references credit card currencies to booking programs. Reachability workflow.		
+alliances	reference	Star Alliance, oneworld, SkyTeam membership and recent shifts (SAS to SkyTeam, ITA to Star, Hawaiian/Fiji to oneworld). Key cross-alliance booking relationships.		
+award-sweet-spots	reference	Catalog of legendary, excellent, and good award redemptions with current rates and devaluation history.		
+cabin-codes	reference	IATA cabin codes (F/J/W/Y) and saver fare class codes (X/I/O) for partner-bookable inventory.		
+hotel-chains	reference	Maps brand names (Westin, Holiday Inn, etc.) to chain families and loyalty programs.		
+fallback-and-resilience	reference	What to do when each tool fails. Tool-by-tool fallback paths.		
+booking-guidance	reference	The booking flow, hold-before-transfer rule, phone numbers for major programs.		
+lessons-learned	reference	Hard-won knowledge from real searches. The mandatory Seats.aero workflow, Southwest specifics, Companion Pass math, source accuracy, small-market caveats, Duffel limitations. Load before any award flight search.		

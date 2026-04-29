@@ -120,6 +120,14 @@ PY
     fail "stale data files (run: python3 scripts/refresh-hotel-data.py for hotels)"
     grep -E "STALE|MISSING_META|BAD_DATE" /tmp/freshness.out | sed 's/^/      /'
   fi
+
+  # 7. README and llms.txt match generated tables (drift detection)
+  if bash scripts/gen-skill-tables.sh --check >/tmp/gendrift.out 2>&1; then
+    ok "README.md and llms.txt match generated tables"
+  else
+    fail "README.md or llms.txt drifted from generated tables (run: bash scripts/gen-skill-tables.sh)"
+    sed 's/^/      /' /tmp/gendrift.out | head -30
+  fi
 fi
 
 # --- Agent invocations ---

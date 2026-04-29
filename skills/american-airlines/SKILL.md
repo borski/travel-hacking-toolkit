@@ -1,6 +1,10 @@
 ---
 name: american-airlines
 description: Check American Airlines AAdvantage balance, elite status, and loyalty points via Patchright. Handles email 2FA with 6-box code entry. Uses persistent browser profiles to skip 2FA on subsequent runs.
+category: loyalty
+summary: AAdvantage balance and elite status. AwardWallet does not support AA.
+api_key: None (requires Patchright)
+docker_image: ghcr.io/borski/aa-miles-check
 ---
 
 # American Airlines AAdvantage

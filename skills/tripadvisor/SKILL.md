@@ -1,6 +1,9 @@
 ---
 name: tripadvisor
 description: Search TripAdvisor for hotels, restaurants, and attractions. Get ratings, reviews, photos, rankings, amenities, and nearby locations via the Content API. Use when evaluating hotels, comparing restaurants, or researching destinations.
+category: destinations
+summary: Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month.
+api_key: TripAdvisor
 license: MIT
 compatibility: opencode
 metadata:

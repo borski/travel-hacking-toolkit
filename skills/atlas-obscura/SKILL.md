@@ -1,6 +1,9 @@
 ---
 name: atlas-obscura
 description: Search Atlas Obscura for weird, wonderful, and hidden gem places near any destination. Find the interesting stuff, not boring plaques. Search by coordinates, get full details with descriptions and images.
+category: destinations
+summary: Hidden gems and unusual attractions near any destination.
+api_key: None (free)
 license: MIT
 ---
 

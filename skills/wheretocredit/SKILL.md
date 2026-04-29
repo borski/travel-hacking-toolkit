@@ -1,6 +1,9 @@
 ---
 name: wheretocredit
 description: Look up frequent flyer mileage earning rates by airline and booking class via wheretocredit.com. Shows both redeemable miles and qualifying/status miles across 50+ loyalty programs. Use when crediting flights, comparing programs, or deciding where to credit a ticket.
+category: loyalty
+summary: Mileage earning rates by airline and booking class across 50+ programs.
+api_key: None (free)
 license: MIT
 ---
 
