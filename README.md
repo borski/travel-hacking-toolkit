@@ -29,36 +29,7 @@ The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work imm
 | `DUFFEL_API_KEY_LIVE` | Primary cash flight prices. Real GDS data. | Yes (search free, pay per booking) |
 | `IGNAV_API_KEY` | Secondary cash flight prices. Fast REST API. | Yes (1,000 free requests) |
 
-For the Southwest and American Airlines skills (optional), pull the pre-built Docker images:
-
-```bash
-# Southwest: fare search + price drop monitoring
-docker pull ghcr.io/borski/sw-fares:latest
-docker run --rm ghcr.io/borski/sw-fares --origin SJC --dest DEN --depart 2026-05-15 --points --json
-docker run --rm -e SW_USERNAME -e SW_PASSWORD ghcr.io/borski/sw-fares change --conf ABC123 --first Jane --last Doe --json
-
-# American Airlines: AAdvantage balance + elite status (not in AwardWallet)
-docker pull ghcr.io/borski/aa-miles-check:latest
-docker run --rm -e AA_USERNAME=your_number -e AA_PASSWORD=your_pass ghcr.io/borski/aa-miles-check --json
-```
-
-For the Chase and Amex Travel portal skills (optional), pull pre-built Docker images:
-
-```bash
-# Chase Travel: UR portal pricing, Points Boost, Edit hotels
-docker pull ghcr.io/borski/chase-travel:latest
-docker run --rm -v ~/.chase-travel-profiles:/profiles -v /tmp:/tmp/host \
-    -e CHASE_USERNAME -e CHASE_PASSWORD \
-    ghcr.io/borski/chase-travel script /scripts/search_flights.py \
-    --origin SFO --dest CDG --depart 2026-08-11 --cabin business --json
-
-# Amex Travel: MR portal pricing, IAP discounts, FHR/THC hotels
-docker pull ghcr.io/borski/amex-travel:latest
-docker run --rm -v ~/.amex-travel-profiles:/profiles \
-    -e AMEX_USERNAME -e AMEX_PASSWORD \
-    ghcr.io/borski/amex-travel script /app/search_flights.py \
-    --origin SFO --dest NRT --depart 2026-08-15 --cabin business --json
-```
+Six skills run as optional Docker containers (Southwest, American Airlines, Chase, Amex, TicketsAtWork, plus a shared base image). `setup.sh` auto-pulls them when you select the relevant tools. See the [Docker Images](#docker-images) section for the full catalog and usage examples.
 
 Then launch your tool:
 
@@ -166,6 +137,62 @@ These skills carry the deep institutional knowledge that used to live in CLAUDE.
 | **fallback-and-resilience** | What to do when each tool fails. Tool-by-tool fallback paths. |
 | **booking-guidance** | The booking flow, "hold before transfer" rule, phone numbers for major programs. |
 | **lessons-learned** | Hard-won knowledge from real searches: the mandatory Seats.aero workflow, Southwest specifics, Companion Pass math, source accuracy, small-market caveats, Duffel limitations. Load before any award flight search. |
+
+## Docker Images
+
+Six skills run as Docker containers (browser-automated via Patchright). All images are public on GitHub Container Registry, no auth required to pull. `setup.sh` (and `setup.ps1` on Windows) auto-pulls the ones you need based on which tool you select.
+
+| Image | Skill | Purpose | Source |
+|-------|-------|---------|--------|
+| [`ghcr.io/borski/patchright-docker`](https://github.com/borski/travel-hacking-toolkit/pkgs/container/patchright-docker) | (base) | Patchright + Chromium + xvfb base layer that all other browser-skill images build on. | [external](https://github.com/borski/patchright-docker) |
+| [`ghcr.io/borski/sw-fares`](https://github.com/borski/travel-hacking-toolkit/pkgs/container/sw-fares) | `southwest` | Southwest.com fare search + change-flight monitor. | [skills/southwest](skills/southwest/Dockerfile) |
+| [`ghcr.io/borski/aa-miles-check`](https://github.com/borski/travel-hacking-toolkit/pkgs/container/aa-miles-check) | `american-airlines` | AAdvantage balance, status, loyalty points. | [skills/american-airlines](skills/american-airlines/Dockerfile) |
+| [`ghcr.io/borski/chase-travel`](https://github.com/borski/travel-hacking-toolkit/pkgs/container/chase-travel) | `chase-travel` | Chase UR travel portal: flights, hotels, Points Boost, Edit. | [skills/chase-travel](skills/chase-travel/Dockerfile) |
+| [`ghcr.io/borski/amex-travel`](https://github.com/borski/travel-hacking-toolkit/pkgs/container/amex-travel) | `amex-travel` | Amex MR travel portal: flights, hotels, IAP, FHR/THC. | [skills/amex-travel](skills/amex-travel/Dockerfile) |
+| [`ghcr.io/borski/ticketsatwork`](https://github.com/borski/travel-hacking-toolkit/pkgs/container/ticketsatwork) | `ticketsatwork` | TaW / Working Advantage / Plum / Beneplace (shared EBG backend): hotels, theme park tickets, live events. | [skills/ticketsatwork](skills/ticketsatwork/Dockerfile) |
+
+### Usage
+
+```bash
+# Southwest: fare search + price drop monitoring
+docker pull ghcr.io/borski/sw-fares:latest
+docker run --rm ghcr.io/borski/sw-fares --origin SJC --dest DEN --depart 2026-05-15 --points --json
+docker run --rm -e SW_USERNAME -e SW_PASSWORD ghcr.io/borski/sw-fares \
+    change --conf ABC123 --first Jane --last Doe --json
+
+# American Airlines: AAdvantage balance + elite status (not in AwardWallet)
+docker pull ghcr.io/borski/aa-miles-check:latest
+docker run --rm -e AA_USERNAME=your_number -e AA_PASSWORD=your_pass ghcr.io/borski/aa-miles-check --json
+
+# Chase Travel: UR portal pricing, Points Boost, Edit hotels
+docker pull ghcr.io/borski/chase-travel:latest
+docker run --rm -v ~/.chase-travel-profiles:/profiles -v /tmp:/tmp/host \
+    -e CHASE_USERNAME -e CHASE_PASSWORD \
+    ghcr.io/borski/chase-travel script /scripts/search_flights.py \
+    --origin SFO --dest CDG --depart 2026-08-11 --cabin business --json
+
+# Amex Travel: MR portal pricing, IAP discounts, FHR/THC hotels
+docker pull ghcr.io/borski/amex-travel:latest
+docker run --rm -v ~/.amex-travel-profiles:/profiles \
+    -e AMEX_USERNAME -e AMEX_PASSWORD \
+    ghcr.io/borski/amex-travel script /app/search_flights.py \
+    --origin SFO --dest NRT --depart 2026-08-15 --cabin business --json
+
+# TicketsAtWork (also covers Working Advantage / Plum / Beneplace)
+docker pull ghcr.io/borski/ticketsatwork:latest
+docker run --rm -e TAW_USER -e TAW_PASS ghcr.io/borski/ticketsatwork \
+    hotels --location "Carlsbad, CA" --checkin 2027-03-04 --checkout 2027-03-07 --json
+```
+
+### Building Locally
+
+To build any image locally instead of pulling from ghcr.io:
+
+```bash
+docker build -t ghcr.io/borski/<image-name>:local skills/<skill-name>/
+```
+
+The `Dockerfile` in each skill directory shows exactly what's in the image. All five skill images build on `ghcr.io/borski/patchright-docker` as the base.
 
 ## How It Works
 

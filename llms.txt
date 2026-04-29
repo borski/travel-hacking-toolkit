@@ -1,11 +1,12 @@
 # Travel Hacking Toolkit
 
-> A comprehensive toolkit for searching flights, hotels, and award availability across multiple sources. Combines cash pricing (Duffel, Ignav), award search (seats.aero), portal pay-with-points (Chase UR, Amex MR), and transfer partner optimization into unified comparison tools. Designed for use by AI coding assistants and agents.
+> A comprehensive toolkit for searching flights, hotels, and award availability across multiple sources. Combines cash pricing (Duffel, Ignav), award search (seats.aero), portal pay-with-points (Chase UR, Amex MR), corporate-perks pricing (TicketsAtWork), and transfer partner optimization into unified comparison tools. Designed for use by AI coding assistants and agents (OpenCode, Claude Code, Codex).
 
 Key concepts:
 - **Cash prices** come from GDS feeds (Duffel, Ignav) and are bookable fares
 - **Award prices** come from loyalty program availability (seats.aero) and require transferring credit card points
 - **Portal prices** come from Chase and Amex travel portals and let you pay with UR/MR points directly
+- **Corporate-perks prices** come from EBG-backed sites (TicketsAtWork, Working Advantage, Plum, Beneplace) and often beat public rates 10-30%
 - **Transfer partners** map credit card points to airline/hotel loyalty programs at various ratios
 - **CPP (cents per point)** measures redemption value. Higher CPP = better use of points
 
@@ -23,13 +24,15 @@ Key concepts:
 - [Seats.aero](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/seats-aero/SKILL.md): Award flight availability across 25+ mileage programs.
 - [Chase Travel](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/chase-travel/SKILL.md): Chase UR portal. Points Boost detection, Edit hotel benefits. Docker: `ghcr.io/borski/chase-travel`.
 - [Amex Travel](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/amex-travel/SKILL.md): Amex MR portal. IAP discount detection, FHR/THC hotels. Docker: `ghcr.io/borski/amex-travel`.
-- [Southwest](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/southwest/SKILL.md): All 4 fare classes, cash + points pricing. Docker: `ghcr.io/borski/sw-fares`.
+- [Southwest](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/southwest/SKILL.md): All 4 fare classes, cash + points pricing. Change-flight price drop monitor. Docker: `ghcr.io/borski/sw-fares`.
 - [Google Flights](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/google-flights/SKILL.md): Browser-automated. All airlines including Southwest cash.
 - [SerpAPI](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/serpapi/SKILL.md): Google Flights cash prices, Google Hotels, destination discovery.
 
 ## Hotel Sources
 
 - [Premium Hotels](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/premium-hotels/SKILL.md): Search FHR (1,807), THC (1,299), and Chase Edit (1,553) properties by city. Local data, no API.
+- [TicketsAtWork](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/ticketsatwork/SKILL.md): EBG corporate-perks portal (also Working Advantage, Plum, Beneplace). Hotels + theme park tickets + live events. Often beats portals 10-30%. Docker: `ghcr.io/borski/ticketsatwork`.
+- [TripAdvisor](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/tripadvisor/SKILL.md): Hotel ratings, restaurant search, attraction reviews, nearby search.
 - [SerpAPI](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/serpapi/SKILL.md): Google Hotels metasearch.
 - [RapidAPI](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/rapidapi/SKILL.md): Booking.com inventory.
 
@@ -50,14 +53,49 @@ Key concepts:
 - [Scandinavia Transit](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/scandinavia-transit/SKILL.md): Train, bus, ferry routes within Norway (Entur), Sweden (ResRobot), Denmark (Rejseplanen). Denmark includes fare/zone pricing.
 - [Seatmaps](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/seatmaps/SKILL.md): Aircraft seat maps and cabin dimensions.
 
+## Reference and Operations (auto-load on demand)
+
+These skills carry institutional knowledge that the agent loads when triggered. They cover the workflow rules, reference tables, failure recovery, and lessons learned that prevent the most common mistakes.
+
+- [Flight Search Strategy](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/flight-search-strategy/SKILL.md): Canonical multi-source search workflow, source priority order, market selection, source accuracy hierarchy.
+- [Lessons Learned](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/lessons-learned/SKILL.md): Hard-won knowledge from real searches. REQUIRED before any award flight search. Includes the mandatory Seats.aero workflow (pull ALL programs first), Southwest specifics, Companion Pass math, source-accuracy rankings, small-market caveats, Duffel limitations.
+- [Points Valuations](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/points-valuations/SKILL.md): CPP floor/ceiling rules, surcharge-heavy programs, transfer bonuses, portal rate dynamics (Chase Points Boost), opportunity cost.
+- [Partner Awards](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/partner-awards/SKILL.md): Which programs ticket which airlines (alliance + bilateral). Reachability through credit card transfer paths.
+- [Alliances](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/alliances/SKILL.md): Star Alliance, oneworld, SkyTeam membership and recent shifts.
+- [Award Sweet Spots](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/award-sweet-spots/SKILL.md): Catalog of legendary, excellent, and good redemptions with current rates and devaluation history.
+- [Cabin Codes](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/cabin-codes/SKILL.md): IATA cabin codes (F/J/W/Y) and saver fare class codes (X/I/O) for partner-bookable inventory.
+- [Hotel Chains](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/hotel-chains/SKILL.md): Brand to loyalty program mapping (Westin -> Bonvoy, Holiday Inn -> IHG, etc.).
+- [Fallback and Resilience](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/fallback-and-resilience/SKILL.md): Tool-by-tool fallback paths when sources fail.
+- [Booking Guidance](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/booking-guidance/SKILL.md): Booking flow, "hold before transfer" rule, phone numbers for major programs.
+
+## Docker Images
+
+All images are public on GitHub Container Registry. Pull with `docker pull ghcr.io/borski/<name>:latest`.
+
+- `ghcr.io/borski/patchright-docker`: Base image. Patchright + Chromium + xvfb. All other browser-skill images build on this.
+- `ghcr.io/borski/sw-fares`: Southwest skill (search + change-flight monitor).
+- `ghcr.io/borski/aa-miles-check`: American Airlines skill (AAdvantage balance + status).
+- `ghcr.io/borski/chase-travel`: Chase UR travel portal.
+- `ghcr.io/borski/amex-travel`: Amex MR travel portal.
+- `ghcr.io/borski/ticketsatwork`: TaW / Working Advantage / Plum / Beneplace EBG portal.
+
 ## Data Files
 
-- [Transfer Partners JSON](https://github.com/borski/travel-hacking-toolkit/blob/main/data/transfer-partners.json): Credit card to loyalty program transfer ratios.
-- [Points Valuations JSON](https://github.com/borski/travel-hacking-toolkit/blob/main/data/points-valuations.json): CPP floor/ceiling valuations per program.
-- [FHR Properties JSON](https://github.com/borski/travel-hacking-toolkit/blob/main/data/fhr-properties.json): Amex Fine Hotels & Resorts property database.
-- [Chase Edit Properties JSON](https://github.com/borski/travel-hacking-toolkit/blob/main/data/chase-edit-properties.json): Chase Sapphire Hotel Collection properties.
+Local JSON data referenced by skills. No API keys required.
+
+- [Transfer Partners](https://github.com/borski/travel-hacking-toolkit/blob/main/data/transfer-partners.json): Credit card to loyalty program transfer ratios from 6 issuers.
+- [Points Valuations](https://github.com/borski/travel-hacking-toolkit/blob/main/data/points-valuations.json): CPP floor/ceiling per program from 4 sources (TPG, Upgraded Points, OMAAT, VFTW).
+- [Alliances](https://github.com/borski/travel-hacking-toolkit/blob/main/data/alliances.json): Star Alliance, oneworld, SkyTeam membership and key booking relationships.
+- [Partner Awards](https://github.com/borski/travel-hacking-toolkit/blob/main/data/partner-awards.json): Which programs ticket which airlines, including cross-alliance bilateral partnerships.
+- [Sweet Spots](https://github.com/borski/travel-hacking-toolkit/blob/main/data/sweet-spots.json): Legendary, excellent, and good award redemptions plus airline release windows.
+- [Hotel Chains](https://github.com/borski/travel-hacking-toolkit/blob/main/data/hotel-chains.json): Brand to loyalty program mapping with quick-lookup index.
+- [FHR Properties](https://github.com/borski/travel-hacking-toolkit/blob/main/data/fhr-properties.json): Amex Fine Hotels & Resorts property database with coordinates and benefits.
+- [THC Properties](https://github.com/borski/travel-hacking-toolkit/blob/main/data/thc-properties.json): Amex The Hotel Collection property database.
+- [Chase Edit Properties](https://github.com/borski/travel-hacking-toolkit/blob/main/data/chase-edit-properties.json): Chase Sapphire Reserve Hotel Collection properties.
 
 ## Optional
 
 - [RapidAPI](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/rapidapi/SKILL.md): Booking.com hotel prices. Secondary source.
 - [Google Flights](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/google-flights/SKILL.md): Browser-automated fallback for Southwest or when APIs fail.
+</content>
+</invoke>
