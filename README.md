@@ -387,26 +387,11 @@ Missing CLIs are skipped, not failed. Run from the repo root.
 
 ## Credits
 
+- [Seats.aero](https://seats.aero) ([@seatsaero](https://github.com/seatsaero), [@iangcarroll](https://github.com/iangcarroll)) — The award-availability API that inspired this whole project. The only one of its kind. Hi Ian.
 - [ajimix/travel-hacking-toolkit](https://github.com/ajimix/travel-hacking-toolkit) — Fork that contributed the google-flights skill, ignav skill, market selection strategy, and markdown table output formatting
-- [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright) by [@Vinyzu](https://github.com/Vinyzu) — Undetected Playwright fork that makes the Southwest skill possible
 - [美卡指南 (US Card Guide)](https://www.google.com/maps/d/viewer?mid=1HygPCP9ghtDptTNnpUpd_C507Mq_Fhec) by Scott — FHR/THC/Chase Edit hotel property data via Google My Maps KML
-- [SeatMaps.com](https://seatmaps.com) by [Quicket GmbH](https://quicket.io) — Aircraft seat maps, cabin data, seat recommendations
-- [AeroLOPA](https://www.aerolopa.com/) — Detailed to-scale aircraft seat maps with window positions
-- [Seats.aero](https://seats.aero) — Award flight availability data
-- [AwardWallet](https://awardwallet.com) — Loyalty program tracking
-- [Duffel](https://duffel.com) — Real-time flight search and booking
-- [SerpAPI](https://serpapi.com) — Google search result APIs
-- [RapidAPI](https://rapidapi.com) — API marketplace
-- [atlas-obscura-api](https://github.com/bartholomej/atlas-obscura-api) by [@bartholomej](https://github.com/bartholomej) — Atlas Obscura scraper
-- [Skiplagged MCP](https://mcp.skiplagged.com) — Flight search with hidden city fares
-- [Kiwi.com MCP](https://www.kiwi.com/stories/kiwi-mcp-connector/) — Flight search with virtual interlining
-- [Trivago MCP](https://mcp.trivago.com/docs) — Hotel metasearch
-- [Ferryhopper MCP](https://ferryhopper.github.io/fh-mcp/) by [Ferryhopper](https://ferryhopper.com) — Ferry routes across 33 countries
-- [mcp-server-airbnb](https://github.com/openbnb-org/mcp-server-airbnb) by [OpenBnB](https://github.com/openbnb-org) — Airbnb search and listing details
-- [LiteAPI MCP](https://mcp.liteapi.travel) by [LiteAPI](https://liteapi.travel) — Hotel booking
-- [Entur](https://developer.entur.org) — Norwegian transit API
-- [Trafiklab / ResRobot](https://www.trafiklab.se) — Swedish transit API
-- [Rejseplanen](https://labs.rejseplanen.dk) — Danish transit API
+
+Other open-source projects, MCP servers, and APIs the toolkit depends on are linked inline in the [skill tables](#skills-api-knowledge-for-your-ai) above.
 
 ## License
 
