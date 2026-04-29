@@ -158,7 +158,7 @@ These skills carry the deep institutional knowledge that used to live in CLAUDE.
 #### API Keys & Signup Links
 
 <!-- BEGIN: readme:signup-links -->
-These skills require external accounts or installs. Skills not listed below need no signup.
+These skills require an external account or API key signup. See [`.env.example`](.env.example) for the full list of env vars (some skills require an env var without a real signup, e.g. `scandinavia-transit` needs an `ENTUR_CLIENT_NAME` you choose yourself for Entur's required identification header).
 
 | Skill | Service | Link | Notes |
 |-------|---------|------|-------|
@@ -170,7 +170,6 @@ These skills require external accounts or installs. Skills not listed below need
 | `tripadvisor` | TripAdvisor | [www.tripadvisor.com/developers](https://www.tripadvisor.com/developers) | Hotel/restaurant/attraction data. 5K calls/month free. |
 | `awardwallet` | AwardWallet | [business.awardwallet.com](https://business.awardwallet.com) | Loyalty program balance aggregator. Business tier required. |
 | `ticketsatwork` | TicketsAtWork | [www.ticketsatwork.com](https://www.ticketsatwork.com) | Corporate-perks portal. Account requires employer affiliation. Same credentials work for Working Advantage, Plum, Beneplace (shared EBG backend). |
-| `scandinavia-transit` | Entur (Norway) | [developer.entur.org](https://developer.entur.org) | Norway transit. No key, but ET-Client-Name header is required. Set ENTUR_CLIENT_NAME in .env. |
 | `scandinavia-transit` | Trafiklab (Sweden) | [www.trafiklab.se](https://www.trafiklab.se) | Sweden transit. Free API key. 30,000 calls/month. |
 | `scandinavia-transit` | Rejseplanen (Denmark) | [labs.rejseplanen.dk](https://labs.rejseplanen.dk) | Denmark transit. Free API key (application required). 50,000 calls/month, non-commercial only. |
 <!-- END: readme:signup-links -->
