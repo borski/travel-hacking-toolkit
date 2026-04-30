@@ -155,6 +155,7 @@ These skills carry the deep institutional knowledge that used to live in CLAUDE.
 | **partner-awards** | Which programs ticket which airlines (alliance + bilateral). Cross-references credit card currencies to booking programs. Reachability workflow. |
 | **points-valuations** | CPP formula, floor/ceiling rules, surcharge-heavy programs to avoid, transfer bonus considerations, Chase Points Boost dynamics, opportunity cost. |
 | **round-the-world** | RTW + Pacific Circle + Asia-Pacific Circle + regional distance-award reference. 13 active programs, 4 discontinued. |
+| **status-match** | Per-program status match rules with lifetime / once-per-N-years warnings, free vs paid concierge distinction, real fees, plus card-granted renewable status as the alternative. |
 | **stopovers** | Per-program stopover rules for award redemptions. Includes Icelandair free stopover, Aeroplan, Alaska Atmos, Flying Blue, Singapore tiers, plus the negative space (BA, AA, Delta, JetBlue) that have no stopover programs. |
 | **transfer-bonuses** | Active credit card transfer bonuses with primary-source citations. Tells the agent the real effective ratio when transferring points during a promotion. |
 <!-- END: readme:reference -->

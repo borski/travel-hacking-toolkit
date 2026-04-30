@@ -1,0 +1,563 @@
+{
+  "_meta": {
+    "last_updated": "2026-04-29",
+    "staleness_days": 90,
+    "description": "Status match and status challenge programs across airlines and hotels. Distinguishes direct (free) matches from paid concierge (statusmatch.com) and notes the critical lifetime / once-per-N-years restrictions that punish a wasted match.",
+    "research_integrity": "Per Research Integrity Protocol (AGENTS.md): every program has a confidence marker (VERIFIED = primary source confirmed, LIKELY = strong secondary, UNVERIFIED = single secondary or inferred). Lifetime/repeat windows are surfaced loud because a wasted match cannot be undone.",
+    "primary_sources": {
+      "aa_aadvantage": "https://www.aa.com/i18n/aadvantage-program/aadvantage-status/aadvantage-status-match.jsp",
+      "delta_skymiles": "https://www.delta.com/us/en/skymiles/medallion-program/status-match-challenge",
+      "alaska_atmos": "https://www.alaskaair.com/atmosrewards/content/benefits/status-match",
+      "statusmatch_com_homepage": "https://statusmatch.com/",
+      "statusmatch_com_flying_blue_faq": "https://flyingblue.statusmatch.com/faq",
+      "statusmatch_com_etihad_faq": "https://etihad.statusmatch.com/faq",
+      "statusmatch_com_lufthansa_faq": "https://lufthansa.statusmatch.com/faq"
+    },
+    "secondary_sources": {
+      "upgraded_points_hotels": "https://upgradedpoints.com/travel/hotels/hotel-status-matches-challenges/",
+      "upgraded_points_united": "https://upgradedpoints.com/travel/airlines/united-airlines-status-match/",
+      "omaat_united": "https://onemileatatime.com/guides/united-status-match/",
+      "frequent_miler_2026_plans": "https://frequentmiler.com/looking-ahead-my-elite-status-plans-in-2026-on-nicks-mind/",
+      "frequent_miler_hilton_guide": "https://frequentmiler.com/hilton-honors-complete-guide/",
+      "statusmatcher_community": "https://statusmatcher.com/"
+    },
+    "decision_principles": [
+      "ALWAYS check the lifetime/repeat field before applying. Most major airline programs are once-every-3-years or once-per-lifetime. A wasted match has multi-year consequences.",
+      "Free direct match always beats paid concierge match for the same destination program.",
+      "Statusmatch.com paid concierge matches are LEGITIMATE and the matches are real, but you are paying cash for status. Compute whether the status benefits exceed the fee for your travel pattern before applying.",
+      "Hotel matches usually require a 'challenge' (a small number of paid stays in a 90-day window) to keep the matched status. Airline matches usually require flying segments or earning revenue.",
+      "Match into the program where your travel pattern keeps the status renewable. Don't match into Aeroplan if you'll never fly Star Alliance.",
+      "Most matches require proof of recent activity (recent flight or stay) plus your current status card or screenshot, dated within 12 months.",
+      "Lifetime and promotional/transferred status holders are commonly INELIGIBLE to be matched FROM (you can't use a Lifetime Marriott Platinum to status match into Hilton Diamond)."
+    ]
+  },
+
+  "direct_matches": {
+    "_description": "Free status matches and challenges offered directly by the destination program. No third party involved.",
+
+    "airlines": {
+      "aa_aadvantage": {
+        "program": "American Airlines AAdvantage",
+        "alliance": "oneworld",
+        "category": "airline",
+        "match_type": "Status Match (Instant Status Pass)",
+        "fee": "free",
+        "validity_initial": "limited time trial (typically 90 days)",
+        "match_from_tiers": ["Delta SkyMiles", "United MileagePlus", "JetBlue TrueBlue", "Southwest Rapid Rewards"],
+        "match_into_tiers": ["Gold", "Platinum", "Platinum Pro", "Executive Platinum"],
+        "lifetime_warning": "ONCE EVERY 2 YEARS",
+        "lifetime_warning_detail": "Members who registered for the Instant Status Pass in the last 2 years are not eligible. Lifetime, transferred, and promotional status holders cannot be matched FROM (must have earned current status through actual flying).",
+        "challenge_required": true,
+        "challenge_detail": "Must hit AAdvantage Loyalty Points threshold during trial period to retain status (specifics vary by tier and current promotions). Review confirmation email for exact requirements.",
+        "how_to_apply": "Online at aa.com via the AAdvantage Status Match page. Allow 4 weeks for review.",
+        "primary_source": "https://www.aa.com/i18n/aadvantage-program/aadvantage-status/aadvantage-status-match.jsp",
+        "confidence": "VERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "united_mileageplus": {
+        "program": "United MileagePlus",
+        "alliance": "Star Alliance",
+        "category": "airline",
+        "match_type": "Status Match Challenge",
+        "fee": "free",
+        "validity_initial": "120 days complimentary trial",
+        "match_from_tiers": ["Most major US and international airlines (verify on application)"],
+        "match_into_tiers": ["Premier Silver", "Premier Gold", "Premier Platinum", "Premier 1K"],
+        "lifetime_warning": "ONCE EVERY 3 YEARS",
+        "lifetime_warning_detail": "Status challenge can be taken once every 3 years. Failed challenges may extend the lockout to 5 years per Upgraded Points reporting.",
+        "challenge_required": true,
+        "challenge_detail": "Must earn ~1/3 of normal annual PQF + PQP (specifically: 5 PQF / 1,700 PQP for Silver, 10/3,400 for Gold, 15/5,000 for Platinum, 20/7,500 for 1K) within the 120-day window. PQF can be earned only via United/United Express flights; PQP via flights or co-branded card spend.",
+        "timing_tip": "Apply after July 1 to extend status validity ~18 months (status earned post-July 1 lasts through the following program year).",
+        "how_to_apply": "Online via the MileagePlus Status Match page. Activated when you take a qualifying flight.",
+        "primary_source": "https://www.united.com/ual/en/us/account/enroll/mileageplus/statuschallenge",
+        "secondary_source": "https://onemileatatime.com/guides/united-status-match/",
+        "confidence": "VERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "delta_skymiles": {
+        "program": "Delta SkyMiles Medallion",
+        "alliance": "SkyTeam",
+        "category": "airline",
+        "match_type": "Status Match Challenge",
+        "fee": "free",
+        "validity_initial": "90 days complimentary",
+        "match_from_tiers": ["Most major airline frequent flyer programs"],
+        "match_into_tiers": ["Silver", "Gold", "Platinum"],
+        "lifetime_warning": "ONCE EVERY 3 YEARS",
+        "lifetime_warning_detail": "Per official terms: members may only enroll in this offer once every 3 years. Status earned through any prior promotional or status match program is NOT eligible to be matched FROM.",
+        "eligibility_extra": "Must be enrolled in SkyMiles for at least 30 days prior to enrolling. Must have flown at least 1 Delta-marketed flight (non-Basic Economy) in the past 3 years.",
+        "challenge_required": true,
+        "challenge_detail": "Must earn MQDs during the 3-month complimentary period to extend Status. Specific MQD threshold is published in the enrollment confirmation email.",
+        "how_to_apply": "Online at delta.com/us/en/skymiles/medallion-program/status-match-challenge. Allow up to 15 business days for review.",
+        "primary_source": "https://www.delta.com/us/en/skymiles/medallion-program/status-match-challenge",
+        "confidence": "VERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "alaska_atmos": {
+        "program": "Alaska Atmos Rewards (formerly Mileage Plan)",
+        "alliance": "oneworld",
+        "category": "airline",
+        "match_type": "Status Match (with revenue requirement)",
+        "fee": "free",
+        "validity_initial": "90 days complimentary",
+        "match_from_tiers": ["Aeromexico", "Air Canada", "Delta", "Frontier", "JetBlue", "Southwest", "United"],
+        "match_into_tiers": ["Atmos Silver (oneworld Ruby)", "Atmos Gold (oneworld Sapphire)", "Atmos Platinum (oneworld Emerald)"],
+        "lifetime_warning": "ONCE PER LIFETIME",
+        "lifetime_warning_detail": "Quoted directly from Alaska's terms: 'a member may only receive one status match for the lifetime of their account.' Matched, transferred, or promotional status from another airline is NOT eligible to be matched FROM. Existing Atmos Platinum and Atmos Titanium are not eligible to apply.",
+        "challenge_required": true,
+        "challenge_detail": "Must earn base points on Alaska/Hawaiian flights during the 90-day match period: 5,000 for Silver, 10,000 for Gold, 20,000 for Platinum. Award flights, codeshares operated by other carriers, X-class saver fares do NOT count. Apply before June 30 to keep status through end of current year. Apply July 1+ to keep status through end of next calendar year.",
+        "how_to_apply": "Online at alaskaair.com/atmosrewards/content/benefits/status-match. Allow 4 weeks for verification.",
+        "primary_source": "https://www.alaskaair.com/atmosrewards/content/benefits/status-match",
+        "confidence": "VERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "aeroplan": {
+        "program": "Air Canada Aeroplan",
+        "alliance": "Star Alliance",
+        "category": "airline",
+        "match_type": "No standing direct status match program; ad-hoc challenges have appeared (e.g., Mastercard fast-track, Aeroplan Visa cardholder offers)",
+        "fee": "varies by promo",
+        "lifetime_warning": "VARIES BY PROMOTION",
+        "lifetime_warning_detail": "Aeroplan does not run a permanent direct status match. Watch for periodic promos (fast-track via Aeroplan-branded credit cards, targeted invitations, or status-buy-up offers). For status match into Aeroplan, the paid concierge route via aircanada.statusmatch.com is the most reliable current path.",
+        "how_to_apply": "Watch the Aeroplan website and credit card mailers for promotional offers. For paid match, see paid_concierge.aircanada below.",
+        "secondary_source": "https://princeoftravel.com/guides/digestible-guide-to-aeroplan/",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "jetblue_trueblue": {
+        "program": "JetBlue TrueBlue Mosaic",
+        "alliance": "no alliance (partners with AS, EI, FI, DE, etc.)",
+        "category": "airline",
+        "match_type": "Status Match (occasional)",
+        "fee": "free when offered",
+        "lifetime_warning": "ONCE PER LIFETIME (when offered)",
+        "lifetime_warning_detail": "JetBlue runs status match promotions intermittently. When offered, typically marketed as a one-time-per-account benefit. Confirm specific promo terms before applying.",
+        "secondary_source": "https://upgradedpoints.com/travel/airlines/jetblue-status-match/",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      }
+    },
+
+    "hotels": {
+      "world_of_hyatt": {
+        "program": "World of Hyatt",
+        "category": "hotel",
+        "match_type": "Status Match + Globalist Challenge",
+        "fee": "free",
+        "match_into_tiers": ["Discoverist", "Explorist", "Globalist"],
+        "lifetime_warning": "ONCE PER LIFETIME (Globalist Challenge); status match itself is occasional / targeted",
+        "lifetime_warning_detail": "The annual Q1 Globalist Challenge is widely considered a once-per-lifetime opportunity per Award Wallet and FrequentMiler. Status match (matching a competitor's mid/top tier to Hyatt) is targeted and run irregularly. Generally cannot do both. Hyatt is famously stingy with status and historical evidence is that this won't be repeated for a given member.",
+        "challenge_required": true,
+        "challenge_detail": "The Globalist Challenge: complete a defined number of paid nights (typically 20-25 nights or specific qualifying activity, varies year to year) within ~60-90 days of opt-in. Must request from Hyatt Concierge.",
+        "how_to_apply": "Contact World of Hyatt Concierge or Customer Care directly. Not a self-service flow.",
+        "secondary_source": "https://awardwallet.com/hotels/world-of-hyatt/elite-status-shortcuts/",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "marriott_bonvoy": {
+        "program": "Marriott Bonvoy",
+        "category": "hotel",
+        "match_type": "Status Match / Status Challenge (irregular)",
+        "fee": "free",
+        "match_into_tiers": ["Silver Elite", "Gold Elite", "Platinum Elite", "Titanium Elite"],
+        "lifetime_warning": "ONCE PER LIFETIME (challenge) / OCCASIONAL (status match)",
+        "lifetime_warning_detail": "Marriott runs intermittent secret/targeted Status Challenges (e.g., '16 nights to Platinum'). When offered, generally a one-time per account benefit. Bonvoy does not have a permanent published status match.",
+        "challenge_required": true,
+        "challenge_detail": "Typical structure: complete N paid stays/nights in 90 days (e.g., 16 nights to Platinum in 2026 per Smart With Points reports). Must opt-in via the targeted offer.",
+        "how_to_apply": "Watch for targeted email/account offers. Contact Bonvoy directly to inquire about active challenges. Statusmatcher.com community database tracks current offers.",
+        "secondary_source": "https://statusmatcher.com/company/marriott-hotels",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "hilton_honors": {
+        "program": "Hilton Honors",
+        "category": "hotel",
+        "match_type": "Status Match (via partner channels)",
+        "fee": "free",
+        "match_into_tiers": ["Silver", "Gold", "Diamond"],
+        "lifetime_warning": "ONCE PER LIFETIME (challenge program); credit-card-derived status is renewable",
+        "lifetime_warning_detail": "Direct status match challenge is one-time per account. However: Hilton Gold via Amex Platinum is automatic and renewable (free with the card). Hilton Diamond via Aspire is renewable. Diamond status challenge is a once-per-lifetime path.",
+        "challenge_required": true,
+        "challenge_detail": "Diamond challenge: typically requires earning a defined number of nights in a fixed window (e.g., 18 nights in 90 days). Specifics vary by promo.",
+        "how_to_apply": "Contact Hilton Honors customer service directly. For renewable Gold/Diamond, use Amex Platinum / Aspire benefits.",
+        "secondary_source": "https://frequentmiler.com/hilton-honors-complete-guide/",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "ihg_one_rewards": {
+        "program": "IHG One Rewards",
+        "category": "hotel",
+        "match_type": "Status Match (targeted) + Mastercard fast-track + Buy-Up offers",
+        "fee": "varies by path",
+        "match_into_tiers": ["Silver", "Gold", "Platinum", "Diamond"],
+        "lifetime_warning": "VARIES BY PROMO (typically once per cycle)",
+        "lifetime_warning_detail": "IHG runs occasional 'Straight to Diamond' fast-track promos (e.g., 2026 Straight to Diamond campaign). Mastercard fast-track is a separate path tied to your card. Some members have received targeted 'Buy Up to Diamond' offers. Each path has its own once-per-cycle rule.",
+        "challenge_required": "depends on promo",
+        "how_to_apply": "Watch for IHG promo emails, Mastercard offers, or visit ihgdiamondstraight.ihggccampaign.com when active.",
+        "secondary_source": "https://upgradedpoints.com/travel/hotels/hotel-status-matches-challenges/",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "accor_all": {
+        "program": "Accor ALL",
+        "category": "hotel",
+        "match_type": "Status Match (targeted, limited)",
+        "fee": "free when offered",
+        "match_into_tiers": ["Silver", "Gold", "Platinum", "Diamond"],
+        "lifetime_warning": "ONCE PER LIFETIME (when offered)",
+        "lifetime_warning_detail": "Accor does run status match promos but they are targeted and infrequent. When offered, treat as one-time per account.",
+        "secondary_source": "https://upgradedpoints.com/travel/hotels/hotel-status-matches-challenges/",
+        "confidence": "UNVERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "wyndham_rewards": {
+        "program": "Wyndham Rewards",
+        "category": "hotel",
+        "match_type": "Status Match",
+        "fee": "free when offered",
+        "match_into_tiers": ["Gold", "Platinum", "Diamond"],
+        "lifetime_warning": "OCCASIONAL OFFERS",
+        "secondary_source": "https://upgradedpoints.com/travel/hotels/hotel-status-matches-challenges/",
+        "confidence": "UNVERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "best_western_rewards": {
+        "program": "Best Western Rewards",
+        "category": "hotel",
+        "match_type": "Status Match (typically active)",
+        "fee": "free",
+        "match_into_tiers": ["Gold", "Platinum", "Diamond"],
+        "lifetime_warning": "ONCE PER LIFETIME (typical)",
+        "secondary_source": "https://upgradedpoints.com/travel/hotels/hotel-status-matches-challenges/",
+        "confidence": "UNVERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "choice_privileges": {
+        "program": "Choice Privileges",
+        "category": "hotel",
+        "match_type": "Status Match (Diamond Match, occasionally)",
+        "fee": "free when offered",
+        "lifetime_warning": "OCCASIONAL OFFERS",
+        "secondary_source": "https://upgradedpoints.com/travel/hotels/hotel-status-matches-challenges/",
+        "confidence": "UNVERIFIED",
+        "last_verified": "2026-04-29"
+      }
+    }
+  },
+
+  "paid_concierge": {
+    "_description": "Statusmatch.com is a paid third-party concierge (operated by Loyalty Status Co) that processes status match applications on behalf of partner airlines and hotels. Matches are LEGITIMATE — the airline grants real status. The catch is the application fee. Generally only worth it when (a) no free direct match exists for that program, (b) you have travel coming up that benefits from the status, and (c) the fee is less than the value of the perks you'll get.",
+    "homepage": "https://statusmatch.com/",
+    "how_it_works": [
+      "Pick the airline or hotel you want to match into.",
+      "Click into the program's subdomain (e.g., aircanada.statusmatch.com, etihad.statusmatch.com).",
+      "Submit your current status proof and pay the application fee.",
+      "Approval typically within 7 days.",
+      "Matched status is real and works with the airline directly going forward."
+    ],
+    "general_warnings": [
+      "Application fees vary by region and tier and are subject to change. Always check the FAQ on the destination subdomain before paying.",
+      "Most paid matches are ONCE PER LIFETIME per the destination program's terms (e.g., Flying Blue: 'Only 1 match is allowed per person').",
+      "Some programs require a follow-up flight or stay to extend status beyond an initial 4-12 month window. The fee buys you the start, not the renewal.",
+      "Cannot be combined with a free direct match — pay only when no free path exists for the program you want."
+    ],
+
+    "programs": {
+      "flying_blue": {
+        "program": "Air France/KLM Flying Blue",
+        "alliance": "SkyTeam",
+        "category": "airline",
+        "subdomain": "https://flyingblue.statusmatch.com/",
+        "validity_initial": "12 months",
+        "lifetime_warning": "ONCE PER LIFETIME",
+        "lifetime_warning_detail": "Per Flying Blue FAQ: 'Only 1 match is allowed per person.' Match into the highest tier you qualify for at time of application (cannot upgrade later).",
+        "match_from_tiers": [
+          "Aegean Miles+Bonus",
+          "Air Canada Aeroplan",
+          "American Airlines AAdvantage",
+          "British Airways Executive Club",
+          "Emirates Skywards",
+          "Etihad Guest",
+          "JetBlue TrueBlue",
+          "Lufthansa Miles & More",
+          "Many others (see subdomain tier-mapping table)"
+        ],
+        "fees_by_region": {
+          "us": {"silver": "USD $99", "gold": "USD $199", "platinum": "Not Available"},
+          "canada": {"silver": "CAD $149", "gold": "CAD $299", "platinum": "Not Available"},
+          "uk": {"silver": "GBP £79", "gold": "GBP £149", "platinum": "GBP £249"},
+          "eu": {"region": "Germany, Belgium, Austria, Switzerland, Denmark, Sweden, Norway, Poland, Spain, Portugal, Greece, Italy", "silver": "EUR €89", "gold": "EUR €199", "platinum": "EUR €349"},
+          "singapore_thailand": {"silver": "USD $99", "gold": "USD $299", "platinum": "USD $399"},
+          "china_hk_taiwan": {"silver": "USD $99", "gold": "USD $299", "platinum": "Not Available"},
+          "india_uae_saudi_etc": {"region": "India, UAE, Saudi Arabia, Lebanon, Egypt, Kenya, South Africa, Qatar, Kuwait, Pakistan, Jordan, Sri Lanka, Oman, Bahrain, Nepal, Bangladesh", "silver": "USD $99", "gold": "USD $299", "platinum": "USD $399"}
+        },
+        "fees_subject_to_change": true,
+        "primary_source": "https://flyingblue.statusmatch.com/faq",
+        "confidence": "VERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "lufthansa_miles_and_more": {
+        "program": "Lufthansa Miles & More",
+        "alliance": "Star Alliance",
+        "category": "airline",
+        "subdomain": "https://lufthansa.statusmatch.com/",
+        "lifetime_warning": "ONCE PER PROMOTION (typical)",
+        "lifetime_warning_detail": "Promotion runs in cycles. Currently: BA Executive Club, Iberia, ITA Volare status holders only (in select regions).",
+        "match_from_tiers": ["British Airways Executive Club", "Iberia Plus", "ITA Volare"],
+        "match_into_tiers": ["Frequent Traveller", "Senator", "HON Circle"],
+        "fees_summary": {
+          "frequent_traveller": "EUR €99",
+          "senator": "EUR €99",
+          "hon_circle": "Free (no application fees per FAQ)",
+          "club_plus": "Free",
+          "club_premium": "Free"
+        },
+        "primary_source": "https://lufthansa.statusmatch.com/faq",
+        "confidence": "VERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "etihad_guest": {
+        "program": "Etihad Guest",
+        "alliance": "no alliance (extensive bilateral partnerships)",
+        "category": "airline",
+        "subdomain": "https://etihad.statusmatch.com/",
+        "validity_initial": "4 months (Silver) or 6 months (Gold), extendable +12 months with 1 paid Etihad return flight",
+        "lifetime_warning": "ONCE PER PROMOTION",
+        "match_into_tiers": ["Silver", "Gold (Platinum NOT available via match)"],
+        "fees_summary": "Silver may be free for some sources. Gold requires fee. Fees vary by region. See subdomain FAQ for current pricing.",
+        "extension_requirement": "1 paid return flight marketed and operated by Etihad earning at least 1 Etihad Guest Mile within the matched period extends status another 12 months.",
+        "primary_source": "https://etihad.statusmatch.com/faq",
+        "confidence": "VERIFIED",
+        "last_verified": "2026-04-29"
+      },
+
+      "aircanada_aeroplan": {
+        "program": "Air Canada Aeroplan (paid concierge path)",
+        "alliance": "Star Alliance",
+        "category": "airline",
+        "subdomain": "https://aircanada.statusmatch.com/",
+        "match_type": "Silver Status Match, Gold Status Match, possibly higher; Aeroplan Visa cardholders get a special path",
+        "lifetime_warning": "ONCE PER PROMOTION (verify on subdomain)",
+        "fees_summary": "Application fees apply, displayed during application. Aeroplan Visa cardholders may have reduced/waived fees.",
+        "primary_source": "https://aircanada.statusmatch.com/",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "frontier": {
+        "program": "Frontier Airlines",
+        "category": "airline",
+        "subdomain": "https://www.frontierstatusmatch.com/",
+        "match_type": "Gold, Platinum, or Diamond Status Match",
+        "fees_summary": "Application fees apply, displayed during application.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "spirit": {
+        "program": "Spirit Airlines Free Spirit",
+        "category": "airline",
+        "subdomain": "https://spirit.statusmatch.com/",
+        "fees_summary": "Application fees apply, displayed during application.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "emirates_skywards": {
+        "program": "Emirates Skywards",
+        "category": "airline",
+        "subdomain": "https://emirates.statusmatch.com/",
+        "fees_summary": "Application fees apply, displayed during application.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "vietnam_airlines": {
+        "program": "Vietnam Airlines Lotusmiles",
+        "alliance": "SkyTeam",
+        "category": "airline",
+        "subdomain": "https://vietnamairlines.statusmatch.com/",
+        "fees_summary": "Application fees apply, displayed during application.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "royal_jordanian": {
+        "program": "Royal Jordanian Royal Plus",
+        "alliance": "oneworld",
+        "category": "airline",
+        "subdomain": "https://rj.statusmatch.com/",
+        "fees_summary": "Application fees apply, displayed during application.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "air_astana": {
+        "program": "Air Astana Nomad Club",
+        "category": "airline",
+        "subdomain": "https://airastana.statusmatch.com/",
+        "fees_summary": "Application fees apply, displayed during application.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "star_alliance_multi": {
+        "program": "Multiple Star Alliance carriers (Air India, Brussels Airlines, EgyptAir, Ethiopian, Singapore Airlines, Swiss, TAP Portugal, Thai Airways, Turkish Airlines, etc.)",
+        "alliance": "Star Alliance",
+        "category": "airline",
+        "subdomain": "https://staralliance.statusmatch.com/",
+        "fees_summary": "Application fees apply per carrier, displayed during application.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "citizenm": {
+        "program": "citizenM Hotels",
+        "category": "hotel",
+        "subdomain": "https://citizenm.statusmatch.com/",
+        "fees_summary": "Application fees apply (boutique chain status match).",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "gha_discovery": {
+        "program": "GHA Discovery (Global Hotel Alliance)",
+        "category": "hotel",
+        "subdomain": "https://ghadiscovery.statusmatch.com/",
+        "fees_summary": "Application fees apply.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "club_avolta": {
+        "program": "Club Avolta (airport retail loyalty)",
+        "category": "loyalty_other",
+        "subdomain": "https://clubavolta.statusmatch.com/",
+        "fees_summary": "Application fees apply.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      },
+
+      "royal_air_maroc": {
+        "program": "Royal Air Maroc Safar Flyer",
+        "category": "airline",
+        "subdomain": "https://safarflyerstatusmatch.com/",
+        "fees_summary": "Application fees apply.",
+        "confidence": "LIKELY",
+        "last_verified": "2026-04-29"
+      }
+    }
+  },
+
+  "community_database": {
+    "_description": "StatusMatcher.com is a community-driven, free, user-submitted database of recent status match grants and denials. Useful for sanity-checking which programs are currently accepting match requests, which combinations work, and what proof was accepted. NOT an application path itself — submit your application via the program's official channel after researching here.",
+    "homepage": "https://statusmatcher.com/",
+    "use_when": [
+      "Verifying a program is currently running matches (some go on/off without notice)",
+      "Confirming what proof was recently accepted (status card screenshot, recent flight receipt, etc.)",
+      "Seeing if your specific source-tier combination has a recent grant on record",
+      "Checking timing/processing window for the program"
+    ],
+    "warnings": [
+      "Reports are user-submitted. Verify against the program's official rules before applying.",
+      "Programs change rules without notice. A grant from 6 months ago may no longer reflect current policy."
+    ],
+    "confidence": "VERIFIED",
+    "last_verified": "2026-04-29"
+  },
+
+  "card_based_status": {
+    "_description": "Renewable status granted as a credit card benefit. Not a status match strictly speaking, but functionally serves the same purpose: instant elite status without flying or staying. Renewable as long as the card is open.",
+
+    "amex_platinum": {
+      "card": "American Express Platinum",
+      "annual_fee_usd": 695,
+      "renewable_status": [
+        {"program": "Hilton Honors", "tier": "Gold", "free": true},
+        {"program": "Marriott Bonvoy", "tier": "Gold Elite", "free": true}
+      ],
+      "confidence": "VERIFIED"
+    },
+
+    "amex_gold": {
+      "card": "American Express Gold",
+      "annual_fee_usd": 325,
+      "renewable_status": [],
+      "confidence": "VERIFIED"
+    },
+
+    "amex_business_platinum": {
+      "card": "American Express Business Platinum",
+      "annual_fee_usd": 695,
+      "renewable_status": [
+        {"program": "Hilton Honors", "tier": "Gold", "free": true},
+        {"program": "Marriott Bonvoy", "tier": "Gold Elite", "free": true}
+      ],
+      "confidence": "VERIFIED"
+    },
+
+    "hilton_aspire": {
+      "card": "Hilton Honors Aspire (Amex)",
+      "annual_fee_usd": 550,
+      "renewable_status": [
+        {"program": "Hilton Honors", "tier": "Diamond", "free": true}
+      ],
+      "confidence": "VERIFIED"
+    },
+
+    "hilton_surpass": {
+      "card": "Hilton Honors Surpass (Amex)",
+      "annual_fee_usd": 150,
+      "renewable_status": [
+        {"program": "Hilton Honors", "tier": "Gold", "free": true},
+        {"program": "Hilton Honors", "tier": "Diamond (with $40K annual spend)", "free": false, "spend_required": true}
+      ],
+      "confidence": "VERIFIED"
+    },
+
+    "world_of_hyatt_card": {
+      "card": "World of Hyatt Credit Card (Chase)",
+      "annual_fee_usd": 95,
+      "renewable_status": [
+        {"program": "World of Hyatt", "tier": "Discoverist", "free": true}
+      ],
+      "qualifying_credits": "5 tier-qualifying nights/year for the card; 2 additional per $5K card spend",
+      "confidence": "VERIFIED"
+    },
+
+    "marriott_bonvoy_brilliant": {
+      "card": "Marriott Bonvoy Brilliant (Amex)",
+      "annual_fee_usd": 650,
+      "renewable_status": [
+        {"program": "Marriott Bonvoy", "tier": "Platinum Elite", "free": true}
+      ],
+      "qualifying_credits": "25 elite nights/year",
+      "confidence": "VERIFIED"
+    },
+
+    "ihg_premier_business": {
+      "card": "IHG One Rewards Premier (Chase)",
+      "annual_fee_usd": 99,
+      "renewable_status": [
+        {"program": "IHG One Rewards", "tier": "Platinum Elite", "free": true}
+      ],
+      "confidence": "VERIFIED"
+    },
+
+    "_decision_rule": "If you can get the equivalent or higher status from holding a credit card you'd want anyway, that beats a one-time status match. Status match is best for programs where no card grants the tier you want (e.g., airline elite tiers above Gold; hotel Diamond/Titanium)."
+  }
+}
