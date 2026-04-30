@@ -28,7 +28,9 @@ The right order:
 2. THEN transfer points from the credit card
 3. THEN complete the booking against the held space
 
-Some programs don't offer holds (or charge for them). For those, transfer in small batches if you're confident. Never transfer your full balance speculatively.
+**Critical caveat: most major Western programs no longer offer holds.** Aeroplan, United, Alaska, Delta, BA, Virgin Atlantic, Flying Blue all require ticketing immediately. The "hold first, transfer second" pattern only works on programs that still allow holds (AA, Lufthansa M&M, Cathay, Singapore in some cases). Use the `award-holds` skill for the per-program hold rules and the workflow when no hold is available.
+
+When holds aren't available, transfer in small batches if you're confident the space will hold (high seat counts, low-popularity dates), or accept the risk. Never transfer your full balance speculatively.
 
 ## Phone Numbers for Major Programs
 

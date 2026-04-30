@@ -93,3 +93,12 @@ Store their answers and apply to all subsequent searches in the session.
 - **Offers expire in 15-30 minutes.** Don't cache Duffel results across sessions.
 - **60 requests per 60 seconds rate limit.** Parallel searches are fine but don't go crazy.
 - **Returns multiple fare classes for the same flight.** This is a feature. You'll see basic economy at one price and main cabin at another for the same routing. Use the cheapest bookable class for cpp comparison unless the user specifies a fare preference.
+
+## Related Reference Skills (Load When Relevant)
+
+These are not required for every search but should be loaded when the conversation context suggests them:
+
+- **`transfer-bonuses`** — Load before recommending any credit card → loyalty program transfer. Live weekly data on currently active bonuses (e.g., Amex MR → Hilton 20%, Chase UR → Aeroplan 20% with stackable cardholder bonus). A 30% bonus changes which currency is cheapest in the transfer-partners optimization.
+- **`stopovers`** — Load when the trip has a layover near 24h, or when the user wants to "stop in X on the way." 17 programs documented with primary citations: Aeroplan (1 stopover, 5K surcharge), TAP (1 on partner awards), Turkish (free Istanbul stopover), Etihad (Abu Dhabi), Icelandair (Reykjavík free up to 7 days, the legendary one), Alaska (free, phone only), Flying Blue (free, possibly unlimited), JAL multi-carrier (up to 3), Singapore Saver/Advantage tiers, AF/KLM, Cathay (2+2). Also documents which programs DO NOT allow stopovers (BA Avios, AA AAdvantage, Delta SkyMiles, JetBlue, Virgin Atlantic, Iberia Avios) — that's a critical negative finding.
+- **`award-holds`** — Load before any "transfer points first" recommendation. Most major Western programs (Aeroplan, United, Alaska, Delta, BA, Virgin Atlantic, Flying Blue) DO NOT allow holds. Programs that still do: AA (24h online + 5 days for partners by phone), Lufthansa M&M (5 days), Cathay (2 days), Singapore (in some cases).
+- **`round-the-world`** — Load when the trip implies 3+ stops or multiple regions. 13 active + 4 discontinued products documented. The RTW universe is collapsing (4 killed in last 18 months), but Star Alliance + oneworld + Lufthansa M&M + Qantas remain solid. Special Business RTW at 26,000 miles is the steal. Includes Iberia Plus intra-Europe sweet spots and Aeroplan distance-based regional awards.

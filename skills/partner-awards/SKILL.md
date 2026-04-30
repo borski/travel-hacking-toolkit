@@ -41,3 +41,9 @@ When checking if a user can actually book an award flight:
 - Assuming an airline "can't be booked with points" because the user has zero direct balance. Always check transfer reachability first.
 - Recommending a transfer without verifying the path. Some routes that "seem like they should work" don't (e.g., Amex MR does NOT transfer to United).
 - Missing cross-alliance plays. United metal flights can be booked via Turkish M&S, Avianca LifeMiles, Aeroplan, ANA, and others, often at very different rates.
+
+## See Also
+
+- **`stopovers`** — Per-program stopover rules. Many partner-award bookings include a stopover at no extra mileage cost. The skill documents which programs allow them, the surcharge, the duration, and the booking method (online vs phone). Critical when the trip plan involves any layover beyond a few hours.
+- **`round-the-world`** — Alliance-based RTW + Pacific Circle products that bundle multi-program multi-airline tickets. Star Alliance RTW, oneworld Explorer, oneworld Global Explorer, oneworld Circle Pacific, plus Lufthansa M&M, Qantas, JAL multi-carrier products. Often the cheapest path for 3+ region itineraries that would otherwise require chaining separate awards.
+- **`transfer-bonuses`** — When a transfer bonus is active, the effective ratio changes the reachability calculation. A 30% Amex MR → Virgin Atlantic bonus turns a 50K Virgin award into 38.5K MR, which can flip the recommended currency in the optimization.

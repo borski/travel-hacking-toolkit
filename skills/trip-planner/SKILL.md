@@ -13,6 +13,10 @@ api_key: Uses individual skill keys
 - `partner-awards` — reachability through alliance + bilateral partnerships
 - `award-sweet-spots` — flag legendary redemptions
 - `booking-guidance` — booking flow + phone numbers + the "hold before transfer" rule
+- `transfer-bonuses` — live current transfer bonuses (weekly refresh) before recommending any transfer
+- `stopovers` — per-program stopover rules; can turn a one-trip plan into a multi-city itinerary at no extra mileage cost
+- `award-holds` — per-program hold rules; affects transfer timing decisions
+- `round-the-world` — when the trip request implies 3+ stops or multiple regions, RTW products may be cheaper than separate awards
 
 
 # Trip Planner

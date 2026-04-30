@@ -18,6 +18,9 @@ Search every available source for a route and present one unified comparison. Co
 - `partner-awards` — alliance + bilateral partnership reachability
 - `lessons-learned` — Seats.aero workflow, Southwest specifics, Companion Pass math
 - `fallback-and-resilience` — what to do when a source fails
+- `transfer-bonuses` — current active transfer bonuses (live data); changes effective ratios when computing options 4-7 of the comparison table
+- `stopovers` — when an itinerary has a long layover or multi-city, check if a stopover-allowing program priced lower than separate one-ways
+- `round-the-world` — for 3+ stop multi-region itineraries, RTW products may beat sum-of-parts award pricing
 
 ## When to Use
 

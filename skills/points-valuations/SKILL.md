@@ -62,7 +62,7 @@ A 50K mile award with $600 in surcharges is NOT the same value as 50K with $5.60
 
 Programs frequently run 20-50% transfer bonuses (e.g., "transfer Amex MR to Virgin Atlantic and get 30% bonus miles"). These are time-limited and change the optimal play entirely.
 
-Search the web for "current transfer bonuses" or check https://thepointsguy.com/loyalty-programs/current-transfer-bonuses/ before making a final recommendation. A 30% bonus on a transfer can turn a mediocre redemption into an exceptional one.
+**Use the `transfer-bonuses` skill** to check current active bonuses (live data, weekly auto-refresh from Frequent Miler with AwardWallet cross-check). A 30% bonus on a transfer can turn a mediocre redemption into an exceptional one. The skill returns effective ratios you can plug directly into the CPP formula.
 
 ## Portal Rates Are Dynamic
 
@@ -81,3 +81,13 @@ This is the whole game. If 60K miles via transfer gets you a flight that would c
 ## Opportunity Cost
 
 Burning Chase UR on a 1.2cpp portal redemption is wasteful when you could transfer to Hyatt at 2.0cpp for hotels. Mention when points have better uses elsewhere.
+
+## Multi-Stop Itinerary CPP Benchmarks
+
+For multi-stop or RTW itineraries, the relevant comparison isn't a single one-way's CPP. It's the total cash value of the trip vs the total miles + fees. The `round-the-world` skill is the reference for those products. A few benchmarks:
+
+- **Star Alliance Special Business RTW (26,000 miles via partner program)** typically delivers a J-class itinerary worth $7,000-7,400 cash. At 100,000-150,000 miles + ~$1,000 in fees through Aeroplan/ANA depending on origin, that's a roughly 5-7 cpp redemption — well above any program's ceiling for a single one-way.
+- **Iberia Plus intra-Europe off-peak** (3,500 Avios for under 650mi one-way) lands at around 2.0-3.0 cpp on short hops where cash is $80-120, which beats most portal rates and most short-haul awards.
+- **Aeroplan distance-based NA short-haul** (6,000 Aeroplan miles starting price for under 500mi) at $80-120 cash = 1.3-2.0 cpp, comparable to the Chase portal floor.
+
+Always compute the full-itinerary CPP for multi-stop trips, not the per-segment CPP, since stopover and routing benefits compound across segments.

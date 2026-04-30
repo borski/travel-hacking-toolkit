@@ -29,6 +29,10 @@ Given award flight prices (from seats.aero or manual input) and your transferabl
 
 ## Workflow
 
+### Step 0: Check Current Transfer Bonuses (Always)
+
+Before recommending any transfer, load the `transfer-bonuses` skill and check `data/transfer-bonuses.json` for active bonuses on the relevant currency-to-program pair. A 30% bonus turns a 1:1 ratio into 1:1.3, which can flip the cheapest-currency calculation in Step 3 entirely. Bonuses also have expiration dates that affect timing decisions.
+
 ### Step 1: Get Award Availability
 
 Use seats.aero (API or web) to search for award flights. Each result includes:
@@ -171,5 +175,5 @@ Sometimes the cheapest path involves booking through a different program than th
 
 - Transfer ratios rarely change, but verify against issuer websites before large transfers.
 - Transfers are usually instant but can take up to 48 hours. Don't transfer until you've confirmed award availability.
-- Some programs run transfer bonuses (10-30% extra). Check Roame.travel for current bonuses.
+- Some programs run transfer bonuses (10-30% extra). Use the `transfer-bonuses` skill (live data, weekly auto-refresh) instead of guessing.
 - The "best" currency depends on what you have the most of AND what you value it at. A 1:1 transfer from a currency you value at 2.0 cpp costs more in opportunity than a 1:1 from one you value at 1.5 cpp.
