@@ -25,6 +25,7 @@ atlas-obscura	destinations	Hidden gems and unusual attractions near any destinat
 scandinavia-transit	destinations	Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing.	Entur + Trafiklab + Rejseplanen	
 tripadvisor	destinations	Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month.	TripAdvisor	
 flight-search-strategy	reference	The canonical multi-source search workflow. Source priority (Duffel > Ignav > Google Flights > others), market selection for international routes, source accuracy hierarchy, common failure modes.		
+transfer-bonuses	reference	Active credit card transfer bonuses with primary-source citations. Tells the agent the real effective ratio when transferring points during a promotion.		
 points-valuations	reference	CPP formula, floor/ceiling rules, surcharge-heavy programs to avoid, transfer bonus considerations, Chase Points Boost dynamics, opportunity cost.		
 partner-awards	reference	Which programs ticket which airlines (alliance + bilateral). Cross-references credit card currencies to booking programs. Reachability workflow.		
 alliances	reference	Star Alliance, oneworld, SkyTeam membership and recent shifts (SAS to SkyTeam, ITA to Star, Hawaiian/Fiji to oneworld). Key cross-alliance booking relationships.		
