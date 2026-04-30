@@ -100,7 +100,7 @@ Load the `points-valuations` skill. It covers cpp formula, surcharge-heavy progr
 ### When someone asks about hotels:
 1. **Check multiple sources** with the `compare-hotels` skill. When using LiteAPI directly, sort by price: `"sort": [{"field": "price", "direction": "ascending"}]`. The sort param is an array of objects, not a string. Do NOT pass `top_picks` as an explicit sort field — it's the default when omitted, but the API rejects it if sent.
 2. **Hotel chain trigger.** When results contain branded properties (Marriott, Hilton, Hyatt, IHG, Accor, Wyndham, Best Western, Radisson), IMMEDIATELY pull AwardWallet balances and check award rates. Load the `hotel-chains` skill for the brand-to-program mapping. No judgment call. No asking. Just do it.
-3. **Compare points vs cash for hotels too.** Hyatt at 1.5cpp floor is often great. Hilton at 0.4cpp floor is almost always worse than cash. Say this.
+3. **Compare points vs cash for hotels too.** Hyatt at 1.4-1.7cpp (typical median 1.5) is often great. Hilton at 0.4cpp floor is almost always worse than cash. Say this.
 4. **Flag premium program properties.** Load the `premium-hotels` skill when results include FHR, THC, or Chase Edit hotels — those credits ($100-150 per stay) and stacking opportunities can dwarf the points decision.
 
 ### When comparing portal pricing:
@@ -123,7 +123,7 @@ Load the `points-valuations` skill. It covers cpp formula, surcharge-heavy progr
 
 ### When someone asks about elite status or status match:
 1. **Load the `status-match` skill.** It covers free direct matches, paid concierge via statusmatch.com, and renewable card-based status.
-2. **Always state the lifetime restriction first.** Most programs are once-every-3-years or once-per-lifetime. Alaska Atmos = once per lifetime. United/Delta = once every 3 years. AA = once every 2 years. Hyatt Globalist Challenge = once per lifetime.
+2. **Always state the lifetime restriction first.** Alaska Atmos = once per lifetime (verified primary). United/Delta = once every 3 years (verified primary). AA = once every 2 years (verified primary). Hyatt Globalist / Marriott Platinum / Hilton Diamond Challenges = LIKELY once per lifetime (community-confirmed but not always in published terms).
 3. **Check Path 3 (card-granted) first.** If a card the user already holds (or would consider holding) grants the equivalent tier, that beats a one-time match every time.
 4. **Ask about upcoming travel.** A wasted match cannot be undone. If the user has no flying or staying in the next 6-12 months that uses the matched status, recommend holding off.
 
@@ -158,4 +158,4 @@ If you change skills, CLAUDE.md, or MCP config, run `bash scripts/smoke-test.sh`
 - For per-program stopover rules (Iceland 7-day free stopover, Aeroplan, Alaska Atmos, Flying Blue free, Singapore tiers, plus the negative space of programs that don't allow stopovers), load the `stopovers` skill.
 - For per-program hold rules (most major Western programs no longer allow holds), load the `award-holds` skill before any transfer-first workflow.
 - For RTW + Pacific Circle + regional distance-award products (Star Alliance RTW, oneworld Explorer, Lufthansa M&M, Qantas, JAL multi-carrier, Aeroplan distance-based, Iberia Plus intra-Europe), load the `round-the-world` skill.
-- For status match / status challenge / elite tier shortcuts, load the `status-match` skill. CRITICAL: Most major airline programs are once-every-3-years or once-per-lifetime. Always check the lifetime field before recommending. Card-granted renewable status (Amex Platinum, Aspire) often beats a one-time match.
+- For status match / status challenge / elite tier shortcuts, load the `status-match` skill. See the proactive workflow above for the canonical 4-step approach.

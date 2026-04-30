@@ -28,7 +28,7 @@ The right order:
 2. THEN transfer points from the credit card
 3. THEN complete the booking against the held space
 
-**Critical caveat: most major Western programs no longer offer holds.** Aeroplan, United, Alaska, Delta, BA, Virgin Atlantic, Flying Blue all require ticketing immediately. The "hold first, transfer second" pattern only works on programs that still allow holds (AA, Lufthansa M&M, Cathay, Singapore in some cases). Use the `award-holds` skill for the per-program hold rules and the workflow when no hold is available.
+**Critical caveat: hold rules vary widely and change.** Always check the `award-holds` skill (data file `data/award-holds.json`) for current per-program rules. As of April 2026: AA holds 24h online (free), Lufthansa M&M 5 days, Flying Blue 3 days ($25 phone fee at ticketing), Cathay Asia Miles 2 days ($39 phone fee), Turkish 2 days, Virgin Atlantic 1-2 days (free, phone), Singapore agent-discretionary. Programs that DO NOT allow holds: United, Alaska, Delta, BA, Aeroplan, ANA, Qatar, Korean. The "hold first, transfer second" pattern works wherever a hold is available.
 
 When holds aren't available, transfer in small batches if you're confident the space will hold (high seat counts, low-popularity dates), or accept the risk. Never transfer your full balance speculatively.
 

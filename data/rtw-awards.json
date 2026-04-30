@@ -17,7 +17,6 @@
     ],
     "schema_notes": "Confidence markers per Research Integrity Protocol: VERIFIED = primary source confirmed; LIKELY = secondary sources only; UNVERIFIED = single source or inference. All distance bands use IATA TPM (Ticketed Point Mileage) unless noted. RTW universe is collapsing: 4 programs killed in last 18 months (ANA RTW June 2025, SQ Star RTW May 2024, SkyTeam Go Round 2024-25, SQ Pacific Circle likely 2024-25). Active universe is Star Alliance + oneworld + Lufthansa M&M + Qantas as the safe bets, with regional/distance-based alternatives via JAL, Cathay, Aeroplan, and Iberia."
   },
-
   "programs": [
     {
       "id": "star_alliance_rtw",
@@ -26,32 +25,52 @@
       "type": "rtw",
       "category": "active",
       "confidence": "VERIFIED",
-      "currency": "miles",
-      "ticket_format": "cash_priced_then_priced_in_member_program_miles",
+      "currency": "usd",
+      "ticket_format": "cash_only",
       "fare_types": [
         {
           "name": "Normal RTW",
-          "distance_bands_miles": [29000, 34000, 39000],
-          "cabins": ["economy", "premium_economy", "business", "first"],
+          "distance_bands_miles": [
+            29000,
+            34000,
+            39000
+          ],
+          "cabins": [
+            "economy",
+            "premium_economy",
+            "business",
+            "first"
+          ],
           "stopovers_min": 2,
           "stopovers_max": 15,
           "notes": "Most flexible; available globally"
         },
         {
           "name": "Special Economy RTW",
-          "distance_bands_miles": [26000, 29000, 34000, 39000],
-          "cabins": ["economy"],
+          "distance_bands_miles": [
+            26000,
+            29000,
+            34000,
+            39000
+          ],
+          "cabins": [
+            "economy"
+          ],
           "stopovers_min": 3,
           "stopovers_max": 12,
           "notes": "Cheaper; not available from Japan"
         },
         {
           "name": "Special Business RTW",
-          "distance_bands_miles": [26000],
-          "cabins": ["business"],
+          "distance_bands_miles": [
+            26000
+          ],
+          "cabins": [
+            "business"
+          ],
           "stopovers_min": 5,
           "stopovers_max": 5,
-          "notes": "Hidden gem: ~$7,000-7,400 USD for 5-stop business class. Single 26k-mile band. Not available from Japan."
+          "notes": "Hidden gem: single 26k-mile distance band for business class, marketed as the cheapest J-class RTW. Cash prices vary widely by routing and origin country (often quoted in the $6.5K-$10K USD range, but always verify on staralliance.com/en/book-fly for the specific itinerary). Not available from Japan."
         }
       ],
       "rules": {
@@ -82,14 +101,19 @@
         "infant_no_seat_pct": 10
       },
       "booking_method": "online at staralliance.com/en/book-fly",
-      "primary_source": "https://www.staralliance.com/en/tnc-rtw",
-      "secondary_sources": [
-        "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
-      ],
       "last_verified": "2026-04-29",
-      "notes": "Tickets are priced in USD (or local currency) cash, then convertible to miles in any Star Alliance member's loyalty program if redeeming with miles. Most flexible RTW product still on the market."
+      "notes": "Cash-only paid fare sold by Star Alliance. Most flexible RTW product still on the market. NOT a mileage award. Some individual member programs (Aeroplan, ANA M&M, Lufthansa M&M) historically offered separate mileage-priced Star Alliance RTW awards but most have been discontinued (Aeroplan, ANA, Singapore). Lufthansa M&M is the main remaining miles-priced RTW option.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.staralliance.com/en/tnc-rtw"
+        },
+        {
+          "type": "secondary",
+          "url": "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
+        }
+      ]
     },
-
     {
       "id": "star_alliance_circle_pacific",
       "name": "Star Alliance Circle Pacific",
@@ -97,19 +121,30 @@
       "type": "circle_pacific",
       "category": "active",
       "confidence": "VERIFIED",
-      "currency": "miles",
-      "ticket_format": "cash_priced_then_priced_in_member_program_miles",
+      "currency": "usd",
+      "ticket_format": "cash_only",
       "fare_types": [
         {
           "name": "Circle Pacific",
-          "distance_bands_miles": [22000, 26000],
-          "cabins": ["economy", "business", "first"],
+          "distance_bands_miles": [
+            22000,
+            26000
+          ],
+          "cabins": [
+            "economy",
+            "business",
+            "first"
+          ],
           "stopovers_min": 3,
           "stopovers_max": 15
         }
       ],
       "rules": {
-        "must_include_areas": ["Asia", "North America", "South West Pacific"],
+        "must_include_areas": [
+          "Asia",
+          "North America",
+          "South West Pacific"
+        ],
         "origin_destination": "must be same country (no travel via origin)",
         "direction": "single direction",
         "max_segments": 16,
@@ -127,18 +162,22 @@
         "air_nz_premium_economy_upgrade_usd": "400 to 500"
       },
       "booking_method": "Star Alliance Customer Service or member airline (NOT online self-service)",
-      "primary_source": "https://www.staralliance.com/en/tnc-cp",
       "last_verified": "2026-04-29",
-      "notes": "Cheaper than full RTW but constrained to Pacific Rim. Must touch all three areas."
+      "notes": "Cash-only paid fare sold by Star Alliance. Cheaper than full RTW but constrained to Pacific Rim. Must touch all three areas. NOT a mileage award.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.staralliance.com/en/tnc-cp"
+        }
+      ]
     },
-
     {
       "id": "oneworld_explorer",
       "name": "oneworld Explorer",
       "alliance": "oneworld",
       "type": "rtw",
       "category": "active",
-      "confidence": "VERIFIED",
+      "confidence": "LIKELY",
       "currency": "usd",
       "ticket_format": "cash_only",
       "fare_types": [
@@ -146,12 +185,32 @@
           "name": "oneworld Explorer",
           "pricing_basis": "continents",
           "continents_to_price_usd": {
-            "3": {"economy": 3599, "business": null, "first": null},
-            "4": {"economy": 4999, "business": null, "first": null},
-            "5": {"economy": 5699, "business": null, "first": null},
-            "6": {"economy": 6899, "business": null, "first": null}
+            "3": {
+              "economy": 3599,
+              "business": null,
+              "first": null
+            },
+            "4": {
+              "economy": 4999,
+              "business": null,
+              "first": null
+            },
+            "5": {
+              "economy": 5699,
+              "business": null,
+              "first": null
+            },
+            "6": {
+              "economy": 6899,
+              "business": null,
+              "first": null
+            }
           },
-          "cabins": ["economy", "business", "first"],
+          "cabins": [
+            "economy",
+            "business",
+            "first"
+          ],
           "stopovers_min": 2,
           "stopovers_max": 15
         }
@@ -162,61 +221,89 @@
         "premium_economy_upgrades": "available"
       },
       "booking_method": "online self-service at rtw.oneworld.com",
-      "primary_source": "https://rtw.oneworld.com/",
-      "secondary_sources": [
-        "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
-      ],
       "last_verified": "2026-04-29",
-      "notes": "Cash-only product (no points). Continent-based pricing rewards trips that span more continents. Sample 2026 economy prices captured; business and first not surfaced via primary source."
+      "notes": "Cash-only product (no points). Continent-based pricing rewards trips that span more continents. Sample 2026 economy prices captured; business and first not surfaced via primary source.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://rtw.oneworld.com/"
+        },
+        {
+          "type": "secondary",
+          "url": "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
+        }
+      ],
+      "confidence_note": "USD pricing $3,599-$6,899 sourced from Upgraded Points 2026, not directly from rtw.oneworld.com"
     },
-
     {
       "id": "oneworld_global_explorer",
       "name": "oneworld Global Explorer",
       "alliance": "oneworld",
       "type": "rtw",
       "category": "active",
-      "confidence": "VERIFIED",
+      "confidence": "LIKELY",
       "currency": "usd",
       "ticket_format": "cash_only",
       "fare_types": [
         {
           "name": "oneworld Global Explorer",
           "pricing_basis": "distance",
-          "distance_bands_miles": [39000],
-          "cabins": ["economy", "business", "first"]
+          "distance_bands_miles": [
+            39000
+          ],
+          "cabins": [
+            "economy",
+            "business",
+            "first"
+          ]
         }
       ],
       "booking_method": "travel agent or member airline (NOT online self-service)",
-      "primary_source": "https://rtw.oneworld.com/",
-      "secondary_sources": [
-        "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
-      ],
       "last_verified": "2026-04-29",
-      "notes": "Distance-based alternative to Explorer for travelers wanting more granular routing. Capped at 39,000 miles. Travel agent only."
+      "notes": "Distance-based alternative to Explorer for travelers wanting more granular routing. Capped at 39,000 miles. Travel agent only.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://rtw.oneworld.com/"
+        },
+        {
+          "type": "secondary",
+          "url": "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
+        }
+      ],
+      "confidence_note": "39,000 mile cap sourced from Upgraded Points; primary rtw.oneworld.com confirms framework but not specific cap"
     },
-
     {
       "id": "oneworld_circle_pacific",
       "name": "oneworld Circle Pacific",
       "alliance": "oneworld",
       "type": "circle_pacific",
       "category": "active",
-      "confidence": "VERIFIED",
+      "confidence": "LIKELY",
       "currency": "usd",
       "ticket_format": "cash_only",
       "fare_types": [
         {
           "name": "oneworld Circle Pacific",
-          "regions_required": ["Asia (incl. Indian subcontinent + Central Asian -stans)", "Australia", "New Zealand & SW Pacific", "North America"]
+          "regions_required": [
+            "Asia (incl. Indian subcontinent + Central Asian -stans)",
+            "Australia",
+            "New Zealand & SW Pacific",
+            "North America"
+          ]
         }
       ],
       "booking_method": "travel agent only (NOT online)",
-      "primary_source": "https://rtw.oneworld.com/",
       "last_verified": "2026-04-29",
-      "notes": "Specific cap and pricing not surfaced publicly. Must call. Subject to availability."
+      "notes": "Specific cap and pricing not surfaced publicly. Must call. Subject to availability.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://rtw.oneworld.com/"
+        }
+      ],
+      "confidence_note": "Specific pricing not surfaced publicly; framework confirmed primary"
     },
-
     {
       "id": "lufthansa_miles_more_rtw",
       "name": "Lufthansa Miles & More Round the World",
@@ -232,7 +319,11 @@
           "miles_economy": 195000,
           "miles_business": 400000,
           "miles_first": 540000,
-          "cabins": ["economy", "business", "first"],
+          "cabins": [
+            "economy",
+            "business",
+            "first"
+          ],
           "stopovers_max": 7,
           "max_segments": 10
         }
@@ -244,18 +335,23 @@
         "carriers": "Star Alliance partners"
       },
       "booking_method": "phone (Miles & More customer service)",
-      "primary_source": "https://www.miles-and-more.com/row/en/program/flight-benefits/round-the-world.html",
       "last_verified": "2026-04-29",
-      "notes": "Fixed-mile RTW. Most accessible miles-based RTW for transferable-currency holders (Capital One, Marriott via M&M)."
+      "notes": "Fixed-mile RTW. Most accessible miles-based RTW for transferable-currency holders (Capital One, Marriott via M&M).",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.miles-and-more.com/row/en/program/flight-benefits/round-the-world.html"
+        }
+      ],
+      "confidence_note": "195k/400k/540k miles confirmed primary; rule details mostly primary"
     },
-
     {
       "id": "qantas_oneworld_classic_reward_rtw",
       "name": "Qantas oneworld Classic Reward (RTW configuration)",
       "alliance": "oneworld",
       "type": "rtw",
       "category": "active",
-      "confidence": "VERIFIED",
+      "confidence": "LIKELY",
       "currency": "miles",
       "ticket_format": "miles_only",
       "fare_types": [
@@ -264,7 +360,12 @@
           "miles_economy": 132400,
           "miles_business": 318000,
           "distance_band_miles": 35000,
-          "cabins": ["economy", "premium_economy", "business", "first"]
+          "cabins": [
+            "economy",
+            "premium_economy",
+            "business",
+            "first"
+          ]
         }
       ],
       "rules": {
@@ -275,14 +376,20 @@
         "fuel_surcharges_apply": true
       },
       "booking_method": "online at qantas.com or phone (US: 800-227-4220)",
-      "primary_source": "https://www.qantas.com/us/en/book-a-trip/flights/round-the-world.html",
-      "secondary_sources": [
-        "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
-      ],
       "last_verified": "2026-04-29",
-      "notes": "Distance-based at 35,000 miles. Must use 2+ oneworld carriers. Among the cheapest miles-priced J RTWs."
+      "notes": "Distance-based at 35,000 miles. Must use 2+ oneworld carriers. Among the cheapest miles-priced J RTWs.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.qantas.com/us/en/book-a-trip/flights/round-the-world.html"
+        },
+        {
+          "type": "secondary",
+          "url": "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
+        }
+      ],
+      "confidence_note": "132,400/318,000 points sourced from Upgraded Points 2026, not Qantas primary"
     },
-
     {
       "id": "cathay_asia_miles_oneworld_multicarrier",
       "name": "Cathay Asia Miles oneworld Multi-Carrier Award",
@@ -293,19 +400,97 @@
       "currency": "miles",
       "ticket_format": "miles_only",
       "chart_zones_post_may_2026": [
-        {"band": 1, "miles_max": 1000, "economy": 30000, "business": 60000, "first": 75000},
-        {"band": 2, "miles_max": 2000, "economy": 35000, "business": 70000, "first": 90000},
-        {"band": 3, "miles_max": 3000, "economy": 45000, "business": 85000, "first": 110000},
-        {"band": 4, "miles_max": 5000, "economy": 50000, "business": 100000, "first": 135000},
-        {"band": 5, "miles_max": 7500, "economy": 60000, "business": 125000, "first": 165000},
-        {"band": 6, "miles_max": 10000, "economy": 70000, "business": 145000, "first": 195000},
-        {"band": 7, "miles_max": 14000, "economy": 80000, "business": 165000, "first": 225000},
-        {"band": 8, "miles_max": 18000, "economy": 95000, "business": 185000, "first": 250000},
-        {"band": 9, "miles_max": 22000, "economy": 110000, "business": 215000, "first": 280000},
-        {"band": 10, "miles_max": 25000, "economy": 125000, "business": 235000, "first": 305000},
-        {"band": 11, "miles_max": 28000, "economy": 140000, "business": 250000, "first": 325000},
-        {"band": 12, "miles_max": 35000, "economy": 150000, "business": 265000, "first": 345000},
-        {"band": 13, "miles_max": 50000, "economy": 160000, "business": 280000, "first": 380000}
+        {
+          "band": 1,
+          "miles_max": 1000,
+          "economy": 30000,
+          "business": 60000,
+          "first": 75000
+        },
+        {
+          "band": 2,
+          "miles_max": 2000,
+          "economy": 35000,
+          "business": 70000,
+          "first": 90000
+        },
+        {
+          "band": 3,
+          "miles_max": 3000,
+          "economy": 45000,
+          "business": 85000,
+          "first": 110000
+        },
+        {
+          "band": 4,
+          "miles_max": 5000,
+          "economy": 50000,
+          "business": 100000,
+          "first": 135000
+        },
+        {
+          "band": 5,
+          "miles_max": 7500,
+          "economy": 60000,
+          "business": 125000,
+          "first": 165000
+        },
+        {
+          "band": 6,
+          "miles_max": 10000,
+          "economy": 70000,
+          "business": 145000,
+          "first": 195000
+        },
+        {
+          "band": 7,
+          "miles_max": 14000,
+          "economy": 80000,
+          "business": 165000,
+          "first": 225000
+        },
+        {
+          "band": 8,
+          "miles_max": 18000,
+          "economy": 95000,
+          "business": 185000,
+          "first": 250000
+        },
+        {
+          "band": 9,
+          "miles_max": 22000,
+          "economy": 110000,
+          "business": 215000,
+          "first": 280000
+        },
+        {
+          "band": 10,
+          "miles_max": 25000,
+          "economy": 125000,
+          "business": 235000,
+          "first": 305000
+        },
+        {
+          "band": 11,
+          "miles_max": 28000,
+          "economy": 140000,
+          "business": 250000,
+          "first": 325000
+        },
+        {
+          "band": 12,
+          "miles_max": 35000,
+          "economy": 150000,
+          "business": 265000,
+          "first": 345000
+        },
+        {
+          "band": 13,
+          "miles_max": 50000,
+          "economy": 160000,
+          "business": 280000,
+          "first": 380000
+        }
       ],
       "rules": {
         "stopovers_max": 2,
@@ -313,11 +498,16 @@
         "must_combine_oneworld_carriers": "2+ (excluding Cathay)"
       },
       "booking_method": "phone (Asia Miles)",
-      "primary_source": "https://flights.cathaypacific.com/en_HK/redeem-flights/flight-award-chart.html#tab-ow-multi-carrier-award",
       "last_verified": "2026-04-29",
-      "notes": "Post-May 2026 chart. Devaluation announced March 2026. Distance-based across 13 bands. Cheapest near-haul J at 60k miles for under 1000mi."
+      "notes": "Post-May 2026 chart. Devaluation announced March 2026. Distance-based across 13 bands. Cheapest near-haul J at 60k miles for under 1000mi.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://flights.cathaypacific.com/en_HK/redeem-flights/flight-award-chart.html#tab-ow-multi-carrier-award"
+        }
+      ],
+      "confidence_note": "Post-May 2026 chart confirmed primary; band-by-band specifics from primary PDF"
     },
-
     {
       "id": "jal_mileage_bank_single_partner",
       "name": "JAL Mileage Bank Single Partner Award",
@@ -328,19 +518,110 @@
       "currency": "miles",
       "ticket_format": "miles_only",
       "chart_zones": [
-        {"band": 1, "miles_max": 1000, "economy": 12000, "premium_economy": 17000, "business": 24000, "first": 36000},
-        {"band": 2, "miles_max": 2000, "economy": 15000, "premium_economy": 20000, "business": 28000, "first": 42000},
-        {"band": 3, "miles_max": 3000, "economy": 20000, "premium_economy": 25000, "business": 35000, "first": 52000},
-        {"band": 4, "miles_max": 5000, "economy": 25000, "premium_economy": 30000, "business": 40000, "first": 60000},
-        {"band": 5, "miles_max": 7000, "economy": 35000, "premium_economy": 45000, "business": 60000, "first": 90000},
-        {"band": 6, "miles_max": 10000, "economy": 45000, "premium_economy": 55000, "business": 80000, "first": 120000},
-        {"band": 7, "miles_max": 14000, "economy": 60000, "premium_economy": 70000, "business": 100000, "first": 150000},
-        {"band": 8, "miles_max": 18000, "economy": 80000, "premium_economy": 95000, "business": 130000, "first": 195000},
-        {"band": 9, "miles_max": 22000, "economy": 95000, "premium_economy": 115000, "business": 160000, "first": 240000},
-        {"band": 10, "miles_max": 26000, "economy": 110000, "premium_economy": 130000, "business": 180000, "first": 270000},
-        {"band": 11, "miles_max": 30000, "economy": 130000, "premium_economy": 150000, "business": 200000, "first": 300000},
-        {"band": 12, "miles_max": 34000, "economy": 140000, "premium_economy": 165000, "business": 200000, "first": 315000},
-        {"band": 13, "miles_max": 50000, "economy": 150000, "premium_economy": 180000, "business": 210000, "first": 330000}
+        {
+          "band": 1,
+          "miles_max": 1000,
+          "economy": 12000,
+          "premium_economy": 17000,
+          "business": 24000,
+          "first": 36000
+        },
+        {
+          "band": 2,
+          "miles_max": 2000,
+          "economy": 15000,
+          "premium_economy": 20000,
+          "business": 28000,
+          "first": 42000
+        },
+        {
+          "band": 3,
+          "miles_max": 3000,
+          "economy": 20000,
+          "premium_economy": 25000,
+          "business": 35000,
+          "first": 52000
+        },
+        {
+          "band": 4,
+          "miles_max": 5000,
+          "economy": 25000,
+          "premium_economy": 30000,
+          "business": 40000,
+          "first": 60000
+        },
+        {
+          "band": 5,
+          "miles_max": 7000,
+          "economy": 35000,
+          "premium_economy": 45000,
+          "business": 60000,
+          "first": 90000
+        },
+        {
+          "band": 6,
+          "miles_max": 10000,
+          "economy": 45000,
+          "premium_economy": 55000,
+          "business": 80000,
+          "first": 120000
+        },
+        {
+          "band": 7,
+          "miles_max": 14000,
+          "economy": 60000,
+          "premium_economy": 70000,
+          "business": 100000,
+          "first": 150000
+        },
+        {
+          "band": 8,
+          "miles_max": 18000,
+          "economy": 80000,
+          "premium_economy": 95000,
+          "business": 130000,
+          "first": 195000
+        },
+        {
+          "band": 9,
+          "miles_max": 22000,
+          "economy": 95000,
+          "premium_economy": 115000,
+          "business": 160000,
+          "first": 240000
+        },
+        {
+          "band": 10,
+          "miles_max": 26000,
+          "economy": 110000,
+          "premium_economy": 130000,
+          "business": 180000,
+          "first": 270000
+        },
+        {
+          "band": 11,
+          "miles_max": 30000,
+          "economy": 130000,
+          "premium_economy": 150000,
+          "business": 200000,
+          "first": 300000
+        },
+        {
+          "band": 12,
+          "miles_max": 34000,
+          "economy": 140000,
+          "premium_economy": 165000,
+          "business": 200000,
+          "first": 315000
+        },
+        {
+          "band": 13,
+          "miles_max": 50000,
+          "economy": 150000,
+          "premium_economy": 180000,
+          "business": 210000,
+          "first": 330000
+        }
       ],
       "rules": {
         "first_class_caveats": "F not available on MH, AF, KE, EK; F priced at business cost on AA 2-class + AS + HA",
@@ -348,11 +629,16 @@
         "distance_basis": "IATA TPM"
       },
       "booking_method": "phone or jal.co.jp",
-      "primary_source": "https://www.jal.co.jp/jp/en/jalmile/use/partner_air/p_jmb/jmb_mile.html",
       "last_verified": "2026-04-29",
-      "notes": "13 distance bands. JAL's single-partner award applies when flying ONE partner airline (not JAL or oneworld multi-carrier)."
+      "notes": "13 distance bands. JAL's single-partner award applies when flying ONE partner airline (not JAL or oneworld multi-carrier).",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.jal.co.jp/jp/en/jalmile/use/partner_air/p_jmb/jmb_mile.html"
+        }
+      ],
+      "confidence_note": "Distance bands confirmed primary jal.co.jp"
     },
-
     {
       "id": "jal_mileage_bank_oneworld_multicarrier",
       "name": "JAL Mileage Bank oneworld Multi-Carrier Award",
@@ -363,16 +649,76 @@
       "currency": "miles",
       "ticket_format": "miles_only",
       "chart_zones": [
-        {"band": 1, "miles_max": 4000, "economy": 25000, "business": 48000, "first": 72000},
-        {"band": 2, "miles_max": 8000, "economy": 41000, "business": 78000, "first": 117000},
-        {"band": 3, "miles_max": 10000, "economy": 53000, "business": 100000, "first": 150000},
-        {"band": 4, "miles_max": 14000, "economy": 65000, "business": 121000, "first": 182000},
-        {"band": 5, "miles_max": 18000, "economy": 75000, "business": 138000, "first": 207000},
-        {"band": 6, "miles_max": 22000, "economy": 88000, "business": 158000, "first": 237000},
-        {"band": 7, "miles_max": 26000, "economy": 110000, "business": 175000, "first": 263000},
-        {"band": 8, "miles_max": 30000, "economy": 130000, "business": 195000, "first": 293000},
-        {"band": 9, "miles_max": 34000, "economy": 150000, "business": 215000, "first": 323000},
-        {"band": 10, "miles_max": 50000, "economy": 160000, "business": 220000, "first": 330000}
+        {
+          "band": 1,
+          "miles_max": 4000,
+          "economy": 25000,
+          "business": 48000,
+          "first": 72000
+        },
+        {
+          "band": 2,
+          "miles_max": 8000,
+          "economy": 41000,
+          "business": 78000,
+          "first": 117000
+        },
+        {
+          "band": 3,
+          "miles_max": 10000,
+          "economy": 53000,
+          "business": 100000,
+          "first": 150000
+        },
+        {
+          "band": 4,
+          "miles_max": 14000,
+          "economy": 65000,
+          "business": 121000,
+          "first": 182000
+        },
+        {
+          "band": 5,
+          "miles_max": 18000,
+          "economy": 75000,
+          "business": 138000,
+          "first": 207000
+        },
+        {
+          "band": 6,
+          "miles_max": 22000,
+          "economy": 88000,
+          "business": 158000,
+          "first": 237000
+        },
+        {
+          "band": 7,
+          "miles_max": 26000,
+          "economy": 110000,
+          "business": 175000,
+          "first": 263000
+        },
+        {
+          "band": 8,
+          "miles_max": 30000,
+          "economy": 130000,
+          "business": 195000,
+          "first": 293000
+        },
+        {
+          "band": 9,
+          "miles_max": 34000,
+          "economy": 150000,
+          "business": 215000,
+          "first": 323000
+        },
+        {
+          "band": 10,
+          "miles_max": 50000,
+          "economy": 160000,
+          "business": 220000,
+          "first": 330000
+        }
       ],
       "rules": {
         "must_combine_multiple_oneworld_carriers": true,
@@ -380,11 +726,16 @@
         "distance_basis": "IATA TPM"
       },
       "booking_method": "phone (JAL English-language line)",
-      "primary_source": "https://www.jal.co.jp/jp/en/jalmile/use/partner_air/oneworld/miles.html",
       "last_verified": "2026-04-29",
-      "notes": "10 distance bands. Cheaper than single-partner at far ends. Sweet spot: 25k Y / 48k J for under 4000mi (e.g., AA flagship transcon JFK-LAX/SFO + return)."
+      "notes": "10 distance bands. Cheaper than single-partner at far ends. Sweet spot: 25k Y / 48k J for under 4000mi (e.g., AA flagship transcon JFK-LAX/SFO + return).",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.jal.co.jp/jp/en/jalmile/use/partner_air/oneworld/miles.html"
+        }
+      ],
+      "confidence_note": "Distance bands confirmed primary jal.co.jp"
     },
-
     {
       "id": "aeroplan_flight_reward",
       "name": "Aeroplan Flight Reward (Distance-Based)",
@@ -397,31 +748,97 @@
       "chart_version": "june_2026",
       "carrier_groups": {
         "ac_and_select_partners": {
-          "members": ["AC", "UA", "EK", "FZ", "EY", "Canadian North", "Calm Air", "Bearskin", "PAL"],
+          "members": [
+            "AC",
+            "UA",
+            "EK",
+            "FZ",
+            "EY",
+            "Canadian North",
+            "Calm Air",
+            "Bearskin",
+            "PAL"
+          ],
           "pricing": "starting_at_plus_median_dynamic",
           "zones": {
             "within_north_america": {
               "bands": [
-                {"miles_max": 500, "economy_starting": 6000, "business_starting": 15000},
-                {"miles_max": 1500, "economy_starting": 10000, "business_starting": 20000},
-                {"miles_max": 2750, "economy_starting": 12500, "business_starting": 25000},
-                {"miles_max": null, "economy_starting": 17500, "business_starting": 35000}
+                {
+                  "miles_max": 500,
+                  "economy_starting": 6000,
+                  "business_starting": 15000
+                },
+                {
+                  "miles_max": 1500,
+                  "economy_starting": 10000,
+                  "business_starting": 20000
+                },
+                {
+                  "miles_max": 2750,
+                  "economy_starting": 12500,
+                  "business_starting": 25000
+                },
+                {
+                  "miles_max": null,
+                  "economy_starting": 17500,
+                  "business_starting": 35000
+                }
               ]
             },
             "north_america_atlantic": {
               "bands": [
-                {"miles_max": 4000, "economy_starting": 32500, "business_starting": 60000, "first_starting": 90000},
-                {"miles_max": 6000, "economy_starting": 42500, "business_starting": 70000, "first_starting": 100000},
-                {"miles_max": 8000, "economy_starting": 55000, "business_starting": 80000, "first_starting": 120000},
-                {"miles_max": null, "economy_starting": 70000, "business_starting": 90000, "first_starting": 130000}
+                {
+                  "miles_max": 4000,
+                  "economy_starting": 32500,
+                  "business_starting": 60000,
+                  "first_starting": 90000
+                },
+                {
+                  "miles_max": 6000,
+                  "economy_starting": 42500,
+                  "business_starting": 70000,
+                  "first_starting": 100000
+                },
+                {
+                  "miles_max": 8000,
+                  "economy_starting": 55000,
+                  "business_starting": 80000,
+                  "first_starting": 120000
+                },
+                {
+                  "miles_max": null,
+                  "economy_starting": 70000,
+                  "business_starting": 90000,
+                  "first_starting": 130000
+                }
               ]
             },
             "north_america_pacific": {
               "bands": [
-                {"miles_max": 6000, "economy_starting": 32500, "business_starting": 65000, "first_starting": 90000},
-                {"miles_max": 8000, "economy_starting": 45000, "business_starting": 80000, "first_starting": 110000},
-                {"miles_max": 10000, "economy_starting": 50000, "business_starting": 95000, "first_starting": 130000},
-                {"miles_max": null, "economy_starting": 70000, "business_starting": 110000, "first_starting": 150000}
+                {
+                  "miles_max": 6000,
+                  "economy_starting": 32500,
+                  "business_starting": 65000,
+                  "first_starting": 90000
+                },
+                {
+                  "miles_max": 8000,
+                  "economy_starting": 45000,
+                  "business_starting": 80000,
+                  "first_starting": 110000
+                },
+                {
+                  "miles_max": 10000,
+                  "economy_starting": 50000,
+                  "business_starting": 95000,
+                  "first_starting": 130000
+                },
+                {
+                  "miles_max": null,
+                  "economy_starting": 70000,
+                  "business_starting": 110000,
+                  "first_starting": 150000
+                }
               ]
             }
           }
@@ -429,11 +846,16 @@
         "fixed_partners_other": "Other Star Alliance + non-alliance partners use fixed pricing not surfaced in this summary"
       },
       "booking_method": "online at aircanada.com",
-      "primary_source": "https://www.aircanada.com/content/dam/aircanada/loyalty-content/documents/flight-rewards-chart-june2026-en.pdf",
       "last_verified": "2026-04-29",
-      "notes": "Updated June 2026. Dynamic pricing on AC + select partners with 'Starting at' floor + 'Median' realistic mid-point. Fixed pricing on remaining Star Alliance partners. Zones: North America, Atlantic, Pacific, South America. Best for short-haul NA: 6k Y starting (under 500mi)."
+      "notes": "Chart effective June 2026 (verified April 29, 2026 against the official PDF). Dynamic pricing on AC + select partners with 'Starting at' floor + 'Median' realistic mid-point. Fixed pricing on remaining Star Alliance partners. Zones: North America, Atlantic, Pacific, South America. Best for short-haul NA: 6k Y starting (under 500mi).",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.aircanada.com/content/dam/aircanada/loyalty-content/documents/flight-rewards-chart-june2026-en.pdf"
+        }
+      ],
+      "confidence_note": "Chart confirmed primary aircanada.com PDF"
     },
-
     {
       "id": "iberia_plus_avios",
       "name": "Iberia Plus Avios (Club Iberia Plus)",
@@ -447,14 +869,50 @@
         {
           "name": "Iberia Metal Off-Peak",
           "bands": [
-            {"miles_max": 650, "economy": 3500, "business": 9750},
-            {"miles_max": 1150, "economy": 7000, "business": 16500},
-            {"miles_max": 2000, "economy": 11000, "business": 23250},
-            {"miles_max": 3000, "economy": 14250, "business": 37500},
-            {"miles_max": 4000, "economy": 18000, "premium_economy": 35000, "business": 51750},
-            {"miles_max": 5500, "economy": 21750, "premium_economy": 41250, "business": 68250},
-            {"miles_max": 7000, "economy": 27000, "premium_economy": 51000, "business": 84750},
-            {"miles_max": null, "economy": 41000, "premium_economy": 71000, "business": 97000}
+            {
+              "miles_max": 650,
+              "economy": 3500,
+              "business": 9750
+            },
+            {
+              "miles_max": 1150,
+              "economy": 7000,
+              "business": 16500
+            },
+            {
+              "miles_max": 2000,
+              "economy": 11000,
+              "business": 23250
+            },
+            {
+              "miles_max": 3000,
+              "economy": 14250,
+              "business": 37500
+            },
+            {
+              "miles_max": 4000,
+              "economy": 18000,
+              "premium_economy": 35000,
+              "business": 51750
+            },
+            {
+              "miles_max": 5500,
+              "economy": 21750,
+              "premium_economy": 41250,
+              "business": 68250
+            },
+            {
+              "miles_max": 7000,
+              "economy": 27000,
+              "premium_economy": 51000,
+              "business": 84750
+            },
+            {
+              "miles_max": null,
+              "economy": 41000,
+              "premium_economy": 71000,
+              "business": 97000
+            }
           ]
         },
         {
@@ -464,20 +922,74 @@
         {
           "name": "Partner Unified Chart (oneworld + non-alliance)",
           "bands": [
-            {"miles_max": 650, "economy": 6000, "premium_economy": 9000, "business": 12500, "first": 24000},
-            {"miles_max": 1150, "economy": 9000, "premium_economy": 13500, "business": 18000, "first": 36000},
-            {"miles_max": 2000, "economy": 12500, "premium_economy": 18750, "business": 25000, "first": 50000},
-            {"miles_max": 3000, "economy": 17000, "premium_economy": 25500, "business": 34000, "first": 68000},
-            {"miles_max": 4000, "economy": 22500, "premium_economy": 33750, "business": 45000, "first": 90000},
-            {"miles_max": 5500, "economy": 30000, "premium_economy": 45000, "business": 60000, "first": 120000},
-            {"miles_max": 7000, "economy": 41000, "premium_economy": 61500, "business": 82000, "first": 164000},
-            {"miles_max": 11770, "economy": 51500, "premium_economy": 77250, "business": 103000, "first": 206000}
+            {
+              "miles_max": 650,
+              "economy": 6000,
+              "premium_economy": 9000,
+              "business": 12500,
+              "first": 24000
+            },
+            {
+              "miles_max": 1150,
+              "economy": 9000,
+              "premium_economy": 13500,
+              "business": 18000,
+              "first": 36000
+            },
+            {
+              "miles_max": 2000,
+              "economy": 12500,
+              "premium_economy": 18750,
+              "business": 25000,
+              "first": 50000
+            },
+            {
+              "miles_max": 3000,
+              "economy": 17000,
+              "premium_economy": 25500,
+              "business": 34000,
+              "first": 68000
+            },
+            {
+              "miles_max": 4000,
+              "economy": 22500,
+              "premium_economy": 33750,
+              "business": 45000,
+              "first": 90000
+            },
+            {
+              "miles_max": 5500,
+              "economy": 30000,
+              "premium_economy": 45000,
+              "business": 60000,
+              "first": 120000
+            },
+            {
+              "miles_max": 7000,
+              "economy": 41000,
+              "premium_economy": 61500,
+              "business": 82000,
+              "first": 164000
+            },
+            {
+              "miles_max": 11770,
+              "economy": 51500,
+              "premium_economy": 77250,
+              "business": 103000,
+              "first": 206000
+            }
           ]
         }
       ],
       "rules": {
         "distance_basis": "IATA TPM, total trip miles (NOT per-segment)",
-        "transfers_from": ["Amex MR (1:1)", "Chase UR (1:1)", "Bilt (1:1)", "Wells Fargo Rewards (1:1)", "Citi TYP (1:0.7, no fee)"],
+        "transfers_from": [
+          "Amex MR (1:1)",
+          "Chase UR (1:1)",
+          "Bilt (1:1)",
+          "Wells Fargo Rewards (1:1)",
+          "Citi TYP (1:0.7, no fee)"
+        ],
         "avios_family": "combines with BA, Aer Lingus, Finnair, Qatar Avios pools",
         "iberia_metal_change_fee_eur": 25,
         "partner_awards_refundable": false
@@ -488,14 +1000,20 @@
         "AA Flagship First SFO/LAX-JFK: 103,000 Avios + $20 round-trip"
       ],
       "booking_method": "online at iberia.com (Iberia metal); phone for partners",
-      "primary_source": "https://www.iberia.com/us/iberiaplus/purchase-flights-avios/",
-      "secondary_sources": [
-        "https://onemileatatime.com/guides/iberia-avios-redemptions/"
-      ],
       "last_verified": "2026-04-29",
-      "notes": "Rebranded to 'Club Iberia Plus' in February 2025. Best for intra-Europe redemptions and AA short-haul Flagship First. Total-trip distance basis means round-trip pricing aggregates miles."
+      "notes": "Rebranded to 'Club Iberia Plus' in February 2025. Best for intra-Europe redemptions and AA short-haul Flagship First. Total-trip distance basis means round-trip pricing aggregates miles.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.iberia.com/us/iberiaplus/purchase-flights-avios/"
+        },
+        {
+          "type": "secondary",
+          "url": "https://onemileatatime.com/guides/iberia-avios-redemptions/"
+        }
+      ],
+      "confidence_note": "Charts confirmed primary iberia.com"
     },
-
     {
       "id": "aeromexico_club_premier_rtw",
       "name": "Aeromexico Club Premier Round the World",
@@ -510,7 +1028,10 @@
           "name": "Aeromexico Club Premier RTW",
           "kilometers_economy": 244000,
           "kilometers_business": 352000,
-          "cabins": ["economy", "business"]
+          "cabins": [
+            "economy",
+            "business"
+          ]
         }
       ],
       "rules": {
@@ -518,14 +1039,15 @@
         "transfers_from": "Amex MR (1:1.6 ratio)"
       },
       "booking_method": "phone only (US: 800-237-6639)",
-      "primary_source": null,
-      "secondary_sources": [
-        "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
-      ],
       "last_verified": "2026-04-29",
-      "notes": "Difficult-to-book SkyTeam-aligned RTW survivor after SkyTeam Go Round was killed. Phone-only and reportedly slow/painful. Currency is kilometers, not miles. Avoid unless other alliances don't fit."
+      "notes": "Difficult-to-book SkyTeam-aligned RTW survivor after SkyTeam Go Round was killed. Phone-only and reportedly slow/painful. Currency is kilometers, not miles. Avoid unless other alliances don't fit.",
+      "sources": [
+        {
+          "type": "secondary",
+          "url": "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
+        }
+      ]
     },
-
     {
       "id": "ana_star_alliance_rtw",
       "name": "ANA Star Alliance Round the World",
@@ -534,22 +1056,87 @@
       "category": "discontinued",
       "confidence": "VERIFIED",
       "discontinued_date": "2025-06-23",
-      "discontinuation_note": "ANA discontinued its Star Alliance RTW award redemption on June 23, 2025. Star Alliance RTW remains bookable through other Star Alliance member programs (United, Aeroplan, Lufthansa M&M, etc.).",
+      "discontinuation_note": "ANA discontinued its Star Alliance RTW award redemption on June 23, 2025. The paid Star Alliance RTW cash fare remains bookable directly via staralliance.com (NOT a mileage award). The miles-priced Star Alliance RTW survivor is Lufthansa Miles & More (195K/400K/540K Y/J/F); United and Aeroplan do not currently offer their own mileage-priced RTW products.",
       "currency": "miles",
       "historical_chart": [
-        {"band_max_miles": 7000, "economy": 38000, "business": 63000, "first": 90000},
-        {"band_max_miles": 9000, "economy": 50000, "business": 75000, "first": 105000},
-        {"band_max_miles": 11000, "economy": 62000, "business": 95000, "first": 130000},
-        {"band_max_miles": 14000, "economy": 75000, "business": 110000, "first": 160000},
-        {"band_max_miles": 18000, "economy": 90000, "business": 135000, "first": 195000},
-        {"band_max_miles": 20000, "economy": 105000, "business": 150000, "first": 215000},
-        {"band_max_miles": 22000, "economy": 115000, "business": 165000, "first": 245000},
-        {"band_max_miles": 25000, "economy": 130000, "business": 180000, "first": 270000},
-        {"band_max_miles": 29000, "economy": 145000, "business": 200000, "first": 300000},
-        {"band_max_miles": 34000, "economy": 160000, "business": 220000, "first": 330000},
-        {"band_max_miles": 39000, "economy": 175000, "business": 250000, "first": 380000},
-        {"band_max_miles": 44000, "economy": 190000, "business": 270000, "first": 410000},
-        {"band_max_miles": 50000, "economy": 200000, "business": 300000, "first": 450000}
+        {
+          "band_max_miles": 7000,
+          "economy": 38000,
+          "business": 63000,
+          "first": 90000
+        },
+        {
+          "band_max_miles": 9000,
+          "economy": 50000,
+          "business": 75000,
+          "first": 105000
+        },
+        {
+          "band_max_miles": 11000,
+          "economy": 62000,
+          "business": 95000,
+          "first": 130000
+        },
+        {
+          "band_max_miles": 14000,
+          "economy": 75000,
+          "business": 110000,
+          "first": 160000
+        },
+        {
+          "band_max_miles": 18000,
+          "economy": 90000,
+          "business": 135000,
+          "first": 195000
+        },
+        {
+          "band_max_miles": 20000,
+          "economy": 105000,
+          "business": 150000,
+          "first": 215000
+        },
+        {
+          "band_max_miles": 22000,
+          "economy": 115000,
+          "business": 165000,
+          "first": 245000
+        },
+        {
+          "band_max_miles": 25000,
+          "economy": 130000,
+          "business": 180000,
+          "first": 270000
+        },
+        {
+          "band_max_miles": 29000,
+          "economy": 145000,
+          "business": 200000,
+          "first": 300000
+        },
+        {
+          "band_max_miles": 34000,
+          "economy": 160000,
+          "business": 220000,
+          "first": 330000
+        },
+        {
+          "band_max_miles": 39000,
+          "economy": 175000,
+          "business": 250000,
+          "first": 380000
+        },
+        {
+          "band_max_miles": 44000,
+          "economy": 190000,
+          "business": 270000,
+          "first": 410000
+        },
+        {
+          "band_max_miles": 50000,
+          "economy": 200000,
+          "business": 300000,
+          "first": 450000
+        }
       ],
       "historical_rules": {
         "stopovers_max": 8,
@@ -558,11 +1145,16 @@
         "max_segments": 12,
         "max_ground_transport_segments": 4
       },
-      "primary_source": "https://www.ana.co.jp/en/jp/guide/amc/award/tk/star_round/",
       "last_verified": "2026-04-29",
-      "notes": "Preserved for historical reference. Use Star Alliance RTW via United MileagePlus, Aeroplan, or Lufthansa M&M instead."
+      "notes": "Preserved for historical reference. Replacement paths: (a) paid Star Alliance RTW cash fare via staralliance.com, or (b) Lufthansa Miles & More for a miles-priced Star Alliance RTW award. United and Aeroplan do not offer their own mileage-priced RTW products.",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.ana.co.jp/en/jp/guide/amc/award/tk/star_round/"
+        }
+      ],
+      "confidence_note": "Historical chart confirmed; discontinued status well-documented"
     },
-
     {
       "id": "singapore_krisflyer_star_alliance_rtw",
       "name": "Singapore KrisFlyer Star Alliance Round the World",
@@ -585,11 +1177,16 @@
         "direction": "eastbound or westbound only",
         "booking_method": "phone only"
       },
-      "primary_source": "https://www.singaporeair.com/en_UK/us/ppsclub-krisflyer/",
       "last_verified": "2026-04-29",
-      "notes": "Preserved for historical reference. Singapore KrisFlyer no longer offers an RTW product. The Pacific Circle product appears to have been killed at the same time (see singapore_krisflyer_pacific_circle entry below)."
+      "notes": "Preserved for historical reference. Singapore KrisFlyer no longer offers an RTW product. The Pacific Circle product appears to have been killed at the same time (see singapore_krisflyer_pacific_circle entry below).",
+      "sources": [
+        {
+          "type": "primary",
+          "url": "https://www.singaporeair.com/en_UK/us/ppsclub-krisflyer/"
+        }
+      ],
+      "confidence_note": "Historical chart confirmed; discontinuation 2024-05-01 well-documented"
     },
-
     {
       "id": "singapore_krisflyer_pacific_circle",
       "name": "Singapore KrisFlyer Pacific Circle",
@@ -600,14 +1197,16 @@
       "discontinued_date": "approximately 2024-05-01",
       "discontinuation_note": "Not mentioned in March 2025 comprehensive KrisFlyer guides post-RTW kill, strongly suggesting killed alongside the Star Alliance RTW product. No primary confirmation captured.",
       "currency": "miles",
-      "primary_source": null,
-      "secondary_sources": [
-        "Reddit r/awardtravel KrisFlyer guides post-2024"
-      ],
       "last_verified": "2026-04-29",
-      "notes": "Believed discontinued but lacks primary-source confirmation. Treat as unavailable until proven otherwise."
+      "notes": "Believed discontinued but lacks primary-source confirmation. Treat as unavailable until proven otherwise.",
+      "sources": [
+        {
+          "type": "secondary",
+          "url": "https://www.reddit.com/r/awardtravel/search?q=KrisFlyer+Pacific+Circle&restrict_sr=on",
+          "note": "Reddit r/awardtravel community search; no specific post canonical, multiple guides post-2024 stopped mentioning Pacific Circle alongside RTW discontinuation."
+        }
+      ]
     },
-
     {
       "id": "skyteam_go_round",
       "name": "SkyTeam Go Round the World",
@@ -618,20 +1217,21 @@
       "discontinued_date": "approximately 2024-2025",
       "discontinuation_note": "SkyTeam no longer sells RTW tickets per Upgraded Points 2026 guidance. The product was retired sometime in 2024-2025.",
       "currency": "n/a",
-      "primary_source": null,
-      "secondary_sources": [
-        "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
-      ],
       "last_verified": "2026-04-29",
-      "notes": "SkyTeam alliance no longer has an active RTW product. Aeromexico Club Premier RTW (above) is the workaround for SkyTeam-aligned travelers, though it's miles-only and phone-only."
+      "notes": "SkyTeam alliance no longer has an active RTW product. Aeromexico Club Premier RTW (above) is the workaround for SkyTeam-aligned travelers, though it's miles-only and phone-only.",
+      "sources": [
+        {
+          "type": "secondary",
+          "url": "https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/"
+        }
+      ]
     }
   ],
-
   "decision_rules": {
     "rtw_universe_collapsing": "4 RTW products killed in last 18 months (ANA Jun 2025, SQ Star May 2024, SkyTeam Go Round 2024-25, SQ Pacific Circle likely 2024-25). Star Alliance + oneworld + Lufthansa M&M + Qantas are the safe bets.",
     "for_pure_around_the_world": "Star Alliance RTW (most flexible, online-bookable) or oneworld Explorer (continent-based, online via rtw.oneworld.com).",
     "for_premium_cabin_optimization": "Lufthansa M&M (fixed 400k J / 540k F) or Qantas (35k mi cap, 318k for J). M&M is better for transferable-currency holders. Qantas is cheaper for short-band trips.",
-    "cheap_business_class_rtw": "Star Alliance RTW Special Business: 26,000 mi distance band, ~$7,000-7,400 USD for 5-stop business class. Often the best $/J seat available.",
+    "cheap_business_class_rtw": "Star Alliance RTW Special Business at the 26,000 mi distance band is widely considered the cheapest J-class RTW. Quote varies significantly by routing and origin country; check staralliance.com/en/book-fly for the actual price for the specific itinerary before recommending.",
     "for_asia_pacific_multi_stop": "Star Alliance Circle Pacific OR oneworld Circle Pacific (travel agent only) OR JAL Mileage Bank multi-carrier (cheapest at 25k Y / 48k J for under 4000mi distance).",
     "for_regional_north_america": "Aeroplan distance-based (6k Y starting under 500mi) or Iberia partner chart for AA short hops (12k Y for under 650mi RT).",
     "for_intra_europe": "Iberia Plus on Iberia metal off-peak: 3,500 Avios for under 650mi single-direction. Cheapest intra-EU option after BA Avios.",

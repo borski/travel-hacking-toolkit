@@ -123,7 +123,7 @@
     "display_name": "Citi ThankYou Points",
     "_note": "Some partners have worse ratios for 'limited ThankYou points' cards (e.g., Citi Double Cash). The ratios below are for premium cards (Citi Strata Premier, etc.).",
     "airlines": {
-      "american": { "program": "American Airlines AAdvantage", "ratio": 1.0 },
+      "american": { "program": "American Airlines AAdvantage", "ratio": 1.0, "note": "1:1 for Citi Strata Elite, Strata Premier, Prestige (annual-fee premium cards). 1:0.7 for Citi Strata, Double Cash, Custom Cash, ThankYou Preferred (no/low-annual-fee cards). Citi added AA as a transfer partner in 2024." },
       "aeromexico": { "program": "Aeromexico Rewards", "ratio": 1.0 },
       "flying_blue": { "program": "Air France/KLM Flying Blue", "ratio": 1.0 },
       "avianca": { "program": "Avianca LifeMiles", "ratio": 1.0 },
@@ -140,7 +140,7 @@
       "turkish": { "program": "Turkish Airlines Miles&Smiles", "ratio": 1.0 },
       "virgin_atlantic": { "program": "Virgin Atlantic Flying Club", "ratio": 1.0 },
       "virgin_red": { "program": "Virgin Red", "ratio": 1.0 },
-      "jal": { "program": "Japan Airlines Mileage Bank", "ratio": 0.75, "note": "2:1.5 ratio (2000 TY = 1500 JAL miles)" }
+      "jal": { "program": "Japan Airlines Mileage Bank", "ratio": 0.75, "note": "4:3 ratio (4000 TY = 3000 JAL miles)" }
     },
     "hotels": {
       "accor": { "program": "Accor Live Limitless", "ratio": 0.5, "note": "2:1 ratio" },

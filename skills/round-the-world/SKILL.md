@@ -22,9 +22,9 @@ This skill provides:
 
 ```
 Want to actually circle the globe?
-  └→ Want to pay cash? → oneworld Explorer (3-6 continents, online bookable, $3,599-6,899 economy)
+  └→ Want to pay cash? → oneworld Explorer (3-6 continents, online bookable; LIKELY ~$3.6K-$6.9K economy per Upgraded Points 2026; verify on rtw.oneworld.com)
   └→ Want to use miles?
-       ├→ Star Alliance RTW (online bookable; Special Business 26k mi for ~$7,000-7,400 J ← steal)
+       ├→ Star Alliance RTW (online bookable; Special Business 26k-mile distance band, USD price varies by routing/origin, historically a strong J value)
        ├→ Lufthansa M&M (fixed 195k Y / 400k J / 540k F miles, phone only)
        └→ Qantas oneworld Classic Reward RTW (35k mi cap, 132,400/318,000 Y/J pts)
 
@@ -52,7 +52,7 @@ The most flexible RTW still on the market. Three fare types:
 |------------------|----------------------------|---------------------|-----------|-------|
 | Normal RTW       | 29k / 34k / 39k            | Y / W / J / F       | 2-15      | Globally available |
 | Special Economy  | 26k / 29k / 34k / 39k      | Y                   | 3-12      | NOT from Japan |
-| Special Business | 26k                        | J                   | 5         | NOT from Japan; ~$7,000-7,400 USD; **the steal** |
+| Special Business | 26k                        | J                   | 5         | NOT from Japan; pricing varies by origin/routing — historically a strong J value (LIKELY) |
 
 **Rules:**
 - Origin/destination same country
@@ -63,7 +63,12 @@ The most flexible RTW still on the market. Three fare types:
 - Reroute fee $125, cancel fee $150
 - Purchase ≥72 hrs before first departure
 
-**Pricing in miles:** Star Alliance RTW tickets are priced in cash USD/local currency, then redeemable for member-program miles. United MileagePlus, Aeroplan, Lufthansa M&M, Avianca LifeMiles all support the redemption with their own mile costs. Compare programs.
+**Two separate products live under the "Star Alliance RTW" umbrella, do not conflate:**
+
+1. **Star Alliance RTW paid fare** — a cash USD/local currency fare bookable directly at staralliance.com/en/book-fly, priced by distance band and cabin (Normal vs Special). Not a points redemption.
+2. **Member-program mileage RTW awards** — each Star Alliance member program (Aeroplan up to its 2020 discontinuation, ANA up to its 2025 discontinuation, Lufthansa Miles & More, Avianca LifeMiles, etc.) historically had its own RTW or multi-stop award chart with its own mileage cost and rules. Most have been killed or restricted. See the per-program entries below for current state.
+
+For the Star Alliance paid RTW fare specifically, the Normal/Special distance bands cap how far you can fly, but the actual USD price varies by origin country, routing, and currency conversion. Always verify current pricing at staralliance.com/en/book-fly.
 
 ### Star Alliance Circle Pacific — `staralliance.com/tnc-cp`
 
@@ -77,14 +82,16 @@ Same product family as RTW but constrained to Pacific Rim:
 
 ### oneworld Explorer — `rtw.oneworld.com`
 
-Continent-based (not distance-based). Online bookable.
+Continent-based (not distance-based). Online bookable. Cabin pricing scales with continent count.
 
-| Continents | Economy USD | Business | First |
-|-----------|-------------|----------|-------|
-| 3         | $3,599      | TBD      | TBD   |
-| 4         | $4,999      | TBD      | TBD   |
-| 5         | $5,699      | TBD      | TBD   |
-| 6         | $6,899      | TBD      | TBD   |
+| Continents | Economy USD (LIKELY, per Upgraded Points 2026) |
+|-----------|-------------------------------------------------|
+| 3         | ~$3,599 |
+| 4         | ~$4,999 |
+| 5         | ~$5,699 |
+| 6         | ~$6,899 |
+
+**Source:** primary `rtw.oneworld.com` for the structure; secondary [Upgraded Points 2026 RTW guide](https://upgradedpoints.com/travel/airlines/best-round-the-world-tickets/) for the specific economy rates above. Business and First class rates exist but are not surfaced in the public booking flow without a search; verify on rtw.oneworld.com for current cabin pricing.
 
 **Rules:** 16 max segments, 2-15 stopovers. Premium economy upgrades available.
 
@@ -225,7 +232,7 @@ Phone only (US: 800-237-6639). Difficult agents. Amex MR transfers 1:1.6. The on
 
 The agent should NOT recommend any of these. They're preserved so stale blog posts about them don't get accepted.
 
-- **ANA Star Alliance RTW** — discontinued 2025-06-23. Use Star Alliance RTW via United, Aeroplan, or Lufthansa M&M.
+- **ANA Star Alliance RTW** — discontinued 2025-06-23. Two replacement paths depending on what you want: (a) for the **paid Star Alliance RTW** cash fare, book directly at staralliance.com/en/book-fly (it's a cash booking, not a mileage award); (b) for a **miles-priced** Star Alliance RTW award, Lufthansa Miles & More is the only major survivor (United/Aeroplan/ANA mileage RTW programs are all discontinued).
 - **Singapore KrisFlyer Star Alliance RTW** — discontinued 2024-05-01.
 - **Singapore KrisFlyer Pacific Circle** — likely discontinued ~2024-05-01.
 - **SkyTeam Go Round** — retired 2024-2025.
@@ -246,14 +253,14 @@ The helper handles 6,072 IATA airport codes (OpenFlights data) and computes have
 
 **Caveats:**
 - **TPM vs great-circle:** JAL, Star Alliance, oneworld use IATA TPM (Ticketed Point Mileage). Aeroplan uses actual flown distance. TPM can differ from gcmap.com great-circle by a few percent and affects which distance band you fall into. Use calc_distance.py for an estimate, but verify with the airline before committing.
-- **gcmap.com** (kgmap.com great-circle map service) is the authoritative external check.
+- **gcmap.com** (great-circle map service) is the authoritative external check.
 - **MileCalc.com** offers TPM lookups but is client-side JS-rendered and not scrapable. Bookmark for manual checks.
 
 ## Key Decision Rules
 
 (also encoded in `data/rtw-awards.json` `decision_rules`)
 
-1. **Cheap business class RTW:** Star Alliance RTW Special Business at 26,000 mi → ~$7,000-7,400 USD for 5-stop J. Often the best $/business-class-seat in the market.
+1. **Cheap business class RTW:** Star Alliance RTW Special Business 26k-mile distance band paid fare (cash, not miles). USD price varies by origin/routing — historically reported in the $6.5K-$10K range for 5-stop J across recent years. Verify current pricing at staralliance.com/en/book-fly. When it lands at the low end of that range, it's typically the best $/business-class-seat in the market for a multi-stop trip.
 
 2. **For pure around-the-world goals:** Star Alliance RTW (most flexible, online bookable) or oneworld Explorer (continent-based, online via rtw.oneworld.com).
 
@@ -282,7 +289,7 @@ The helper handles 6,072 IATA airport codes (OpenFlights data) and computes have
 - **transfer-bonuses** skill: current promotional bonuses to apply when transferring to an RTW program. RTW awards take large transfers, so a 30% bonus saves real points.
 - **points-valuations** skill: CPP rules to evaluate whether an RTW makes sense.
 - **booking-guidance** skill: hold-before-transfer rules and phone-booking phone numbers.
-- **award-holds** skill: per-program hold rules. Most RTW programs (Aeroplan, ANA discontinued, Lufthansa M&M) require phone booking and the hold-before-transfer pattern, but some (Star Alliance through Aeroplan, oneworld through AA) won't hold a multi-segment award. Critical to know before transferring large balances.
+- **award-holds** skill: per-program hold rules. Lufthansa M&M (the main miles-priced RTW survivor) requires phone booking and the hold-before-transfer pattern; their normal 5-day hold may not apply to multi-segment RTW awards. The paid Star Alliance RTW cash fare is purchased online, not held. Critical to verify per-product before transferring large balances.
 
 ## Source Hierarchy
 

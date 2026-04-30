@@ -101,8 +101,9 @@ Example: Flying Blue award at 50,000 miles via Capital One (1:1):
 - Cash price: $1,200, taxes: $100
 - CPP: ($1,200 - $100) / 50,000 × 100 = **2.2 cpp**
 
-Same award via Emirates (Capital One 4:3 ratio):
-- Would cost 72,500 / 0.75 = 96,667 Cap One miles. Not even comparable.
+Contrast: a separate Emirates award at 72,500 Skywards miles via Capital One (4:3 ratio, the worst Cap One transfer rate):
+- Effective points needed: 72,500 / 0.75 = 96,667 Cap One miles
+- Same $1,200 cash equivalent: ($1,200 - $100) / 96,667 × 100 = **1.14 cpp**. Worse than the Flying Blue path.
 
 ### Step 4: Compare Against Valuations
 
@@ -202,14 +203,18 @@ For premium hotel programs (FHR, THC, Chase Edit), factor in the additional bene
 
 ## Chase Travel Portal vs Transfer
 
-Chase Sapphire Reserve gives 1.5 cpp in the Chase travel portal (pay-with-points). This sets a floor:
+Chase Sapphire Reserve uses dynamic Points Boost pricing in the Chase travel portal: roughly 1.5-2.0 cpp on select bookings, but **not a guaranteed floor on every booking**. The historical 1.5 cpp fixed multiplier is gone — current redemptions vary by route, date, and inventory. Always check the actual portal price before assuming a rate.
+
+Rough decision rule, with the caveat that you must verify the actual portal quote:
 
 ```
-If award CPP < 1.5 → book through Chase portal instead (guaranteed 1.5 cpp)
-If award CPP > 1.5 → transfer to partner (better value)
+If actual portal CPP > award CPP → portal wins
+If award CPP > actual portal CPP → transfer to partner wins
 ```
 
-Amex has a similar portal option at lower rates (0.7-1.0 cpp depending on card). Capital One portal gives 0.75-1.0 cpp.
+Sapphire Preferred is similar (1.5-1.75 cpp typical via Points Boost). Amex portal is ~1.0 cpp for flights (1 cent per MR point). Capital One portal is ~0.75-1.0 cpp.
+
+**Always pull the real portal quote** via the `chase-travel` or `amex-travel` skills before making a points-vs-portal recommendation. Don't assume the headline rate applies to your specific booking.
 
 ## Common Pitfalls
 

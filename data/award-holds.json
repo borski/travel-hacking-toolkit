@@ -2,7 +2,7 @@
   "_meta": {
     "last_updated": "2026-04-29",
     "staleness_days": 90,
-    "description": "Per-program rules for placing award flight tickets on hold. Holds let you reserve award space without paying or transferring points yet. Critical for transferable-currency bookings (Amex MR, Chase UR, etc.) where the transfer takes hours to days. Includes 7 programs that allow holds and the negative space (most programs do NOT allow holds). Sourced from Frugal Flyer (canonical 2024 list) and Upgraded Points (current 2025 details), cross-checked against airline-specific sources.",
+    "description": "Per-program rules for placing award flight tickets on hold. Holds let you reserve award space without paying or transferring points yet. Critical for transferable-currency bookings (Amex MR, Chase UR, etc.) where the transfer takes hours to days. Includes 6 programs with reliable holds (AA, Lufthansa M&M, Flying Blue, Cathay Asia Miles, Turkish, Virgin Atlantic), Singapore KrisFlyer as agent-discretionary, and the negative space (most programs do NOT allow holds). Sourced from Frugal Flyer (canonical 2024 list) and Upgraded Points (current 2025 details), cross-checked against airline-specific sources.",
     "primary_sources_general": [
       "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
       "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/",
@@ -37,7 +37,7 @@
       "phone_us": "800-433-7300",
       "restrictions": "ONLY program with self-service online hold. Click 'Hold' on the booking-confirmation screen instead of paying with miles. No credit card needed. Reduced from 5-day hold to 24-hour hold in late 2024 to align with revenue ticket policy. The previous 5-day hold was famously generous; the 24-hour version still beats UA/AS/DL who have NO holds.",
       "recent_changes": "Reduced from 5 days to 24 hours in late 2024. Existing 5-day holds at the time were grandfathered.",
-      "use_case": "Hold a Cathay Qsuite or partner premium-cabin award online without committing miles, then transfer Amex MR or Chase UR (Marriott Bonvoy: 4 days; Citi: 1-2 days) to AAdvantage to finalize. With AA's no-fee change/cancel policy, you can also just book on the spot if miles are available.",
+      "use_case": "Hold a Cathay first/business or partner premium-cabin award online without committing miles, then transfer Bilt (1:1, instant) or Citi TYP (1:1, 1-2 days) to AAdvantage to finalize. AA does not partner with Amex MR or Chase UR. Note: Marriott Bonvoy points to AA exists at 3:1 with a 5,000-mile bonus per 60K transferred (4-day delivery). With AA's no-fee change/cancel policy, you can also just book on the spot if miles are available.",
       "sources": [
         "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
         "https://liveandletsfly.com/american-airlines-aadvantage-award-ticket-holds/",
@@ -82,7 +82,7 @@
       "phone_us": "833-933-2244",
       "restrictions": "Up to 2 days per Frugal Flyer (Upgraded Points reports up to 3 days). $39 USD phone fee when finalizing partner awards. Only Cathay Pacific seats are truly held; partner-award seats may disappear. Award waitlist available alongside holds.",
       "recent_changes": "March 2026 devaluation announcement (effective May 2026) changes mileage costs but NOT hold rules.",
-      "use_case": "Hold a Cathay Qsuite or oneworld premium-cabin award via phone. Then transfer Amex MR (1-7 days) or Citi TYP to Asia Miles to ticket. Fee plus uncertainty makes this less attractive than holding via AA for the same award.",
+      "use_case": "Hold a Cathay first/business or oneworld premium-cabin award via phone. Then transfer Amex MR (1-7 days), Citi TYP, or Capital One miles to Asia Miles to ticket. Fee plus uncertainty makes this less attractive than holding via AA for the same award (which has no fee and is online).",
       "sources": [
         "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
         "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/",
@@ -168,7 +168,7 @@
       "phone_us": "800-862-8621",
       "restrictions": "Up to 1 day per Frugal Flyer; up to 2 days per Upgraded Points. Free hold, $0 fee on phone booking. Partner awards (ANA, Delta, Korean, etc.) holdable too.",
       "recent_changes": null,
-      "use_case": "Hold an ANA First or partner award via Virgin's phone line, transfer Amex MR or Chase UR (1-2 days) to Flying Club to ticket. The most economical hold of the 7 programs since there's no phone-booking fee.",
+      "use_case": "Hold an ANA First or partner award via Virgin's phone line, transfer Amex MR or Chase UR (1-2 days) to Flying Club to ticket. The most economical hold of the 6 reliable-hold programs since there's no phone-booking fee.",
       "sources": [
         "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
         "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/"
@@ -378,7 +378,7 @@
     "Amex MR transfers to most partners in minutes (Delta, Hilton, Aeroplan, Flying Blue, Virgin Atlantic, etc.) and 1-2 days for some (BA, ANA). Chase UR transfers are usually instant. Capital One miles transfer in minutes for most partners. So holds matter less for these currencies.",
     "Marriott Bonvoy transfers to airline partners typically take 4 days. ALWAYS use a hold-allowing program when transferring from Bonvoy.",
     "American AAdvantage is the only program with online self-serve holds (no phone needed, no fee, no credit card). Use it whenever the redemption is bookable through AA.",
-    "If you cannot hold via the redeeming program, check if the same award can be held by booking through a different partner program. E.g., a Cathay Qsuite is bookable via AA AAdvantage, Cathay Asia Miles, OR Alaska Atmos. AA can hold (24h online, free); Cathay can hold (2 days, $39 fee); Alaska cannot hold.",
+    "If you cannot hold via the redeeming program, check if the same award can be held by booking through a different partner program. E.g., a Cathay first/business award is bookable via AA AAdvantage, Cathay Asia Miles, OR Alaska Atmos. AA can hold (24h online, free); Cathay can hold (2 days, $39 fee); Alaska cannot hold.",
     "United, Delta, Alaska, and Aeroplan do NOT offer holds. Plan transfers to coincide with booking time.",
     "When in doubt, ask the phone agent. Some programs will discretionarily place holds even when not published policy. Frugal Flyer's 2024 list is canonical for current published policy."
   ],
@@ -412,7 +412,7 @@
       "1_to_2_days": ["Wyndham", "Choice", "Accor"]
     },
     "marriott_bonvoy": {
-      "all_partners": "4 days for transfers to airline partners (60k Bonvoy = 25k miles + 5k bonus = 30k airline miles)"
+      "all_partners": "4 days for transfers to airline partners. 3:1 base ratio with a 5,000-mile bonus per 60K transferred, so 60K Bonvoy = 20K airline miles + 5K bonus = 25K airline miles total."
     },
     "citi_typ": {
       "minutes_to_hours": ["Singapore", "Avianca", "Cathay", "Etihad", "Flying Blue", "Choice", "Wyndham"]

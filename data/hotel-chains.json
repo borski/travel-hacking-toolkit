@@ -19,7 +19,7 @@
       },
       "transfer_from": ["Amex MR (1:1)", "Bilt (1:1)", "Chase UR (1:1)"],
       "award_perks": ["5th night free on award stays (4 nights for the price of 3)", "Peak/off-peak pricing"],
-      "points_value_cpp": {"floor": 0.7, "ceiling": 0.8},
+      "points_value_cpp": {"floor": 0.6, "ceiling": 0.7},
       "notes": "Largest hotel chain. 5th night free is the key perk. Best value at higher categories where cash rates are high. Transfer from Amex/Chase/Bilt at 1:1."
     },
 
@@ -35,7 +35,7 @@
       },
       "transfer_from": ["Amex MR (1:2, meaning 1000 MR = 2000 Hilton)"],
       "award_perks": ["5th night free on award stays", "Points & Money option", "Diamond Reserve tier (new Jan 2026)"],
-      "points_value_cpp": {"floor": 0.4, "ceiling": 0.6},
+      "points_value_cpp": {"floor": 0.4, "ceiling": 0.5},
       "notes": "Points are worth relatively little (0.4-0.6cpp). Often better to pay cash. 5th night free helps. Amex transfers at 1:2 (doubled) which partially compensates for low cpp. Best used for aspirational Waldorf/Conrad stays."
     },
 
@@ -53,7 +53,7 @@
       },
       "transfer_from": ["Chase UR (1:1)", "Bilt (1:1)"],
       "award_perks": ["4th night free on award stays (with IHG co-brand card)", "PointBreaks promotions (5,000 pts/night)"],
-      "points_value_cpp": {"floor": 0.5, "ceiling": 0.6},
+      "points_value_cpp": {"floor": 0.5, "ceiling": 0.5},
       "notes": "PointBreaks promos can deliver outsized value. 4th night free requires the IHG credit card. Six Senses is the luxury highlight. Points easy to earn and buy on sale."
     },
 
@@ -70,7 +70,7 @@
       },
       "transfer_from": ["Chase UR (1:1)", "Bilt (1:1)"],
       "award_perks": ["Peak/off-peak pricing (save up to 20%)", "No resort fees on award stays", "All-inclusive resorts included"],
-      "points_value_cpp": {"floor": 1.5, "ceiling": 2.0},
+      "points_value_cpp": {"floor": 1.4, "ceiling": 1.7},
       "notes": "BEST value in hotel points. Chase UR to Hyatt 1:1 is one of the highest-value transfers in the game. All-inclusive Ziva/Zilara/Secrets resorts deliver 2-3cpp routinely. Mr & Mrs Smith adds boutique hotel inventory. Smaller footprint than Marriott/Hilton."
     },
 
@@ -86,7 +86,7 @@
       },
       "transfer_from": ["Bilt (2:3, meaning 3 Bilt = 2 Accor)", "Capital One (2:1)", "Citi TY (2:1)"],
       "award_perks": ["Status matching available", "Points + cash option"],
-      "points_value_cpp": {"floor": 1.5, "ceiling": 2.2},
+      "points_value_cpp": {"floor": 2.0, "ceiling": 2.2},
       "notes": "Largest brand portfolio (53 brands). Strong in Europe, Asia, Middle East, and Africa. Ennismore lifestyle brands (Hoxton, Mama Shelter, SLS) are popular. Transfer ratios are suboptimal from most currencies."
     },
 
@@ -103,7 +103,7 @@
       },
       "transfer_from": ["Amex MR (1:1)", "Capital One (1:1)", "Citi TY (1:2, doubled)"],
       "award_perks": ["Points don't expire with activity", "Book by the night (no category chart)"],
-      "points_value_cpp": {"floor": 0.5, "ceiling": 0.7},
+      "points_value_cpp": {"floor": 0.6, "ceiling": 0.6},
       "notes": "Acquired Radisson Hotels Americas. Budget-friendly portfolio. Points value is low but consistent. Citi TY transfers at 1:2 (doubled) making it better value from that currency."
     },
 
@@ -119,7 +119,7 @@
       },
       "transfer_from": ["Capital One (1:1)", "Citi TY (1:1)"],
       "award_perks": ["Flat-rate pricing (7,500 to 30,000 pts/night)", "Go Free and Go Fast awards"],
-      "points_value_cpp": {"floor": 0.6, "ceiling": 1.1},
+      "points_value_cpp": {"floor": 0.7, "ceiling": 1.1},
       "notes": "Flat-rate redemption tiers make value predictable. Best value at higher-end properties where cash rates exceed the flat point cost. Mostly budget/midscale brands."
     },
 
@@ -136,7 +136,7 @@
       },
       "transfer_from": [],
       "award_perks": ["Points don't expire", "No blackout dates"],
-      "points_value_cpp": {"floor": 0.4, "ceiling": 0.6},
+      "points_value_cpp": {"floor": 0.5, "ceiling": 0.6},
       "notes": "No transfer partners from major credit card currencies. Points earned through stays only. WorldHotels adds some upscale inventory. Generally low cpp value."
     }
   },

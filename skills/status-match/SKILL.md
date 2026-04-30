@@ -25,9 +25,9 @@ The biggest offenders:
 | **United MileagePlus** | **ONCE EVERY 3 YEARS** (failed challenge can extend lockout to 5 years) |
 | **Delta SkyMiles** | **ONCE EVERY 3 YEARS** (per official terms) |
 | **AA AAdvantage Instant Status Pass** | **ONCE EVERY 2 YEARS** |
-| **Hyatt Globalist Challenge** | **ONCE PER LIFETIME** (community-confirmed; not always re-offered) |
-| **Marriott Platinum Challenge** | **ONCE PER LIFETIME** (when offered; targeted) |
-| **Hilton Diamond Challenge** | **ONCE PER LIFETIME** (Gold via Amex Platinum is renewable separately) |
+| **Hyatt Globalist Challenge** | LIKELY once per lifetime (community-confirmed; not in published terms; Hyatt has discretion) |
+| **Marriott Platinum Challenge** | LIKELY once per lifetime when offered (targeted; not always available; opt-in only) |
+| **Hilton Diamond Challenge** | LIKELY once per lifetime (when offered; Gold via Amex Platinum is renewable separately and not subject to the lifetime restriction) |
 
 When the user is considering a match, the first question to answer is "do you have travel that uses this status in the next 6-12 months?" If no, **don't burn the match**. Card-based renewable status is the better fallback (see below).
 

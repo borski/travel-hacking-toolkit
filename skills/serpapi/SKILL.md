@@ -25,7 +25,7 @@ https://serpapi.com/search
 
 ## Google Flights (Cash Prices)
 
-Search for flight prices and schedules. Essential for comparing: "Is 88,000 United miles better than paying $900 cash through the Chase portal at 1.5 cpp?"
+Search for flight prices and schedules. Essential for comparing: "Is 88,000 United miles better than paying $900 cash through the Chase portal?" (Chase portal pricing is now dynamic via Points Boost, ~1.5-2.0 cpp on select bookings; verify the actual quote.)
 
 ### One-Way Search
 
@@ -85,7 +85,7 @@ Each flight in `best_flights[]` and `other_flights[]`:
 
 ### Portal Comparison Math
 
-Chase Sapphire Reserve: 1.5 cpp via portal.
+Chase Sapphire Reserve: dynamic Points Boost pricing, typically 1.5-2.0 cpp on select bookings (not a fixed floor). Verify actual portal price for the specific booking.
 If cash price is $900, portal cost = 60,000 UR points.
 If award price is 88,000 United miles, cash via portal is better value.
 
@@ -146,7 +146,7 @@ curl -s "https://serpapi.com/search?engine=google_travel_explore&departure_id=SF
 ## Workflow: Compare Award vs Cash
 
 1. Search cash prices on Google Flights via SerpAPI
-2. Estimate portal cost. Chase uses dynamic "Points Boost" pricing (1.5 to 2.0cpp on select bookings, not a flat rate). Amex/Capital One ~1.0cpp. For rough math use 1.5cpp Chase, 1.0cpp others, but always recommend checking the actual portal price.
+2. Estimate portal cost. Chase uses dynamic "Points Boost" pricing (~1.5-2.0cpp on select bookings, not a flat rate). Amex/Capital One ~1.0cpp. For rough math, run the actual portal quote against the cash price; do not assume a flat cpp on Chase.
 3. Compare with award price from Seats.aero
 4. Lower number wins (accounting for the value you place on each currency)
 

@@ -1,8 +1,8 @@
 ---
 name: award-holds
-description: Per-program rules for placing award flight tickets on hold. Holds let you reserve award space without paying or transferring points yet. Critical for transferable-currency bookings (Amex MR, Chase UR, Citi TYP, Cap One, Bilt) where the transfer takes minutes to days. Covers the 7 programs that allow holds (American AAdvantage 24h online self-serve, Lufthansa Miles & More 5 days, Air France/KLM Flying Blue 3 days, Cathay Asia Miles 2 days, Turkish 2 days, Virgin Atlantic 1-2 days, Singapore agent-discretionary) and the negative space (United, Alaska Atmos, Delta, Aeroplan, BA, ANA, Qatar, Korean — all of which do NOT allow holds). Includes transfer-speed reference for major transferable currencies. Use when a user is planning to transfer points to a loyalty program for an award booking and needs to know if they can hold the seat first. Triggers on award hold, hold an award, ticket hold, courtesy hold, hold before transfer, transfer points before booking, AA hold, AAdvantage hold, Lufthansa hold, Miles More hold, Flying Blue hold, Cathay hold, Asia Miles hold, KrisFlyer hold, Virgin Atlantic hold, Turkish hold, hold the seat.
+description: Per-program rules for placing award flight tickets on hold. Critical for transferable-currency bookings (Amex MR, Chase UR, Citi TYP, Cap One, Bilt) where transfer takes minutes to days. Covers programs that allow holds (AA 24h online, Lufthansa M&M 5 days, Flying Blue 3 days, Cathay Asia Miles 2 days, Turkish 2 days, Virgin Atlantic 1-2 days, Singapore agent-discretionary) and the negative space (United, Alaska Atmos, Delta, Aeroplan, BA, ANA, Qatar, Korean — all do NOT allow holds). Includes transfer-speed reference. Load when a user plans to transfer points for an award booking and needs to know if they can hold the seat first. Triggers on award hold, hold an award, ticket hold, courtesy hold, hold before transfer, transfer points before booking, AA hold, AAdvantage hold, Lufthansa hold, Flying Blue hold, Cathay hold, Asia Miles hold, KrisFlyer hold, Virgin Atlantic hold, Turkish hold, hold the seat.
 category: reference
-summary: Per-program rules for placing award flight tickets on hold. Covers the 7 programs that allow holds (AA 24h online, LH 5 days, FB 3 days, CX 2 days, etc.) and the negative space (UA/AS/DL/Aeroplan/BA/etc. — most programs do not allow holds).
+summary: Per-program rules for placing award flight tickets on hold. Covers 6 programs with reliable holds (AA 24h online, LH 5 days, FB 3 days, CX 2 days, Turkish 2 days, Virgin Atlantic 1-2 days), Singapore as agent-discretionary, and the negative space (UA/AS/DL/Aeroplan/BA/ANA/Qatar/Korean - most programs do not allow holds).
 allowed-tools: Bash(jq *), Read
 ---
 
@@ -21,7 +21,7 @@ Without a hold, you risk losing the award seat while the transfer pends. **A hol
 ## When to Use This Skill
 
 - User is planning a transferable-points booking and asks "can I hold this?"
-- User is comparing programs to redeem the same partner award (e.g., Cathay Qsuite via AA vs Cathay Asia Miles)
+- User is comparing programs to redeem the same partner award (e.g., Cathay first/business via AA vs Cathay Asia Miles)
 - User asks about the AA 24-hour hold change vs the old 5-day policy
 - Trip planning involves Marriott Bonvoy → airline transfers (4 days, must use a hold)
 - Researching whether a specific program supports holds before committing to the redemption strategy
@@ -33,7 +33,7 @@ Without a hold, you risk losing the award seat while the transfer pends. **A hol
 - Award availability search (use [`seats-aero`](../seats-aero/SKILL.md))
 - Routing-rule questions (use [`partner-awards`](../partner-awards/SKILL.md))
 
-## The 7 Programs That Allow Holds
+## Programs That Allow Holds (6 reliable + Singapore agent-discretionary)
 
 | Program | Max Days | Hold Fee | Phone Fee | Online Self-Serve | Confidence |
 |---------|----------|----------|-----------|-------------------|------------|
@@ -66,7 +66,7 @@ These programs require you to have the points in your account at booking time. P
 
 If the redemption is bookable through American AAdvantage, **use AA's online self-serve hold**. No phone call, no fee, no credit card needed. Click "Hold" on the booking confirmation page. 24-hour window.
 
-This works for partner awards too: Cathay Qsuite, Qatar Qsuite, JAL First, Iberia, BA, Royal Air Maroc, etc.
+This works for partner awards too: Cathay first/business, Qatar Qsuite, JAL First, Iberia, BA, Royal Air Maroc, etc.
 
 ### Rule 2: For Star Alliance partners, Lufthansa is the longest hold
 
@@ -91,7 +91,7 @@ $25 phone-booking fee. Partner award holds work but are agent-discretionary.
 
 ### Rule 5: When the redeeming program doesn't allow holds, redirect
 
-Want a Cathay Qsuite via Alaska Atmos (no holds)? Book it via American AAdvantage instead (24h online hold, free) for the same award. Then transfer Amex MR or Marriott Bonvoy to AAdvantage.
+Want a Cathay first/business via Alaska Atmos (no holds)? Book it via American AAdvantage instead (24h online hold, free) for the same award. Then transfer Bilt (1:1 instant), Citi TYP (1:1, 1-2 days), or Marriott Bonvoy (3:1 base ratio with a 5,000-mile bonus per 60K transferred, so 60K Bonvoy = 25K AAdvantage miles, 4-day delivery) to AAdvantage. AAdvantage does NOT partner with Amex MR or Chase UR.
 
 Want a United partner award via MileagePlus (no holds)? Book it via Lufthansa Miles & More instead (5-day hold) when both programs ticket the same Star Alliance flight.
 
@@ -129,12 +129,12 @@ jq '.transfer_speed_reference' data/award-holds.json
 - [`seats-aero`](../seats-aero/SKILL.md) — finding the award space to hold
 - [`stopovers`](../stopovers/SKILL.md) — multi-segment / stopover awards have specific hold rules per program (some allow holds on online-only single-segment awards but not multi-segment ones requiring phone booking)
 - [`round-the-world`](../round-the-world/SKILL.md) — RTW bookings have unique hold rules. Star Alliance RTW must be ticketed >=72 hours before first departure (effectively a hard purchase deadline, not a hold). Most other RTWs require phone booking and immediate ticketing.
-- [`status-match`](../status-match/SKILL.md) — Elite tiers often unlock longer hold windows or waived close-in fees. Match-into status that gives elite hold privileges (e.g., AA Executive Platinum gets longer holds; Hyatt Globalist gets points-stay holds).
+- [`status-match`](../status-match/SKILL.md) — Elite tiers sometimes unlock waived close-in booking fees, priority on phone-booking queues, or other booking benefits. AA's hold policy applies equally to all members (24h online); other programs may grant elite-only hold privileges but verify per-program before assuming.
 
 ## Source Hierarchy (Per Research Integrity Protocol)
 
 1. **The airline's own award rules / phone-line confirmation** — canonical
-2. **Frugal Flyer's award-hold guide** — most current authoritative third-party list (canonical for the 7-program set)
+2. **Frugal Flyer's award-hold guide** — most current authoritative third-party list (canonical for the 6 reliable + Singapore agent-discretionary set)
 3. **Upgraded Points award-hold table** — comprehensive 2025 update with phone numbers and fees
 4. **Point.me, Frequent Miler, OMAAT** — corroborating reports
 5. **Live and Let's Fly, 10xTravel** — for recent policy changes (e.g., the AA 5-day → 24-hour reduction)
@@ -144,5 +144,5 @@ When sources disagree (e.g., FF says Cathay = 2 days, UP says 3 days), the data 
 ## Avoiding Fabrication
 
 - Hold rules are agent-dependent in practice. The data file gives the published policy; actual behavior may vary by call.
-- The 7-program list is canonical as of 2024 (Frugal Flyer). If a user reports a hold experience with a program NOT on the list (e.g., Etihad reports from years past), document it as anecdotal but don't update the data without primary-source confirmation.
+- The 6 reliable + Singapore agent-discretionary list is canonical as of 2024 (Frugal Flyer). If a user reports a hold experience with a program NOT on the list (e.g., Etihad reports from years past), document it as anecdotal but don't update the data without primary-source confirmation.
 - Phone numbers can change. Always verify the published phone number on the airline's site before recommending a call.

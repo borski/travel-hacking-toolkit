@@ -191,5 +191,5 @@ If ALL sources fail for one component, say so:
 - Round-trip cash prices from Duffel/Ignav may be cheaper than two one-ways. Note when this is the case.
 - Award pricing is one-way. The combined outbound + return award cost is the correct comparison against a round-trip cash fare.
 - Hotel pricing may vary between portal and direct booking. Note significant differences.
-- Chase portal 1.5x multiplier is applied at checkout, not in the listing. The skill adjusts automatically.
+- Chase portal pricing is dynamic Points Boost (~1.5-2.0 cpp on select bookings, not a guaranteed floor). The historical static 1.5x multiplier is gone. Pull the actual quote.
 - Trip totals are estimates. Taxes, fees, and exchange rates can change actual booking costs.

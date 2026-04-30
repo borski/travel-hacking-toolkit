@@ -131,7 +131,10 @@ def parse_fm_bonuses(html):
 
         # Extract dates. Visible cells contain "MM/DD/YY"; hidden <p> contains
         # the Excel serial date which we ignore. Pull the visible dates only.
-        date_matches = re.findall(r"\b(\d{2}/\d{2}/\d{2})\b", row)
+        # Tighter pattern: require exactly MM/DD/YY (2-digit year), not embedded
+        # in a longer digit run. Prevents matching the last 6 chars of a 4-digit
+        # year date.
+        date_matches = re.findall(r"(?<!\d)(\d{2}/\d{2}/\d{2})(?!\d)", row)
         if len(date_matches) < 2:
             continue
         start_date_raw = date_matches[0]
@@ -248,6 +251,8 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--verbose", action="store_true")
+    p.add_argument("--force-regression-write", action="store_true",
+                   help="Override regression guard. Use only when FM legitimately published fewer bonuses.")
     args = p.parse_args()
 
     def log(msg):
@@ -382,13 +387,47 @@ def main():
         new_active.append(entry)
         log(f"OK {bonus_id} ({confidence})")
 
-    # Move expired-from-active to expired_recently
+    # Move expired-from-active to expired_recently. Dedupe by fingerprint
+    # (token-overlap on from_display + to_display + bonus_pct + end_date) NOT
+    # by id, because id normalization can change between runs (e.g., older runs
+    # produced "chase_ur_to_ihg_70pct" and newer ones "chase_ur_to_ihg_one_rewards_70pct"
+    # for the same real-world bonus). ID-only matching causes the same bonus to
+    # appear in both active AND expired sections with different ids.
+    def _fingerprint(b):
+        from_tokens = frozenset(
+            (b.get("from_display", "") or "").lower().replace("-", "").split()
+        )
+        to_tokens = frozenset(
+            (b.get("to_display", "") or "").lower().replace("-", "").split()
+        )
+        return (from_tokens, to_tokens, b.get("bonus_pct"), b.get("end_date_inclusive"))
+
+    def _fingerprints_match(fp_a, fp_b):
+        a_from, a_to, a_pct, a_end = fp_a
+        b_from, b_to, b_pct, b_end = fp_b
+        if a_pct != b_pct or a_end != b_end:
+            return False
+        # Require at least one token in common in both from and to.
+        return bool(a_from & b_from) and bool(a_to & b_to)
+
     cutoff = (date.today() - timedelta(days=30)).isoformat()
-    new_expired = list(existing.get("expired_recently", []))
-    new_active_ids = {b["id"] for b in new_active}
+    new_active_fps = [_fingerprint(b) for b in new_active]
+
+    # Start by carrying forward existing expired entries, but drop any that
+    # match a current active bonus by fingerprint (those are stale-id dupes).
+    new_expired = []
+    for e in existing.get("expired_recently", []):
+        e_fp = _fingerprint(e)
+        if any(_fingerprints_match(e_fp, a_fp) for a_fp in new_active_fps):
+            continue  # duplicate of currently-active; drop the stale-id copy
+        new_expired.append(e)
+
+    # Now add any prior actives that disappeared from this parse and are within
+    # the recency cutoff. Match against new_active by fingerprint, not id.
     for prior in existing.get("active_bonuses", []):
-        if prior.get("id") in new_active_ids:
-            continue
+        prior_fp = _fingerprint(prior)
+        if any(_fingerprints_match(prior_fp, a_fp) for a_fp in new_active_fps):
+            continue  # still active in this parse
         end = prior.get("end_date_inclusive", "")
         if end and end >= cutoff:
             stub = {
@@ -399,12 +438,35 @@ def main():
                 "end_date_inclusive": end,
                 "note": "Recently expired (auto-moved from active list).",
             }
-            # avoid duplicates
-            if not any(e.get("id") == stub["id"] for e in new_expired):
+            stub_fp = _fingerprint(stub)
+            # Avoid expired_recently duplicates by fingerprint, not id.
+            if not any(_fingerprints_match(stub_fp, _fingerprint(e)) for e in new_expired):
                 new_expired.append(stub)
 
     # Trim expired list to the last 30 days
     new_expired = [e for e in new_expired if e.get("end_date_inclusive", "") >= cutoff]
+
+    # Regression guard: if existing data has bonuses but the new parse dropped
+    # most of them, refuse to write. Frequent Miler regularly publishes 4-7
+    # active bonuses; a sudden drop to 0-1 strongly suggests a parser break.
+    prior_count = len(existing.get("active_bonuses", []))
+    if prior_count >= 3 and len(new_active) < max(2, int(prior_count * 0.3)):
+        if getattr(args, "force_regression_write", False):
+            print(
+                f"WARNING: parsed {len(new_active)} bonuses but prior file had {prior_count}. "
+                "This usually indicates a parser break, but --force-regression-write was given "
+                "so proceeding with the write anyway. Verify the result manually.",
+                file=sys.stderr,
+            )
+        else:
+            print(
+                f"FATAL: parsed {len(new_active)} bonuses but prior file had {prior_count}. "
+                "This likely indicates a parser or table-id break, not a real drop. "
+                "Refusing to write. If FM legitimately published fewer bonuses, "
+                "rerun with --force-regression-write to override.",
+                file=sys.stderr,
+            )
+            sys.exit(7)
 
     # Build the final structure, preserving manual sections
     out = dict(existing)

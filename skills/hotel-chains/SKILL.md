@@ -28,12 +28,12 @@ When results contain properties from ANY of these chains, IMMEDIATELY pull Award
 
 ## Always Compare Points vs Cash for Hotels
 
-- Hyatt points at 1.5cpp floor vs the cash rate. Often a great redemption.
+- Hyatt points: 1.4cpp VFTW floor / 1.5cpp UP/OMAAT median / 1.7cpp TPG ceiling. Often a great redemption.
 - Hilton at 0.4cpp floor (almost always better to pay cash).
-- Marriott at 0.6-0.8cpp depending on category.
-- IHG at 0.5-0.7cpp depending on category.
+- Marriott at 0.6-0.7cpp.
+- IHG at 0.5cpp across all sources. Almost always better to pay cash.
 
-Mention transfer opportunities. "Your Chase UR transfers 1:1 to Hyatt. That 25K/night Category 5 hotel is worth $375 in cash. That's 1.5cpp, right at the floor. Decent but not exceptional."
+Mention transfer opportunities. "Your Chase UR transfers 1:1 to Hyatt. That 25K/night Category 5 hotel is worth $375 in cash. That's 1.5cpp, between the 1.4 conservative floor and 1.7 ceiling. Decent but not exceptional."
 
 ## Booking Windows for Hotels
 

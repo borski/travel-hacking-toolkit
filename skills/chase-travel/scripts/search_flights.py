@@ -1822,8 +1822,9 @@ def _parse_boost_cards(page):
 def search_with_boost(page, ssid):
     """Toggle Points Boost on the results page and capture boosted pricing.
 
-    Points Boost is a Chase-specific feature that gives better CPP (>1.5c)
-    on select flights. It appears as a radio button or toggle on the results page.
+    Points Boost is a Chase-specific feature that gives a better dynamic CPP
+    on select flights (typically ~1.5-2.0c on CSR). It appears as a radio button
+    or toggle on the results page. Pull the actual quote from the portal.
 
     Returns boosted results data or None if boost isn't available.
     """
@@ -3165,7 +3166,7 @@ def print_flight_table(flights, show_json=False):
     # Summary
     print(f"\n* = cheapest option")
     if any(fo.get("has_boost") for f in flights for fo in f.get("fare_options", [])):
-        print("BOOST = Points Boost active (better CPP than standard 1.5c)")
+        print("BOOST = Points Boost active (dynamic, typically 1.5-2.0 cpp; pull actual quote)")
 
     # Show fare options for cheapest flight
     if flights:

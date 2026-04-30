@@ -2,15 +2,18 @@
   "_meta": {
     "last_updated": "2026-04-29",
     "staleness_days": 7,
-    "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet and TPG. Confidence levels per Research Integrity Protocol: VERIFIED = 2+ primary sources agree; LIKELY = 1 primary source; UNVERIFIED = inferred or single mention without strong source.",
+    "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
       "https://frequentmiler.com/current-point-transfer-bonuses/",
-      "https://awardwallet.com/news/credit-card-transfer-bonuses/",
+      "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+    ],
+    "manual_consult_only": [
       "https://thepointsguy.com/loyalty-programs/current-transfer-bonuses/"
     ],
+    "manual_consult_note": "TPG is referenced only when manually investigating a discrepancy. It is NOT part of the automated refresh because TPG frequently shows expired bonuses as active.",
     "schema_notes": {
       "ratio": "Multiplier on the standard transfer ratio. 1.20 = 20% bonus = 1000 points becomes 1200 miles (when standard ratio is 1:1).",
-      "effective_ratio": "Final transfer ratio after the bonus. E.g., Capital One -> JAL standard is 2:1.5 (0.75); 30% bonus makes it 0.975.",
+      "effective_ratio": "Final transfer ratio after the bonus. E.g., Capital One -> JAL standard is 4:3 (0.75); 30% bonus makes it 0.975.",
       "end_date_inclusive": "ISO date. Bonus is active through end of this date in program's home timezone.",
       "confidence": "VERIFIED, LIKELY, or UNVERIFIED per Research Integrity Protocol",
       "targeted": "true if offer is targeted (not available to all cardholders); false or omitted if public"
@@ -77,8 +80,8 @@
       ],
       "standard_ratio": 0.75,
       "effective_ratio": 0.975,
-      "transfer_example": "1,000 Capital One miles -> 975 JAL miles (standard ratio is 2:1.5 = 0.75; 30% bonus brings it close to but not quite 1:1)",
-      "notes": "JAL Mileage Bank is a oneworld program. Strong sweet spots: JAL -> Asia is well-priced, especially in business and first class. Capital One's standard 2:1.5 ratio to JAL is mediocre; this 30% bonus brings it close to 1:1 effective."
+      "transfer_example": "1,000 Capital One miles -> 975 JAL miles (standard ratio is 4:3 = 0.75; 30% bonus brings it close to but not quite 1:1)",
+      "notes": "JAL Mileage Bank is a oneworld program. Strong sweet spots: JAL -> Asia is well-priced, especially in business and first class. Capital One's standard 4:3 ratio to JAL is mediocre; this 30% bonus brings it close to 1:1 effective."
     },
     {
       "id": "citi_typ_to_leading_hotels_of_world_25pct_2026_05",
@@ -144,38 +147,6 @@
       "bonus_pct": 30,
       "end_date_inclusive": "2026-04-18",
       "note": "Recently expired. Virgin Atlantic bonuses recur frequently."
-    },
-    {
-      "id": "amex_mr_to_hilton_20pct_2026_05",
-      "from_display": "Amex Membership Rewards",
-      "to_display": "Hilton Honors",
-      "bonus_pct": 20,
-      "end_date_inclusive": "2026-05-30",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "chase_ur_to_ihg_70pct_2026_04",
-      "from_display": "Chase Ultimate Rewards",
-      "to_display": "IHG One Rewards",
-      "bonus_pct": 70,
-      "end_date_inclusive": "2026-04-30",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "capital_one_to_jal_30pct_2026_04",
-      "from_display": "Capital One Miles",
-      "to_display": "Japan Airlines Mileage Bank",
-      "bonus_pct": 30,
-      "end_date_inclusive": "2026-04-30",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "citi_typ_to_lhw_25pct_2026_05",
-      "from_display": "Citi ThankYou Rewards",
-      "to_display": "Leading Hotels of the World - Leaders Club",
-      "bonus_pct": 25,
-      "end_date_inclusive": "2026-05-16",
-      "note": "Recently expired (auto-moved from active list)."
     }
   ],
   "frequent_recurring_bonuses_to_watch": {
@@ -226,7 +197,7 @@
   "decision_rules": {
     "rule_1_specific_redemption": "Only transfer points when you have a specific redemption priced and confirmed. Transfers are irreversible.",
     "rule_2_factor_in_bonus": "When evaluating a bonus, compute the effective ratio (standard_ratio * bonus_multiplier) and the resulting cpp. Compare cpp to the floor cpp from points-valuations skill.",
-    "rule_3_ihg_marriott_skepticism": "Hotel program bonuses (especially IHG and Marriott from Chase UR) often look attractive but don't beat the 1.5 cpp portal redemption rate even at 70%+ bonuses. Run the math.",
+    "rule_3_ihg_marriott_skepticism": "Hotel program bonuses (especially IHG and Marriott from Chase UR) often look attractive but typically don't beat the actual Chase portal Points Boost quote even at 70%+ bonuses. Pull the live portal quote and run the math against it, not against an assumed flat rate.",
     "rule_4_stackable_bonuses": "Some bonuses stack with cardholder-specific bonuses (e.g., Chase UR to Aeroplan + Aeroplan Visa cardholder bonus = effective 30%+ bonus). Always check if you hold the relevant card.",
     "rule_5_targeted_offers": "Offers marked 'targeted' may not be available to all cardholders. Check your account before counting on them.",
     "rule_6_check_for_recent_expiry": "If a bonus appeared on TPG but doesn't appear on Frequent Miler current bonuses, it likely just expired. Frequent Miler's table is the canonical realtime source."

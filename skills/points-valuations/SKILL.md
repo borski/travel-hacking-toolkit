@@ -69,7 +69,7 @@ Programs frequently run 20-50% transfer bonuses (e.g., "transfer Amex MR to Virg
 Chase Points Boost (launched June 2025) replaced fixed redemption rates with dynamic offers of 1.5 to 2.0cpp (Reserve) or 1.5 to 1.75cpp (Preferred). Not every booking qualifies. The only way to know the real portal rate is to check the portal.
 
 For rough estimates:
-- Chase: 1.5cpp default
+- Chase: dynamic Points Boost pricing (~1.5-2.0cpp on select bookings; verify the actual quote, do not assume a guaranteed floor)
 - Amex/Capital One: 1.0cpp default
 
 Always mention that the user should verify the portal price.
@@ -92,7 +92,7 @@ For users without status who travel enough to benefit, load the `status-match` s
 
 For multi-stop or RTW itineraries, the relevant comparison isn't a single one-way's CPP. It's the total cash value of the trip vs the total miles + fees. The `round-the-world` skill is the reference for those products. A few benchmarks:
 
-- **Star Alliance Special Business RTW (26,000 miles via partner program)** typically delivers a J-class itinerary worth $7,000-7,400 cash. At 100,000-150,000 miles + ~$1,000 in fees through Aeroplan/ANA depending on origin, that's a roughly 5-7 cpp redemption — well above any program's ceiling for a single one-way.
+- **Star Alliance Special Business RTW (paid fare)** is a published cash fare priced via staralliance.com for 26,000-mile distance bands. Historically reported in the mid-thousands to low-five-figures USD range depending on routing and origin country; verify live at staralliance.com/en/book-fly. The cash value of equivalent revenue J one-ways is much higher, which makes the RTW fare a strong $/business-class-seat play when the routing fits. It is NOT a mileage award — it's a cash booking. Separately, member-program RTW awards (Aeroplan and ANA both discontinued theirs in 2020 and 2025; Lufthansa M&M still offers 195K/400K/540K Y/J/F) are the mileage paths. Don't conflate the two; load the `round-the-world` skill for the real product map.
 - **Iberia Plus intra-Europe off-peak** (3,500 Avios for under 650mi one-way) lands at around 2.0-3.0 cpp on short hops where cash is $80-120, which beats most portal rates and most short-haul awards.
 - **Aeroplan distance-based NA short-haul** (6,000 Aeroplan miles starting price for under 500mi) at $80-120 cash = 1.3-2.0 cpp, comparable to the Chase portal floor.
 

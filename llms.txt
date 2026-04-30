@@ -73,7 +73,7 @@ These skills carry institutional knowledge that the agent loads when triggered. 
 
 <!-- BEGIN: llms:reference -->
 - [Alliances](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/alliances/SKILL.md): Star Alliance, oneworld, SkyTeam membership and recent shifts (SAS to SkyTeam, ITA to Star, Hawaiian/Fiji to oneworld). Key cross-alliance booking relationships.
-- [Award Holds](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/award-holds/SKILL.md): Per-program rules for placing award flight tickets on hold. Covers the 7 programs that allow holds (AA 24h online, LH 5 days, FB 3 days, CX 2 days, etc.) and the negative space (UA/AS/DL/Aeroplan/BA/etc. — most programs do not allow holds).
+- [Award Holds](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/award-holds/SKILL.md): Per-program rules for placing award flight tickets on hold. Covers 6 programs with reliable holds (AA 24h online, LH 5 days, FB 3 days, CX 2 days, Turkish 2 days, Virgin Atlantic 1-2 days), Singapore as agent-discretionary, and the negative space (UA/AS/DL/Aeroplan/BA/ANA/Qatar/Korean - most programs do not allow holds).
 - [Award Sweet Spots](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/award-sweet-spots/SKILL.md): Catalog of legendary, excellent, and good award redemptions with current rates and devaluation history.
 - [Booking Guidance](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/booking-guidance/SKILL.md): The booking flow, hold-before-transfer rule, phone numbers for major programs.
 - [Cabin Codes](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/cabin-codes/SKILL.md): IATA cabin codes (F/J/W/Y) and saver fare class codes (X/I/O) for partner-bookable inventory.

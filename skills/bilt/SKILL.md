@@ -353,7 +353,7 @@ echo "$RESP" | jq '
 | Air Canada | 1 (YVR) | 14h 5m | $871 | 69,720 | 1.25 |
 | KLM | 1 (AMS) | 28h 40m | $1,607 | 128,528 | 1.25 |
 
-After tables: highlight the cheapest, flag any HaFH stays the user qualifies for, and call out anything where CPP is wildly off (would indicate a special promo or a points-only "boost" rate).
+After tables: highlight the cheapest, flag any HaFH stays the user qualifies for (Bilt Gold or Platinum status required), and call out anything where CPP is wildly off (would indicate a special promo or a points-only "boost" rate).
 
 ## Comparison Workflow
 
@@ -362,7 +362,7 @@ For a complete trip cost analysis:
 1. **Bilt Points balance** via [awardwallet](../awardwallet/SKILL.md). Note: Bilt is in AwardWallet.
 2. **Award alternatives** via [seats-aero](../seats-aero/SKILL.md). Compare to portal price at 1.25 cpp.
 3. **Transfer partners** via [transfer-partners](../transfer-partners/SKILL.md). If a partner program redeems Bilt Points at >1.25 cpp, transfer instead of using portal.
-4. **Other portals** via [chase-travel](../chase-travel/SKILL.md) (1.5 cpp on CSR) and [amex-travel](../amex-travel/SKILL.md). Compare floor rates.
+4. **Other portals** via [chase-travel](../chase-travel/SKILL.md) (dynamic Points Boost on CSR/CSP, ~1.5-2.0 cpp on select bookings, not a guaranteed floor) and [amex-travel](../amex-travel/SKILL.md) (~1.0 cpp on flights). Pull actual portal quotes, not assumed rates.
 5. **HaFH benefits** add ~$300+ in value per stay if the user has Bilt Gold or Platinum status. Apply this when computing effective rate.
 
 ## Important Notes

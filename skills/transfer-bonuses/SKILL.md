@@ -1,19 +1,19 @@
 ---
 name: transfer-bonuses
-description: Active credit card transfer bonuses from Amex, Chase, Capital One, Citi, Bilt, and Rove. Live data refreshed weekly from Frequent Miler with cross-checks against AwardWallet and TPG. Use when computing the real cost of an award booking that involves a points transfer, when deciding whether to wait for a better bonus before transferring, or when evaluating whether a bonus actually beats the points-valuation floor. Triggers on transfer bonus, current bonuses, MR to Hilton bonus, UR to Aeroplan bonus, Capital One JAL bonus, Citi LHW bonus, transfer to partner, when to transfer points, points transfer math.
+description: Active credit card transfer bonuses from Amex, Chase, Capital One, Citi, Bilt, and Rove. Live data refreshed weekly from Frequent Miler with automated cross-check against AwardWallet. Use when computing the real cost of an award booking that involves a points transfer, when deciding whether to wait for a better bonus before transferring, or when evaluating whether a bonus actually beats the points-valuation floor. Triggers on transfer bonus, current bonuses, MR to Hilton bonus, UR to Aeroplan bonus, Capital One JAL bonus, Citi LHW bonus, transfer to partner, when to transfer points, points transfer math.
 category: reference
 summary: Active credit card transfer bonuses with primary-source citations. Tells the agent the real effective ratio when transferring points during a promotion.
 ---
 
 # Transfer Bonuses Skill
 
-Authoritative reference for current credit card transfer bonuses. Reads from `data/transfer-bonuses.json`, which is refreshed weekly from Frequent Miler (canonical), AwardWallet (cross-check), and TPG (cross-check). Each active bonus carries a confidence marker (`VERIFIED`, `LIKELY`, or `UNVERIFIED`) per the toolkit's Research Integrity Protocol.
+Authoritative reference for current credit card transfer bonuses. Reads from `data/transfer-bonuses.json`, which is refreshed weekly by `scripts/refresh-transfer-bonuses.py`. The script scrapes Frequent Miler (canonical) and cross-checks each bonus against AwardWallet. Each active bonus carries a confidence marker (`VERIFIED` if both FM and AwardWallet agree, `LIKELY` if only FM, `UNVERIFIED` if single weak source) per the toolkit's Research Integrity Protocol. TPG is sometimes consulted manually as a sanity check but is NOT scraped programmatically — TPG often shows expired bonuses as active.
 
 ## When to Use
 
 - **Pricing an award booking that involves a transfer.** A 30% bonus to JAL changes the real cost of a oneworld booking through JAL by 23%. The math has to factor in the bonus.
 - **Deciding whether to transfer now or wait.** If a bonus is expected to recur (see `frequent_recurring_bonuses_to_watch`), it may be worth waiting.
-- **Sanity-checking whether a "good bonus" actually wins.** Hotel bonuses especially (Chase UR to IHG 70%, Chase UR to Marriott 50-70%) often look great in headlines but lose to the Chase Travel portal at 1.5 cpp on a CSR. Always run the math.
+- **Sanity-checking whether a "good bonus" actually wins.** Hotel bonuses especially (Chase UR to IHG 70%, Chase UR to Marriott 50-70%) often look great in headlines but lose to the Chase Travel portal (dynamic Points Boost on CSR/CSP, ~1.5-2.0 cpp on select bookings; not a guaranteed floor). Always pull the actual portal quote and run the math against it, not against an assumed rate.
 - **Identifying stackable bonuses.** Aeroplan Visa cardholders stack a 10% cardholder bonus on top of any Chase UR to Aeroplan promotion.
 
 ## When NOT to Use
@@ -31,10 +31,10 @@ Authoritative reference for current credit card transfer bonuses. Reads from `da
 |-------|-------------|
 | `_meta.last_updated` | ISO date, last refresh |
 | `_meta.staleness_days` | TTL in days; integrated with `scripts/check-data-freshness.sh` |
-| `_meta.primary_sources` | Frequent Miler, AwardWallet, TPG |
+| `_meta.primary_sources` | Frequent Miler, AwardWallet (TPG consulted manually only) |
 | `active_bonuses[].bonus_pct` | The bonus percentage (e.g., 30 for 30%) |
 | `active_bonuses[].ratio` | Multiplier on standard ratio (1.30 = 30% bonus) |
-| `active_bonuses[].standard_ratio` | Baseline transfer ratio (1.0 = 1:1, 0.75 = 2:1.5) |
+| `active_bonuses[].standard_ratio` | Baseline transfer ratio (1.0 = 1:1, 0.75 = 4:3) |
 | `active_bonuses[].effective_ratio` | Final ratio after bonus (`standard_ratio * ratio`) |
 | `active_bonuses[].end_date_inclusive` | Last day the bonus is active |
 | `active_bonuses[].confidence` | VERIFIED, LIKELY, or UNVERIFIED |
@@ -55,28 +55,30 @@ python3 scripts/refresh-transfer-bonuses.py
 The script:
 
 1. Scrapes Frequent Miler's current point transfer bonuses page (canonical source).
-2. Cross-checks each bonus against AwardWallet and TPG when possible.
+2. Cross-checks each bonus against AwardWallet.
 3. Sets confidence based on cross-check results: VERIFIED if 2+ sources agree, LIKELY if only Frequent Miler.
 4. Moves expired bonuses to `expired_recently[]`.
 5. Updates `_meta.last_updated`.
 
 `scripts/check-data-freshness.sh` flags this file as stale after 7 days.
 
-If the script fails (Frequent Miler's HTML changed, network issue, etc.), fall back to manual update by visiting the three primary sources and editing the JSON by hand. **NEVER fabricate a bonus**. Per the Research Integrity Protocol, if you cannot verify a bonus from a primary source, do not include it.
+If the script fails (Frequent Miler's HTML changed, network issue, etc.), fall back to manual update by visiting the two primary sources (Frequent Miler, AwardWallet) and editing the JSON by hand. TPG can be consulted as a sanity check but is not authoritative because it frequently shows expired bonuses as active. **NEVER fabricate a bonus**. Per the Research Integrity Protocol, if you cannot verify a bonus from a primary source, do not include it.
 
 ## Quick Reference Output Format
 
-When the user asks "what bonuses are active right now?", produce a markdown table:
+When the user asks "what bonuses are active right now?", read `data/transfer-bonuses.json` and produce a markdown table. Sample format (illustrative — pull live values from the data file, not from this example):
 
 ```
 | From | To | Bonus | End Date | Effective Ratio | Confidence | Notes |
 |------|----|-------|----------|-----------------|------------|-------|
-| Amex MR | Hilton Honors | 20% | 2026-05-30 | 1:2.4 | VERIFIED | Skip unless specific Hilton stay; effective ~1.2 cpp |
-| Chase UR | Aeroplan | 20% (30% w/ Aeroplan Visa) | 2026-04-30 | 1:1.20 (1.30) | VERIFIED | Star Alliance; no fuel surcharges; stackable |
-| Chase UR | IHG | 70% | 2026-04-30 | 1:1.70 | VERIFIED | "But you shouldn't" - portal at 1.5 cpp wins |
-| Capital One | JAL | 30% | 2026-04-30 | 1:0.975 | VERIFIED | Brings standard 2:1.5 to ~1:1; oneworld |
-| Citi TYP | Leading Hotels | 25% | 2026-05-16 | 1:1.25 | LIKELY | Niche luxury; only useful for specific LHW stays |
+| Amex MR | Hilton Honors | 20% | YYYY-MM-DD | 1:2.4 | VERIFIED | Skip unless specific Hilton stay; effective ~1.2 cpp |
+| Chase UR | Aeroplan | 20% (30% w/ Aeroplan Visa) | YYYY-MM-DD | 1:1.20 (1.30) | VERIFIED | Star Alliance; no fuel surcharges; stackable |
+| Chase UR | IHG | 70% | YYYY-MM-DD | 1:1.70 | VERIFIED | "But you shouldn't" - Chase Travel portal (dynamic Points Boost; verify actual quote) typically wins for IHG bookings |
+| Capital One | JAL | 30% | YYYY-MM-DD | 1:0.975 | VERIFIED | Brings standard 4:3 to ~1:1; oneworld |
+| Citi TYP | Leading Hotels | 25% | YYYY-MM-DD | 1:1.25 | LIKELY | Niche luxury; only useful for specific LHW stays |
 ```
+
+(The table format and notes apply across program-pairs. The actual current end dates and effective ratios live in `data/transfer-bonuses.json` and update weekly via `scripts/refresh-transfer-bonuses.py`.)
 
 Then below the table:
 
@@ -102,7 +104,7 @@ points_required_in_card_currency = miles_required / effective_ratio
 **Example: book a 70k JAL business class award via Capital One during April 2026:**
 - Standard: 70,000 / 0.75 = 93,333 Capital One miles
 - With 30% bonus: 70,000 / 0.975 = 71,795 Capital One miles
-- **Savings: ~21,538 miles** (~$430 at TPG's 1.85 cpp Capital One valuation)
+- **Savings: ~21,538 miles** (~$398 at TPG's 1.85 cpp Capital One valuation; 21538 × 0.0185 = 398.45)
 
 ## Cross-References
 

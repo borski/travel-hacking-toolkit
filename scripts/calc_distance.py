@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
-"""Great-circle distance calculator for multi-segment itineraries.
+"""Great-circle distance estimator for multi-segment itineraries.
 
-Used primarily by the round-the-world skill to estimate whether an itinerary
-fits under a program's distance cap (Star Alliance RTW: <26k/29k/34k/39k miles;
-oneworld Global Explorer: <39k miles; Qantas: <35k miles for cheapest band).
+Used by the round-the-world skill to estimate whether an itinerary fits under a
+program's distance cap (Star Alliance RTW: <26k/29k/34k/39k miles; oneworld
+Global Explorer: <39k miles; Qantas: <35k miles for cheapest band).
 
 Math: haversine formula for great-circle distance between two lat/lon points.
-This is the same formula used by gcmap.com and most airline mileage calculators
-(per IATA's Mileage Manual, the "great-circle distance" is the standard).
+ESTIMATE ONLY. Real airline mileage calculations often use IATA TPM (Ticketed
+Point Mileage) which can differ from great-circle by a few percent due to
+preferred routing, airway constraints, and the specific TPM table the program
+uses. gcmap.com publishes great-circle distances; airline calculators may
+return different values for the same city pair. Always verify against the
+specific program's mileage tool (or gcmap.com plus a small buffer) before
+booking near a distance cap.
 
 Airport coordinates come from data/airport-coordinates.json (OpenFlights).
 
@@ -61,7 +66,7 @@ def calculate_segments(codes: list, airports: dict) -> list:
     """
     if len(codes) < 2:
         sys.exit("FATAL: Need at least 2 airport codes (origin + destination).")
-    
+
     segments = []
     cumulative = 0.0
     for i in range(len(codes) - 1):
@@ -93,7 +98,7 @@ def format_table(segments: list, total: int) -> str:
             f"{s['to']} ({s['to_city']}) | {s['distance_miles']:,} | {s['cumulative_miles']:,} |"
         )
     lines.append("")
-    
+
     # Distance-band annotations
     lines.append(f"**Total: {total:,} miles**")
     lines.append("")
@@ -102,7 +107,7 @@ def format_table(segments: list, total: int) -> str:
         (26000, "Star Alliance RTW Tier 1"),
         (29000, "Star Alliance RTW Tier 2"),
         (34000, "Star Alliance RTW Tier 3"),
-        (35000, "Qantas Classic Reward Tier 1 cap"),
+        (35000, "Qantas oneworld Classic Reward cap"),
         (39000, "Star Alliance RTW Tier 4 / oneworld Global Explorer cap"),
     ]
     for cap, label in bands:
@@ -131,7 +136,7 @@ def main():
         codes = sys.stdin.read().split()
     else:
         codes = args.codes
-    
+
     if not codes:
         parser.print_help()
         sys.exit(2)

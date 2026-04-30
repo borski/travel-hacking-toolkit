@@ -161,7 +161,7 @@ When a user is planning a trip and stopovers are relevant, follow these:
 - [`transfer-partners`](../transfer-partners/SKILL.md) — transferable point currency that reaches the program for the stopover redemption
 - [`transfer-bonuses`](../transfer-bonuses/SKILL.md) — current transfer promotions that may make a stopover-friendly program even cheaper
 - [`award-holds`](../award-holds/SKILL.md) — most stopover-friendly programs (Aeroplan, Flying Blue, Alaska) DO NOT allow holds, so you can't lock the multi-city award before transferring. Plan timing carefully.
-- [`round-the-world`](../round-the-world/SKILL.md) — RTW products are the natural next step when a single stopover isn't enough. Star Alliance RTW allows up to 15 stopovers for one mileage charge.
+- [`round-the-world`](../round-the-world/SKILL.md) — RTW products are the natural next step when a single stopover isn't enough. Star Alliance RTW (a paid cash fare via staralliance.com, NOT a mileage award) allows up to 15 stopovers in one ticket. The only miles-priced RTW survivor is Lufthansa Miles & More.
 
 ## Source Hierarchy (Per Research Integrity Protocol)
 

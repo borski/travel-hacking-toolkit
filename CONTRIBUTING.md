@@ -82,7 +82,7 @@ Look at `skills/duffel/SKILL.md` or `skills/seats-aero/SKILL.md` for reference p
 The README and `llms.txt` skill tables are generated from `scripts/skill-meta.tsv`. Add a row:
 
 ```
-your-skill	flights	One-liner summary.	Foo (free)	
+your-skill	flights	One-liner summary.	Foo (free)
 ```
 
 Tab-separated. Empty trailing field for skills without a Docker image. Then sync and regenerate:

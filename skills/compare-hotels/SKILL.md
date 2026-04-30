@@ -9,7 +9,7 @@ api_key: Uses individual skill keys
 **Companion reference skills.** Load these for deeper context:
 - `hotel-chains` — branded property to loyalty program mapping
 - `premium-hotels` — FHR / THC / Chase Edit credits and stacking strategy
-- `points-valuations` — CPP floor/ceiling for hotel programs (Hyatt 1.5cpp, Hilton 0.4cpp, etc.)
+- `points-valuations` — CPP floor/ceiling for hotel programs (Hyatt 1.4-1.7cpp, Hilton 0.4cpp floor, etc.)
 - `fallback-and-resilience` — recovery when a hotel source fails
 
 
@@ -108,9 +108,9 @@ Stacking means: book through one portal, pay with the other card separately. For
 ### Step 3: Calculate Points Value
 
 **Chase:**
-- Portal lists at 1.0 cpp. CSR gets 1.5x at checkout.
-- Points Boost offers are better (1.5x to 2.0x effective cpp).
-- True UR cost = listed points ÷ 1.5
+- Chase portal pricing on CSR/CSP is dynamic Points Boost. Each booking quotes a specific points price; effective cpp typically falls in the 1.5-2.0 cpp range on CSR but is not a guaranteed floor on every booking. Pull the actual portal quote.
+- Points Boost offers are dynamic and vary by route/date/inventory.
+- The portal quote IS the actual UR cost. Don't divide by 1.5 — the listed points already reflect the dynamic Boost rate at quote time.
 
 **Amex:**
 - Hotel portal pricing is variable (NOT always 1 cpp like flights).
@@ -220,5 +220,5 @@ If premium databases show FHR/Edit properties in the city but the portal search 
 - Airbnb MCP must be available. Skip gracefully if not.
 - FHR/THC/Edit databases are updated periodically. Properties may have been added or removed.
 - Amex hotel points pricing is variable (not 1 cpp). Use the actual points price from the portal.
-- Chase portal prices don't include the 1.5x CSR multiplier. The skill adjusts automatically.
+- Chase portal pricing is dynamic Points Boost (~1.5-2.0 cpp on select bookings, not a guaranteed floor). The historical static 1.5x multiplier is gone.
 - Direct booking prices (via SerpAPI) may differ from portal prices for the same hotel.

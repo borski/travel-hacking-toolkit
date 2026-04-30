@@ -21,7 +21,7 @@ Search every available source for a route and present one unified comparison. Co
 - `transfer-bonuses` — current active transfer bonuses (live data); changes effective ratios when computing options 4-7 of the comparison table
 - `stopovers` — when an itinerary has a long layover or multi-city, check if a stopover-allowing program priced lower than separate one-ways
 - `round-the-world` — for 3+ stop multi-region itineraries, RTW products may beat sum-of-parts award pricing
-- `award-holds` — most major Western programs (UA, Aeroplan, AS, DL, BA, VS, AF/KLM) no longer offer holds. Affects whether the recommended path is "transfer first then ticket" or "ticket immediately"
+- `award-holds` — many major Western programs (UA, Aeroplan, AS, DL, BA, ANA, Qatar, Korean) no longer offer holds. Some still do: AA (24h online), Lufthansa M&M (5 days), Flying Blue (3 days, $25 phone fee), Cathay (2 days, $39 fee), Turkish (2 days), Virgin Atlantic (1-2 days, free phone), Singapore (agent discretionary). Affects whether the recommended path is "transfer first then ticket" or "ticket immediately"
 - `status-match` — when comparing options that include upgrades or elite-only benefits (lounge access, free bags, priority); status changes the real cost of a flight
 
 ## When to Use
@@ -62,7 +62,7 @@ Run these in parallel where possible. **Never fail silently.** If a source error
 
 | Source | Skill | Speed | Notes |
 |--------|-------|-------|-------|
-| Chase UR | `chase-travel` | ~45s | Points Boost detection. 1.5x CSR multiplier at checkout. |
+| Chase UR | `chase-travel` | ~45s | Dynamic Points Boost pricing (~1.5-2.0 cpp on select bookings, not a guaranteed floor). |
 | Amex MR | `amex-travel` | ~45s | IAP discount detection on Platinum. |
 
 Portal searches are slower (require browser login). Run them in parallel with each other, but don't block on them. Start cash + award searches first, present those results, then append portal results when ready.
@@ -112,22 +112,17 @@ For each award (e.g., United business at 88,000 miles):
 
 ### Step 3: Calculate Portal CPP
 
-Chase portal quotes at 1.0 cpp in listings. The CSR 1.5x is applied at checkout:
+Chase portal uses dynamic Points Boost pricing on CSR/CSP. **The historical static 1.5x multiplier is gone.** Each booking now quotes a specific points price; the effective cpp typically falls in the 1.5-2.0 cpp range on CSR but is not a guaranteed floor on every booking. Always pull the actual portal quote rather than computing from a multiplier.
 
+Worked example with a Points Boost quote (verify the actual price):
 ```
-Listed: 539,683 points for a $5,397 flight
-Effective: 539,683 ÷ 1.5 = 359,789 UR points actually deducted
-True CPP: $5,397 / 359,789 = 1.5 cpp (by definition)
-```
-
-For Points Boost offers, the boost price replaces the standard:
-```
-Boost: 269,841 points for a $5,397 flight
-Effective: 269,841 ÷ 1.5 = 179,894 UR points
-True CPP: $5,397 / 179,894 = 3.0 cpp (excellent)
+Portal quote: 269,841 points for a $5,397 flight
+True CPP: $5,397 / 269,841 = 2.0 cpp (excellent)
 ```
 
-Amex portal is 1 cpp for flights (1 MR = 1 cent). IAP fares are discounted cash prices:
+For lower-boost or non-boost bookings, the same flight might quote at 1.5 cpp or worse. Always use the real quote in the comparison.
+
+Amex portal is ~1 cpp for flights (1 MR = 1 cent). IAP fares are discounted cash prices:
 ```
 Standard: $5,044 = 504,400 MR points
 IAP: $4,381 = 438,100 MR points (saves 66,300 MR)
@@ -144,10 +139,12 @@ IAP: $4,381 = 438,100 MR points (saves 66,300 MR)
 | 1 | Cash (lowest) | Duffel | $4,200 | — | — | — | — |
 | 2 | Flying Blue via Chase UR | seats.aero | $120 tax | 55,000 | Chase UR | 7.4 | Excellent |
 | 3 | Aeroplan via Chase UR | seats.aero | $200 tax | 70,000 | Chase UR | 5.7 | Excellent |
-| 4 | Chase Portal (Boost) | chase-travel | — | 180,000 | Chase UR | 3.0 | Excellent |
-| 5 | Chase Portal (standard) | chase-travel | — | 360,000 | Chase UR | 1.5 | Baseline |
-| 6 | Amex Portal (IAP) | amex-travel | — | 438,100 | Amex MR | 1.0 | Poor |
-| 7 | Amex Portal (standard) | amex-travel | — | 504,400 | Amex MR | 0.83 | Poor |
+| 4 | Chase Portal (Boost offer) | chase-travel | $5,400 portal | 180,000 | Chase UR | 3.0 | Excellent (when offered) |
+| 5 | Chase Portal (no Boost) | chase-travel | $5,400 portal | 360,000 | Chase UR | varies (~1.5 typical) | Pull live quote |
+| 6 | Amex Portal (IAP) | amex-travel | $5,044 portal | 438,100 | Amex MR | 1.15 | Poor |
+| 7 | Amex Portal (standard) | amex-travel | $5,044 portal | 504,400 | Amex MR | 1.0 | Poor |
+
+Note: CPP for portal rows uses the portal's own quote ($5,400 / $5,044) as the anchor since that's the actual cash price the portal would charge. Award rows use the Duffel market price ($4,200) as the anchor since that's the cash equivalent the user is foregoing by burning miles. The two anchors differ because portals add a markup, so portal-CPP and award-CPP aren't directly comparable. Better comparison: total cash out-of-pocket (taxes + cash component) per option.
 
 #### Example: SFO → LAX Economy, Aug 11
 
@@ -157,7 +154,7 @@ IAP: $4,381 = 438,100 MR points (saves 66,300 MR)
 | 2 | Cash (lowest) | Duffel | $89 | — | — | — | — |
 | 3 | SW WGA+ | southwest | $119 | 8,400 | SW RR | 1.42 | Fair |
 | 4 | United via Chase UR | seats.aero | $5.60 tax | 5,000 | Chase UR | 1.67 | Good |
-| 5 | Chase Portal | chase-travel | — | 8,900 | Chase UR | 1.5 | Baseline |
+| 5 | Chase Portal | chase-travel | — | 8,900 | Chase UR | varies (~1.5 typical) | Pull live quote |
 | 6 | SW Anytime | southwest | $219 | 16,800 | SW RR | 1.30 | Fair |
 
 Note: SW points values shown use direct redemption CPP. If the user has Companion Pass, effective CPP doubles (two tickets for the points price of one).
@@ -212,5 +209,5 @@ If seats.aero returns no availability, say "No award availability found" instead
 - Portal searches require Docker and login credentials. Skip if not configured.
 - Seats.aero shows cached availability (up to 24h old). Live search via seats-aero-web is local only.
 - Transfer ratios are from `transfer-partners.json`. Verify against issuer before large transfers.
-- Chase portal prices don't include the 1.5x CSR multiplier. The skill adjusts automatically.
+- Chase portal pricing is dynamic Points Boost (~1.5-2.0 cpp on select bookings, not a guaranteed floor). The historical static 1.5x multiplier is gone. Pull the actual portal quote rather than computing from a multiplier.
 - Southwest is NOT in Duffel, Ignav, or seats.aero. Use Google Flights skill if SW pricing needed.

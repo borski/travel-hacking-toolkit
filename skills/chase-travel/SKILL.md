@@ -1,6 +1,6 @@
 ---
 name: chase-travel
-description: Search the Chase Ultimate Rewards travel portal via Patchright (undetected Playwright fork) for cash prices, UR points pricing (1.5 cpp on CSR), Points Boost offers, and Chase Edit hotel benefits. Use when comparing pay-with-points portal pricing to award flights or other booking options, when checking UR balance impact, when researching Chase Edit hotel collection properties, or when calculating points value for Chase Sapphire Reserve / Preferred holders. Triggers on "Chase Travel portal", "Chase UR", "Chase points", "Chase Edit", "Sapphire Reserve travel portal", "Points Boost", "1.5 cpp", or any pay-with-points comparison involving Chase.
+description: Search the Chase Ultimate Rewards travel portal via Patchright (undetected Playwright fork) for cash prices, UR points pricing under dynamic Points Boost (~1.5-2.0 cpp on select bookings on CSR, not a fixed floor), Points Boost offers, and Chase Edit hotel benefits. Use when comparing pay-with-points portal pricing to award flights or other booking options, when checking UR balance impact, when researching Chase Edit hotel collection properties, or when calculating points value for Chase Sapphire Reserve / Preferred holders. Triggers on "Chase Travel portal", "Chase UR", "Chase points", "Chase Edit", "Sapphire Reserve travel portal", "Points Boost", "1.5 cpp", or any pay-with-points comparison involving Chase.
 category: portals
 summary: Chase UR portal for flights, hotels, Points Boost, Edit benefits. Requires Sapphire.
 api_key: None (requires Patchright)
@@ -42,7 +42,7 @@ docker build -t chase-travel skills/chase-travel/
 
 ## Card Selection
 
-The script automatically selects the **Sapphire Reserve** card from the account selector (1.5x travel multiplier, Edit hotels). Falls back to **Sapphire Preferred** (1.25x) if no Reserve found. Only these cards show Edit hotel benefits and travel portal pricing.
+The script automatically selects the **Sapphire Reserve** card from the account selector (dynamic Points Boost pricing on travel; ~1.5-2.0 cpp typical on CSR but not a guaranteed floor; Edit hotels). Falls back to **Sapphire Preferred** if no Reserve found. Only these cards show Edit hotel benefits and travel portal pricing.
 
 ## Usage
 
@@ -167,11 +167,11 @@ Hotel results include:
 - Calculate CPP for points redemptions
 - Flag Points Boost offers with effective cpp
 - Compare against direct booking prices when possible
-- Note the 1.5x CSR multiplier is applied at checkout, not in listed prices
+- Pull the actual Points Boost quote at checkout. CSR pricing is dynamic, not a fixed multiplier.
 
 ## Portal Pricing Notes
 
-- Chase portal quotes at **1.0 cpp in listings**. The CSR 1.5x multiplier is applied at checkout, not in search results.
+- Chase portal pricing on CSR is dynamic Points Boost. The historical static 1.5x multiplier is gone. Each booking quotes a specific points price; effective cpp typically falls in the 1.5-2.0 cpp range on CSR but is not a guaranteed floor on every booking.
 - **Points Boost** offers appear as separate cards with discounted point prices (typically 1.5x to 2.0x cpp effective).
 - `cash_plus_points` pricing uses all available UR points plus cash for the remainder.
 - Chase sessions don't persist across browser close. Every Docker run needs fresh login (but 2FA is skipped if device is trusted).
