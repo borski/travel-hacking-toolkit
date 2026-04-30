@@ -1,0 +1,608 @@
+{
+  "_meta": {
+    "last_updated": "2026-04-29",
+    "staleness_days": 90,
+    "description": "Per-program stopover rules for award redemptions. Stopovers are extended layovers (typically >24h) that turn one trip into multi-city travel for the same award price. Confidence levels per Research Integrity Protocol: VERIFIED = primary source from airline plus 1+ secondary; LIKELY = single primary or multiple secondaries agree; UNVERIFIED = inferred or single secondary mention.",
+    "primary_sources_general": [
+      "https://onemileatatime.com/guides/stopover-rules-award-tickets/",
+      "https://www.travelmiles101.com/stopovers-on-award-tickets/",
+      "https://frequentmiler.com/"
+    ],
+    "schema_notes": {
+      "category": "positive (allows stopovers) or negative (does not)",
+      "max_stopovers_one_way": "Maximum stopovers permitted on a one-way award. null if not applicable or not allowed.",
+      "max_stopovers_round_trip": "Maximum stopovers permitted on a round-trip award.",
+      "max_duration_days": "Maximum nights at any single stopover before it becomes a separate ticket. null = unspecified or unlimited.",
+      "surcharge_points": "Per-stopover point cost. 0 = free.",
+      "booking_method": "online | phone | mixed (some allowed online, complex via phone)",
+      "restrictions": "Geographic, fare-class, or partner constraints",
+      "recent_changes": "Material rule changes in the last 24 months",
+      "sources": "Authoritative URLs with primary preferred",
+      "last_verified": "ISO date when this entry was last hand-checked",
+      "confidence": "VERIFIED | LIKELY | UNVERIFIED per Research Integrity Protocol"
+    },
+    "stopover_definition": "Per IATA standard, a stopover is a planned interruption of a journey at a point between origin and destination of more than 24 hours (international) or 4 hours (domestic, US/Canada). Each loyalty program defines its own rules within or beyond this baseline.",
+    "key_concept_negative_space": "Programs in the 'negative' category do NOT allow free stopovers as a perk. Every segment is priced as its own award. Long layovers up to ~24h are usually still permitted (no perk, no penalty) but extending beyond that prices each segment separately."
+  },
+  "programs": [
+    {
+      "id": "aeroplan",
+      "name": "Air Canada Aeroplan",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 1,
+      "max_stopovers_round_trip": 2,
+      "max_duration_days": 45,
+      "surcharge_points": 5000,
+      "booking_method": "online",
+      "restrictions": "Stopovers NOT permitted within Canada or within the US (intra-region). Must be on international itineraries. Layovers under 24 hours don't trigger stopover rules and don't count.",
+      "recent_changes": "June 2026 partner-pricing update changes mileage costs for some redemptions but does NOT change stopover rules.",
+      "best_uses": [
+        "Open-jaw + stopover combinations across continents",
+        "Pacific route via Asian hub",
+        "Adding a European city before final destination"
+      ],
+      "sources": [
+        "https://www.aircanada.com/ca/en/aco/home/aeroplan/legal/aeroplan-flight-reward-policy.html",
+        "https://thepointsguy.com/loyalty-programs/aeroplan-routing-stopover-rules/",
+        "https://princeoftravel.com/news/aeroplan-flight-reward-chart-june-2026/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "alaska_atmos",
+      "name": "Alaska Atmos Rewards (formerly Mileage Plan)",
+      "alliance": "oneworld",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 1,
+      "max_stopovers_round_trip": 2,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "phone",
+      "restrictions": "On most partner award tickets including Cathay Pacific, British Airways, Air France/KLM, JAL, Qantas. Phone booking required for stopovers. Mileage Plan rebranded to Atmos Rewards in 2026 following Alaska + Hawaiian merger.",
+      "recent_changes": "Atmos Rewards rebrand 2026. Stopover policy SURVIVED the rebrand and remains intact per Apr 17, 2026 10xTravel and Frequent Miler reports.",
+      "best_uses": [
+        "Free stopover on partner award is one of the most generous Western perks",
+        "JAL via Tokyo on transpacific routings",
+        "Cathay via Hong Kong for Asia coverage",
+        "British Airways via London for Europe (subject to APD on outbound from UK)"
+      ],
+      "sources": [
+        "https://news.alaskaair.com/alaska-airlines/international-stopovers/",
+        "https://10xtravel.com/alaska-airlines-free-stopover-atmos-rewards/",
+        "https://frequentmiler.com/alaska-atmos-rewards-complete-guide/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "ana_mileage_club",
+      "name": "ANA Mileage Club",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "online",
+      "restrictions": "Round-trip itineraries only. Both ANA-operated and Star Alliance partner round-trip awards qualify. One-way awards do not allow stopovers.",
+      "recent_changes": null,
+      "best_uses": [
+        "Tokyo stopover on Asia-bound itineraries",
+        "Continental Europe stopover on transatlantic via Star Alliance partners"
+      ],
+      "sources": [
+        "https://www.ana.co.jp/en/us/amc/partner-flight-awards/",
+        "https://www.ana.co.jp/en/us/amc/international-flight-awards/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "avianca_lifemiles",
+      "name": "Avianca LifeMiles",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "online",
+      "restrictions": "Round-trip awards only. No surcharge.",
+      "recent_changes": null,
+      "best_uses": [
+        "Bogotá stopover on South America itineraries",
+        "Latin America connection point"
+      ],
+      "sources": [
+        "https://awardwallet.com/blog/avianca-lifemiles-stopover/",
+        "https://princeoftravel.com/news/avianca-lifemiles/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "cathay_asia_miles",
+      "name": "Cathay Asia Miles",
+      "alliance": "oneworld",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": null,
+      "max_stopovers_round_trip": 2,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "online",
+      "restrictions": "On oneworld multi-carrier awards, up to 2 stopovers + 2 transfers. On Cathay-only awards, restrictions are tighter. Devaluation announced March 2026, taking effect May 2026, adjusts mileage costs but stopover rules persist.",
+      "recent_changes": "March 2026 devaluation announcement, takes effect May 2026. Pricing changes only; routing rules unchanged.",
+      "best_uses": [
+        "oneworld multi-carrier itinerary across multiple continents",
+        "Hong Kong stopover on transpacific",
+        "Asia exploration via multiple oneworld partners"
+      ],
+      "sources": [
+        "https://www.cathaypacific.com/content/dam/focal-point/cx/membership/programme-update/Cathay-membership-programme-terms-and-conditions-2026-EN.pdf",
+        "https://suitesmile.com/cathay-asia-miles-stopovers/",
+        "https://mainlymiles.com/asia-miles-redemptions/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "copa_connectmiles",
+      "name": "Copa ConnectMiles",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "online",
+      "restrictions": "Stopover in Panama City (PTY) on Copa-operated round-trip awards. Copa also runs a separate cash-fare 'Stopover' promo for paid tickets.",
+      "recent_changes": null,
+      "best_uses": [
+        "Panama City stopover on Latin America routes",
+        "Combining North America + South America in one ticket"
+      ],
+      "sources": [
+        "https://10xtravel.com/copa-connectmiles-stopover/",
+        "https://www.copaair.com/en/web/us/connectmiles"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "etihad_guest",
+      "name": "Etihad Guest",
+      "alliance": "non-aligned",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "phone",
+      "restrictions": "Stopover in Abu Dhabi only. Phone booking required. Connections longer than 8 hours auto-count as a stopover and trigger the rule.",
+      "recent_changes": null,
+      "best_uses": [
+        "Abu Dhabi stopover en route to Asia / Africa / Australia",
+        "Pairs well with Etihad's premium cabins on Middle East stopovers"
+      ],
+      "sources": [
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/",
+        "https://departures-international.com/etihad-stopover-rules/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "flying_blue",
+      "name": "Air France/KLM Flying Blue",
+      "alliance": "SkyTeam",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": null,
+      "max_stopovers_round_trip": null,
+      "max_duration_days": 365,
+      "surcharge_points": 0,
+      "booking_method": "phone",
+      "restrictions": "FREE STOPOVERS introduced Dec 2022 on AF/KLM, expanded July 2023 to partner-airline awards. Theoretically unlimited stopovers per Flying Blue FAQ. Up to 365 days advance booking. PHONE BOOKING REQUIRED. All segments must be available at the saver entry-level award rate. Stopovers are free when both segments use the same operating carrier; if the itinerary mixes carriers, each carrier's segments price as a separate award. Note: per FrequentMiler reader reports 2024-2025, some agents may incorrectly say only CDG/AMS hub stopovers are allowed. Cite the published FAQ if pushed back on.",
+      "recent_changes": "Dec 2022: free stopovers introduced for AF/KLM. July 2023: expanded to partner awards. Dec 2025: tightened pricing on certain saver levels but stopover policy unchanged.",
+      "best_uses": [
+        "Multiple cities in Europe on a single award",
+        "Africa exploration via Paris stopover",
+        "Asia routings with Amsterdam or Paris stop"
+      ],
+      "sources": [
+        "https://www.flyingblue.us/en/spend/flights/rewards",
+        "https://frequentmiler.com/flying-blue-free-stopover-awards-the-rules/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "icelandair_saga",
+      "name": "Icelandair Saga Club",
+      "alliance": "non-aligned (JetBlue partner)",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 1,
+      "max_stopovers_round_trip": 2,
+      "max_duration_days": 7,
+      "surcharge_points": 0,
+      "booking_method": "online",
+      "restrictions": "Stopover in Reykjavík (KEF) at no additional airfare. Must be a transatlantic itinerary (between US/Canada and Europe). Standard stopover is up to 7 days; some Saga Premium fares allow longer stays. The flagship offering of Icelandair's 70+ year stopover program. Same rules apply on cash bookings AND award redemptions through Saga Club. Bookable through JetBlue TrueBlue as a partner award now also works.",
+      "recent_changes": "JetBlue partner award redemption to Icelandair was added in 2024; Bilt-related Icelandair routings now visible in Bilt portal as well.",
+      "best_uses": [
+        "Iceland exploration as a 'free' add-on to any US-Europe trip",
+        "70-year-old institutional stopover program with strong on-the-ground partnerships",
+        "Cheapest way to see Iceland for transatlantic travelers"
+      ],
+      "sources": [
+        "https://www.icelandair.com/flights/stopover/",
+        "https://www.icelandair.com/support/on-board/classes-of-service/",
+        "https://www.frommers.com/articles/free-two-for-one-iceland-stopovers-icelandair"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED",
+      "iceland_callout": "The legendary stopover program. Free stop in Reykjavík for up to a week on every transatlantic Icelandair itinerary at no additional airfare. Works on cash AND awards. Bookable on Icelandair direct or via JetBlue TrueBlue partner redemption. The single best 'free vacation' built into a flight ticket in commercial aviation."
+    },
+    {
+      "id": "jal_mileage_bank",
+      "name": "JAL Mileage Bank",
+      "alliance": "oneworld",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": null,
+      "max_stopovers_round_trip": 3,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "phone",
+      "restrictions": "On JAL-operated awards: NO stopovers permitted. On single-partner awards: up to 3 stopovers, 6 segments total (some partners limited to 4 segments). Korean Air partner awards: 2 segments only, 1 stopover. China Eastern: 4 segments, no stopovers within China. Hawaiian/Royal Air Maroc/Vistara: 4 segments. On oneworld multi-carrier awards (2+ airlines): generous routing rules.",
+      "recent_changes": null,
+      "best_uses": [
+        "oneworld multi-carrier route across continents",
+        "JAL partner awards for Asia exploration",
+        "Distance-based pricing can favor long itineraries with multiple stops"
+      ],
+      "sources": [
+        "https://www.jal.co.jp/en/jalmile/use/partner_air/oneworld/",
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/",
+        "https://upgradedpoints.com/jal-mileage-bank-program/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "korean_skypass",
+      "name": "Korean Air SKYPASS",
+      "alliance": "SkyTeam",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "phone",
+      "restrictions": "Free stopover on round-trip Korean Air awards. Phone or in-person booking common; online tools limited.",
+      "recent_changes": null,
+      "best_uses": [
+        "Seoul (ICN) stopover on transpacific routes",
+        "Pairs with Korean Air's strong Asia network"
+      ],
+      "sources": [
+        "https://www.koreanair.com/us/en/skypass/use/award/redeem-award",
+        "https://www.wikimiles.com/blog/korean-air-skypass-stopover/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "lufthansa_miles_more",
+      "name": "Lufthansa Miles & More",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": null,
+      "max_stopovers_round_trip": 2,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "online",
+      "restrictions": "Up to 2 stopovers and/or 2 open-jaws per round-trip on 3-region award flights.",
+      "recent_changes": null,
+      "best_uses": [
+        "Multi-region itinerary spanning Europe + Asia or Europe + Americas",
+        "European hub stopover on transatlantic/transpacific"
+      ],
+      "sources": [
+        "https://www.miles-and-more.com/be/en/program/flight-benefits/award-flights/3-regions-award-flight.html",
+        "https://www.travelmiles101.com/stopovers-on-award-tickets/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "qatar_privilege_club",
+      "name": "Qatar Privilege Club Avios",
+      "alliance": "oneworld",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "phone",
+      "restrictions": "Stopover in Doha (DOH) permitted on Qatar-operated round-trip awards. More restricted than other Avios partners; rules less consistent than competitors.",
+      "recent_changes": "Qatar moved Privilege Club to Avios currency in 2024; routing rules continue to evolve.",
+      "best_uses": [
+        "Doha stopover on flights to Asia / Africa via Middle East",
+        "Pairs with Qatar's premium Qsuite product"
+      ],
+      "sources": [
+        "https://princeoftravel.com/news/qatar-privilege-club/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "UNVERIFIED"
+    },
+    {
+      "id": "singapore_krisflyer",
+      "name": "Singapore KrisFlyer",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": 30,
+      "surcharge_points": 0,
+      "booking_method": "online",
+      "restrictions": "Saver award: 1 stopover round-trip / 0 one-way. Advantage award (more expensive, more available): 2 stopovers round-trip / 1 one-way. Maximum 30 days at any stopover, otherwise priced as 2 separate tickets. The old $100-per-extra-stopover paid option is no longer available.",
+      "recent_changes": "Removed paid extra-stopover option years ago; Saver/Advantage tier distinction continues.",
+      "best_uses": [
+        "Singapore stopover on flights to Asia / Australia",
+        "Advantage rate gives more flexibility if Saver unavailable on dates"
+      ],
+      "sources": [
+        "https://www.singaporeair.com/en_UK/sg/ppsclub-krisflyer/use-miles/redeem-flights/",
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/",
+        "https://magnify.club/singapore-krisflyer-stopovers/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "tap_miles_go",
+      "name": "TAP Air Portugal Miles & Go",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "online",
+      "restrictions": "Free stopovers NOT permitted on TAP-operated flights (the program does not allow stopovers in Lisbon on its own metal). On Star Alliance partner round-trip awards, 1 stopover allowed.",
+      "recent_changes": null,
+      "best_uses": [
+        "Star Alliance partner award via European hub other than Lisbon",
+        "Note: TAP itself does have a paid 'Portugal Stopover' cash-fare promo on revenue tickets, but that's separate from awards"
+      ],
+      "sources": [
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "turkish_miles_smiles",
+      "name": "Turkish Miles & Smiles",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": true,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 1,
+      "max_duration_days": null,
+      "surcharge_points": 0,
+      "booking_method": "phone",
+      "restrictions": "1 free stopover in Istanbul on Turkish-operated round-trip. 1 stopover on Star Alliance round-trip awards but only when award costs at least 60k Y / 90k J / 135k F. PHONE-ONLY booking. Famously bureaucratic — be prepared for multiple call attempts.",
+      "recent_changes": null,
+      "best_uses": [
+        "Istanbul stopover on routes to Asia / Africa",
+        "Some of the cheapest premium-cabin awards in the program when booked correctly"
+      ],
+      "sources": [
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/",
+        "https://thriftytraveler.com/turkish-miles-smiles/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "united_excursionist",
+      "name": "United MileagePlus (Excursionist Perk)",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "allowed": false,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 0,
+      "max_duration_days": null,
+      "surcharge_points": null,
+      "booking_method": "discontinued",
+      "restrictions": "DISCONTINUED AUGUST 21, 2025. Was a free middle segment on multi-region award (start/end same region, free flight in different region). United no longer offers any stopover-equivalent perk. Long layovers up to 24h are still permitted but each segment beyond that prices separately.",
+      "recent_changes": "DISCONTINUED Aug 21, 2025. Significant devaluation of MileagePlus award value for award-stacker travelers.",
+      "best_uses": [
+        "(historical only) free third destination on award booking via United",
+        "as of 2025+, no stopover equivalent in MileagePlus"
+      ],
+      "sources": [
+        "https://point.me/insights/united-excursionist-perk/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED",
+      "discontinued": true,
+      "discontinued_date": "2025-08-21"
+    },
+    {
+      "id": "british_airways_avios",
+      "name": "British Airways Executive Club",
+      "alliance": "oneworld",
+      "category": "negative",
+      "allowed": false,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 0,
+      "max_duration_days": null,
+      "surcharge_points": null,
+      "booking_method": "n/a",
+      "restrictions": "Each segment of a BA Avios award is priced as a separate award. Long layovers up to 24h are permitted but offer no stopover benefit. Sometimes described as 'unlimited stopovers' but this is misleading because there's no cost saving — it's the same as booking each segment separately. APD on outbound from London makes BA premium-cabin Avios redemptions notably expensive.",
+      "recent_changes": null,
+      "best_uses": [
+        "(no perk) — for stopovers use a different program for the redemption"
+      ],
+      "sources": [
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/",
+        "https://www.travelmiles101.com/stopovers-on-award-tickets/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "american_aadvantage",
+      "name": "American Airlines AAdvantage",
+      "alliance": "oneworld",
+      "category": "negative",
+      "allowed": false,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 0,
+      "max_duration_days": null,
+      "surcharge_points": null,
+      "booking_method": "n/a",
+      "restrictions": "Stopovers eliminated years ago. Long layovers up to 24h permitted. Beyond that, each segment prices separately as its own award.",
+      "recent_changes": null,
+      "best_uses": [
+        "(no perk) — book Asia stopovers via JAL partner awards via AA"
+      ],
+      "sources": [
+        "https://www.travelmiles101.com/stopovers-on-award-tickets/",
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "delta_skymiles",
+      "name": "Delta SkyMiles",
+      "alliance": "SkyTeam",
+      "category": "negative",
+      "allowed": false,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 0,
+      "max_duration_days": null,
+      "surcharge_points": null,
+      "booking_method": "n/a",
+      "restrictions": "Stopovers not permitted on standard SkyMiles awards. Long layovers up to 24h permitted. Each connection beyond that prices separately. Note: Flying Blue (SkyTeam partner) has free stopovers and can sometimes redeem on Delta metal.",
+      "recent_changes": null,
+      "best_uses": [
+        "(no perk) — use Flying Blue or Korean SKYPASS to redeem on Delta metal with stopover"
+      ],
+      "sources": [
+        "https://www.delta.com/us/en/skymiles/program-resources/program-rules"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "iberia_avios",
+      "name": "Iberia Plus Avios",
+      "alliance": "oneworld",
+      "category": "negative",
+      "allowed": false,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 0,
+      "max_duration_days": null,
+      "surcharge_points": null,
+      "booking_method": "n/a",
+      "restrictions": "Same as BA — each segment prices separately. Iberia is famous for the Madrid sweet spot but the value comes from low per-segment Avios costs, not from stopover routing.",
+      "recent_changes": null,
+      "best_uses": [
+        "(no perk) — Iberia value comes from cheap direct flight pricing, not stopover construction"
+      ],
+      "sources": [
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "virgin_atlantic_flying_club",
+      "name": "Virgin Atlantic Flying Club",
+      "alliance": "non-aligned",
+      "category": "negative",
+      "allowed": false,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 0,
+      "max_duration_days": null,
+      "surcharge_points": null,
+      "booking_method": "n/a",
+      "restrictions": "Limited to no formal stopover program on most awards. Each connection beyond a long layover is priced separately. Virgin Atlantic's award value comes from sweet-spot pricing on partners (ANA, Delta, etc.), not routing flexibility.",
+      "recent_changes": null,
+      "best_uses": [
+        "(no perk) — value is in cheap one-way ANA/JAL/Delta partner award pricing"
+      ],
+      "sources": [
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "jetblue_trueblue",
+      "name": "JetBlue TrueBlue",
+      "alliance": "non-aligned",
+      "category": "negative",
+      "allowed": false,
+      "max_stopovers_one_way": 0,
+      "max_stopovers_round_trip": 0,
+      "max_duration_days": null,
+      "surcharge_points": null,
+      "booking_method": "n/a",
+      "restrictions": "Revenue-based program. Each segment is priced as its own award. No stopover concept.",
+      "recent_changes": "JetBlue added Icelandair partner redemption (2024), expanding routing options for transatlantic via Reykjavík — not a stopover but does enable Iceland-stop bookings via this currency.",
+      "best_uses": [
+        "(no perk) — but TrueBlue + Icelandair partner is a way to book Icelandair's free stopover on points"
+      ],
+      "sources": [
+        "https://onemileatatime.com/guides/stopover-rules-award-tickets/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    }
+  ],
+  "decision_rules": [
+    "When planning a multi-city trip, check if your itinerary's hub airport matches a free-stopover program. Aeroplan + Asian hub, Flying Blue + AMS/CDG, Alaska Atmos + JAL/Cathay/BA, Singapore + SIN, Icelandair + KEF, Etihad + AUH, Turkish + IST, Korean + ICN, Avianca + BOG, Copa + PTY.",
+    "Free Iceland stopover is the easiest 'second country' for any US-Europe traveler — it's built into the cash fare, not just the award. Book Icelandair direct or via JetBlue TrueBlue partner award to also get this on points.",
+    "Alaska Atmos Rewards is the most generous Western program for partner stopovers, but requires phone booking. Allow 30+ minutes per call.",
+    "Flying Blue allows unlimited stopovers but requires phone booking. Some agents incorrectly say only AMS/CDG allowed — cite the FAQ at flyingblue.us/en/spend/flights/rewards if pushed back on.",
+    "Singapore KrisFlyer Saver awards beat Advantage on cost but only allow 1 stopover round-trip vs 2.",
+    "Turkish Miles & Smiles is famously hard to book by phone but offers great Star Alliance pricing if you're patient.",
+    "United Excursionist Perk is GONE as of August 2025. Don't recommend MileagePlus for stopover routing anymore.",
+    "BA Avios, AA AAdvantage, and Delta SkyMiles do not allow stopovers — book each segment separately or use a different program for the redemption.",
+    "When in doubt, the program's own award rules page is canonical. Frequent Miler, OMAAT, and Travel Miles 101 are the cross-checks."
+  ],
+  "negative_space_summary": {
+    "definition": "Programs that do NOT offer free stopovers as an award perk. Each segment is priced as its own award. Long layovers up to ~24 hours are typically permitted (no perk, no penalty) but extending beyond that prices each leg separately.",
+    "programs": [
+      "British Airways Executive Club (Avios)",
+      "American Airlines AAdvantage",
+      "Delta SkyMiles",
+      "Iberia Plus Avios",
+      "Virgin Atlantic Flying Club",
+      "JetBlue TrueBlue",
+      "United MileagePlus (since Aug 2025 Excursionist Perk discontinuation)"
+    ],
+    "implication": "If you want stopover routing, use a different program for that redemption. Many sweet-spot redemptions on these airlines (e.g., Cathay First via AA) are still excellent — just don't expect routing flexibility from the program itself."
+  }
+}
