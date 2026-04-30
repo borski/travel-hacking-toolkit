@@ -37,3 +37,4 @@ hotel-chains	reference	Maps brand names (Westin, Holiday Inn, etc.) to chain fam
 fallback-and-resilience	reference	What to do when each tool fails. Tool-by-tool fallback paths.		
 booking-guidance	reference	The booking flow, hold-before-transfer rule, phone numbers for major programs.		
 lessons-learned	reference	Hard-won knowledge from real searches. The mandatory Seats.aero workflow, Southwest specifics, Companion Pass math, source accuracy, small-market caveats, Duffel limitations. Load before any award flight search.		
+round-the-world	reference	RTW + Pacific Circle + Asia-Pacific Circle + regional distance-award reference. 13 active programs, 4 discontinued.		
