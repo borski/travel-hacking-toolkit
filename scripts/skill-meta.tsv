@@ -27,6 +27,7 @@ tripadvisor	destinations	Hotel ratings, restaurant search, attraction reviews, n
 flight-search-strategy	reference	The canonical multi-source search workflow. Source priority (Duffel > Ignav > Google Flights > others), market selection for international routes, source accuracy hierarchy, common failure modes.		
 transfer-bonuses	reference	Active credit card transfer bonuses with primary-source citations. Tells the agent the real effective ratio when transferring points during a promotion.		
 stopovers	reference	Per-program stopover rules for award redemptions. Includes Icelandair free stopover, Aeroplan, Alaska Atmos, Flying Blue, Singapore tiers, plus the negative space (BA, AA, Delta, JetBlue) that have no stopover programs.		
+award-holds	reference	Per-program rules for placing award flight tickets on hold. Covers the 7 programs that allow holds (AA 24h online, LH 5 days, FB 3 days, CX 2 days, etc.) and the negative space (UA/AS/DL/Aeroplan/BA/etc. — most programs do not allow holds).		
 points-valuations	reference	CPP formula, floor/ceiling rules, surcharge-heavy programs to avoid, transfer bonus considerations, Chase Points Boost dynamics, opportunity cost.		
 partner-awards	reference	Which programs ticket which airlines (alliance + bilateral). Cross-references credit card currencies to booking programs. Reachability workflow.		
 alliances	reference	Star Alliance, oneworld, SkyTeam membership and recent shifts (SAS to SkyTeam, ITA to Star, Hawaiian/Fiji to oneworld). Key cross-alliance booking relationships.		

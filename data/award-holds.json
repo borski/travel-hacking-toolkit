@@ -1,0 +1,424 @@
+{
+  "_meta": {
+    "last_updated": "2026-04-29",
+    "staleness_days": 90,
+    "description": "Per-program rules for placing award flight tickets on hold. Holds let you reserve award space without paying or transferring points yet. Critical for transferable-currency bookings (Amex MR, Chase UR, etc.) where the transfer takes hours to days. Includes 7 programs that allow holds and the negative space (most programs do NOT allow holds). Sourced from Frugal Flyer (canonical 2024 list) and Upgraded Points (current 2025 details), cross-checked against airline-specific sources.",
+    "primary_sources_general": [
+      "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+      "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/",
+      "https://www.point.me/insights/award-holds/"
+    ],
+    "schema_notes": {
+      "category": "positive (allows holds) or negative (does not)",
+      "max_hold_days": "Maximum hold duration in days. null if not allowed.",
+      "hold_fee_usd": "Fee to place the hold itself. 0 if free. null if not applicable.",
+      "phone_booking_fee_usd": "Phone booking fee charged when finalizing the held award. Often the real cost since most holds require phone booking.",
+      "self_serve_online": "true if the member can place the hold themselves online; false means phone agent required",
+      "partner_awards": "yes | no | varies — whether the program holds partner-airline award seats too",
+      "phone_us": "US phone number for placing/finalizing holds",
+      "recent_changes": "Material rule changes in the last 24 months",
+      "sources": "URLs with primary preferred",
+      "last_verified": "ISO date when this entry was last hand-checked",
+      "confidence": "VERIFIED | LIKELY | UNVERIFIED per Research Integrity Protocol"
+    },
+    "key_concept_use_case": "Award holds are most useful when you need to transfer points from a transferable currency (Amex MR, Chase UR, Citi TYP, Cap One) to a loyalty program. Transfers can take from minutes (Amex/Chase) to days (Marriott via Lufthansa). A hold prevents losing the award space while the transfer is pending."
+  },
+  "programs": [
+    {
+      "id": "american_aadvantage",
+      "name": "American Airlines AAdvantage",
+      "alliance": "oneworld",
+      "category": "positive",
+      "max_hold_days": 1,
+      "hold_fee_usd": 0,
+      "phone_booking_fee_usd": 35,
+      "self_serve_online": true,
+      "partner_awards": "yes",
+      "phone_us": "800-433-7300",
+      "restrictions": "ONLY program with self-service online hold. Click 'Hold' on the booking-confirmation screen instead of paying with miles. No credit card needed. Reduced from 5-day hold to 24-hour hold in late 2024 to align with revenue ticket policy. The previous 5-day hold was famously generous; the 24-hour version still beats UA/AS/DL who have NO holds.",
+      "recent_changes": "Reduced from 5 days to 24 hours in late 2024. Existing 5-day holds at the time were grandfathered.",
+      "use_case": "Hold a Cathay Qsuite or partner premium-cabin award online without committing miles, then transfer Amex MR or Chase UR (Marriott Bonvoy: 4 days; Citi: 1-2 days) to AAdvantage to finalize. With AA's no-fee change/cancel policy, you can also just book on the spot if miles are available.",
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://liveandletsfly.com/american-airlines-aadvantage-award-ticket-holds/",
+        "https://10xtravel.com/american-airlines-award-ticket-hold-time/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "flying_blue",
+      "name": "Air France / KLM Flying Blue",
+      "alliance": "SkyTeam",
+      "category": "positive",
+      "max_hold_days": 3,
+      "hold_fee_usd": 0,
+      "phone_booking_fee_usd": 25,
+      "self_serve_online": false,
+      "partner_awards": "varies",
+      "phone_us": "800-237-2747",
+      "restrictions": "Phone booking required for all holds. Up to 3 days (FF) or 'a few days' (UP). $25 USD phone-booking fee charged when finalizing the held ticket. Partner award holds work but are agent-discretionary and not guaranteed.",
+      "recent_changes": null,
+      "use_case": "Hold an AF/KL or SkyTeam partner award via phone, then transfer Amex MR (instant) or Chase UR (instant) to Flying Blue to ticket. Fee tradeoff: $25 phone-booking fee vs the cost of losing the award space.",
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/",
+        "https://www.point.me/insights/award-holds/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "cathay_asia_miles",
+      "name": "Cathay Asia Miles",
+      "alliance": "oneworld",
+      "category": "positive",
+      "max_hold_days": 2,
+      "hold_fee_usd": 0,
+      "phone_booking_fee_usd": 39,
+      "self_serve_online": false,
+      "partner_awards": "varies",
+      "phone_us": "833-933-2244",
+      "restrictions": "Up to 2 days per Frugal Flyer (Upgraded Points reports up to 3 days). $39 USD phone fee when finalizing partner awards. Only Cathay Pacific seats are truly held; partner-award seats may disappear. Award waitlist available alongside holds.",
+      "recent_changes": "March 2026 devaluation announcement (effective May 2026) changes mileage costs but NOT hold rules.",
+      "use_case": "Hold a Cathay Qsuite or oneworld premium-cabin award via phone. Then transfer Amex MR (1-7 days) or Citi TYP to Asia Miles to ticket. Fee plus uncertainty makes this less attractive than holding via AA for the same award.",
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/",
+        "https://frugalflyer.ca/blog/booking-cathay-pacific-first-class-with-ticket-hold/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "lufthansa_miles_more",
+      "name": "Lufthansa Miles & More",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "max_hold_days": 5,
+      "hold_fee_usd": 0,
+      "phone_booking_fee_usd": 20,
+      "self_serve_online": false,
+      "partner_awards": "yes",
+      "phone_us": "800-581-6400",
+      "restrictions": "Up to 5 days, free hold, $20 USD phone fee when finalizing. Holds work for Miles & More airlines (LH, SWISS, Austrian, Brussels) AND select Star Alliance carriers. The longest hold of any major program.",
+      "recent_changes": null,
+      "use_case": "Hold a Lufthansa First or Star Alliance partner premium-cabin award by phone, then transfer Marriott Bonvoy (4 days) or another currency to Miles & More. The 5-day window is enough for slow Marriott transfers.",
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/",
+        "https://www.rewardexpert.com/blog/how-to-book-lufthansas-miles-and-more-awards/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "singapore_krisflyer",
+      "name": "Singapore KrisFlyer",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "max_hold_days": null,
+      "hold_fee_usd": 0,
+      "phone_booking_fee_usd": 25,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": "833-727-0118",
+      "restrictions": "Hold duration is at the phone agent's discretion (usually a few days). $25 USD or 2,500 KrisFlyer miles fee. Cannot hold partner awards — only Singapore-operated. Inconsistent experience reported across calls; YMMV.",
+      "recent_changes": null,
+      "use_case": "Hold a Singapore Suites/First award by phone (Singapore-operated only), transfer Amex MR (1-2 days) or Citi TYP (1-3 days). Worth attempting only for Singapore-operated metal; for Star Alliance partners use Lufthansa or AA.",
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "turkish_miles_smiles",
+      "name": "Turkish Miles & Smiles",
+      "alliance": "Star Alliance",
+      "category": "positive",
+      "max_hold_days": 2,
+      "hold_fee_usd": 0,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "yes",
+      "phone_us": "800-874-8875",
+      "restrictions": "Up to 2 days, free hold (no fee per FF; phone fee varies per UP). Holds partner awards too. Famously bureaucratic — be prepared for multiple call attempts.",
+      "recent_changes": null,
+      "use_case": "Hold a Turkish-operated or Star Alliance partner award by phone (e.g., the famous TK Hawaii sweet spot), then transfer Bilt (instant) or Capital One to Miles & Smiles.",
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "virgin_atlantic_flying_club",
+      "name": "Virgin Atlantic Flying Club",
+      "alliance": "non-aligned",
+      "category": "positive",
+      "max_hold_days": 1,
+      "hold_fee_usd": 0,
+      "phone_booking_fee_usd": 0,
+      "self_serve_online": false,
+      "partner_awards": "yes",
+      "phone_us": "800-862-8621",
+      "restrictions": "Up to 1 day per Frugal Flyer; up to 2 days per Upgraded Points. Free hold, $0 fee on phone booking. Partner awards (ANA, Delta, Korean, etc.) holdable too.",
+      "recent_changes": null,
+      "use_case": "Hold an ANA First or partner award via Virgin's phone line, transfer Amex MR or Chase UR (1-2 days) to Flying Club to ticket. The most economical hold of the 7 programs since there's no phone-booking fee.",
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "united_mileageplus",
+      "name": "United MileagePlus",
+      "alliance": "Star Alliance",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "Public award holds were eliminated in 2018. Some elite tiers may get courtesy holds at agent discretion but it is no longer a published policy. United also discontinued the Excursionist Perk Aug 21, 2025. The program has shed several major perks in this period.",
+      "recent_changes": "Holds eliminated 2018. Excursionist Perk discontinued Aug 21, 2025. Upgrade Award chart removed Nov 24, 2025.",
+      "sources": [
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/",
+        "https://viewfromthewing.com/uniteds-mileageplus-devaluation-say-goodbye-to-stopovers-instant-upgrades-and-upgrade-award-charts/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "delta_skymiles",
+      "name": "Delta SkyMiles",
+      "alliance": "SkyTeam",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "No award holds. Delta argues this isn't a problem because Amex MR transfers to SkyMiles in minutes. True for Amex but not for non-Amex transferable currencies.",
+      "recent_changes": null,
+      "sources": [
+        "https://www.reddit.com/r/delta/comments/1dwzyjk/can_you_hold_an_award_reservation_while_you/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "alaska_atmos",
+      "name": "Alaska Atmos Rewards (formerly Mileage Plan)",
+      "alliance": "oneworld",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "No public hold policy. Atmos Rewards (rebrand from Mileage Plan in 2026) does not list holds in its terms. Phone agents may discretionarily extend a few hours but nothing committed.",
+      "recent_changes": "Mileage Plan rebranded to Atmos Rewards in 2026 (Alaska + Hawaiian merger).",
+      "sources": [
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/",
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "aeroplan",
+      "name": "Air Canada Aeroplan",
+      "alliance": "Star Alliance",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "No published hold policy. Per Frugal Flyer's 2024 canonical list of programs that DO allow holds, Aeroplan is not included. Earlier reports of '5-day online free hold' appear to have been incorrect or have since changed. If you need to transfer points to Aeroplan, plan accordingly: Amex MR is instant, Chase UR is instant, Capital One miles is instant.",
+      "recent_changes": null,
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://www.aircanada.com/ca/en/aco/home/aeroplan/legal/aeroplan-flight-reward-policy.html"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "british_airways_avios",
+      "name": "British Airways Executive Club",
+      "alliance": "oneworld",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "No award holds. Phone agents have been reported to occasionally place a temporary hold for a few hours while finalizing partner-award details, but this is not a published policy.",
+      "recent_changes": null,
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "iberia_avios",
+      "name": "Iberia Plus",
+      "alliance": "oneworld",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "No published hold policy.",
+      "recent_changes": null,
+      "sources": [
+        "https://upgradedpoints.com/travel/airlines/airline-award-hold-policies-fees/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "etihad_guest",
+      "name": "Etihad Guest",
+      "alliance": "non-aligned",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "Not on the canonical 2024 Frugal Flyer list. Older reports (milenomics.com 2019) describe agents placing 5-day holds, but Frugal Flyer 2024 and Upgraded Points 2025 do not include Etihad. Behavior may be agent-discretionary on a case-by-case basis but not a published policy.",
+      "recent_changes": null,
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/",
+        "https://milenomics.com/2019/01/booking-etihad-award/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "UNVERIFIED"
+    },
+    {
+      "id": "ana_mileage_club",
+      "name": "ANA Mileage Club",
+      "alliance": "Star Alliance",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "No published hold policy. Workaround: book a Star Alliance partner award via Lufthansa Miles & More (5-day hold) or Virgin Atlantic Flying Club (1-2 day hold) when an ANA-operated flight has the space.",
+      "recent_changes": null,
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "qatar_privilege_club",
+      "name": "Qatar Privilege Club Avios",
+      "alliance": "oneworld",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "No published hold policy. Workaround: hold Qatar Qsuite via American AAdvantage (24h, free, online) or Cathay Asia Miles (2-3 days, $39).",
+      "recent_changes": "Qatar moved Privilege Club to Avios currency in 2024.",
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    },
+    {
+      "id": "korean_skypass",
+      "name": "Korean SKYPASS",
+      "alliance": "SkyTeam",
+      "category": "negative",
+      "max_hold_days": 0,
+      "hold_fee_usd": null,
+      "phone_booking_fee_usd": null,
+      "self_serve_online": false,
+      "partner_awards": "no",
+      "phone_us": null,
+      "restrictions": "No published hold policy. Workaround: hold Korean Air-operated awards via Virgin Atlantic Flying Club (KE is a VS partner).",
+      "recent_changes": null,
+      "sources": [
+        "https://frugalflyer.ca/blog/frequent-flyer-program-award-ticket-holds/"
+      ],
+      "last_verified": "2026-04-29",
+      "confidence": "LIKELY"
+    }
+  ],
+  "decision_rules": [
+    "When you need to transfer points from a transferable currency to a loyalty program, prefer programs that allow holds. American AAdvantage's online self-serve hold is the easiest. Lufthansa's 5-day hold is the longest.",
+    "Amex MR transfers to most partners in minutes (Delta, Hilton, Aeroplan, Flying Blue, Virgin Atlantic, etc.) and 1-2 days for some (BA, ANA). Chase UR transfers are usually instant. Capital One miles transfer in minutes for most partners. So holds matter less for these currencies.",
+    "Marriott Bonvoy transfers to airline partners typically take 4 days. ALWAYS use a hold-allowing program when transferring from Bonvoy.",
+    "American AAdvantage is the only program with online self-serve holds (no phone needed, no fee, no credit card). Use it whenever the redemption is bookable through AA.",
+    "If you cannot hold via the redeeming program, check if the same award can be held by booking through a different partner program. E.g., a Cathay Qsuite is bookable via AA AAdvantage, Cathay Asia Miles, OR Alaska Atmos. AA can hold (24h online, free); Cathay can hold (2 days, $39 fee); Alaska cannot hold.",
+    "United, Delta, Alaska, and Aeroplan do NOT offer holds. Plan transfers to coincide with booking time.",
+    "When in doubt, ask the phone agent. Some programs will discretionarily place holds even when not published policy. Frugal Flyer's 2024 list is canonical for current published policy."
+  ],
+  "negative_space_summary": {
+    "definition": "Programs that do NOT allow award holds. Either you have the points in your account at booking time or the award is gone.",
+    "programs": [
+      "United MileagePlus",
+      "Delta SkyMiles",
+      "Alaska Atmos Rewards",
+      "Air Canada Aeroplan",
+      "British Airways Executive Club",
+      "Iberia Plus",
+      "Etihad Guest (not canonical, but no published policy)",
+      "ANA Mileage Club",
+      "Qatar Privilege Club",
+      "Korean SKYPASS"
+    ],
+    "implication": "Plan your transfer to clear BEFORE booking. Amex/Chase/Capital One transfers are usually instant; Marriott is 4 days; Citi takes 1-3 days. Or use a different program (with holds) to book the same award."
+  },
+  "transfer_speed_reference": {
+    "amex_mr": {
+      "instant": ["Delta", "Hilton", "Marriott", "Choice", "Aeroplan", "Flying Blue", "Iberia", "Etihad", "Avianca", "Virgin Atlantic"],
+      "minutes_to_hours": ["British Airways", "Singapore", "Cathay"],
+      "1_to_2_days": ["ANA"]
+    },
+    "chase_ur": {
+      "instant": ["United", "Hyatt", "Marriott", "IHG", "Flying Blue", "Aeroplan", "Iberia", "Virgin Atlantic", "Singapore", "Southwest", "JetBlue"]
+    },
+    "capital_one_miles": {
+      "instant": ["Avianca", "Aeroplan", "Singapore", "Etihad", "Turkish", "Virgin Red"],
+      "1_to_2_days": ["Wyndham", "Choice", "Accor"]
+    },
+    "marriott_bonvoy": {
+      "all_partners": "4 days for transfers to airline partners (60k Bonvoy = 25k miles + 5k bonus = 30k airline miles)"
+    },
+    "citi_typ": {
+      "minutes_to_hours": ["Singapore", "Avianca", "Cathay", "Etihad", "Flying Blue", "Choice", "Wyndham"]
+    },
+    "bilt": {
+      "instant_or_minutes": ["United", "AA", "Virgin Atlantic", "Aeroplan", "Hyatt", "Marriott", "Hilton", "IHG", "Flying Blue", "Cathay", "Turkish", "Avianca"]
+    }
+  }
+}

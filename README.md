@@ -144,6 +144,7 @@ These skills carry the deep institutional knowledge that used to live in CLAUDE.
 | Skill | What It Covers |
 |-------|---------------|
 | **alliances** | Star Alliance, oneworld, SkyTeam membership and recent shifts (SAS to SkyTeam, ITA to Star, Hawaiian/Fiji to oneworld). Key cross-alliance booking relationships. |
+| **award-holds** | Per-program rules for placing award flight tickets on hold. Covers the 7 programs that allow holds (AA 24h online, LH 5 days, FB 3 days, CX 2 days, etc.) and the negative space (UA/AS/DL/Aeroplan/BA/etc. — most programs do not allow holds). |
 | **award-sweet-spots** | Catalog of legendary, excellent, and good award redemptions with current rates and devaluation history. |
 | **booking-guidance** | The booking flow, hold-before-transfer rule, phone numbers for major programs. |
 | **cabin-codes** | IATA cabin codes (F/J/W/Y) and saver fare class codes (X/I/O) for partner-bookable inventory. |
