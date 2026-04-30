@@ -219,14 +219,16 @@ Online bookable at aircanada.com. Best for short-haul NA: 6k Y starting under 50
 **Avios pool combines with:** BA, Aer Lingus, Finnair, Qatar.
 **Caveat:** Partner awards are **non-refundable**. Iberia metal awards have a EUR 25 change fee but are refundable.
 
-### Aeromexico Club Premier RTW (LIKELY)
+### Aeromexico Club Premier RTW (LIKELY — RARELY ACTUALLY BOOKABLE)
 
 | Cabin    | Kilometers (NOT miles) |
 |----------|------------------------|
 | Economy  | 244,000                |
 | Business | 352,000                |
 
-Phone only (US: 800-237-6639). Difficult agents. Amex MR transfers 1:1.6. The only RTW survivor for SkyTeam-aligned travelers since SkyTeam Go Round was killed. Avoid unless SkyTeam alignment is required.
+Phone only (US: 800-237-6639). **Practical reality: this is rarely bookable.** Agents frequently can't pull up the option in the system, may not be trained on the product, and many community attempts in 2024-2026 ended without confirmation. The km figures come from Upgraded Points secondary reporting, not Aeromexico's own published terms. Amex MR transfers at 1:1.6.
+
+**Recommendation:** Do not confidently quote these km figures to a user. Note that Aeromexico Club Premier RTW exists on paper as the only RTW survivor for SkyTeam-aligned travelers since SkyTeam Go Round was killed, but plan an alternative — booking it requires significant phone effort with uncertain outcome. Most users will be better served by Star Alliance via Lufthansa M&M or oneworld Explorer.
 
 ## Discontinued Products (reference)
 
@@ -260,7 +262,7 @@ The helper handles 6,072 IATA airport codes (OpenFlights data) and computes have
 
 (also encoded in `data/rtw-awards.json` `decision_rules`)
 
-1. **Cheap business class RTW:** Star Alliance RTW Special Business 26k-mile distance band paid fare (cash, not miles). USD price varies by origin/routing — historically reported in the $6.5K-$10K range for 5-stop J across recent years. Verify current pricing at staralliance.com/en/book-fly. When it lands at the low end of that range, it's typically the best $/business-class-seat in the market for a multi-stop trip.
+1. **Cheap business class RTW:** Star Alliance RTW Special Business 26k-mile distance band paid fare (cash, not miles). USD price varies by origin/routing — historically reported in the $6.5K-$10K range for 5-stop J across recent years. Verify current pricing at staralliance.com/en/book-fly. At the low end of that range, the per-segment cost compares favorably to many one-off intercontinental J fares, but always verify the user's specific cash alternatives before recommending — a single one-off direct J ticket on a discounted route can sometimes match the per-segment rate.
 
 2. **For pure around-the-world goals:** Star Alliance RTW (most flexible, online bookable) or oneworld Explorer (continent-based, online via rtw.oneworld.com).
 

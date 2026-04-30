@@ -105,6 +105,8 @@ Contrast: a separate Emirates award at 72,500 Skywards miles via Capital One (4:
 - Effective points needed: 72,500 / 0.75 = 96,667 Cap One miles
 - Same $1,200 cash equivalent: ($1,200 - $100) / 96,667 × 100 = **1.14 cpp**. Worse than the Flying Blue path.
 
+**Important: pick the best currency for the destination program.** Emirates Skywards has a 1:1 transfer from Bilt Rewards (no fee, instant). For the same Emirates redemption, 72,500 Bilt = 72,500 Skywards = ($1,200 - $100) / 72,500 × 100 = **1.52 cpp**. Always check `data/transfer-partners.json` for every transferable currency the user holds before recommending a transfer — Bilt's 1:1 to Emirates beats Capital One's 4:3 by a wide margin. The skill enforces this in Step 0 (load `transfer-partners` first to enumerate every viable path).
+
 ### Step 4: Compare Against Valuations
 
 Load valuations from `points-valuations.json`:

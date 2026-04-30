@@ -181,8 +181,8 @@
           "Explorist",
           "Globalist"
         ],
-        "lifetime_warning": "ONCE PER LIFETIME (Globalist Challenge); status match itself is occasional / targeted",
-        "lifetime_warning_detail": "The annual Q1 Globalist Challenge is widely considered a once-per-lifetime opportunity per Award Wallet and FrequentMiler. Status match (matching a competitor's mid/top tier to Hyatt) is targeted and run irregularly. Generally cannot do both. Hyatt is famously stingy with status and historical evidence is that this won't be repeated for a given member.",
+        "lifetime_warning": "LIKELY once per lifetime (Globalist Challenge); status match itself is occasional / targeted",
+        "lifetime_warning_detail": "The annual Q1 Globalist Challenge is widely treated as a once-per-lifetime opportunity per Award Wallet and FrequentMiler community reports, but Hyatt does not publish this in formal terms. Hyatt has discretion. Status match (matching a competitor's mid/top tier to Hyatt) is targeted and run irregularly. Generally cannot do both. Hyatt is famously stingy with status and historical evidence is that this won't be repeated for a given member.",
         "challenge_required": true,
         "challenge_detail": "The Globalist Challenge: complete a defined number of paid nights (typically 20-25 nights or specific qualifying activity, varies year to year) within ~60-90 days of opt-in. Must request from Hyatt Concierge.",
         "how_to_apply": "Contact World of Hyatt Concierge or Customer Care directly. Not a self-service flow.",
@@ -201,8 +201,8 @@
           "Platinum Elite",
           "Titanium Elite"
         ],
-        "lifetime_warning": "ONCE PER LIFETIME (challenge) / OCCASIONAL (status match)",
-        "lifetime_warning_detail": "Marriott runs intermittent secret/targeted Status Challenges (e.g., '16 nights to Platinum'). When offered, generally a one-time per account benefit. Bonvoy does not have a permanent published status match.",
+        "lifetime_warning": "LIKELY once per lifetime when challenge is offered (targeted) / OCCASIONAL (status match)",
+        "lifetime_warning_detail": "Marriott runs intermittent secret/targeted Status Challenges (e.g., '16 nights to Platinum'). When offered, treated by community reports as one-time per account benefit, but Marriott does not publish lifetime restriction in formal terms. Bonvoy does not have a permanent published status match. Marriott has discretion.",
         "challenge_required": true,
         "challenge_detail": "Typical structure: complete N paid stays/nights in 90 days (e.g., 16 nights to Platinum in 2026 per Smart With Points reports). Must opt-in via the targeted offer.",
         "how_to_apply": "Watch for targeted email/account offers. Contact Bonvoy directly to inquire about active challenges. Statusmatcher.com community database tracks current offers.",
@@ -220,8 +220,8 @@
           "Gold",
           "Diamond"
         ],
-        "lifetime_warning": "ONCE PER LIFETIME (challenge program); credit-card-derived status is renewable",
-        "lifetime_warning_detail": "Direct status match challenge is one-time per account. However: Hilton Gold via Amex Platinum is automatic and renewable (free with the card). Hilton Diamond via Aspire is renewable. Diamond status challenge is a once-per-lifetime path.",
+        "lifetime_warning": "LIKELY once per lifetime (challenge program); credit-card-derived status is renewable",
+        "lifetime_warning_detail": "Direct status match challenge is treated as one-time per account by community reports but Hilton does not publish a formal lifetime restriction. Hilton has discretion. However: Hilton Gold via Amex Platinum is automatic and renewable (status itself free, $895 AF on the card). Hilton Diamond via Aspire is renewable ($550 AF). The card-renewable paths bypass the lifetime question.",
         "challenge_required": true,
         "challenge_detail": "Diamond challenge: typically requires earning a defined number of nights in a fixed window (e.g., 18 nights in 90 days). Specifics vary by promo.",
         "how_to_apply": "Contact Hilton Honors customer service directly. For renewable Gold/Diamond, use Amex Platinum / Aspire benefits.",
@@ -558,67 +558,81 @@
     "_description": "Renewable status granted as a credit card benefit. Not a status match strictly speaking, but functionally serves the same purpose: instant elite status without flying or staying. Renewable as long as the card is open.",
     "amex_platinum": {
       "card": "American Express Platinum",
-      "annual_fee_usd": 695,
+      "annual_fee_usd": 895,
+      "annual_fee_change_note": "AF increased from $695 to $895 announced September 2025; took effect January 2, 2026 for existing cardholders. Verify on issuer site before quoting.",
       "renewable_status": [
         {
           "program": "Hilton Honors",
           "tier": "Gold",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($895) is the cost of access."
         },
         {
           "program": "Marriott Bonvoy",
           "tier": "Gold Elite",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($895) is the cost of access."
         }
       ],
-      "confidence": "LIKELY",
+      "confidence": "VERIFIED",
       "sources": [
         {
           "type": "primary",
           "url": "https://www.americanexpress.com/us/credit-cards/card/platinum/"
+        },
+        {
+          "type": "secondary",
+          "url": "https://upgradedpoints.com/credit-cards/reviews/american-express-platinum-card/"
         }
       ],
-      "last_verified": "2026-04-29",
-      "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending."
+      "last_verified": "2026-04-30",
+      "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending. AF increased to $895 effective Jan 2 2026."
     },
     "amex_gold": {
       "card": "American Express Gold",
       "annual_fee_usd": 325,
       "renewable_status": [],
-      "confidence": "LIKELY",
+      "confidence": "VERIFIED",
       "sources": [
         {
           "type": "primary",
           "url": "https://www.americanexpress.com/us/credit-cards/card/gold-card/"
         }
       ],
-      "last_verified": "2026-04-29",
+      "last_verified": "2026-04-30",
       "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending."
     },
     "amex_business_platinum": {
       "card": "American Express Business Platinum",
-      "annual_fee_usd": 695,
+      "annual_fee_usd": 895,
+      "annual_fee_change_note": "AF increased from $695 to $895 announced September 2025; took effect January 2, 2026 for existing cardholders. Verify on issuer site before quoting.",
       "renewable_status": [
         {
           "program": "Hilton Honors",
           "tier": "Gold",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($895) is the cost of access."
         },
         {
           "program": "Marriott Bonvoy",
           "tier": "Gold Elite",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($895) is the cost of access."
         }
       ],
-      "confidence": "LIKELY",
+      "confidence": "VERIFIED",
       "sources": [
         {
           "type": "primary",
           "url": "https://www.americanexpress.com/us/credit-cards/card/business-platinum/"
+        },
+        {
+          "type": "secondary",
+          "url": "https://upgradedpoints.com/credit-cards/reviews/american-express-business-platinum-card/"
         }
       ],
-      "last_verified": "2026-04-29",
-      "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending."
+      "last_verified": "2026-04-30",
+      "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending. AF increased to $895 effective Jan 2 2026."
     },
     "hilton_aspire": {
       "card": "Hilton Honors Aspire (Amex)",
@@ -627,17 +641,18 @@
         {
           "program": "Hilton Honors",
           "tier": "Diamond",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($550) is the cost of access."
         }
       ],
-      "confidence": "LIKELY",
+      "confidence": "VERIFIED",
       "sources": [
         {
           "type": "primary",
           "url": "https://www.americanexpress.com/us/credit-cards/card/hilton-aspire/"
         }
       ],
-      "last_verified": "2026-04-29",
+      "last_verified": "2026-04-30",
       "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending."
     },
     "hilton_surpass": {
@@ -647,7 +662,8 @@
         {
           "program": "Hilton Honors",
           "tier": "Gold",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($150) is the cost of access."
         },
         {
           "program": "Hilton Honors",
@@ -656,14 +672,14 @@
           "spend_required": true
         }
       ],
-      "confidence": "LIKELY",
+      "confidence": "VERIFIED",
       "sources": [
         {
           "type": "primary",
           "url": "https://www.americanexpress.com/us/credit-cards/card/hilton-honors-surpass/"
         }
       ],
-      "last_verified": "2026-04-29",
+      "last_verified": "2026-04-30",
       "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending."
     },
     "world_of_hyatt_card": {
@@ -673,18 +689,19 @@
         {
           "program": "World of Hyatt",
           "tier": "Discoverist",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($95) is the cost of access."
         }
       ],
       "qualifying_credits": "5 tier-qualifying nights/year for the card; 2 additional per $5K card spend",
-      "confidence": "LIKELY",
+      "confidence": "VERIFIED",
       "sources": [
         {
           "type": "primary",
           "url": "https://creditcards.chase.com/a1/hyatt/"
         }
       ],
-      "last_verified": "2026-04-29",
+      "last_verified": "2026-04-30",
       "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending."
     },
     "marriott_bonvoy_brilliant": {
@@ -694,18 +711,19 @@
         {
           "program": "Marriott Bonvoy",
           "tier": "Platinum Elite",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($650) is the cost of access."
         }
       ],
       "qualifying_credits": "25 elite nights/year",
-      "confidence": "LIKELY",
+      "confidence": "VERIFIED",
       "sources": [
         {
           "type": "primary",
           "url": "https://www.americanexpress.com/us/credit-cards/card/marriott-bonvoy-brilliant/"
         }
       ],
-      "last_verified": "2026-04-29",
+      "last_verified": "2026-04-30",
       "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending."
     },
     "ihg_premier_business": {
@@ -715,17 +733,18 @@
         {
           "program": "IHG One Rewards",
           "tier": "Platinum Elite",
-          "free": true
+          "status_itself_free": true,
+          "note": "Status itself comes free with the card. Card AF ($99) is the cost of access."
         }
       ],
-      "confidence": "LIKELY",
+      "confidence": "VERIFIED",
       "sources": [
         {
           "type": "primary",
           "url": "https://creditcards.chase.com/business-credit-cards/ihg-rewards-premier-business"
         }
       ],
-      "last_verified": "2026-04-29",
+      "last_verified": "2026-04-30",
       "confidence_note": "Card benefits and annual fees change frequently. Verify on issuer site before recommending."
     },
     "_decision_rule": "If you can get the equivalent or higher status from holding a credit card you'd want anyway, that beats a one-time status match. Status match is best for programs where no card grants the tier you want (e.g., airline elite tiers above Gold; hotel Diamond/Titanium)."

@@ -57,10 +57,10 @@ The destination program offers the match for free, no third party. Best path whe
 | AA AAdvantage | Once every 2 years | Trial | Yes (Loyalty Points) |
 | United MileagePlus | Once every 3 years | 120 days | Yes (PQF + PQP) |
 | Delta SkyMiles | Once every 3 years | 90 days | Yes (MQDs) |
-| Alaska Atmos | **Once per lifetime** | 90 days | Yes (base points) |
-| Hyatt Globalist Challenge | **Once per lifetime** (when offered) | varies | Yes (paid nights) |
-| Marriott Platinum Challenge | Once per lifetime (when offered, targeted) | varies | Yes (paid nights) |
-| Hilton Diamond Challenge | Once per lifetime | varies | Yes (paid nights) |
+| Alaska Atmos | **Once per lifetime** (verified primary) | 90 days | Yes (base points) |
+| Hyatt Globalist Challenge | LIKELY once per lifetime (community-confirmed; Hyatt discretion) | varies | Yes (paid nights) |
+| Marriott Platinum Challenge | LIKELY once per lifetime when offered (targeted) | varies | Yes (paid nights) |
+| Hilton Diamond Challenge | LIKELY once per lifetime (when offered) | varies | Yes (paid nights) |
 | IHG One Rewards | Varies by promo | varies | Sometimes |
 
 For full details, see `direct_matches` section of `data/status-match.json`.
@@ -91,12 +91,14 @@ For mid-tier hotel status (Gold) and a few other tiers, holding a credit card gr
 
 | Card | Annual Fee | Status Granted |
 |------|-----------|----------------|
-| Amex Platinum / Business Platinum | $695 | Hilton Gold + Marriott Gold |
+| Amex Platinum / Business Platinum | $895 (was $695, increased Jan 2 2026) | Hilton Gold + Marriott Gold |
 | Hilton Aspire | $550 | Hilton Diamond |
 | Hilton Surpass | $150 | Hilton Gold (Diamond requires $40K spend) |
 | World of Hyatt Card (Chase) | $95 | Hyatt Discoverist |
 | Marriott Bonvoy Brilliant (Amex) | $650 | Marriott Platinum Elite |
 | IHG One Rewards Premier (Chase) | $99 | IHG Platinum Elite |
+
+**Note on Amex Platinum / Business Platinum:** Annual fee increased from $695 to $895 effective January 2, 2026 (announced September 2025). Existing cardholders had their renewal cycles affected after that date. The card still grants Hilton Gold + Marriott Gold automatically — those benefits themselves are free, but the AF is the cost of access.
 
 **Decision rule:** if a credit card grants the tier you want and you'd hold the card anyway for other benefits, that beats a one-time match every time. Status match is best for tiers no card grants (most airline tiers; hotel Diamond/Titanium without spend gating).
 
@@ -194,6 +196,7 @@ jq '[.direct_matches.airlines, .direct_matches.hotels, .paid_concierge.programs]
 ## Cross-References
 
 - [`points-valuations`](../points-valuations/SKILL.md) — when computing whether elite status changes the CPP math (lounge value, upgrade probability, free bag fees saved)
+- [`trip-calculator`](../trip-calculator/SKILL.md) — for the fee/value math on Path 2 paid concierge matches: is the application fee less than the value of the perks across the user's expected travel pattern?
 - [`booking-guidance`](../booking-guidance/SKILL.md) — once you have status, how to actually use it for booking
 - [`alliances`](../alliances/SKILL.md) — alliance benefits propagate; matched into oneworld Sapphire via Atmos Gold gets you sapphire benefits across all oneworld carriers
 - [`partner-awards`](../partner-awards/SKILL.md) — status sometimes affects which partner awards are bookable through which program

@@ -1039,8 +1039,9 @@
         "transfers_from": "Amex MR (1:1.6 ratio)"
       },
       "booking_method": "phone only (US: 800-237-6639)",
+      "bookability_reality": "RARELY ACTUALLY BOOKABLE. Community reports 2024-2026 indicate phone agents are often untrained on the product or unable to pull it up in the system. Plan an alternative even when this is the recommended path on paper.",
       "last_verified": "2026-04-29",
-      "notes": "Difficult-to-book SkyTeam-aligned RTW survivor after SkyTeam Go Round was killed. Phone-only and reportedly slow/painful. Currency is kilometers, not miles. Avoid unless other alliances don't fit.",
+      "notes": "Difficult-to-book SkyTeam-aligned RTW survivor after SkyTeam Go Round was killed. Phone-only and reportedly slow/painful. Currency is kilometers, not miles. Avoid unless other alliances don't fit. Even when alignment fits, plan an alternative because the in-system bookability is unreliable.",
       "sources": [
         {
           "type": "secondary",
