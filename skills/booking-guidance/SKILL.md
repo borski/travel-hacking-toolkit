@@ -70,3 +70,7 @@ A partner award that's "hidden" (not bookable online) often requires a phone age
 Many partner programs only see "saver" inventory on the operating carrier. If you find space on the operating airline's site but the partner program shows nothing, check the fare class. Saver classes are X (economy), I (business), O (first) on United. If the carrier only has standard or anytime class open, partners can't book it.
 
 See the `cabin-codes` skill for the full mapping.
+
+## Status Effects on Booking
+
+Elite status with the booking program (or alliance partner) often unlocks longer hold windows, waived close-in booking fees, and priority on phone bookings. If the user has elite status, mention which benefits apply. If they don't and the question of getting status comes up, load the `status-match` skill — it covers the lifetime restrictions that punish wasted matches and the renewable card-based alternatives.

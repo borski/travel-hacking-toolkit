@@ -17,6 +17,7 @@ api_key: Uses individual skill keys
 - `stopovers` — per-program stopover rules; can turn a one-trip plan into a multi-city itinerary at no extra mileage cost
 - `award-holds` — per-program hold rules; affects transfer timing decisions
 - `round-the-world` — when the trip request implies 3+ stops or multiple regions, RTW products may be cheaper than separate awards
+- `status-match` — when a user mentions wanting status or asks about elite tier shortcuts; covers free direct matches, paid concierge fees, and once-per-lifetime warnings
 
 
 # Trip Planner

@@ -21,6 +21,8 @@ Search every available source for a route and present one unified comparison. Co
 - `transfer-bonuses` — current active transfer bonuses (live data); changes effective ratios when computing options 4-7 of the comparison table
 - `stopovers` — when an itinerary has a long layover or multi-city, check if a stopover-allowing program priced lower than separate one-ways
 - `round-the-world` — for 3+ stop multi-region itineraries, RTW products may beat sum-of-parts award pricing
+- `award-holds` — most major Western programs (UA, Aeroplan, AS, DL, BA, VS, AF/KLM) no longer offer holds. Affects whether the recommended path is "transfer first then ticket" or "ticket immediately"
+- `status-match` — when comparing options that include upgrades or elite-only benefits (lounge access, free bags, priority); status changes the real cost of a flight
 
 ## When to Use
 

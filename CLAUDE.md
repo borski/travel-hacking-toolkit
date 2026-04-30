@@ -45,13 +45,13 @@ This toolkit ships skills (in `skills/`) and MCP servers. Skill names and descri
 
 **Hotels:** `premium-hotels`, `compare-hotels`, `hotel-chains`, `ticketsatwork`
 
-**Loyalty / points:** `awardwallet`, `transfer-partners`, `trip-calculator`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `american-airlines`, `wheretocredit`, `transfer-bonuses`
+**Loyalty / points:** `awardwallet`, `transfer-partners`, `trip-calculator`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `american-airlines`, `wheretocredit`, `transfer-bonuses`, `status-match`
 
 **Portals:** `chase-travel`, `amex-travel`, `bilt`
 
 **Trip planning:** `trip-planner`, `atlas-obscura`, `scandinavia-transit`, `seatmaps`, `round-the-world`
 
-**Reference (auto-load on relevant context):** `flight-search-strategy`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `hotel-chains`, `fallback-and-resilience`, `booking-guidance`, `lessons-learned`, `transfer-bonuses`, `stopovers`, `award-holds`, `round-the-world`
+**Reference (auto-load on relevant context):** `flight-search-strategy`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `hotel-chains`, `fallback-and-resilience`, `booking-guidance`, `lessons-learned`, `transfer-bonuses`, `stopovers`, `award-holds`, `round-the-world`, `status-match`
 
 **Other:** `serpapi`, `rapidapi`
 
@@ -121,6 +121,12 @@ Load the `points-valuations` skill. It covers cpp formula, surcharge-heavy progr
 2. **Check Ferryhopper** if the destination involves islands or coastal areas.
 3. **Check `scandinavia-transit`** if they're going to Norway, Sweden, or Denmark. Ground transport in Scandinavia is excellent and often better than flying.
 
+### When someone asks about elite status or status match:
+1. **Load the `status-match` skill.** It covers free direct matches, paid concierge via statusmatch.com, and renewable card-based status.
+2. **Always state the lifetime restriction first.** Most programs are once-every-3-years or once-per-lifetime. Alaska Atmos = once per lifetime. United/Delta = once every 3 years. AA = once every 2 years. Hyatt Globalist Challenge = once per lifetime.
+3. **Check Path 3 (card-granted) first.** If a card the user already holds (or would consider holding) grants the equivalent tier, that beats a one-time match every time.
+4. **Ask about upcoming travel.** A wasted match cannot be undone. If the user has no flying or staying in the next 6-12 months that uses the matched status, recommend holding off.
+
 ## API Keys
 
 Provided via environment variables. See `.env.example` for every key and where to get it. Not all are required. Minimum viable setup: Seats.aero + SerpAPI.
@@ -152,3 +158,4 @@ If you change skills, CLAUDE.md, or MCP config, run `bash scripts/smoke-test.sh`
 - For per-program stopover rules (Iceland 7-day free stopover, Aeroplan, Alaska Atmos, Flying Blue free, Singapore tiers, plus the negative space of programs that don't allow stopovers), load the `stopovers` skill.
 - For per-program hold rules (most major Western programs no longer allow holds), load the `award-holds` skill before any transfer-first workflow.
 - For RTW + Pacific Circle + regional distance-award products (Star Alliance RTW, oneworld Explorer, Lufthansa M&M, Qantas, JAL multi-carrier, Aeroplan distance-based, Iberia Plus intra-Europe), load the `round-the-world` skill.
+- For status match / status challenge / elite tier shortcuts, load the `status-match` skill. CRITICAL: Most major airline programs are once-every-3-years or once-per-lifetime. Always check the lifetime field before recommending. Card-granted renewable status (Amex Platinum, Aspire) often beats a one-time match.

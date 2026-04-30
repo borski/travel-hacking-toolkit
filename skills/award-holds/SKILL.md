@@ -129,6 +129,7 @@ jq '.transfer_speed_reference' data/award-holds.json
 - [`seats-aero`](../seats-aero/SKILL.md) — finding the award space to hold
 - [`stopovers`](../stopovers/SKILL.md) — multi-segment / stopover awards have specific hold rules per program (some allow holds on online-only single-segment awards but not multi-segment ones requiring phone booking)
 - [`round-the-world`](../round-the-world/SKILL.md) — RTW bookings have unique hold rules. Star Alliance RTW must be ticketed >=72 hours before first departure (effectively a hard purchase deadline, not a hold). Most other RTWs require phone booking and immediate ticketing.
+- [`status-match`](../status-match/SKILL.md) — Elite tiers often unlock longer hold windows or waived close-in fees. Match-into status that gives elite hold privileges (e.g., AA Executive Platinum gets longer holds; Hyatt Globalist gets points-stay holds).
 
 ## Source Hierarchy (Per Research Integrity Protocol)
 

@@ -82,6 +82,12 @@ This is the whole game. If 60K miles via transfer gets you a flight that would c
 
 Burning Chase UR on a 1.2cpp portal redemption is wasteful when you could transfer to Hyatt at 2.0cpp for hotels. Mention when points have better uses elsewhere.
 
+## Status Affects the Real Cost of a Flight
+
+Elite status changes the effective cost of any cash flight by adding ~$50-150/segment of value (lounge access, free checked bags, priority boarding, upgrade eligibility). When computing whether to use points or pay cash, factor in whether the user has status that converts cash flights into a better experience.
+
+For users without status who travel enough to benefit, load the `status-match` skill to compare three paths: free direct match (best when available), paid concierge via statusmatch.com (real fees, real status), and card-granted renewable status (Amex Platinum = Hilton Gold + Marriott Gold automatic). The "lifetime restriction" field is critical because a wasted match cannot be undone.
+
 ## Multi-Stop Itinerary CPP Benchmarks
 
 For multi-stop or RTW itineraries, the relevant comparison isn't a single one-way's CPP. It's the total cash value of the trip vs the total miles + fees. The `round-the-world` skill is the reference for those products. A few benchmarks:
