@@ -127,6 +127,8 @@ jq '.transfer_speed_reference' data/award-holds.json
 - [`partner-awards`](../partner-awards/SKILL.md) — which alliance / bilateral awards each program can ticket (so you know your hold options for a given award)
 - [`booking-guidance`](../booking-guidance/SKILL.md) — phone numbers, the canonical "hold before transfer" workflow
 - [`seats-aero`](../seats-aero/SKILL.md) — finding the award space to hold
+- [`stopovers`](../stopovers/SKILL.md) — multi-segment / stopover awards have specific hold rules per program (some allow holds on online-only single-segment awards but not multi-segment ones requiring phone booking)
+- [`round-the-world`](../round-the-world/SKILL.md) — RTW bookings have unique hold rules. Star Alliance RTW must be ticketed >=72 hours before first departure (effectively a hard purchase deadline, not a hold). Most other RTWs require phone booking and immediate ticketing.
 
 ## Source Hierarchy (Per Research Integrity Protocol)
 

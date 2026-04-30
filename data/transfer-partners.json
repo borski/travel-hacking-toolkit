@@ -7,7 +7,8 @@
       "https://www.americanexpress.com/en-us/rewards/membership-rewards/transfer",
       "https://www.chase.com/personal/credit-cards/ultimate-rewards",
       "https://www.capitalone.com/credit-cards/benefits/travel-transfer-partners/"
-    ]
+    ],
+    "staleness_days": 90
   },
   "bilt": {
     "display_name": "Bilt Rewards",

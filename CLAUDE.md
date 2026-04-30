@@ -45,13 +45,13 @@ This toolkit ships skills (in `skills/`) and MCP servers. Skill names and descri
 
 **Hotels:** `premium-hotels`, `compare-hotels`, `hotel-chains`, `ticketsatwork`
 
-**Loyalty / points:** `awardwallet`, `transfer-partners`, `trip-calculator`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `american-airlines`, `wheretocredit`
+**Loyalty / points:** `awardwallet`, `transfer-partners`, `trip-calculator`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `american-airlines`, `wheretocredit`, `transfer-bonuses`
 
-**Portals:** `chase-travel`, `amex-travel`
+**Portals:** `chase-travel`, `amex-travel`, `bilt`
 
-**Trip planning:** `trip-planner`, `atlas-obscura`, `scandinavia-transit`, `seatmaps`
+**Trip planning:** `trip-planner`, `atlas-obscura`, `scandinavia-transit`, `seatmaps`, `round-the-world`
 
-**Reference (auto-load on relevant context):** `flight-search-strategy`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `hotel-chains`, `fallback-and-resilience`, `booking-guidance`, `lessons-learned`
+**Reference (auto-load on relevant context):** `flight-search-strategy`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `hotel-chains`, `fallback-and-resilience`, `booking-guidance`, `lessons-learned`, `transfer-bonuses`, `stopovers`, `award-holds`, `round-the-world`
 
 **Other:** `serpapi`, `rapidapi`
 
@@ -91,9 +91,11 @@ Load the `points-valuations` skill. It covers cpp formula, surcharge-heavy progr
 
 1. **Always compute cpp on the TOTAL out-of-pocket cost** including taxes, surcharges, and fees you still pay on the award.
 2. **Verify transfer paths in `data/transfer-partners.json`** before recommending. Not all transfers are 1:1.
-3. **Check for current transfer bonuses** before final recommendation. A 30% bonus changes everything.
+3. **Check for current transfer bonuses via the `transfer-bonuses` skill** before final recommendation. Live data, weekly auto-refresh. A 30% bonus changes everything.
 4. **Transfer partners often beat the portal.** Make this comparison explicit.
 5. **Factor in opportunity cost.** Burning UR on a 1.2cpp portal redemption is wasteful when Hyatt at 2.0cpp is available.
+6. **For multi-stop or RTW trips,** load the `stopovers` and `round-the-world` skills. A stopover can turn one trip into two destinations for the same award. RTW products can beat 3+ separate awards.
+7. **Before recommending a transfer, load the `award-holds` skill.** Most major Western programs no longer offer holds, which makes "transfer first, ticket second" risky. Plan timing carefully.
 
 ### When someone asks about hotels:
 1. **Check multiple sources** with the `compare-hotels` skill. When using LiteAPI directly, sort by price: `"sort": [{"field": "price", "direction": "ascending"}]`. The sort param is an array of objects, not a string. Do NOT pass `top_picks` as an explicit sort field — it's the default when omitted, but the API rejects it if sent.
@@ -146,3 +148,7 @@ If you change skills, CLAUDE.md, or MCP config, run `bash scripts/smoke-test.sh`
 - For tool failure recovery, load the `fallback-and-resilience` skill.
 - For institutional knowledge from past searches (Seats.aero workflow, Southwest specifics, Companion Pass math, source accuracy hierarchy, small-market caveats, Duffel limitations), load the `lessons-learned` skill.
 - For booking flow, phone numbers, and the "hold before transfer" rule, load the `booking-guidance` skill.
+- For current credit card transfer bonuses (live, weekly-refreshed), load the `transfer-bonuses` skill before recommending any transfer.
+- For per-program stopover rules (Iceland 7-day free stopover, Aeroplan, Alaska Atmos, Flying Blue free, Singapore tiers, plus the negative space of programs that don't allow stopovers), load the `stopovers` skill.
+- For per-program hold rules (most major Western programs no longer allow holds), load the `award-holds` skill before any transfer-first workflow.
+- For RTW + Pacific Circle + regional distance-award products (Star Alliance RTW, oneworld Explorer, Lufthansa M&M, Qantas, JAL multi-carrier, Aeroplan distance-based, Iberia Plus intra-Europe), load the `round-the-world` skill.

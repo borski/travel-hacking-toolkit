@@ -109,8 +109,11 @@ points_required_in_card_currency = miles_required / effective_ratio
 - [transfer-partners](../transfer-partners/SKILL.md): standard transfer ratios (no bonus)
 - [points-valuations](../points-valuations/SKILL.md): cpp floor per program; use to sanity-check whether a bonus actually beats portal/cash
 - [booking-guidance](../booking-guidance/SKILL.md): the critical "hold before you transfer" rule
+- [award-holds](../award-holds/SKILL.md): per-program hold rules. Critical because most major Western programs no longer offer holds, which makes timing transfers around bonus expirations more dangerous.
 - [seats-aero](../seats-aero/SKILL.md): verify award availability before transferring
 - [partner-awards](../partner-awards/SKILL.md): which programs ticket which airlines
+- [stopovers](../stopovers/SKILL.md): if a bonus is active on a stopover-friendly program (e.g. Flying Blue, Aeroplan, Alaska), the effective value of a multi-stop redemption goes up further
+- [round-the-world](../round-the-world/SKILL.md): RTW awards take large transfers; a 30% bonus on the right currency dramatically lowers the effective points cost
 
 ## Source Hierarchy
 

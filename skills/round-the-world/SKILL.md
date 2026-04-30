@@ -279,8 +279,10 @@ The helper handles 6,072 IATA airport codes (OpenFlights data) and computes have
 - **partner-awards** skill: who can ticket whom across alliances and bilateral partnerships.
 - **alliances** skill: alliance membership and recent shifts.
 - **transfer-partners** skill: which credit card points reach which RTW programs.
+- **transfer-bonuses** skill: current promotional bonuses to apply when transferring to an RTW program. RTW awards take large transfers, so a 30% bonus saves real points.
 - **points-valuations** skill: CPP rules to evaluate whether an RTW makes sense.
 - **booking-guidance** skill: hold-before-transfer rules and phone-booking phone numbers.
+- **award-holds** skill: per-program hold rules. Most RTW programs (Aeroplan, ANA discontinued, Lufthansa M&M) require phone booking and the hold-before-transfer pattern, but some (Star Alliance through Aeroplan, oneworld through AA) won't hold a multi-segment award. Critical to know before transferring large balances.
 
 ## Source Hierarchy
 
