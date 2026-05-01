@@ -20,7 +20,7 @@
       "type": "http",
       "url": "https://mcp.liteapi.travel/api/mcp",
       "headers": {
-        "Authorization": "Bearer ${LITEAPI_API_KEY}"
+        "Authorization": "Bearer ${LITEAPI_API_KEY:-unset}"
       }
     },
     "airbnb": {
