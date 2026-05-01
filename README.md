@@ -16,7 +16,7 @@ Inside Claude Code, run:
 
 ```
 /plugin marketplace add borski/travel-hacking-toolkit
-/plugin install travel-hacker@borski-travel
+/plugin install travel-hacker@borski
 ```
 
 Done. 42 skills, 6 MCP servers (5 free + LiteAPI which needs a key), and the `travel-hacker` subagent are installed. Run `claude` from anywhere and ask it to plan a trip.

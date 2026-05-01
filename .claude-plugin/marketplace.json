@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "borski-travel",
+  "name": "borski",
   "description": "Travel hacking plugins by Borski. Flights, hotels, points, miles, awards.",
   "owner": {
     "name": "Michael Borohovski"
