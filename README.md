@@ -100,7 +100,7 @@ op run --env-file=.env -- claude
 
 (See [1Password CLI docs](https://developer.1password.com/docs/cli/secrets-environment-variables/) for the `.env` template syntax.)
 
-> The toolkit reads keys from the shell environment because Anthropic's plugin `userConfig` mechanism is currently broken for bash-based skills ([anthropics/claude-code#11927](https://github.com/anthropics/claude-code/issues/11927), [#39125](https://github.com/anthropics/claude-code/issues/39125)). When that's fixed upstream, we'll move to the cleaner in-plugin config flow.
+> The toolkit reads keys from the shell environment because plugin `userConfig` doesn't propagate to skills that shell out to scripts (verified empirically; related upstream issues [anthropics/claude-code#11927](https://github.com/anthropics/claude-code/issues/11927), [#39125](https://github.com/anthropics/claude-code/issues/39125)).
 
 ### Clone path (for OpenCode users or contributors)
 
