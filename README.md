@@ -95,8 +95,10 @@ Reload (`source ~/.zshrc`) or open a new terminal, then run `claude`.
 If you keep secrets in 1Password, you can resolve at launch instead:
 
 ```bash
-op run --env-file=.env -- claude
+op run --no-masking --env-file=.env -- claude
 ```
+
+The `--no-masking` flag is required because `op run`'s default output masking interferes with Claude Code's TTY detection and triggers a non-interactive prompt error. Masking only affects stdout, not the env vars themselves, so the keys still get to claude correctly.
 
 (See [1Password CLI docs](https://developer.1password.com/docs/cli/secrets-environment-variables/) for the `.env` template syntax.)
 
