@@ -63,16 +63,8 @@ setup_api_keys() {
   fi
 
   if [ "$USE_CLAUDE" -eq 1 ]; then
-    local claude_settings="$REPO_DIR/.claude/settings.local.json"
-    if [ ! -f "$claude_settings" ]; then
-      if [ -f "$REPO_DIR/.claude/settings.local.json.example" ]; then
-        cp "$REPO_DIR/.claude/settings.local.json.example" "$claude_settings"
-        echo "  Created .claude/settings.local.json (Claude Code, auto-gitignored)."
-        echo "  Edit it to add your API keys."
-      fi
-    else
-      echo "  .claude/settings.local.json already exists. Skipping."
-    fi
+    echo "  Claude Code reads API keys from your shell environment, not from a config file."
+    echo "  Use scripts/setup-keys.sh after this finishes (or run /travel-hacker:getting-started inside Claude Code)."
   fi
 
   echo ""
@@ -278,6 +270,11 @@ setup_api_keys
 install_atlas_deps
 install_optional_tools
 
+# Install git hooks for contributors. Safe to run on any clone; no-ops outside git.
+echo ""
+echo "Installing git hooks..."
+bash "$REPO_DIR/scripts/install-hooks.sh" 2>&1 | sed 's/^/  /' || true
+
 if [ "$USE_CODEX" -eq 1 ]; then
   install_codex_plugin
 fi
@@ -295,7 +292,7 @@ if [ "$USE_OPENCODE" -eq 1 ]; then
   echo "  OpenCode:    opencode"
 fi
 if [ "$USE_CLAUDE" -eq 1 ]; then
-  echo "  Claude Code: claude --strict-mcp-config --mcp-config .mcp.json"
+  echo "  Claude Code: claude --plugin-dir ."
 fi
 if [ "$USE_CODEX" -eq 1 ]; then
   echo "  Codex:       source .env && codex"
@@ -307,7 +304,8 @@ if [ "$USE_OPENCODE" -eq 1 ] || [ "$USE_CODEX" -eq 1 ]; then
   echo "Add your API keys:  edit .env"
 fi
 if [ "$USE_CLAUDE" -eq 1 ]; then
-  echo "Add your API keys:  edit .claude/settings.local.json"
+  echo "Add your API keys:  set them in your shell rc (~/.zshrc or ~/.bashrc),"
+  echo "                    or run /travel-hacker:getting-started inside Claude Code."
 fi
 
 echo ""

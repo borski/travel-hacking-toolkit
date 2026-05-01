@@ -167,17 +167,8 @@ function Setup-ApiKeys {
     }
 
     if ($UseClaude) {
-        $claudeSettings = Join-Path $RepoDir '.claude\settings.local.json'
-        $claudeExample  = Join-Path $RepoDir '.claude\settings.local.json.example'
-        if (-not (Test-Path $claudeSettings)) {
-            if (Test-Path $claudeExample) {
-                Copy-Item -LiteralPath $claudeExample -Destination $claudeSettings
-                Write-Host "  Created .claude\settings.local.json (Claude Code, auto-gitignored)."
-                Write-Host "  Edit it to add your API keys."
-            }
-        } else {
-            Write-Host "  .claude\settings.local.json already exists. Skipping."
-        }
+        Write-Host "  Claude Code reads API keys from your PowerShell profile environment, not from a config file."
+        Write-Host "  Use scripts\setup-keys.ps1 after this finishes (or run /travel-hacker:getting-started inside Claude Code)."
     }
 
     Write-Host ""
@@ -485,7 +476,7 @@ if ($UseOpenCode) {
     Write-Host "  OpenCode:    opencode"
 }
 if ($UseClaude) {
-    Write-Host "  Claude Code: claude --strict-mcp-config --mcp-config .mcp.json"
+    Write-Host "  Claude Code: claude --plugin-dir ."
 }
 if ($UseCodex) {
     Write-Host "  Codex:       codex"
@@ -497,7 +488,8 @@ if ($UseOpenCode -or $UseCodex) {
     Write-Host "Add your API keys:  edit .env"
 }
 if ($UseClaude) {
-    Write-Host "Add your API keys:  edit .claude\settings.local.json"
+    Write-Host "Add your API keys:  set them in your PowerShell profile (`$PROFILE),"
+    Write-Host "                    or run /travel-hacker:getting-started inside Claude Code."
 }
 
 Write-Host ""
