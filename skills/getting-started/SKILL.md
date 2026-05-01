@@ -17,11 +17,13 @@ First detect the user's platform via the Bash tool's environment. If `bash` is a
 
 Don't print the values; only report SET vs MISSING.
 
-### Bash (macOS / Linux / WSL / Git Bash)
+### Bash / Zsh (macOS / Linux / WSL / Git Bash)
+
+Use `printenv` so the loop works in both bash and zsh (Claude Code's bash tool may use either):
 
 ```bash
 for var in SEATS_AERO_API_KEY DUFFEL_API_KEY_LIVE IGNAV_API_KEY AWARDWALLET_API_KEY AWARDWALLET_USER_ID SERPAPI_API_KEY RAPIDAPI_KEY LITEAPI_API_KEY TRIPADVISOR_API_KEY ENTUR_CLIENT_NAME RESROBOT_API_KEY REJSEPLANEN_API_KEY; do
-  if [ -n "${!var:-}" ]; then echo "SET: $var"; else echo "MISSING: $var"; fi
+  if [ -n "$(printenv "$var")" ]; then echo "SET: $var"; else echo "MISSING: $var"; fi
 done
 ```
 
