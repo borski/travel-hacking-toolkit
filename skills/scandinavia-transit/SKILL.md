@@ -1,6 +1,6 @@
 ---
 name: scandinavia-transit
-description: Search trains, buses, and ferries across Norway (Entur), Sweden (ResRobot), and Denmark (Rejseplanen) for intra-Scandinavia travel planning. Use when planning ground transport between cities within Scandinavia. Triggers on "train", "bus", "ferry", "Vy", "SJ", "DSB", "Oslo to Bergen", "Stockholm to", "Copenhagen to", "Entur", "ResRobot", "Rejseplanen", "how to get between", "ground transport", "rail", or any intra-Scandinavia routing question.
+description: Search trains, buses, and ferries in Norway (Entur), Sweden (ResRobot), and Denmark (Rejseplanen). Intra-Scandinavia ground transport with schedules and Danish fare pricing.
 category: destinations
 summary: Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing.
 api_key: Entur + Trafiklab + Rejseplanen

@@ -1,6 +1,6 @@
 ---
 name: alliances
-description: Airline alliance reference (Star Alliance, oneworld, SkyTeam) and key cross-alliance booking relationships. Maps which loyalty programs can book which airlines. Load when researching award flights, deciding which program to book through, or when partnerships and alliance membership matter. Triggers on "Star Alliance", "oneworld", "SkyTeam", "alliance partner", "which program books", "United partners", "AAdvantage partners", "Aeroplan", "Flying Blue", "LifeMiles", "ANA", "cross-alliance", or any award booking that depends on partnership relationships.
+description: Airline alliance membership (Star Alliance, oneworld, SkyTeam) and cross-alliance booking relationships. Maps which loyalty programs book which airlines, including bilateral partnerships outside alliances.
 category: reference
 summary: Star Alliance, oneworld, SkyTeam membership and recent shifts (SAS to SkyTeam, ITA to Star, Hawaiian/Fiji to oneworld). Key cross-alliance booking relationships.
 ---

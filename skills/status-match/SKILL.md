@@ -1,6 +1,6 @@
 ---
 name: status-match
-description: Per-program status match and status challenge rules across airlines and hotels, including the critical lifetime-or-once-per-N-years restrictions that make a wasted match expensive. Distinguishes free direct matches (AA, United, Delta, Alaska, Hyatt, Marriott, Hilton) from paid concierge matches via statusmatch.com (Flying Blue, Lufthansa, Etihad, Aeroplan, Frontier, Spirit, etc.) with real fee data, and from renewable card-based status (Amex Platinum, Hyatt Card, Aspire). Auto-load when the user asks about status match, status challenge, "match my status," elite tier shortcut, Globalist Challenge, Marriott Platinum Challenge, fast-track status, statusmatch.com, statusmatcher.com, or considers switching loyalty programs. Triggers on status match, status challenge, match my status, elite shortcut, Globalist Challenge, Platinum Challenge, fast track elite, statusmatch, lifetime status match, once per lifetime, switch loyalty program.
+description: Status match and status challenge rules for airlines and hotels. Covers free direct matches, paid concierge via statusmatch.com with fees, card-granted status, and critical lifetime/once-per-N-years restrictions that make wasted matches expensive.
 category: reference
 summary: Per-program status match rules with lifetime / once-per-N-years warnings, free vs paid concierge distinction, real fees, plus card-granted renewable status as the alternative.
 allowed-tools: Bash(jq *)

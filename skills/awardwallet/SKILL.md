@@ -1,6 +1,6 @@
 ---
 name: awardwallet
-description: Query AwardWallet loyalty program balances, status, and history. Use when discussing points, miles, travel rewards, airline status, or trip planning on points. Triggers on "how many points", "miles balance", "elite status", "loyalty program", "AwardWallet", "what points do I have", "transfer partners", or any question about points/miles inventory.
+description: Query AwardWallet for loyalty program balances, elite status, and transaction history. Use when checking points inventory, airline status, or planning trips on points.
 category: loyalty
 summary: All loyalty balances, elite status, history.
 api_key: AwardWallet Business

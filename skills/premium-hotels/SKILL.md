@@ -1,6 +1,6 @@
 ---
 name: premium-hotels
-description: Search Amex Fine Hotels & Resorts (FHR), The Hotel Collection (THC), and Chase Sapphire Reserve Hotel Collection (Chase Edit) properties by city. Compare credits, benefits, and stacking opportunities across programs.
+description: Search Amex FHR/THC and Chase Edit hotels by city. Compare credits, benefits, and find stacking opportunities across card programs.
 category: hotels
 summary: Search 4,659 Amex FHR/THC + Chase Edit hotels by city. Stacking opportunities.
 api_key: None (local data)

@@ -1,6 +1,6 @@
 ---
 name: seatmaps
-description: Look up aircraft seat maps, cabin dimensions, and seat recommendations via SeatMaps.com and AeroLOPA. Search by flight number or airline+aircraft. Uses agent-browser for data extraction.
+description: Aircraft seat maps, cabin dimensions, and seat recommendations via SeatMaps.com and AeroLOPA. Search by flight number or airline+aircraft via agent-browser.
 category: flights
 summary: Aircraft seat maps, cabin dimensions, seat recommendations.
 api_key: None (requires agent-browser)

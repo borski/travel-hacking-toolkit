@@ -1,6 +1,6 @@
 ---
 name: plan-trip
-description: User-invoked guided trip planning. Asks the right questions in order (destination, dates, who, class, flexibility, points-or-cash preference) and runs the full hero workflow. Use when the user types /travel-hacker:plan-trip or asks for a guided trip plan with no other context.
+description: Guided trip planning workflow. Asks destination, dates, travelers, class, and flexibility, then runs parallel flight/hotel search with cpp math and booking plan.
 disable-model-invocation: true
 category: orchestration
 summary: Guided trip planner. The hero command for the toolkit.

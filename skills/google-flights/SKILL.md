@@ -1,6 +1,6 @@
 ---
 name: google-flights
-description: Search Google Flights for flight prices and schedules using browser automation. Use when user asks to search flights, find airfare, compare prices, check flight availability, or look up routes. Covers ALL airlines including Southwest (which no API can reach). Triggers include "search flights", "find flights", "how much is a flight", "flights from X to Y", "cheapest flight", "flight prices", "airfare", "flight schedule", "nonstop flights", "when should I fly".
+description: Browser-automated Google Flights search via agent-browser. All airlines including Southwest. Cash prices, schedules, economy/business comparison, market selection.
 category: flights
 summary: Browser-automated Google Flights. All airlines including Southwest.
 api_key: None (requires agent-browser)

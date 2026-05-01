@@ -1,6 +1,6 @@
 ---
 name: award-holds
-description: Per-program rules for placing award flight tickets on hold. Critical for transferable-currency bookings (Amex MR, Chase UR, Citi TYP, Cap One, Bilt) where transfer takes minutes to days. Covers programs that allow holds (AA 24h online, Lufthansa M&M 5 days, Flying Blue 3 days, Cathay Asia Miles 2 days, Turkish 2 days, Virgin Atlantic 1-2 days, Singapore agent-discretionary) and the negative space (United, Alaska Atmos, Delta, Aeroplan, BA, ANA, Qatar, Korean — all do NOT allow holds). Includes transfer-speed reference. Load when a user plans to transfer points for an award booking and needs to know if they can hold the seat first. Triggers on award hold, hold an award, ticket hold, courtesy hold, hold before transfer, transfer points before booking, AA hold, AAdvantage hold, Lufthansa hold, Flying Blue hold, Cathay hold, Asia Miles hold, KrisFlyer hold, Virgin Atlantic hold, Turkish hold, hold the seat.
+description: Per-program rules for placing award flights on hold before transferring points. Covers programs with holds (AA, Lufthansa, Flying Blue, Cathay, Turkish, Virgin Atlantic) and those without. Includes transfer-speed reference.
 category: reference
 summary: Per-program rules for placing award flight tickets on hold. Covers 6 programs with reliable holds (AA 24h online, LH 5 days, FB 3 days, CX 2 days, Turkish 2 days, Virgin Atlantic 1-2 days), Singapore as agent-discretionary, and the negative space (UA/AS/DL/Aeroplan/BA/ANA/Qatar/Korean - most programs do not allow holds).
 allowed-tools: Bash(jq *), Read

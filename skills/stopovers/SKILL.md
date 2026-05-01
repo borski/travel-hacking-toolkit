@@ -1,6 +1,6 @@
 ---
 name: stopovers
-description: Per-program stopover rules for award redemptions. Critical for multi-city trip planning, getting two destinations for the price of one, and identifying which loyalty programs let you do this well. Includes the legendary Icelandair stopover (free 7-day stop in Reykjavik on every transatlantic itinerary), Aeroplan, Alaska Atmos, Flying Blue, Singapore KrisFlyer, Cathay Asia Miles, JAL, and the negative space (programs like BA, AA, Delta where stopovers don't exist). Each program has primary-source citations. Use when a user asks about stopovers, free stopovers, multi-city awards, two cities for the price of one, or which program allows X stopover. Triggers on stopover, stopover allowance, free stopover, stopover rules, multi-city award, two destinations one award, Iceland stopover, Reykjavik stopover, Aeroplan stopover, Alaska Mileage Plan stopover, Flying Blue free stopover, Singapore stopover, Excursionist Perk, ana stopover.
+description: Per-program stopover rules for award redemptions. Which programs allow free stopovers, how many, how long, and which don't. Covers Icelandair, Aeroplan, Alaska, Flying Blue, Singapore, Cathay, JAL, and the negative space (BA, AA, Delta).
 category: reference
 summary: Per-program stopover rules for award redemptions. Includes Icelandair free stopover, Aeroplan, Alaska Atmos, Flying Blue, Singapore tiers, plus the negative space (BA, AA, Delta, JetBlue) that have no stopover programs.
 allowed-tools: Bash(jq *), Read

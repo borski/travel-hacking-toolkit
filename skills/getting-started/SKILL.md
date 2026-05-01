@@ -1,6 +1,6 @@
 ---
 name: getting-started
-description: User-invoked first-run setup. Detects which API keys are configured, points the user at the local setup-keys script (so secrets never go through chat), and shows sample prompts scaled to what they have. Use when the user types /travel-hacker:getting-started, asks "how do I use this", or runs the toolkit for the first time.
+description: First-run setup. Detects configured API keys, points to the local setup-keys script for secure key entry, and shows sample prompts scaled to available tools.
 disable-model-invocation: true
 category: orchestration
 summary: First-run onboarding. Detects setup, points to setup-keys script, shows sample prompts.

@@ -1,6 +1,6 @@
 ---
 name: lessons-learned
-description: REQUIRED before any award flight search. Contains the mandatory Seats.aero workflow (pull ALL programs first, never filter by source upfront) plus the documented source-accuracy hierarchy, Southwest specifics, Companion Pass math, small-market caveats, and Duffel limitations. Skipping this skill is the most common cause of bad recommendations because it lets the agent prematurely narrow the search and miss the best option. Load this BEFORE any flight search, trip planning, award comparison, or points/cash decision. Triggers on "flight search", "trip planning", "award flight", "Seats.aero", "Southwest", "Companion Pass", "small market", "Duffel limits", "data files vs reality", "lessons learned", or any travel-hacking task that involves searching for or comparing flights.
+description: Mandatory pre-flight-search reference. Contains the Seats.aero workflow (pull ALL programs first), source accuracy hierarchy, Southwest/Companion Pass specifics, small-market caveats, and Duffel limitations.
 category: reference
 summary: Hard-won knowledge from real searches. The mandatory Seats.aero workflow, Southwest specifics, Companion Pass math, source accuracy, small-market caveats, Duffel limitations. Load before any award flight search.
 ---

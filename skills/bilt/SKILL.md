@@ -1,6 +1,6 @@
 ---
 name: bilt
-description: Search the Bilt Rewards travel portal for cash and Bilt Points pricing on hotels and flights. Public REST API, no authentication required for search. Hotels include Bilt's Home Away From Home program (FHR/Edit equivalent with $300+ in benefits). Bilt is whitelabel-Duffel under the hood (same response shape, IDs, and CDN), with Bilt Points pricing layered on top. Use when comparing Bilt pay-with-points pricing to award flights, when researching HaFH hotels for stacking with Bilt Gold/Platinum status, or when calculating CPP for Bilt Points redemptions. Triggers on Bilt Travel, Bilt portal, Bilt Points, Home Away From Home, HaFH, Bilt Rewards travel, or any pay-with-points comparison involving Bilt.
+description: Search Bilt Rewards travel portal for cash and Bilt Points pricing on hotels and flights. Public REST API, no auth required. Includes Home Away From Home (HaFH) properties with $300+ benefits.
 category: portals
 summary: Bilt Rewards travel portal for hotels and flights. 1.25 cpp on Bilt Points. Home Away From Home properties give $300+ in benefits to Gold/Platinum members.
 api_key: None (public API)

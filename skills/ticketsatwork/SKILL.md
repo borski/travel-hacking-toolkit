@@ -1,6 +1,6 @@
 ---
 name: ticketsatwork
-description: Search TicketsAtWork (corporate employee perks platform run by Entertainment Benefits Group) for hotels, rental cars, and ticket / attraction deals via Patchright (undetected Playwright). Use when the user has a TaW corporate account and wants to compare against retail / portal / direct prices. TaW often beats portals by 10-30% on the same property + dates. Triggers on "TaW", "TicketsAtWork", "EBG", "tickets at work", "corporate perks", or whenever comparing hotel / car / theme park options for a trip.
+description: Search TicketsAtWork (EBG corporate perks) for hotels, theme park tickets, attractions, and rental cars via Patchright. Often beats portals by 10-30%. Use when comparing hotel or ticket prices for a trip.
 category: hotels
 summary: TicketsAtWork (EBG) corporate-perks portal. Hotels, theme park tickets, attractions, live events. Often beats portals by 10-30%.
 api_key: None (requires TaW account + Patchright)

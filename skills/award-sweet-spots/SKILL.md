@@ -1,6 +1,6 @@
 ---
 name: award-sweet-spots
-description: Reference for legendary award redemptions where points dramatically outvalue cash. Catalogs sweet spots by tier (legendary/excellent/good) with current rates, devaluation history, and booking caveats. Load when making award recommendations, when a route or program matches a known sweet spot, or when a user asks "what are the best uses of my points?". Triggers on "sweet spot", "best uses of", "Iberia Avios to Madrid", "ANA First", "Hyatt all-inclusive", "Qatar Qsuites", "Virgin Atlantic to London", "outsized value", or any redemption that might match a known high-value play.
+description: Catalog of high-value award redemptions where points dramatically outvalue cash. Tiered by legendary/excellent/good with current rates, devaluation history, and booking caveats.
 category: reference
 summary: Catalog of legendary, excellent, and good award redemptions with current rates and devaluation history.
 ---

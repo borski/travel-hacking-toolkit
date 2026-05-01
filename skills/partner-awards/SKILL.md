@@ -1,6 +1,6 @@
 ---
 name: partner-awards
-description: Reference for which loyalty programs can ticket which airlines, including alliance-based and bilateral partnerships. Cross-references credit card transferable currencies to booking programs. Load when verifying an award booking is bookable through a specific program, when finding cross-alliance value plays, or when calculating which currencies reach a desired airline. Triggers on "can I book X with Y miles", "partner award", "bilateral partnership", "which program books", "transfer to United", "transfer to Aeroplan", "cross-alliance", "extended partners", or any reachability question about award flights.
+description: Loyalty program airline ticketing partnerships (alliance + bilateral). Cross-references credit card currencies to booking programs for award reachability checks.
 category: reference
 summary: Which programs ticket which airlines (alliance + bilateral). Cross-references credit card currencies to booking programs. Reachability workflow.
 ---

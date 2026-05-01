@@ -1,6 +1,6 @@
 ---
 name: transfer-partners
-description: Find the cheapest way to book an award flight using your transferable credit card points. Cross-references seats.aero award prices with transfer partner ratios to calculate the real cost in each currency you hold.
+description: Credit card to loyalty program transfer ratios. Cross-references seats.aero award prices with transfer ratios to find the cheapest path from UR, MR, TYP, Capital One, or Bilt to any mileage program.
 category: loyalty
 summary: Cheapest transfer path from credit card points to mileage programs.
 api_key: None (local data)

@@ -1,6 +1,6 @@
 ---
 name: booking-guidance
-description: Step-by-step guidance for actually booking award flights once a deal is found. Covers the booking flow, the critical "hold before you transfer" rule, and phone numbers for major loyalty programs that require phone bookings. Load when a user wants to actually book an award after recommendations are made, when partner awards require phone bookings (Virgin Atlantic for ANA, JAL, Korean SKYPASS partners), or when explaining how to complete a points transfer. Triggers on "how do I book", "booking phone", "Virgin Atlantic phone", "ANA award phone", "JAL booking", "transfer points", "should I transfer first", "hold the award", "ticketing window", "how to complete the booking".
+description: Step-by-step guidance for booking award flights. Covers the hold-before-transfer rule, phone numbers for major programs, and partner award booking workflows.
 category: reference
 summary: The booking flow, hold-before-transfer rule, phone numbers for major programs.
 ---

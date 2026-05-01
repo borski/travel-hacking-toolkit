@@ -1,6 +1,6 @@
 ---
 name: amex-travel
-description: Search the American Express travel portal via Patchright (undetected Playwright fork) for cash prices, Membership Rewards points pricing, International Airline Program (IAP) discounts, and Fine Hotels & Resorts / The Hotel Collection (FHR/THC) benefits. Use when comparing pay-with-points portal pricing to award flights or other options, checking MR balance impact, researching FHR or THC properties for stacking with Amex Platinum credits, or when the user wants Amex-specific portal inventory. Triggers on "Amex travel portal", "MR points", "Membership Rewards portal", "FHR", "Fine Hotels and Resorts", "The Hotel Collection", "THC", "International Airline Program", "IAP", or any pay-with-points comparison involving Amex.
+description: Search Amex travel portal for cash prices, MR points pricing, IAP discounts, and FHR/THC hotel benefits via Patchright. Use when comparing pay-with-points portal pricing to award alternatives.
 category: portals
 summary: Amex MR portal for flights, hotels, IAP discounts, FHR/THC benefits. Requires Platinum.
 api_key: None (requires Patchright)

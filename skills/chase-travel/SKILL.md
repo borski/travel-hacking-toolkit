@@ -1,6 +1,6 @@
 ---
 name: chase-travel
-description: Search the Chase Ultimate Rewards travel portal via Patchright (undetected Playwright fork) for cash prices, UR points pricing under dynamic Points Boost (~1.5-2.0 cpp on select bookings on CSR, not a fixed floor), Points Boost offers, and Chase Edit hotel benefits. Use when comparing pay-with-points portal pricing to award flights or other booking options, when checking UR balance impact, when researching Chase Edit hotel collection properties, or when calculating points value for Chase Sapphire Reserve / Preferred holders. Triggers on "Chase Travel portal", "Chase UR", "Chase points", "Chase Edit", "Sapphire Reserve travel portal", "Points Boost", "1.5 cpp", or any pay-with-points comparison involving Chase.
+description: Search Chase UR travel portal via Patchright for cash prices, points pricing, Points Boost offers, and Chase Edit hotel benefits. Use for pay-with-points portal comparison on Sapphire Reserve/Preferred.
 category: portals
 summary: Chase UR portal for flights, hotels, Points Boost, Edit benefits. Requires Sapphire.
 api_key: None (requires Patchright)

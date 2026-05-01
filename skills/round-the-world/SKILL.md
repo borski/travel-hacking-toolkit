@@ -1,6 +1,6 @@
 ---
 name: round-the-world
-description: Reference for round-the-world (RTW), Pacific Circle, Asia-Pacific Circle, and regional distance-based award products across all alliances. Auto-load when the user asks about RTW tickets, multi-stop global itineraries, Star Alliance RTW, oneworld Explorer, oneworld Global Explorer, Pacific Circle, Asia-Pacific circles, distance-based award charts (Aeroplan, JAL, Cathay, Iberia), or considers a long itinerary that might benefit from RTW pricing.
+description: Round-the-world, Circle Pacific, and distance-based award products across alliances. Covers Star Alliance RTW, oneworld Explorer, Lufthansa M&M, Qantas, Cathay, JAL, Aeroplan, and Iberia charts.
 category: reference
 summary: RTW + Pacific Circle + Asia-Pacific Circle + regional distance-award reference. 13 active programs, 4 discontinued.
 ---

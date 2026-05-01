@@ -1,6 +1,6 @@
 ---
 name: hotel-chains
-description: Reference for identifying which loyalty program a hotel belongs to. Maps brand names (Westin, Sheraton, Holiday Inn, etc.) to chain families (Marriott, IHG, Hilton, Hyatt, Accor, etc.) and their loyalty programs. Load when hotel search results contain branded properties, when deciding whether to check award rates, or when a user mentions a hotel name. Triggers on "Marriott", "Hilton", "Hyatt", "IHG", "Sheraton", "Westin", "Holiday Inn", "DoubleTree", "Park Hyatt", "Bonvoy", "Honors", or any branded hotel discussion.
+description: Maps hotel brand names (Westin, Sheraton, Holiday Inn, etc.) to chain families and loyalty programs. Use when hotel results contain branded properties or deciding whether to check award rates.
 category: reference
 summary: Maps brand names (Westin, Holiday Inn, etc.) to chain families and loyalty programs.
 ---
