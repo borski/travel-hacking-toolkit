@@ -2,9 +2,109 @@
 
 AI-powered travel hacking with points, miles, and award flights. Drop-in skills and MCP servers for [OpenCode](https://opencode.ai), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), and [Codex](https://openai.com/codex/).
 
-Ask your AI to find you a 60,000-mile business class flight to Tokyo. It'll search award availability across 25+ programs, compare against cash prices, check your loyalty balances, and tell you the best play.
+Ask your AI to find you a 60,000-mile business class flight to Tokyo. It'll search award availability across 27 mileage programs, compare against cash prices, check your loyalty balances, and tell you the best play.
 
 ## Quick Start
+
+### Install via plugin (no clone)
+
+The easiest way to use the toolkit. Pick your tool:
+
+#### Claude Code
+
+Inside Claude Code, run:
+
+```
+/plugin marketplace add borski/travel-hacking-toolkit
+/plugin install travel-hacker@borski-travel
+```
+
+Done. 42 skills, 6 MCP servers (5 free + LiteAPI which needs a key), and the `travel-hacker` subagent are installed. Run `claude` from anywhere and ask it to plan a trip.
+
+To verify the install, run `/travel-hacker:getting-started` inside Claude Code. It tells you which API keys are configured and points at the local setup script for the missing ones. Or in your shell: `claude plugin list | grep travel-hacker` should show the plugin.
+
+#### Codex
+
+In your terminal:
+
+```bash
+codex plugin marketplace add borski/travel-hacking-toolkit
+```
+
+Then start Codex and the plugin appears in `/plugins`. Codex pulls the marketplace catalog from the repo (`.agents/plugins/marketplace.json`) and the plugin manifest from `plugins/travel-hacking-toolkit/.codex-plugin/plugin.json`, so the install is one command.
+
+#### Cowork (Claude Desktop's agent panel)
+
+Cowork itself doesn't expose `/plugin` slash commands, so you can't install plugins from inside a Cowork chat. Install via Claude Code first; Cowork picks it up automatically because both share `~/.claude/plugins/`.
+
+1. **In your terminal**, run `claude`
+2. **In Claude Code**, run the two install commands from the [Claude Code section above](#claude-code)
+3. **Open Cowork** inside Claude Desktop. The plugin is already there.
+
+Claude Desktop's chat UI doesn't support the plugin format yet, so use Cowork inside the same app for the full experience.
+
+### Configure API keys
+
+The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work immediately with zero keys. Cash flight and hotel search work out of the box.
+
+To unlock award search and the rest of the toolkit, you need API keys set as environment variables in your shell. Run the local setup script:
+
+**macOS / Linux / WSL / Git Bash:**
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/borski/travel-hacking-toolkit/main/scripts/setup-keys.sh)
+```
+
+**Windows (PowerShell):**
+
+```powershell
+iwr https://raw.githubusercontent.com/borski/travel-hacking-toolkit/main/scripts/setup-keys.ps1 -OutFile $env:TEMP\setup-keys.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File $env:TEMP\setup-keys.ps1
+Remove-Item $env:TEMP\setup-keys.ps1
+```
+
+The script prompts for each key with masked input, validates them (rejects values with single quotes that would break the export, plus a per-key minimum length sanity check), writes them to the right shell rc with a backup, and never echoes the values back. The exports are single-quoted so other shell metacharacters in the key are safe. Keys never enter your terminal scrollback or any chat session. The `/travel-hacker:getting-started` skill inside Claude Code points at the same script.
+
+The 4 highest-value keys:
+
+| Key | What it unlocks | Cost |
+|-----|------|-----------|
+| `SEATS_AERO_API_KEY` | Award flight search across 27 mileage programs. The main event. | Pro ~$8/mo |
+| `DUFFEL_API_KEY_LIVE` | Real GDS cash flight prices. | Free to search, pay per booking |
+| `IGNAV_API_KEY` | Backup cash flight prices. Fast REST API. | 1,000 free requests/month |
+| `AWARDWALLET_API_KEY` + `AWARDWALLET_USER_ID` | Auto-pull your loyalty balances, elite status, transfer ratios. | Business account required |
+
+Other keys (SerpAPI, RapidAPI, LiteAPI, TripAdvisor, RESROBOT, Rejseplanen, Entur) extend specific skills. The setup skill covers them too. See the [full API key reference](#api-keys--signup-links) for signup links.
+
+Five Docker-based skills (Southwest, American Airlines, Chase, Amex, TicketsAtWork) handle sites that don't have public APIs, plus a shared base image. They auto-pull on first use. See the [Docker Images](#docker-images) section for credentials and configuration.
+
+#### Manual setup (if you'd rather not use the skill)
+
+Add to your shell rc (`~/.zshrc`, `~/.bashrc`, etc.):
+
+```bash
+export SEATS_AERO_API_KEY="your-key-here"
+export DUFFEL_API_KEY_LIVE="your-key-here"
+export IGNAV_API_KEY="your-key-here"
+export AWARDWALLET_API_KEY="your-key-here"
+export AWARDWALLET_USER_ID="your-user-id"
+```
+
+Reload (`source ~/.zshrc`) or open a new terminal, then run `claude`.
+
+If you keep secrets in 1Password, you can resolve at launch instead:
+
+```bash
+op run --env-file=.env -- claude
+```
+
+(See [1Password CLI docs](https://developer.1password.com/docs/cli/secrets-environment-variables/) for the `.env` template syntax.)
+
+> The toolkit reads keys from the shell environment because Anthropic's plugin `userConfig` mechanism is currently broken for bash-based skills ([anthropics/claude-code#11927](https://github.com/anthropics/claude-code/issues/11927), [#39125](https://github.com/anthropics/claude-code/issues/39125)). When that's fixed upstream, we'll move to the cleaner in-plugin config flow.
+
+### Clone path (for OpenCode users or contributors)
+
+OpenCode doesn't have a plugin format, so OpenCode users clone the repo. Contributors who want to hack on the toolkit also clone.
 
 ```bash
 git clone https://github.com/borski/travel-hacking-toolkit.git
@@ -17,36 +117,24 @@ cd travel-hacking-toolkit
 .\scripts\setup.cmd
 ```
 
-The setup script walks you through everything: picks your tool (OpenCode, Claude Code, Codex, or all three), creates your API key config files, installs dependencies, installs the Codex plugin when selected, and optionally installs skills system-wide for OpenCode and Claude Code.
+The setup script picks your tool (OpenCode, Claude Code, Codex, or all three), creates your API key config file, installs dependencies, and optionally installs skills system-wide for OpenCode and Claude Code.
 
-On Windows the `.cmd` wrapper launches `scripts\setup.ps1` with an ExecutionPolicy bypass so nothing needs to be unblocked first. You can also run the PowerShell script directly: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1`.
+On Windows the `.cmd` wrapper launches `scripts\setup.ps1` with an ExecutionPolicy bypass so nothing needs to be unblocked first.
 
-The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work immediately with zero API keys. For the full experience, add at minimum:
-
-| Key | Why | Free Tier |
-|-----|-----|-----------|
-| `SEATS_AERO_API_KEY` | Award flight search. The main event. | No (Pro ~$8/mo) |
-| `DUFFEL_API_KEY_LIVE` | Primary cash flight prices. Real GDS data. | Yes (search free, pay per booking) |
-| `IGNAV_API_KEY` | Secondary cash flight prices. Fast REST API. | Yes (1,000 free requests) |
-
-Six skills run as optional Docker containers (Southwest, American Airlines, Chase, Amex, TicketsAtWork, plus a shared base image). `setup.sh` auto-pulls them when you select the relevant tools. See the [Docker Images](#docker-images) section for the full catalog and usage examples.
-
-Then launch your tool:
+Then launch your tool from inside the repo:
 
 ```bash
 # OpenCode
 opencode
 
-# Claude Code
-claude --strict-mcp-config --mcp-config .mcp.json
+# Claude Code (loads the plugin from the working tree, no install needed)
+claude --plugin-dir .
 
 # Codex
 source .env && codex
 ```
 
-The `--strict-mcp-config` flag tells Claude Code to load MCP servers from the config file directly. This is more reliable than auto-discovery ([known issue](https://github.com/anthropics/claude-code/issues/5037)).
-
-For Codex, `./scripts/setup.sh` installs a local plugin symlink at `~/.codex/plugins/travel-hacking-toolkit` and adds a marketplace entry at `~/.agents/plugins/marketplace.json`. The plugin exposes the repo's `skills/` directory and the travel MCP servers as one installable bundle.
+`claude --plugin-dir .` loads the plugin (skills, MCP servers, and the `travel-hacker` subagent) directly from your clone. Changes you make to the toolkit are picked up immediately. Useful when you're contributing.
 
 ## What's Included
 
@@ -75,6 +163,8 @@ Start here: the **orchestration skills** call everything else automatically.
 | **award-calendar** | Cheapest award dates for a route across a date range. Calendar grid view. | Seats.aero Pro |
 | **compare-flights** | Unified flight comparison across ALL sources in parallel. Auto-applies transfer optimization. | Uses individual skill keys |
 | **compare-hotels** | Unified hotel comparison across portals, metasearch, and Airbnb. FHR/Edit stacking detection. | Uses individual skill keys |
+| **getting-started** | First-run onboarding. Detects setup, points to setup-keys script, shows sample prompts. | None |
+| **plan-trip** | Guided trip planner. The hero command for the toolkit. | None |
 | **trip-calculator** | Cash vs points decision answered with math. Transfer ratios, taxes, opportunity cost. | None (free, local data) |
 | **trip-planner** | Full trip planning. Flights + hotels + points in one shot. | Uses individual skill keys |
 <!-- END: readme:orchestration -->
@@ -181,7 +271,7 @@ These skills require an external account or API key signup. See [`.env.example`]
 
 ## Docker Images
 
-Six skills run as Docker containers (browser-automated via Patchright). All images are public on GitHub Container Registry, no auth required to pull. `setup.sh` (and `setup.ps1` on Windows) auto-pulls the ones you need based on which tool you select.
+Five skills run as Docker containers (browser-automated via Patchright), plus a shared `patchright-docker` base image they all build on. All six images are public on GitHub Container Registry, no auth required to pull. `setup.sh` (and `setup.ps1` on Windows) auto-pulls the ones you need based on which tool you select.
 
 <!-- BEGIN: readme:docker -->
 | Image | Skill | Purpose | Source |
@@ -341,19 +431,25 @@ The core question: **"Should I burn points or pay cash?"**
 
 ```
 travel-hacking-toolkit/
+├── .claude-plugin/
+│   ├── plugin.json                 # Claude Code plugin manifest (this is the install root)
+│   └── marketplace.json            # Claude Code marketplace catalog
 ├── .agents/
-│   ├── plugins/marketplace.json    # Repo-local Codex marketplace entry
+│   ├── plugins/marketplace.json    # Codex marketplace catalog
 │   └── skills -> ../skills         # Codex auto-discovery (no plugin install needed)
 ├── AGENTS.md -> CLAUDE.md          # OpenCode project instructions (symlink)
-├── CLAUDE.md                       # Project instructions and workflow guidance
+├── CLAUDE.md                       # Project instructions, agent system prompt (frontmatter at top)
+├── agents/
+│   └── travel-hacker.md            # Plugin agent file (auto-synced from CLAUDE.md)
 ├── opencode.json                   # OpenCode MCP server config
 ├── .mcp.json                       # Claude Code MCP server config
-├── .env.example                    # API key template (OpenCode/Codex)
+├── .env.example                    # API key template (OpenCode/Codex clone path)
 ├── .claude/
-│   ├── settings.local.json.example # API key template (Claude Code)
 │   └── skills -> ../skills         # Symlink to skills
 ├── .opencode/
 │   └── skills -> ../skills         # Symlink to skills
+├── .github/workflows/
+│   └── smoke-test.yml              # CI: runs scripts/smoke-test.sh --quick on PRs
 ├── plugins/
 │   └── travel-hacking-toolkit/
 │       ├── .codex-plugin/plugin.json # Codex plugin manifest
@@ -372,6 +468,8 @@ travel-hacking-toolkit/
 │   ├── award-calendar/SKILL.md     # Cheapest award dates across a date range
 │   ├── compare-flights/SKILL.md    # Unified flight comparison (all sources)
 │   ├── compare-hotels/SKILL.md     # Unified hotel comparison (all sources)
+│   ├── getting-started/SKILL.md    # First-run setup detector + signpost to setup-keys
+│   ├── plan-trip/SKILL.md          # User-invoked guided trip planner (the hero command)
 │   ├── trip-calculator/SKILL.md    # Cash vs points calculator
 │   ├── trip-planner/SKILL.md       # Full trip planning in one shot
 │   │
@@ -448,7 +546,16 @@ travel-hacking-toolkit/
 ├── scripts/
 │   ├── setup.sh                    # Interactive installer (macOS/Linux/WSL/Git Bash)
 │   ├── setup.ps1                   # Interactive installer (Windows PowerShell)
-│   └── setup.cmd                   # Windows launcher (invokes setup.ps1)
+│   ├── setup.cmd                   # Windows launcher (invokes setup.ps1)
+│   ├── setup-keys.sh               # Standalone API key setup (no clone needed; curl|bash works)
+│   ├── setup-keys.ps1              # Standalone API key setup (PowerShell)
+│   ├── sync-agent.sh               # Copies CLAUDE.md to agents/travel-hacker.md (Claude plugin)
+│   ├── install-hooks.sh            # Installs git hooks from scripts/hooks/ (run by setup.sh)
+│   ├── smoke-test.sh               # Static + agent integration tests
+│   ├── gen-skill-tables.sh         # Regenerates skill tables in README.md and llms.txt
+│   ├── check-data-freshness.sh     # Validates data/*.json TTLs
+│   └── hooks/
+│       └── pre-commit              # Auto-syncs agents/travel-hacker.md when CLAUDE.md is staged
 └── LICENSE                         # MIT
 ```
 
@@ -462,15 +569,27 @@ bash scripts/smoke-test.sh --quick   # static checks only (no agent invocations)
 bash scripts/smoke-test.sh --agents  # agent invocations only
 ```
 
-What it verifies:
-1. `setup.sh` and `setup.ps1` syntax parse cleanly
-2. Every skill has valid `name` + `description` frontmatter
-3. CLAUDE.md is under Claude Code's 40k char warning threshold
-4. All Docker images exist on ghcr.io
-5. All data files are within their declared TTL
-6. README.md and llms.txt skill tables match the generated output (no drift)
-7. Each agent (codex, claude, opencode) starts cleanly from the toolkit
-8. Each agent picks the right skills (`lessons-learned` + `flight-search-strategy` minimum) for a real travel question
+What it verifies (12 static checks + 2 agent invocations per agent):
+
+Static (12 checks):
+
+1. `setup.sh` bash syntax
+2. `setup-keys.sh` bash syntax
+3. `setup.ps1` structural integrity (braces, here-strings)
+4. `setup-keys.ps1` structural integrity (braces)
+5. Every skill has valid `name` + `description` frontmatter
+6. CLAUDE.md is under Claude Code's 40k char warning threshold
+7. All 6 Docker images exist on ghcr.io (skipped cleanly if the registry is unreachable, never reported as missing)
+8. All data files are within their declared TTL
+9. README.md and llms.txt skill tables match the generated output (no drift)
+10. Claude plugin manifest + marketplace.json validate via `claude plugin validate`
+11. `agents/travel-hacker.md` is in sync with CLAUDE.md and has required frontmatter (`name`, `description`, `model`)
+12. Plugin component discovery: `skills/` non-empty, `.mcp.json` valid JSON
+
+Agent invocations (per supported agent: codex, claude, opencode):
+
+- Startup: agent loads cleanly from the toolkit
+- Skill discovery: agent picks the right skills (`lessons-learned` + `flight-search-strategy` minimum) for a real travel question
 
 Missing CLIs are skipped, not failed. Run from the repo root.
 
