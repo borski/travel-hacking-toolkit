@@ -1,0 +1,27 @@
+name: smoke-test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  static:
+    name: Static checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Claude Code (for plugin validation)
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Run smoke test (static checks only)
+        run: bash scripts/smoke-test.sh --quick

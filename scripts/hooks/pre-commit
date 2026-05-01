@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Pre-commit: keep agents/travel-hacker.md in sync with CLAUDE.md.
+#
+# If CLAUDE.md is staged, regenerate the agent file and stage the result.
+# Install this hook with: bash scripts/install-hooks.sh
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+if git diff --cached --name-only | grep -q '^CLAUDE\.md$'; then
+  bash "$REPO_ROOT/scripts/sync-agent.sh"
+  git add "$REPO_ROOT/agents/travel-hacker.md"
+  echo "Pre-commit: synced agents/travel-hacker.md from CLAUDE.md"
+fi
