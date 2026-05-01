@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "borski-travel",
+  "description": "Travel hacking plugins by Borski. Flights, hotels, points, miles, awards.",
+  "owner": {
+    "name": "Michael Borohovski"
+  },
+  "plugins": [
+    {
+      "name": "travel-hacker",
+      "source": "./",
+      "description": "AI-powered travel hacking with points, miles, and award flights. 42 skills + 6 MCP servers for flight search, hotel comparison, loyalty balance tracking, and award optimization across 27 mileage programs.",
+      "author": {
+        "name": "Michael Borohovski"
+      },
+      "homepage": "https://github.com/borski/travel-hacking-toolkit",
+      "repository": "https://github.com/borski/travel-hacking-toolkit",
+      "license": "MIT",
+      "keywords": [
+        "travel",
+        "flights",
+        "hotels",
+        "points",
+        "miles",
+        "award-travel",
+        "loyalty",
+        "trip-planning"
+      ],
+      "category": "productivity"
+    }
+  ]
+}

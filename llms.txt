@@ -18,6 +18,8 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 - [Award Calendar](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/award-calendar/SKILL.md): Cheapest award dates for a route across a date range. Calendar grid view.
 - [Compare Flights](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/compare-flights/SKILL.md): Unified flight comparison across ALL sources in parallel. Auto-applies transfer optimization.
 - [Compare Hotels](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/compare-hotels/SKILL.md): Unified hotel comparison across portals, metasearch, and Airbnb. FHR/Edit stacking detection.
+- [Getting Started](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/getting-started/SKILL.md): First-run onboarding. Detects setup, points to setup-keys script, shows sample prompts.
+- [Plan Trip](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/plan-trip/SKILL.md): Guided trip planner. The hero command for the toolkit.
 - [Trip Calculator](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/trip-calculator/SKILL.md): Cash vs points decision answered with math. Transfer ratios, taxes, opportunity cost.
 - [Trip Planner](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/trip-planner/SKILL.md): Full trip planning. Flights + hotels + points in one shot.
 <!-- END: llms:orchestration -->
