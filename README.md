@@ -563,62 +563,11 @@ travel-hacking-toolkit/
 └── LICENSE                         # MIT
 ```
 
-## Smoke Testing
-
-After any change to skills, CLAUDE.md, or MCP config, run the three-way smoke test:
-
-```bash
-bash scripts/smoke-test.sh           # full test (static + all 3 agents, ~3-5 min)
-bash scripts/smoke-test.sh --quick   # static checks only (no agent invocations)
-bash scripts/smoke-test.sh --agents  # agent invocations only
-```
-
-What it verifies (12 static checks + 2 agent invocations per agent):
-
-Static (12 checks):
-
-1. `setup.sh` bash syntax
-2. `setup-keys.sh` bash syntax
-3. `setup.ps1` structural integrity (braces, here-strings)
-4. `setup-keys.ps1` structural integrity (braces)
-5. Every skill has valid `name` + `description` frontmatter
-6. CLAUDE.md is under Claude Code's 40k char warning threshold
-7. All 6 Docker images exist on ghcr.io (skipped cleanly if the registry is unreachable, never reported as missing)
-8. All data files are within their declared TTL
-9. README.md and llms.txt skill tables match the generated output (no drift)
-10. Claude plugin manifest + marketplace.json validate via `claude plugin validate`
-11. `agents/travel-hacker.md` is in sync with CLAUDE.md and has required frontmatter (`name`, `description`, `model`)
-12. Plugin component discovery: `skills/` non-empty, `.mcp.json` valid JSON
-
-Agent invocations (per supported agent: codex, claude, opencode):
-
-- Startup: agent loads cleanly from the toolkit
-- Skill discovery: agent picks the right skills (`lessons-learned` + `flight-search-strategy` minimum) for a real travel question
-
-Missing CLIs are skipped, not failed. Run from the repo root.
-
-### Skill Table Generation
-
-The skill tables in this README and `llms.txt` are auto-generated from each skill's `SKILL.md` frontmatter. The fields used:
-
-- `name` — required, the skill identifier
-- `category` — required, one of: `orchestration`, `flights`, `portals`, `hotels`, `loyalty`, `destinations`, `reference`
-- `summary` — required, the one-liner shown in tables and llms.txt
-- `api_key` — optional, short text for the API Key column (e.g., `Duffel`, `None (free)`)
-- `docker_image` — optional, full image name like `ghcr.io/borski/sw-fares` if the skill ships a Docker image
-
-To add a new skill, edit `scripts/skill-meta.tsv` and run:
-
-```bash
-python3 scripts/sync-skill-frontmatter.py   # apply TSV to SKILL.md frontmatter
-bash scripts/gen-skill-tables.sh            # regenerate README + llms.txt
-```
-
-Drift between the source (frontmatter / TSV) and the generated tables is caught by `smoke-test.sh`, which fails if running `--check` would produce a diff. This makes drift a CI failure, not a silent issue.
-
 ## Contributing
 
-PRs welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the skill addition flow, frontmatter rules, smoke test expectations, and house style.
+PRs welcome. The skill tables in this README and `llms.txt` are auto-generated from each skill's `SKILL.md` frontmatter — don't hand-edit them.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for: the skill addition flow, frontmatter rules, smoke test details, hard-rules list, and house style.
 
 ## Credits
 

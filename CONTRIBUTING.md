@@ -100,7 +100,22 @@ If your skill needs a signup link, add an entry to the `signup_links_data` funct
 bash scripts/smoke-test.sh --quick
 ```
 
-All 7 static checks must pass. If you have any of `codex`, `claude`, or `opencode` CLIs installed, run the full test (`bash scripts/smoke-test.sh`) to verify your skill loads correctly in real agents.
+All 12 static checks must pass:
+
+1. `setup.sh` bash syntax
+2. `setup-keys.sh` bash syntax
+3. `setup.ps1` structural integrity (braces, here-strings)
+4. `setup-keys.ps1` structural integrity (braces)
+5. Every skill has valid `name` + `description` frontmatter
+6. CLAUDE.md is under Claude Code's 40k char warning threshold
+7. All Docker images exist on ghcr.io (skipped cleanly if the registry is unreachable)
+8. All data files are within their declared TTL
+9. README.md and llms.txt skill tables match the generated output (no drift)
+10. Claude plugin manifest + marketplace.json validate via `claude plugin validate`
+11. `agents/travel-hacker.md` is in sync with CLAUDE.md and has required frontmatter (`name`, `description`, `model`)
+12. Plugin component discovery: `skills/` non-empty, `.mcp.json` valid JSON
+
+If you have any of `codex`, `claude`, or `opencode` CLIs installed, run the full test (`bash scripts/smoke-test.sh`) to verify your skill loads correctly in real agents. Each installed agent runs two checks: clean startup + skill discovery (loads `lessons-learned` + `flight-search-strategy` minimum on a real travel question). Missing CLIs are skipped, not failed.
 
 ## Hard Rules
 
