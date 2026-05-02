@@ -182,6 +182,7 @@ Start here: the **orchestration skills** call everything else automatically.
 | **seatmaps** | Aircraft seat maps, cabin dimensions, seat recommendations. | None (requires agent-browser) |
 | **seats-aero** | Award availability across 27 mileage programs. | Seats.aero Pro/Partner |
 | **southwest** | SW fare classes, points pricing, Companion Pass. Change flight price drop monitor. Docker: `ghcr.io/borski/sw-fares`. | None (requires Patchright) |
+| **wikipedia-airports** | Route discovery and airline-service sanity check via Wikipedia airport pages. Answers "does carrier X fly A→B" and "what airports serve destination Y" when fare tools disagree or miss obscure regional service. No API key. | None |
 <!-- END: readme:flights -->
 
 #### Credit Card Travel Portals
@@ -224,6 +225,7 @@ Also use **tripadvisor** (under Destinations) for hotel ratings, rankings, subra
 | Skill | What It Does | API Key |
 |-------|-------------|---------|
 | **atlas-obscura** | Hidden gems and unusual attractions near any destination. | None (free) |
+| **deutsche-bahn** | Deutsche Bahn (DB) train search across Germany and into AT/CH/NL/FR/BE via the open-source db-vendo-client. Stations, journeys, departure boards. No API key. Pairs with scandinavia-transit for Europe-wide rail coverage. | None |
 | **scandinavia-transit** | Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing. | Entur + Trafiklab + Rejseplanen |
 | **tripadvisor** | Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month. | TripAdvisor |
 <!-- END: readme:destinations -->

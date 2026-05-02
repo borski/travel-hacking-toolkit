@@ -33,6 +33,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 - [Seatmaps](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/seatmaps/SKILL.md): Aircraft seat maps, cabin dimensions, seat recommendations.
 - [Seats Aero](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/seats-aero/SKILL.md): Award availability across 27 mileage programs.
 - [Southwest](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/southwest/SKILL.md): SW fare classes, points pricing, Companion Pass. Change flight price drop monitor. Docker: `ghcr.io/borski/sw-fares`.
+- [Wikipedia Airports](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/wikipedia-airports/SKILL.md): Route discovery and airline-service sanity check via Wikipedia airport pages. Answers "does carrier X fly A→B" and "what airports serve destination Y" when fare tools disagree or miss obscure regional service. No API key.
 <!-- END: llms:flights -->
 
 ## Credit Card Travel Portals
@@ -65,6 +66,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 
 <!-- BEGIN: llms:destinations -->
 - [Atlas Obscura](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/atlas-obscura/SKILL.md): Hidden gems and unusual attractions near any destination.
+- [Deutsche Bahn](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/deutsche-bahn/SKILL.md): Deutsche Bahn (DB) train search across Germany and into AT/CH/NL/FR/BE via the open-source db-vendo-client. Stations, journeys, departure boards. No API key. Pairs with scandinavia-transit for Europe-wide rail coverage.
 - [Scandinavia Transit](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/scandinavia-transit/SKILL.md): Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing.
 - [Tripadvisor](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/tripadvisor/SKILL.md): Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month.
 <!-- END: llms:destinations -->

@@ -45,8 +45,9 @@ Once you have the inputs:
 
 If the trip is more than just flights, mention these as available next steps in your closing summary (not as a question):
 - Hotels via compare-hotels (FHR/THC/Edit/Booking/Trivago/Airbnb/TaW)
-- Stopover side trips via stopovers + the relevant transit skill (scandinavia-transit, etc.)
+- Stopover side trips via stopovers + the relevant transit skill (scandinavia-transit for Norway/Sweden/Denmark, deutsche-bahn for Germany / Austria / Switzerland / Netherlands / France / Belgium)
 - Atlas Obscura suggestions for unique places at the destination
+- Airport route sanity check via wikipedia-airports if the user asks about an obscure carrier or regional service
 
 Don't dump all of these at once. Lead with the flight recommendation. Mention hotels/activities as concrete follow-up actions the user can ask for next.
 

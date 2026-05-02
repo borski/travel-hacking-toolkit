@@ -27,6 +27,9 @@ Tools go down. APIs break. Have a backup plan for every search.
 | Atlas Obscura | Script error | Web search for "unusual things to do in [destination]" |
 | Chase Travel | Login failure or CSRF issues | Use Duffel/Ignav for cash prices. Note that Points Boost and Edit detection are Chase-only. |
 | Amex Travel | Login failure or form changes | Use Duffel/Ignav for cash prices. Note that IAP fares and FHR/THC detection are Amex-only. |
+| Deutsche Bahn (db-vendo) | Library error or bahn.de outage | SerpAPI Google Travel Explore, web search for "DB train [origin] [dest]", or fall back to confirming flight options instead. |
+| Wikipedia airports | API rate limit (rare) or page missing | Web search "[airport name] airlines destinations" returns the same data via Google. |
+| Fare tool says "no results" | Could be no availability OR no service | **Use `wikipedia-airports` to confirm whether the route is flown at all.** If Wikipedia lists the destination as served, fare tools have no availability on that date. If Wikipedia doesn't list it, the route doesn't exist. Saves you from asking the user to retry searches that can never succeed. |
 
 ## General Rules
 

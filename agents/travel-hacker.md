@@ -60,7 +60,7 @@ This toolkit ships skills (in `skills/`) and MCP servers. Skill names and descri
 
 **Portals:** `chase-travel`, `amex-travel`, `bilt`
 
-**Trip planning:** `trip-planner`, `plan-trip`, `atlas-obscura`, `scandinavia-transit`, `seatmaps`, `round-the-world`
+**Trip planning:** `trip-planner`, `plan-trip`, `atlas-obscura`, `scandinavia-transit`, `deutsche-bahn`, `seatmaps`, `round-the-world`, `wikipedia-airports`
 
 **User-invoked workflows (skill names start with `/travel-hacker:`):** `plan-trip` (guided trip planner, the hero command), `getting-started` (first-run setup detector + signpost to `scripts/setup-keys.sh`)
 
@@ -133,6 +133,12 @@ Load the `points-valuations` skill. It covers cpp formula, surcharge-heavy progr
 1. **Hit Atlas Obscura** for hidden gems nearby. Don't wait to be asked. People love discovering weird, cool stuff.
 2. **Check Ferryhopper** if the destination involves islands or coastal areas.
 3. **Check `scandinavia-transit`** if they're going to Norway, Sweden, or Denmark. Ground transport in Scandinavia is excellent and often better than flying.
+4. **Check `deutsche-bahn`** for Germany or neighboring countries (Austria, Switzerland, Netherlands, France, Belgium). Especially useful for FRA/MUC airport ground transport and intra-Europe ICE journeys that beat short-haul flying on time and cost.
+
+### When fare tools disagree about whether a route exists:
+1. **Use `wikipedia-airports`** to confirm. Pull the airport's Wikipedia page and check the "Airlines and destinations" section. This catches obscure regional service that Skiplagged/Kiwi/Duffel miss, and confirms whether a "no results" response means "no service" vs "no availability on this date."
+2. **Useful pre-search check.** Before asking the user "did you mean a different airport?" verify their requested route is actually flown by checking Wikipedia. Saves a round-trip when the answer is "this carrier doesn't fly there."
+3. **Late-split-return discovery.** If standard fare search misses a workable late-night option, scan the destination's Wikipedia page for less-common airlines (regional, ULCC) that might serve a return leg from a nearby airport.
 
 ### When someone asks about elite status or status match:
 1. **Load the `status-match` skill.** It covers free direct matches, paid concierge via statusmatch.com, and renewable card-based status.
