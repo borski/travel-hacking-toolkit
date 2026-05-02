@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "travel-hacker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "AI-powered travel hacking with points, miles, and award flights. 42 skills + 6 MCP servers for flight search, hotel comparison, loyalty balance tracking, and award optimization across 27 mileage programs. Try: 'Plan a 10-day Scandinavia trip in August on points' or 'Find the cheapest business class to Tokyo for two in March'. After install, set API keys in your shell environment to unlock award search and other paid features. See the repo README for the env var list.",
   "author": {
     "name": "Michael Borohovski",
