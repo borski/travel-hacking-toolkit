@@ -21,6 +21,20 @@ Set these in your `.env` file:
 
 All requests use the `X-Authentication` header.
 
+> **First-time setup gotcha:** AwardWallet enforces an IP allowlist on Business API keys. Without your IP whitelisted, every call returns `{"error": "access_denied", "code": "IP_DENIED"}`. **Whitelist before troubleshooting.**
+>
+> - **Where to whitelist:** https://business.awardwallet.com/profile/api
+> - **How to find your IP:** `curl ifconfig.me`
+> - **Multi-IP:** home, office, hotspot, VPN exit nodes, and any travel locations each need their own entry. Easiest is to whitelist a /24 if you're on a stable residential ISP.
+
+### Error signatures
+
+| Response | Meaning | Fix |
+|---|---|---|
+| `{"error": "access_denied", "code": "IP_DENIED"}` | IP not on allowlist | Whitelist current IP at the developer portal |
+| `Unauthorized` / 401 | Bad key | Regenerate key |
+| Empty `accounts` array | User ID wrong or no connections | Verify `AWARDWALLET_USER_ID` |
+
 ## API Base
 
 ```

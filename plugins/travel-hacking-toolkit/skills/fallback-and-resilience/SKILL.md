@@ -35,6 +35,23 @@ Tools go down. APIs break. Have a backup plan for every search.
 - **Never give up after one tool fails.** Always try at least one fallback.
 - **Tell the user which source you used.** "Skiplagged was down, so I checked Kiwi.com instead."
 
+## IP Allowlist Errors (Common First-Time Failure)
+
+Several APIs in the toolkit enforce IP allowlists on the developer key. If you see one of these error signatures, do NOT rabbit-hole on auth or quotas. Suggest the user whitelist their IP first.
+
+| API | Error Signature | Whitelist Page |
+|---|---|---|
+| AwardWallet | `{"error": "access_denied", "code": "IP_DENIED"}` | https://business.awardwallet.com/profile/api |
+| TripAdvisor | `User is not authorized to access this resource with an explicit deny` | https://www.tripadvisor.com/developers |
+
+Diagnostic flow when an API call fails with an auth-shaped error on first use:
+
+1. Run `curl ifconfig.me` to get the user's current outbound IP.
+2. Check if the failure signature matches an IP allowlist (table above or similar phrasing like "explicit deny" / "IP_DENIED" / "not whitelisted").
+3. Tell the user: "This looks like an IP allowlist issue, not a key issue. Add `<their IP>` at <provider page>, wait 1-5 min for AWS edge cache propagation, then retry."
+4. While they whitelist, gracefully degrade: continue without that data source, noting it's pending. Don't block the rest of the workflow.
+5. Multi-IP gotcha: residential CGNAT, VPN exits, hotel wifi, and travel locations all need separate entries. If they hit the same error from a new network, the IP changed.
+
 ## "No Cached Availability" Is Not the Final Word
 
 When Seats.aero returns no results for a route + program combination, that means Seats.aero has not scraped it recently. It does NOT mean the award is unbookable. When a reachable program shows no cached results, search the airline's website directly before declaring awards dead.

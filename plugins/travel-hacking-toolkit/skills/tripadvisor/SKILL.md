@@ -25,6 +25,14 @@ Search and retrieve hotel, restaurant, and attraction data from TripAdvisor. Rat
 
 ## Authentication
 
+> **First-time setup gotcha:** TripAdvisor requires whitelisting your outbound IP at https://www.tripadvisor.com/developers before the key works. Without this, every call returns `User is not authorized to access this resource with an explicit deny`. This is the #1 first-time failure mode. **Whitelist before troubleshooting auth or quotas.**
+>
+> - **How to find your current IP:** `curl ifconfig.me`
+> - **Propagation:** changes take 1-5 minutes (AWS edge cache).
+> - **Multi-IP:** residential CGNAT, VPN exits, and different networks each need their own entry.
+> - **No Referer alternative:** the free tier requires IP whitelisting; HTTP Referer restriction is not available.
+> - **Verify which key is which:** the developer portal shows the last 4 chars only (e.g. "Ends in 11D7"), so you can confirm without exposing the secret.
+
 Set `TRIPADVISOR_API_KEY` in your `.env` file:
 
 ```bash
@@ -37,6 +45,14 @@ Then source it before calling:
 ```bash
 export $(grep TRIPADVISOR_API_KEY .env | xargs)
 ```
+
+### Error signatures
+
+| Response | Meaning | Fix |
+|---|---|---|
+| `User is not authorized to access this resource with an explicit deny` | IP not on allowlist | Whitelist current IP at the developer portal, wait 1-5 min |
+| `Forbidden` / 403 with no body | Bad or expired key | Regenerate key |
+| `429 Too Many Requests` | Hit monthly quota (5,000 calls) | Wait until next month or upgrade tier |
 
 ## Endpoints
 
