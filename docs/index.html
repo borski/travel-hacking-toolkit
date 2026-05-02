@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Hacker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: oklch(97% 0.012 80);
+      --paper-warm: oklch(94% 0.018 75);
+      --paper-deep: oklch(91% 0.022 70);
+      --ink: oklch(22% 0.025 250);
+      --ink-soft: oklch(38% 0.02 245);
+      --ink-faint: oklch(58% 0.018 240);
+      --rule: oklch(85% 0.015 75);
+      --accent: oklch(45% 0.13 28);
+      --accent-deep: oklch(36% 0.14 25);
+      --accent-faint: oklch(88% 0.05 35);
+
+      --font-display: 'Newsreader', Georgia, serif;
+      --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: var(--paper);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+    }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: oklch(97% 0.012 80 / 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 1rem;
+    }
+
+    .wordmark {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .wordmark i {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ---- HERO ---- */
+    .hero {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      min-height: 80vh;
+      align-items: stretch;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-block: clamp(3rem, 8vh, 6rem);
+      padding-right: clamp(2rem, 4vw, 4rem);
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 3.25rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      max-width: 48ch;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--paper);
+      background: var(--ink);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-deep);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink);
+      background: transparent;
+      padding: 0.75rem 1.5rem;
+      border: 1.5px solid var(--rule);
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ---- HERO PHOTO ---- */
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 0 12px;
+      margin-right: calc(-1 * clamp(1.25rem, 4vw, 2.5rem));
+    }
+
+    .hero-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 60% 35%;
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        oklch(97% 0.012 80 / 0.5) 0%,
+        oklch(97% 0.012 80 / 0.08) 40%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+
+    /* ---- SECTION SHARED ---- */
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+
+    .section-h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    /* ---- SECTION: WHAT THIS IS ---- */
+    .section-what {
+      padding-block: clamp(4rem, 8vh, 6rem);
+      background: var(--paper-warm);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-what .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    .section-what-left .section-h2 {
+      margin-bottom: 0;
+      max-width: 16ch;
+    }
+
+    .prose-block {
+      display: grid;
+      gap: 1.25rem;
+      max-width: 60ch;
+    }
+
+    .prose-block p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    /* ---- SECTION: HOW IT WORKS ---- */
+    .section-how {
+      padding-block: clamp(4rem, 8vh, 6rem);
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-how .section-h2 {
+      margin-bottom: clamp(2.5rem, 5vh, 4rem);
+    }
+
+    .steps {
+      display: grid;
+      gap: 0;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 1.5rem;
+      padding-block: 2rem;
+      border-top: 1px solid var(--rule);
+      align-items: baseline;
+    }
+
+    .step:last-child {
+      padding-bottom: 0;
+    }
+
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      padding-top: 0.15rem;
+    }
+
+    .step-content h3 {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      max-width: 58ch;
+    }
+
+    .step-content code {
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      color: var(--ink);
+      background: var(--paper-deep);
+      padding: 0.15em 0.45em;
+      border-radius: 3px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---- SECTION: CAPABILITIES ---- */
+    .section-capabilities {
+      padding-block: clamp(4rem, 8vh, 6rem);
+      background: var(--paper-warm);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-capabilities .section-h2 {
+      margin-bottom: clamp(2.5rem, 5vh, 4rem);
+    }
+
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .capability {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .capability:nth-child(odd) {
+      padding-right: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .capability:nth-child(even) {
+      padding-left: clamp(1.5rem, 3vw, 3rem);
+      border-left: 1px solid var(--rule);
+    }
+
+    /* First two items share a top border visually */
+    .capability:nth-child(1),
+    .capability:nth-child(2) {
+      border-top: 1px solid var(--rule);
+    }
+
+    .capability h3 {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .capability p {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      max-width: 48ch;
+    }
+
+    /* ---- SECTION: TRY IT ---- */
+    .section-try {
+      padding-block: clamp(4rem, 8vh, 6rem);
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-try .section-h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .section-try .lead {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: clamp(2rem, 4vh, 3rem);
+      max-width: 52ch;
+    }
+
+    .prompts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .prompt-card {
+      padding: 1.5rem;
+      background: var(--paper-warm);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      transition: border-color 0.2s ease;
+    }
+
+    .prompt-card:hover {
+      border-color: var(--accent);
+    }
+
+    .prompt-card .prompt-text {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .prompt-card .prompt-result {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--ink-faint);
+    }
+
+    /* ---- SECTION: INSTALL ---- */
+    .section-install {
+      padding-block: clamp(4rem, 8vh, 6rem);
+      background: var(--paper-warm);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-install .section-h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .section-install .lead {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: clamp(2rem, 4vh, 3rem);
+      max-width: 52ch;
+    }
+
+    .install-columns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .install-col {
+      display: grid;
+      grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      align-items: start;
+      padding-block: clamp(1.5rem, 2.5vw, 2rem);
+      border-top: 1px solid var(--rule);
+    }
+
+    .install-col:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .install-col-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .install-col-body {
+      min-width: 0;
+    }
+
+    .install-col h3 {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .install-col .install-sub {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--ink-faint);
+      margin-bottom: 1.25rem;
+    }
+
+    .install-col pre {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--paper-deep);
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+      white-space: pre;
+    }
+
+    .install-col .install-note {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--ink-faint);
+      line-height: 1.5;
+    }
+
+    /* ---- SECTION: STORY ---- */
+    .section-story {
+      padding-block: clamp(4rem, 8vh, 6rem);
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-story .container {
+      display: grid;
+      grid-template-columns: 1fr 0.45fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    .story-text .section-h2 {
+      margin-bottom: 2rem;
+      max-width: 20ch;
+    }
+
+    .story-text .prose-block {
+      max-width: 58ch;
+    }
+
+    .trip-sidebar {
+      padding: 1.5rem;
+      background: var(--paper-warm);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      margin-top: 3.5rem;
+    }
+
+    .trip-sidebar .trip-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .trip-sidebar .trip-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      line-height: 1.3;
+    }
+
+    .trip-stats {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .trip-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .trip-stat:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .trip-stat .stat-label {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--ink-faint);
+    }
+
+    .trip-stat .stat-value {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .trip-stat.highlight .stat-value {
+      color: var(--accent);
+    }
+
+    /* ---- SECTION: FAQ ---- */
+    .section-faq {
+      padding-block: clamp(4rem, 8vh, 6rem);
+      background: var(--paper-warm);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-faq .section-h2 {
+      margin-bottom: clamp(2rem, 4vh, 3rem);
+    }
+
+    .faq-list {
+      max-width: 720px;
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--rule);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+      transition: color 0.2s ease;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      flex-shrink: 0;
+      font-family: var(--font-body);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink-faint);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item summary:hover {
+      color: var(--accent);
+    }
+
+    .faq-answer {
+      padding-bottom: 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      max-width: 60ch;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      padding-block: 2rem;
+      border-top: 1px solid var(--rule);
+      background: var(--paper);
+    }
+
+    .footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--ink-faint);
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-right a, .footer-right span {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--ink-faint);
+      text-decoration: none;
+    }
+
+    .footer-right a:hover { color: var(--accent); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 880px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-text {
+        order: 2;
+        padding-block: 2.5rem;
+        padding-right: 0;
+      }
+
+      .hero-photo {
+        order: 1;
+        height: 50vw;
+        min-height: 240px;
+        max-height: 400px;
+        margin-right: calc(-1 * clamp(1.25rem, 4vw, 2.5rem));
+        margin-left: calc(-1 * clamp(1.25rem, 4vw, 2.5rem));
+        border-radius: 0;
+      }
+
+      .hero-photo::after {
+        background: linear-gradient(
+          to top,
+          oklch(97% 0.012 80 / 0.4) 0%,
+          oklch(97% 0.012 80 / 0.05) 50%,
+          transparent 100%
+        );
+      }
+
+      .section-what .container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .capabilities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .capability:nth-child(even) {
+        padding-left: 0;
+        border-left: none;
+      }
+
+      .capability:nth-child(odd) {
+        padding-right: 0;
+      }
+
+      .prompts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .install-columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .section-story .container {
+        grid-template-columns: 1fr;
+      }
+
+      .trip-sidebar {
+        margin-top: 0;
+        max-width: 360px;
+      }
+
+      .nav-links { gap: 1.25rem; }
+    }
+
+    @media (max-width: 520px) {
+      .nav-links { display: none; }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .steps .step {
+        grid-template-columns: 2.5rem 1fr;
+        gap: 1rem;
+      }
+
+      .step-number {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* ---- ANIMATION ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hero-text > * {
+      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-text > *:nth-child(1) { animation-delay: 0.15s; }
+    .hero-text > *:nth-child(2) { animation-delay: 0.25s; }
+    .hero-text > *:nth-child(3) { animation-delay: 0.4s; }
+    .hero-text > *:nth-child(4) { animation-delay: 0.55s; }
+
+    .hero-photo img {
+      animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+
+    /* Scroll-triggered fade. Content visible by default; only hidden when JS opts in. */
+    html.js-reveal .reveal:not(.visible) {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .reveal {
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html.js-reveal .reveal:not(.visible) { opacity: 1; transform: none; }
+      .reveal, .hero-text > *, .hero-photo { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <a href="#" class="wordmark">Travel <i>Hacker</i></a>
+      <ul class="nav-links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://github.com/borski/travel-hacking-toolkit" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <p class="eyebrow">An open-source AI travel agent</p>
+        <h1 class="hero-headline">Points are worthless if you <em>never use them.</em></h1>
+        <p class="hero-sub">Travel Hacker searches award and cash fares side by side and tells you which way to pay. Knows your balances, the cents-per-point math, and the sweet spots most people miss. Works just as well on cash. Free. Open source. Runs in Claude, Codex, or OpenCode.</p>
+        <div class="cta-row">
+          <a href="#install" class="btn-primary">
+            Get started
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8h9M8.5 4l4 4-4 4"/></svg>
+          </a>
+          <a href="https://github.com/borski/travel-hacking-toolkit" target="_blank" rel="noopener" class="btn-secondary">View on GitHub</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img
+          src="https://images.unsplash.com/photo-1664825381616-5cb8397fd9b1?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Norwegian fjord with steep cliffs and calm blue water"
+          loading="eager"
+          fetchpriority="high"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT THIS IS -->
+  <section class="section-what">
+    <div class="container reveal">
+      <div class="section-what-left">
+        <p class="section-eyebrow">What this is</p>
+        <h2 class="section-h2">A travel agent that <em>actually does the math.</em></h2>
+      </div>
+      <div class="prose-block">
+        <p>Most travel AI can write a poem about Tokyo. Travel Hacker finds the cheapest business class seat to Tokyo, calculates cents-per-point on every program that flies the route, and tells you which credit card points to transfer.</p>
+        <p>It searches award availability across 27 mileage programs at once. Compares cash and points side by side. Pulls your AwardWallet balances automatically. Stacks credit card benefits you forgot you had.</p>
+        <p>You don't need points to use it. Cash flight search works with no configuration. If you do have points, the toolkit turns them into real savings instead of someday-trips you never book.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section-how" id="how">
+    <div class="container reveal">
+      <p class="section-eyebrow">How it works</p>
+      <h2 class="section-h2"><em>Three steps.</em></h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">1</span>
+          <div class="step-content">
+            <h3>Install</h3>
+            <p>Two commands inside Claude Code, Codex, or OpenCode. No config files, no API keys required to start. Run <code>/travel-hacker:getting-started</code> for an optional walkthrough that adds your loyalty programs and unlocks award search.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-number">2</span>
+          <div class="step-content">
+            <h3>Ask</h3>
+            <p>Type what you want in plain language. "Cheapest business class to Tokyo." "Hotel in Paris with my Amex Platinum benefits." Or run <code>/travel-hacker:plan-trip</code> for a guided trip-planner that asks the right questions in the right order.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-number">3</span>
+          <div class="step-content">
+            <h3>Book</h3>
+            <p>Get a recommendation with the math done. Cash equivalent, cents-per-point, transfer instructions, the works.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="section-capabilities" id="capabilities">
+    <div class="container reveal">
+      <p class="section-eyebrow">What it can do</p>
+      <h2 class="section-h2">The full trip, not just the flight.</h2>
+      <div class="capabilities-grid">
+        <div class="capability">
+          <h3>Cheaper flights</h3>
+          <p>Searches every airline, every fare class, in one shot. Cash and points side by side, with cents-per-point math built in.</p>
+        </div>
+        <div class="capability">
+          <h3>Smarter hotel picks</h3>
+          <p>Compares Amex Fine Hotels & Resorts, Chase Edit, Booking.com, Airbnb, and corporate-perks portals. Stacks card credits automatically.</p>
+        </div>
+        <div class="capability">
+          <h3>Loyalty intelligence</h3>
+          <p>Pulls your real balances. Knows transfer ratios, current bonuses, surcharge gotchas, and the sweet-spot redemptions you're sitting on.</p>
+        </div>
+        <div class="capability">
+          <h3>Hidden gems</h3>
+          <p>Atlas Obscura for the unusual stuff. TripAdvisor for ratings. Plans the experience, not just the logistics.</p>
+        </div>
+        <div class="capability">
+          <h3>Ground transport</h3>
+          <p>German trains via Deutsche Bahn. Ferries across 33 countries. Nordic transit. Wikipedia airport routes when fare tools come up empty.</p>
+        </div>
+        <div class="capability">
+          <h3>The fine print</h3>
+          <p>Aircraft seat maps. Cabin comparisons. Visa requirements. EV charger availability. The stuff that ruins or makes a trip.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRY IT -->
+  <section class="section-try">
+    <div class="container reveal">
+      <p class="section-eyebrow">Try it</p>
+      <h2 class="section-h2">Real prompts. Real answers.</h2>
+      <p class="lead">Type any of these into your AI. Travel Hacker handles the rest.</p>
+      <div class="prompts-grid">
+        <div class="prompt-card">
+          <p class="prompt-text">"find me the cheapest business class to tokyo in october"</p>
+          <p class="prompt-result">Returns 5+ options across cash, points, and portal pricing. Best cents-per-point flagged.</p>
+        </div>
+        <div class="prompt-card">
+          <p class="prompt-text">"what's the best hotel deal in paris for 4 nights with my amex platinum"</p>
+          <p class="prompt-result">FHR properties with breakfast plus $100 credit. Stacks against Chase Edit. Honest comparison.</p>
+        </div>
+        <div class="prompt-card">
+          <p class="prompt-text">"find one outsized redemption I'm not using right now"</p>
+          <p class="prompt-result">Cross-references your balances against the legendary-redemptions catalog. Concrete trip suggestions.</p>
+        </div>
+        <div class="prompt-card">
+          <p class="prompt-text">"plan a 10-day trip to scandinavia in august on points"</p>
+          <p class="prompt-result">Flights, hotels, transit between cities, hidden gems, the works. Full itinerary with costs.</p>
+        </div>
+        <div class="prompt-card">
+          <p class="prompt-text">"should I pay cash or use points for SFO to london in june"</p>
+          <p class="prompt-result">Runs both. Surfaces cents-per-point on each option. Tells you the play with reasoning.</p>
+        </div>
+        <div class="prompt-card">
+          <p class="prompt-text">"i need a rental car in san diego, real agency only, mid-size sedan"</p>
+          <p class="prompt-result">Compares Hertz, Avis, National, Enterprise. Factors elite status. Recommends one, with the math.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section class="section-install" id="install">
+    <div class="container reveal">
+      <p class="section-eyebrow">Install</p>
+      <h2 class="section-h2">In two commands.</h2>
+      <p class="lead">Free forever. Open source. Most of the toolkit works without API keys.</p>
+      <div class="install-columns">
+        <div class="install-col">
+          <div class="install-col-meta">
+            <h3>Claude Code</h3>
+            <p class="install-sub">CLI or Desktop app</p>
+          </div>
+          <div class="install-col-body">
+            <pre>/plugin marketplace add borski/travel-hacking-toolkit
+/plugin install travel-hacker@borski</pre>
+            <p class="install-note">Run inside Claude Code. Restart and you're done.</p>
+          </div>
+        </div>
+        <div class="install-col">
+          <div class="install-col-meta">
+            <h3>Codex</h3>
+            <p class="install-sub">CLI or Desktop app</p>
+          </div>
+          <div class="install-col-body">
+            <pre>codex plugin marketplace add borski/travel-hacking-toolkit
+codex
+# then run /plugins and install Travel Hacker</pre>
+            <p class="install-note">Or in the Codex desktop app, open the Plugins UI and add the marketplace from there.</p>
+          </div>
+        </div>
+        <div class="install-col">
+          <div class="install-col-meta">
+            <h3>OpenCode</h3>
+            <p class="install-sub">CLI, open source</p>
+          </div>
+          <div class="install-col-body">
+            <pre>git clone github.com/borski/travel-hacking-toolkit
+cd travel-hacking-toolkit && ./scripts/setup.sh</pre>
+            <p class="install-note">For OpenCode users and anyone who wants to hack on it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE STORY -->
+  <section class="section-story">
+    <div class="container reveal">
+      <div class="story-text">
+        <p class="section-eyebrow">How this came to be</p>
+        <h2 class="section-h2">I built it for myself.</h2>
+        <div class="prose-block">
+          <p>In March, I was trying to plan a Scandinavia trip on points. Nothing existed that combined award search, transfer math, and the boring-but-essential stuff like seat maps and ferry schedules. So I wired the agents I was already using into the data sources that mattered.</p>
+          <p>The Scandinavia trip got booked. Friends asked for the toolkit. I open-sourced it. Same toolkit booked a rental car this morning in San Diego. Three minutes, four agencies compared, elite status applied, insurance stacking factored.</p>
+        </div>
+      </div>
+      <div class="trip-sidebar">
+        <p class="trip-label">The Scandinavia trip</p>
+        <p class="trip-title">Norway, Sweden, Denmark. 12 days.</p>
+        <div class="trip-stats">
+          <div class="trip-stat">
+            <span class="stat-label">Points used</span>
+            <span class="stat-value">280k Flying Blue</span>
+          </div>
+          <div class="trip-stat">
+            <span class="stat-label">Out of pocket</span>
+            <span class="stat-value">$1,302</span>
+          </div>
+          <div class="trip-stat">
+            <span class="stat-label">Cash equivalent</span>
+            <span class="stat-value">$10,677</span>
+          </div>
+          <div class="trip-stat highlight">
+            <span class="stat-label">Saved</span>
+            <span class="stat-value">$9,375</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-faq" id="faq">
+    <div class="container reveal">
+      <p class="section-eyebrow">Common questions</p>
+      <h2 class="section-h2">FAQ</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Do I need points and miles?</summary>
+          <div class="faq-answer">No. Cash flight search and hotel search work without any loyalty programs configured. The toolkit gets more powerful when you add your AwardWallet account, but it's optional.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is my data safe? Where do my credentials live?</summary>
+          <div class="faq-answer">Everything runs locally on your computer. Your API keys live in your environment or in 1Password if you use it. The toolkit doesn't phone home, doesn't have a server, and doesn't store anything in the cloud.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is this free? Will it ever cost money?</summary>
+          <div class="faq-answer">It's open source under the MIT license. Free forever. No company behind it, no email list, no upselling. Built it for myself, friends asked, so I open-sourced it.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What does it cost to actually use?</summary>
+          <div class="faq-answer">Free for cash flight search, hotels, transit, Atlas Obscura, and most loyalty intelligence. Two optional paid services unlock more: Seats.aero ($99/year) for award availability, and AwardWallet Plus (~$30/year) for live balance pulls.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Will this work with ChatGPT or Cursor or Gemini?</summary>
+          <div class="faq-answer">Not yet. Today it works with Claude Code, Codex, and OpenCode. The architecture (Skills + MCP) is becoming a standard, so other tools may add support over time.</div>
+        </details>
+        <details class="faq-item">
+          <summary>I'm not technical. Can I use this?</summary>
+          <div class="faq-answer">If you're already using Claude Code, Codex, or OpenCode, install is two commands. If you've never installed a developer tool before, this isn't the right fit yet.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I contribute?</summary>
+          <div class="faq-answer">PRs welcome on GitHub. CONTRIBUTING.md walks you through adding a new skill in about an hour. Feature requests and bug reports always wanted.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-left">
+        <a href="#" class="wordmark">Travel <i>Hacker</i></a>
+        <span class="footer-tagline">A travel agent that actually does the math.</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/borski/travel-hacking-toolkit" target="_blank" rel="noopener">GitHub</a>
+        <span>MIT License</span>
+        <span>Made by @borski</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
