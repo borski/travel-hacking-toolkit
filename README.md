@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/borski-travel-hacking-toolkit-badge.png)](https://mseep.ai/app/borski-travel-hacking-toolkit)
+
 # Travel Hacking Toolkit
 
 AI-powered travel hacking with points, miles, and award flights. Drop-in skills and MCP servers for [OpenCode](https://opencode.ai), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), and [Codex](https://openai.com/codex/).
