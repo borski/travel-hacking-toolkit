@@ -28,6 +28,18 @@ Each entry has:
 - **When floor and ceiling are within 0.1cpp,** the value is well-established.
 - **When floor and ceiling are 0.3cpp+ apart,** mention the range and let the user decide.
 
+## The Points-vs-Cash Decision Sequence
+
+Run these steps in order for any "should I use points?" question. Each step can end the analysis early; don't skip ahead.
+
+1. **Compute true cpp** with the formula below — total out-of-pocket including award taxes/surcharges, not gross fare. If you don't know the surcharge yet, get it before quoting a cpp; a BA award can swing from 2.5cpp to 0.9cpp on surcharges alone.
+2. **Compare against the program's `floor`.** Below floor → recommend cash (or a different program), and say why. At/above `ceiling` → call it exceptional explicitly.
+3. **Check reachability before valuing further.** A great cpp in a program the user can't reach (no balance, no transfer path in `data/transfer-partners.json`) is not an option — drop it.
+4. **If a transfer is involved, gate through `transfer-bonuses`** (check expiry against today's date) — an active bonus divides the effective miles cost and can flip step 2's verdict.
+5. **Check the opportunity cost of the currency, not just this redemption.** UR at 1.3cpp on a flight is a loss if the user's realistic alternative is Hyatt at 1.5-2.0cpp — the benchmark for a transferable currency is its best *practical* use, not 1.0.
+6. **Compare against the portal quote** (actual quote, not assumed rate — Points Boost is dynamic). Transfer wins on miles-count more often than portal wins on simplicity; show both numbers.
+7. **Present cpp math on both sides** and a one-line verdict. User preference thresholds (e.g. a personal ~1.5cpp bar) are an overlay the user applies — still surface sub-threshold options when cash is unreasonable or points are expiring, flagged as such.
+
 ## Staleness Check
 
 Look at `_meta.last_updated` in the data file. If it's more than 45 days old, re-fetch from the source URLs in `_meta.sources` and update the file. Programs devalue regularly, and stale valuations lead to bad recommendations.
