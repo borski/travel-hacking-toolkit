@@ -186,7 +186,55 @@
       "search_url": "https://www.alaskaair.com",
       "phone": "1-800-252-7522",
       "online_booking": true,
-      "notes": "Massive partner network extending well beyond oneworld. Alaska is Starlux's ONLY points booking partner. Korean Air bookable via Alaska (oneworld booking SkyTeam). Hainan Airlines and Condor are unique partners."
+      "notes": "Massive partner network extending well beyond oneworld. Alaska is Starlux's ONLY points booking partner. Korean Air bookable via Alaska (oneworld booking SkyTeam). Hainan Airlines and Condor are unique partners. NOTE: Alaska rebranded to Atmos Rewards in 2025, merging with Hawaiian. See the atmos_rewards entry."
+    },
+
+    "atmos_rewards": {
+      "display_name": "Atmos Rewards (Alaska + Hawaiian)",
+      "alliance": "oneworld",
+      "bookable_airlines": {
+        "oneworld": ["Alaska Airlines", "American Airlines", "British Airways", "Cathay Pacific", "Fiji Airways", "Finnair", "Iberia", "Japan Airlines", "Malaysia Airlines", "Oman Air", "Qantas", "Qatar Airways", "Royal Air Maroc", "Royal Jordanian", "SriLankan Airlines"],
+        "non_alliance": ["Aer Lingus", "Air Tahiti Nui", "Condor", "Hainan Airlines", "Hawaiian Airlines", "Icelandair", "Korean Air", "Philippine Airlines", "Porter Airlines", "Starlux Airlines"]
+      },
+      "transfer_from": ["Bilt (1:1)", "Marriott Bonvoy (60K:25K)"],
+      "chart_type": "fixed",
+      "search_url": "https://www.alaskaair.com",
+      "phone": "1-800-252-7522",
+      "online_booking": true,
+      "oceania_notes": "Key Oceania partners: Fiji Airways, Qantas, Air Tahiti Nui, Hawaiian (HNL-PPT, HNL-RAR). Free stopover on one-way. No change/cancel fees. Multi-partner itineraries (outside AA/BA) can't be booked as a single ticket. VERIFY specific award rates on alaskaair.com before committing.",
+      "notes": "Renamed from Alaska Mileage Plan; merged Alaska + Hawaiian loyalty programs. Massive partner network extending well beyond oneworld. Free stopover on one-way awards. No change or cancellation fees on award tickets. $12.50 nonrefundable partner booking fee."
+    },
+
+    "qantas_frequent_flyer": {
+      "display_name": "Qantas Frequent Flyer",
+      "alliance": "oneworld",
+      "bookable_airlines": {
+        "oneworld": ["Alaska Airlines", "American Airlines", "British Airways", "Cathay Pacific", "Finnair", "Iberia", "Japan Airlines", "Malaysia Airlines", "Qantas", "Qatar Airways", "Royal Jordanian", "SriLankan Airlines"],
+        "non_alliance": ["Air Calin", "Air France", "China Eastern", "Emirates", "Fiji Airways", "Jetstar", "Vietnam Airlines"]
+      },
+      "transfer_from": ["Amex MR (1:1)", "Capital One (1:1)", "Citi TY (1:1)"],
+      "chart_type": "fixed",
+      "search_url": "https://www.qantas.com",
+      "phone": "1-800-227-4500",
+      "online_booking": true,
+      "oceania_notes": "Can book Jetstar (LCC) awards, including Hawaii-Australia. Jetstar business is closer to premium economy, not lie-flat — compare against cash, which is often cheap on Jetstar. VERIFY current award rates on qantas.com before committing.",
+      "notes": "Qantas charges points fees to change (5,000) and cancel (6,000) per passenger. Carrier charges apply on many partner awards."
+    },
+
+    "ana_mileage_club": {
+      "display_name": "ANA Mileage Club",
+      "alliance": "star_alliance",
+      "bookable_airlines": {
+        "star_alliance": ["ANA", "Air Canada", "Air China", "Air India", "Air New Zealand", "Asiana", "Austrian", "Avianca", "Brussels Airlines", "Copa", "EgyptAir", "Ethiopian", "EVA Air", "LOT Polish", "Lufthansa", "Singapore Airlines", "South African Airways", "SWISS", "TAP Portugal", "Thai Airways", "Turkish Airlines", "United"],
+        "non_alliance": ["Etihad", "Garuda Indonesia", "Philippine Airlines", "Virgin Atlantic"]
+      },
+      "transfer_from": ["Amex MR (1:1)", "Marriott Bonvoy (60K:25K)"],
+      "chart_type": "fixed",
+      "search_url": "https://www.ana.co.jp/en/us/",
+      "phone": "1-800-235-9262",
+      "online_booking": true,
+      "oceania_notes": "New chart since June 24, 2025: one-way awards bookable on ANA metal AND Star Alliance partners at half the round-trip rate (no stopovers on one-ways). ANA-metal pricing is seasonal (low/regular/high) and applies only to 100% ANA-metal itineraries; the partner chart is flat. North America-Oceania business runs ~68.5K+ one-way depending on season. No fuel surcharges on Air Canada, Air China, Air NZ, Avianca, Copa, Etihad, United; low surcharges on ANA, Asiana, LOT Polish, Turkish. VERIFY rates on ana.co.jp — the site still hosts pre-June-2025 legacy chart pages that quote outdated prices.",
+      "notes": "Very limited transfer access — Amex MR only (plus Marriott at a poor ratio). Free to change, 3,000 miles to cancel. Round-the-world awards discontinued with the June 2025 revamp. SAS no longer bookable (left Star Alliance for SkyTeam September 2024)."
     },
 
     "emirates_skywards": {

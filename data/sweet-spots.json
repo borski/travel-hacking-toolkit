@@ -3,7 +3,7 @@
     "description": "Award flight and hotel sweet spots. High-value redemptions where points deliver outsized value compared to cash prices. Verified against current award charts as of last_updated.",
     "last_updated": "2026-03-21",
     "staleness_days": 60,
-    "notes": "Turkish Miles&Smiles devalued Feb 15, 2025 (connections now priced separately). Emirates new partner chart March 4, 2026 (rates dropped up to 76%). Sweet spots change with program devaluations. Re-verify chart rates before recommending."
+    "notes": "Turkish Miles&Smiles devalued Feb 15, 2025 (connections now priced separately). Emirates new partner chart March 4, 2026 (rates dropped up to 76%). Sweet spots change with program devaluations. Re-verify chart rates before recommending. 2026-07-20: added 7 transatlantic/Oceania-adjacent flight sweet spots from community forks. ANA rates verified against the post-June-2025 chart (partner one-ways now bookable; US-Europe 27.5K/50K one-way) — beware ANA's still-hosted legacy chart pages. JAL per-route one-way rates did not verify and were replaced with its distance-based pricing model. Entries whose verified field says otherwise were not independently re-checked."
   },
 
   "booking_windows": {
@@ -304,6 +304,223 @@
         "online_booking": true,
         "tips": ["New chart applies to most partners but JAL, Air Canada, Jetstar are still on old chart", "Separate chart for Qantas", "Distance-based so short-haul flights are the sweet spot", "Bilt transfers at 1:1 making it the best currency for Skywards"]
       }
+    },
+    {
+      "name": "ANA Mileage Club Business to Europe",
+      "tier": "excellent",
+      "program": "ANA Mileage Club",
+      "airline": "Star Alliance carriers",
+      "alliance": "star_alliance",
+      "cabin": "business",
+      "routes": {
+        "us_to_europe": {
+          "miles": 50000,
+          "direction": "one-way"
+        },
+        "us_to_europe_economy": {
+          "miles": 27500,
+          "direction": "one-way"
+        }
+      },
+      "surcharges": "varies",
+      "surcharge_warning": "No surcharges on: Air Canada, Air China, Air NZ, Avianca, Copa, Etihad, United. Low on: Asiana, LOT, Turkish. HIGH on: LH/LX/OS, BA.",
+      "why": "50K one-way business to Europe on Star Alliance partners is roughly 40% below what United or Aeroplan charge for the same Lufthansa/SWISS/Austrian metal. One-ways (metal and partner) bookable since June 24, 2025 at half the round-trip rate. Free changes, 3K miles to cancel. Amex transfers take 2-3 days, so award space can vanish mid-transfer.",
+      "transfer_partners": ["Amex MR (1:1, 2-3 day transfer delay)", "Marriott Bonvoy (60K:25K)"],
+      "booking": {
+        "search_availability": "united.com (logged out) or ana.co.jp",
+        "book_via": "ana.co.jp",
+        "online_booking": true,
+        "tips": ["Do NOT log into united.com when searching — logged-in results show expanded availability not bookable via ANA", "One-way awards bookable since June 24, 2025; no stopovers on one-ways", "ANA still hosts pre-June-2025 legacy chart pages — verify rates only against the current chart", "Transfer from Amex takes 2-3 days — confirm space before transferring"]
+      },
+      "verified": "2026-07-20: partner one-way rates (27.5K/50K US-Europe) confirmed via TPG and AwardWallet under the June 2025 chart."
+    },
+    {
+      "name": "JAL Mileage Bank partner chart (distance-based, round-trip discount)",
+      "tier": "excellent",
+      "program": "Japan Airlines Mileage Bank",
+      "airline": "American Airlines and other oneworld/bilateral partners",
+      "alliance": "oneworld",
+      "cabin": "business",
+      "pricing_model": "Distance-based on TOTAL itinerary mileage, so a round trip prices off the combined distance instead of as two one-ways added together — round trips are frequently far cheaper than 2x a one-way. Price the specific itinerary on jal.co.jp; there is no simple per-route rate.",
+      "surcharges": "low",
+      "surcharge_estimate": "Under $50 each way on AA metal",
+      "why": "JAL's distance chart regularly beats AAdvantage's own pricing for AA metal to Europe, with low surcharges. Key drawbacks: hard 36-month mile expiration with no extensions, redemption only for self and registered family members, no changes on ticketed awards (cancel for ¥3,100 and rebook).",
+      "transfer_partners": ["Capital One (4:3)", "Citi TY (4:3)", "Bilt (1:1)", "Marriott Bonvoy (60K:25K)"],
+      "booking": {
+        "search_availability": "jal.co.jp (step-by-step guide at frequentmiler.com)",
+        "book_via": "jal.co.jp",
+        "online_booking": true,
+        "tips": ["Miles expire 36 months from earn date with NO extensions", "Can only book for self or registered family members", "No changes allowed — cancel for ¥3,100 and rebook"]
+      },
+      "verified": "2026-07-20: chart confirmed distance-based with a round-trip discount; the fork's per-route one-way rates did not verify and were removed."
+    },
+    {
+      "name": "JAL Mileage Bank for Air France/Emirates/BA Business to Europe",
+      "tier": "good",
+      "program": "Japan Airlines Mileage Bank",
+      "airline": "Emirates, Air France/KLM, British Airways",
+      "alliance": "cross-alliance",
+      "cabin": "business",
+      "routes": {
+        "us_to_europe_emirates": {
+          "miles": 60000,
+          "direction": "one-way",
+          "surcharges": "$100-150"
+        },
+        "us_to_europe_airfrance": {
+          "miles": 60000,
+          "direction": "one-way",
+          "surcharges": "<$10 from US"
+        },
+        "us_to_europe_british_airways": {
+          "miles": 60000,
+          "direction": "one-way",
+          "surcharges": "$200-250 (lowest of any program for BA metal)"
+        }
+      },
+      "ba_surcharge_comparison": {
+        "jal_mileage_bank": "$200-280 (BEST)",
+        "cathay_asia_miles": "$250-350",
+        "qantas_frequent_flyer": "$300-400",
+        "ba_avios": "$500-800+",
+        "aadvantage": "$700+ each way",
+        "alaska_atmos": "$700-1,000 each way",
+        "note": "JAL is the cheapest way to book BA metal by a wide margin. Alaska/AA surcharges are 3-4x higher for the same BA flights."
+      },
+      "why": "JAL's cross-alliance partnerships with Emirates, AF/KLM, and BA are hidden gems. ~60K (distance-band dependent) for Emirates or AF business with far lower surcharges than those airlines' own programs. THE key play: BA metal surcharges via JAL run $200-250 — roughly half what BA Avios, AAdvantage, or Atmos charge.",
+      "transfer_partners": ["Capital One (4:3)", "Citi TY (4:3)", "Bilt (1:1)", "Marriott Bonvoy (60K:25K)"],
+      "booking": {
+        "search_availability": "jal.co.jp",
+        "book_via": "jal.co.jp",
+        "online_booking": true
+      },
+      "verified": "2026-07-18: BA-surcharge comparison consistent with the booking-guidance audit (PR #15). Mileage rates are distance-band dependent — price the exact itinerary."
+    },
+    {
+      "name": "Atmos/Alaska Business to Europe (distance-based)",
+      "tier": "excellent",
+      "program": "Atmos Rewards (Alaska + Hawaiian)",
+      "airline": "Condor, Icelandair, Finnair, BA, AA, and other partners",
+      "alliance": "oneworld + non-alliance",
+      "cabin": "business",
+      "routes": {
+        "short_haul_1501_3500mi": {
+          "miles": 45000,
+          "direction": "one-way"
+        },
+        "medium_haul_3501_5000mi": {
+          "miles": 55000,
+          "direction": "one-way"
+        },
+        "long_haul_5000plus_mi": {
+          "miles": 70000,
+          "direction": "one-way"
+        }
+      },
+      "surcharges": "low (except BA metal: $700-1,000)",
+      "why": "Distance-based chart means shorter routes are cheaper — East Coast to Western Europe for 45K business is excellent. FREE stopover on one-way awards. No change/cancel fees. $12.50 nonrefundable partner booking fee. Condor, Icelandair, Finnair are the key low-surcharge partners; avoid BA metal (massive surcharges).",
+      "transfer_partners": ["Bilt (1:1)", "Marriott Bonvoy (60K:25K)"],
+      "booking": {
+        "search_availability": "alaskaair.com",
+        "book_via": "alaskaair.com",
+        "online_booking": true,
+        "tips": ["Connecting itineraries sometimes price in a lower distance band than expected", "Multi-partner itineraries only work with BA+AA combinations", "Free stopover on a one-way is unique and valuable"]
+      },
+      "verified": "2026-07-20: imported from community fork; band rates not independently re-verified — check alaskaair.com"
+    },
+    {
+      "name": "United Business to Europe (no surcharges)",
+      "tier": "good",
+      "program": "United MileagePlus",
+      "airline": "United, Star Alliance partners",
+      "alliance": "star_alliance",
+      "cabin": "business",
+      "routes": {
+        "us_to_europe_united_metal": {
+          "miles": 80000,
+          "direction": "one-way"
+        },
+        "us_to_europe_partner": {
+          "miles": 88000,
+          "direction": "one-way"
+        },
+        "us_to_europe_economy": {
+          "miles": 27000,
+          "direction": "one-way"
+        }
+      },
+      "surcharges": "none",
+      "why": "Higher mileage cost than most competitors, BUT zero surcharges is a major advantage for LH/LX/OS metal (which carry $200-600 surcharges through other programs). Free changes and cancellations. United cardholders get discounts and expanded availability. Dynamic pricing — no published chart, so treat these as typical rates.",
+      "transfer_partners": ["Chase UR (1:1)", "Bilt (1:1)"],
+      "booking": {
+        "search_availability": "united.com",
+        "book_via": "united.com",
+        "online_booking": true,
+        "tips": ["Free changes and cancellations — best flexibility in the industry", "Dynamic pricing — check frequently for deals", "Best program for booking LH First/Business without surcharges"]
+      },
+      "verified": "2026-07-20: imported from community fork; dynamic-pricing typicals, not fixed rates."
+    },
+    {
+      "name": "Virgin Atlantic Economy on Air France/KLM",
+      "tier": "excellent",
+      "program": "Virgin Atlantic Flying Club",
+      "airline": "Air France, KLM",
+      "alliance": "skyteam (bilateral)",
+      "cabin": "economy",
+      "routes": {
+        "us_east_to_western_europe": {
+          "miles": 12000,
+          "direction": "one-way"
+        },
+        "us_west_to_western_europe": {
+          "miles": 15000,
+          "direction": "one-way"
+        },
+        "us_east_to_central_europe": {
+          "miles": 20000,
+          "direction": "one-way"
+        },
+        "us_west_to_central_europe": {
+          "miles": 23000,
+          "direction": "one-way"
+        }
+      },
+      "surcharges": "moderate",
+      "why": "Outstanding economy rates on AF/KLM via Virgin Atlantic — 12K from the East Coast is absurd. Virgin does NOT price per segment on AF/KLM: you pay the region rate even with connections. Much cheaper than Flying Blue's own pricing.",
+      "transfer_partners": ["Amex MR (1:1)", "Chase UR (1:1)", "Citi TY (1:1)", "Capital One (1:1 via Virgin Red)", "Bilt (1:1)", "Wells Fargo (1:1 via Virgin Red)"],
+      "booking": {
+        "search_availability": "virginatlantic.com",
+        "book_via": "virginatlantic.com",
+        "online_booking": true
+      },
+      "verified": "2026-07-20: imported from community fork; region rates not independently re-verified — check virginatlantic.com"
+    },
+    {
+      "name": "Qatar Avios for JetBlue Mint to Europe",
+      "tier": "good",
+      "program": "Qatar Airways Privilege Club",
+      "airline": "JetBlue",
+      "alliance": "non-alliance Avios partner",
+      "cabin": "business",
+      "routes": {
+        "us_to_europe_mint": {
+          "miles": 78000,
+          "direction": "one-way"
+        },
+        "us_to_europe_economy": {
+          "miles": 25000,
+          "direction": "one-way"
+        }
+      },
+      "surcharges": "low",
+      "why": "JetBlue Mint transatlantic via Qatar Avios undercuts JetBlue's own TrueBlue pricing, with low fees. Avios move freely between BA/Qatar/Iberia/Aer Lingus, so any Avios balance can be positioned to Qatar.",
+      "transfer_partners": ["Amex MR (1:1)", "Citi TY (1:1)", "Capital One (1:1)", "Bilt (1:1)"],
+      "booking": {
+        "search_availability": "qatarairways.com",
+        "book_via": "qatarairways.com",
+        "online_booking": true
+      },
+      "verified": "2026-07-20: imported from community fork; rates not independently re-verified — check qatarairways.com"
     }
   ],
 
