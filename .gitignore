@@ -21,3 +21,6 @@ Thumbs.db
 *~
 .idea/
 .vscode/
+
+# Trip logs (trip-log skill) — local only
+trips/logs/
