@@ -2,6 +2,7 @@ name	category	summary	api_key	docker_image
 award-calendar	orchestration	Cheapest award dates for a route across a date range. Calendar grid view.	Seats.aero Pro	
 compare-flights	orchestration	Unified flight comparison across ALL sources in parallel. Auto-applies transfer optimization.	Uses individual skill keys	
 compare-hotels	orchestration	Unified hotel comparison across portals, metasearch, and Airbnb. FHR/Edit stacking detection.	Uses individual skill keys	
+gardening	orchestration	Audit existing reservations for price drops, better cabins, schedule changes, and improved routings.	Uses individual skill keys	
 trip-calculator	orchestration	Cash vs points decision answered with math. Transfer ratios, taxes, opportunity cost.	None (free, local data)	
 trip-planner	orchestration	Full trip planning. Flights + hotels + points in one shot.	Uses individual skill keys	
 duffel	flights	Primary cash prices. Real GDS per-fare-class data.	Duffel	
