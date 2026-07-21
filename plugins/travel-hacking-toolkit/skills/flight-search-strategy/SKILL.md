@@ -26,6 +26,8 @@ This is not a pick-one list. Each source returns different results, different pr
 
 **Run ALL of these in parallel:** Duffel + Ignav + Google Flights + Skiplagged + Kiwi.
 
+Skiplagged and Kiwi are keyless MCP servers — they are available in every properly launched session. Attempt the tool call before ever claiming MCP is unavailable, and never substitute improvised browser scraping for these sources (see `fallback-and-resilience`).
+
 Always add Seats.aero for award comparison. Always run the Southwest skill if SW flies the route.
 
 Don't skip sources. Don't assume one source has everything. Present the combined results with the best options highlighted regardless of which source found them.

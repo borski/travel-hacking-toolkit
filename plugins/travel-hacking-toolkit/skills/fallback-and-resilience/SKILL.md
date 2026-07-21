@@ -38,6 +38,12 @@ Tools go down. APIs break. Have a backup plan for every search.
 - **Never give up after one tool fails.** Always try at least one fallback.
 - **Tell the user which source you used.** "Skiplagged was down, so I checked Kiwi.com instead."
 
+## Never Claim MCP Is Unavailable Without Calling It
+
+Do not declare an MCP server "not available" from a glance at your tool list — **attempt an actual tool call first.** The Skiplagged and Kiwi servers need no API keys and are wired into every supported harness config; a session launched from the repo directory has them. If a call genuinely fails, quote the error to the user and then fall back.
+
+And when falling back, **never silently substitute ad-hoc browser scraping for the toolkit's sources.** Improvised scraping (e.g., driving a browser to Google Flights by hand) produces prices that miss most of the market. If you're ever reduced to it, say so explicitly and label every price from it as low-confidence: "MCP sources were unreachable, so this is a single scraped quote — treat it as a ceiling, not a market price."
+
 ## IP Allowlist Errors (Common First-Time Failure)
 
 Several APIs in the toolkit enforce IP allowlists on the developer key. If you see one of these error signatures, do NOT rabbit-hole on auth or quotas. Suggest the user whitelist their IP first.
