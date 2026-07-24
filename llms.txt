@@ -22,6 +22,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 - [Getting Started](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/getting-started/SKILL.md): First-run onboarding. Detects setup, points to setup-keys script, shows sample prompts.
 - [Plan Trip](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/plan-trip/SKILL.md): Guided trip planner. The hero command for the toolkit.
 - [Trip Calculator](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/trip-calculator/SKILL.md): Cash vs points decision answered with math. Transfer ratios, taxes, opportunity cost.
+- [Trip Log](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/trip-log/SKILL.md): Opt-in trip journal. Save searches and booked trips to trips/logs/ for future reference.
 - [Trip Planner](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/trip-planner/SKILL.md): Full trip planning. Flights + hotels + points in one shot.
 <!-- END: llms:orchestration -->
 
