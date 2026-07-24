@@ -165,6 +165,7 @@ Start here: the **orchestration skills** call everything else automatically.
 | **award-calendar** | Cheapest award dates for a route across a date range. Calendar grid view. | Seats.aero Pro |
 | **compare-flights** | Unified flight comparison across ALL sources in parallel. Auto-applies transfer optimization. | Uses individual skill keys |
 | **compare-hotels** | Unified hotel comparison across portals, metasearch, and Airbnb. FHR/Edit stacking detection. | Uses individual skill keys |
+| **gardening** | Audit existing reservations for price drops, better cabins, schedule changes, and improved routings. | Uses individual skill keys |
 | **getting-started** | First-run onboarding. Detects setup, points to setup-keys script, shows sample prompts. | None |
 | **plan-trip** | Guided trip planner. The hero command for the toolkit. | None |
 | **trip-calculator** | Cash vs points decision answered with math. Transfer ratios, taxes, opportunity cost. | None (free, local data) |
