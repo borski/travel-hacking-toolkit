@@ -9,6 +9,15 @@ summary: Active credit card transfer bonuses with primary-source citations. Tell
 
 Authoritative reference for current credit card transfer bonuses. Reads from `data/transfer-bonuses.json`, which is refreshed weekly by `scripts/refresh-transfer-bonuses.py` (run automatically every Monday via `.github/workflows/refresh-data.yml`, and manually any time). The script scrapes Frequent Miler (canonical) and cross-checks each bonus against AwardWallet. Each active bonus carries a confidence marker (`VERIFIED` if both FM and AwardWallet agree, `LIKELY` if only FM, `UNVERIFIED` if single weak source) per the toolkit's Research Integrity Protocol. TPG is sometimes consulted manually as a sanity check but is NOT scraped programmatically — TPG often shows expired bonuses as active.
 
+## The Expiry Gate (run this BEFORE citing any bonus)
+
+The data file is a snapshot; bonuses commonly end on month-end dates between refreshes. On 2026-07-07 the file listed 7 "active" bonuses of which 5 had ended a week earlier — an agent quoting the file raw would have priced a Chase→Marriott transfer at 1.55x when the real ratio was 1.0. So, mechanically, every time:
+
+1. Get today's date.
+2. For each bonus you're about to cite, compare `end_date_inclusive` to today. **Past-dated = expired, regardless of which array it sits in.** Never present an expired bonus as available.
+3. If any `active_bonuses` entry is past-dated, or `_meta.last_updated` is more than 7 days old, refresh first: `python3 scripts/refresh-transfer-bonuses.py` (use `--dry-run` to preview). Then re-read the file.
+4. If the refresh fails (source layout changed, offline), present the bonus WITH its end date and staleness caveat: "the file shows +30% through 2026-07-14, last verified <date> — confirm on the issuer's transfer page before moving points."
+
 ## When to Use
 
 - **Pricing an award booking that involves a transfer.** A 30% bonus to JAL changes the real cost of a oneworld booking through JAL by 23%. The math has to factor in the bonus.
