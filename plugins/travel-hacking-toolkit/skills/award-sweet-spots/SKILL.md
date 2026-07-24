@@ -1,6 +1,6 @@
 ---
 name: award-sweet-spots
-description: Catalog of high-value award redemptions where points dramatically outvalue cash. Tiered by legendary/excellent/good with current rates, devaluation history, and booking caveats.
+description: Catalog of high-value award redemptions where points dramatically outvalue cash. Tiered by legendary/excellent/good with current rates, devaluation history, and booking caveats. Includes Oceania and South Pacific plays (Australia, New Zealand, Tahiti, Fiji) and transatlantic business-class sweet spots.
 category: reference
 summary: Catalog of legendary, excellent, and good award redemptions with current rates and devaluation history.
 ---
@@ -32,6 +32,24 @@ When a user's search returns options that match a known sweet spot:
 2. Show the current rate vs cash value.
 3. Note any caveats (surcharges, booking-window restrictions, devaluations).
 4. Compare against the next-best option to make the value concrete.
+
+## Oceania / South Pacific Sweet Spots
+
+Getting to Australia, New Zealand, and the South Pacific on points is hard — demand is high, distances are long, and premium cabin space is scarce. Proven plays, ranked:
+
+1. **Air New Zealand business via Virgin Atlantic** (Excellent) — 62.5K one-way from the US, 45K from Hawaii. The same flights United sells for 110K. Availability is the bottleneck: rare in advance, opens inside 30 days. Phone booking only. Reachable from Amex, Chase, Citi, Bilt, Wells Fargo, and Capital One (via Virgin Red).
+2. **ANA Mileage Club business to Oceania** (Excellent) — roughly 68.5K+ one-way on ANA metal (seasonal, under the June 2025 chart; one-ways now bookable) with wide routing via Japan or direct on Air NZ. No fuel surcharges on United, Air Canada, or Air NZ. Limitation: reachable only from Amex MR (plus Marriott at a poor ratio). Verify current rates on ana.co.jp — avoid its still-hosted pre-June-2025 legacy chart pages.
+3. **Aeroplan business to Oceania** (Good) — 75-115K one-way, but the killer feature is adding an **Asia stopover for +5K miles**, turning Australia into Asia + Australia. No fuel surcharges. Reachable from Amex, Chase, Capital One, Bilt.
+4. **Air France LAX-Tahiti nonstop** (Good) — ~30K economy one-way on one of the few US-Tahiti nonstops. Business (~113K) is usually poor value; economy is the play. Watch for Flying Blue transfer bonuses.
+5. **Atmos/Alaska to the South Pacific** (Good) — HNL-Kiritimati on Fiji Airways in the lowest distance band is a perennial steal, and HNL-Tahiti/Rarotonga on Hawaiian is cheap. Free stopover, no change/cancel fees. Reachable only from Bilt (plus Marriott).
+6. **United MileagePlus business** (Good) — 85-100K on United metal, ~110K on partners. The most lenient routing rules, but partner space is almost always cheaper via Virgin Atlantic (62.5K) or ANA.
+
+Oceania-specific warnings:
+
+- **Availability is the real constraint** — points prices matter less if there are no seats. Search early and often for premium cabins.
+- **Peak season is Dec-Feb** (Southern Hemisphere summer); award space is hardest then.
+- **Air NZ via Virgin Atlantic** is the best value but hardest to find — realistic only inside ~30 days.
+- **Surcharge traps:** BA Avios on Qantas metal carries heavy surcharges. Stick to each entry's no-surcharge carriers.
 
 ## Booking Windows
 
