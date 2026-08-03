@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-07-27",
+    "last_updated": "2026-08-03",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -20,38 +20,6 @@
     }
   },
   "active_bonuses": [
-    {
-      "id": "chase_ur_to_ihg_one_rewards_100pct_2026_07",
-      "from_program": "chase_ur",
-      "from_display": "Chase Ultimate Rewards",
-      "to_program": "ihg_one_rewards",
-      "to_display": "IHG",
-      "bonus_pct": 100,
-      "ratio": 2.0,
-      "start_date": "2026-07-15",
-      "end_date_inclusive": "2026-07-30",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/chase-is-offering-a-70-100-transfer-bonus-to-ihg-one-rewards-give-it-a-miss/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
-    {
-      "id": "amex_membership_rewards_to_virgin_atlantic_30pct_2026_07",
-      "from_program": "amex_membership_rewards",
-      "from_display": "Amex Membership Rewards",
-      "to_program": "virgin_atlantic",
-      "to_display": "Virgin Atlantic Flying Club",
-      "bonus_pct": 30,
-      "ratio": 1.3,
-      "start_date": "2026-07-01",
-      "end_date_inclusive": "2026-07-31",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/30-percent-transfer-bonus-american-express-membership-rewards-virgin-atlantic/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
     {
       "id": "rove_to_qantas_50pct_2026_08",
       "from_program": "rove",
@@ -82,6 +50,38 @@
         "https://frequentmiler.com/citi-thankyou-air-france-klm-flying-blue-20-percent-transfer-bonus/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
+    },
+    {
+      "id": "chase_ur_to_ihg_one_rewards_70pct_2026_08",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "ihg_one_rewards",
+      "to_display": "IHG",
+      "bonus_pct": 70,
+      "ratio": 1.7,
+      "start_date": "2026-07-31",
+      "end_date_inclusive": "2026-08-31",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/chase-is-offering-a-70-100-transfer-bonus-to-ihg-one-rewards-give-it-a-miss/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "capital_one_to_avianca_lifemiles_15pct_2026_08",
+      "from_program": "capital_one",
+      "from_display": "Capital One Miles",
+      "to_program": "avianca_lifemiles",
+      "to_display": "Avianca LifeMiles",
+      "bonus_pct": 15,
+      "ratio": 1.15,
+      "start_date": "2026-08-01",
+      "end_date_inclusive": "2026-08-31",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/15-transfer-bonus-from-capital-one-to-lifemiles-avianca/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
     }
   ],
   "expired_recently": [
@@ -107,6 +107,22 @@
       "to_display": "Avianca LifeMiles",
       "bonus_pct": 15,
       "end_date_inclusive": "2026-07-15",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "chase_ur_to_ihg_one_rewards_100pct_2026_07",
+      "from_display": "Chase Ultimate Rewards",
+      "to_display": "IHG",
+      "bonus_pct": 100,
+      "end_date_inclusive": "2026-07-30",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "amex_membership_rewards_to_virgin_atlantic_30pct_2026_07",
+      "from_display": "Amex Membership Rewards",
+      "to_display": "Virgin Atlantic Flying Club",
+      "bonus_pct": 30,
+      "end_date_inclusive": "2026-07-31",
       "note": "Recently expired (auto-moved from active list)."
     }
   ],
