@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-03",
+    "last_updated": "2026-08-10",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -80,6 +80,54 @@
       "confidence": "VERIFIED",
       "sources": [
         "https://frequentmiler.com/15-transfer-bonus-from-capital-one-to-lifemiles-avianca/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "amex_membership_rewards_to_british_airways_avios_30pct_2026_09",
+      "from_program": "amex_membership_rewards",
+      "from_display": "Amex Membership Rewards",
+      "to_program": "british_airways_avios",
+      "to_display": "British Airways Avios",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-08-03",
+      "end_date_inclusive": "2026-09-27",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/30-percent-transfer-bonus-american-express-membership-rewards-avios-british-airways-iberia-aer-lingus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "amex_membership_rewards_to_iberia_avios_30pct_2026_09",
+      "from_program": "amex_membership_rewards",
+      "from_display": "Amex Membership Rewards",
+      "to_program": "iberia_avios",
+      "to_display": "Iberia Avios",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-08-03",
+      "end_date_inclusive": "2026-09-27",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/30-percent-transfer-bonus-american-express-membership-rewards-avios-british-airways-iberia-aer-lingus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "amex_membership_rewards_to_aer_lingus_avios_30pct_2026_09",
+      "from_program": "amex_membership_rewards",
+      "from_display": "Amex Membership Rewards",
+      "to_program": "aer_lingus_avios",
+      "to_display": "Aer Lingus Avios",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-08-03",
+      "end_date_inclusive": "2026-09-27",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/30-percent-transfer-bonus-american-express-membership-rewards-avios-british-airways-iberia-aer-lingus/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
     }
