@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-10",
+    "last_updated": "2026-08-17",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -20,21 +20,6 @@
     }
   },
   "active_bonuses": [
-    {
-      "id": "rove_to_qantas_50pct_2026_08",
-      "from_program": "rove",
-      "from_display": "Rove Miles",
-      "to_program": "qantas",
-      "to_display": "Qantas Frequent Flyer",
-      "bonus_pct": 50,
-      "ratio": 1.5,
-      "start_date": "2026-07-15",
-      "end_date_inclusive": "2026-08-14",
-      "confidence": "LIKELY",
-      "sources": [
-        "https://frequentmiler.com/rove-adds-qantas-as-transfer-partner-launches-with-50-transfer-bonus/"
-      ]
-    },
     {
       "id": "citi_typ_to_flying_blue_20pct_2026_08",
       "from_program": "citi_typ",
@@ -130,33 +115,25 @@
         "https://frequentmiler.com/30-percent-transfer-bonus-american-express-membership-rewards-avios-british-airways-iberia-aer-lingus/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
+    },
+    {
+      "id": "chase_ur_to_aeroplan_20pct_2026_09",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "aeroplan",
+      "to_display": "Air Canada Aeroplan",
+      "bonus_pct": 20,
+      "ratio": 1.2,
+      "start_date": "2026-08-12",
+      "end_date_inclusive": "2026-09-30",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/get-20-bonus-when-transferring-chase-ultimate-rewards-to-air-canada-aeroplan-stack-with-10-cardholder-bonus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
     }
   ],
   "expired_recently": [
-    {
-      "id": "chase_ur_to_virgin_atlantic_30pct_2026_07",
-      "from_display": "Chase Ultimate Rewards",
-      "to_display": "Virgin Atlantic Flying Club",
-      "bonus_pct": 30,
-      "end_date_inclusive": "2026-07-14",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "amex_membership_rewards_to_hilton_honors_20pct_2026_07",
-      "from_display": "Amex Membership Rewards",
-      "to_display": "Hilton",
-      "bonus_pct": 20,
-      "end_date_inclusive": "2026-07-14",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "amex_membership_rewards_to_avianca_lifemiles_15pct_2026_07",
-      "from_display": "Amex Membership Rewards",
-      "to_display": "Avianca LifeMiles",
-      "bonus_pct": 15,
-      "end_date_inclusive": "2026-07-15",
-      "note": "Recently expired (auto-moved from active list)."
-    },
     {
       "id": "chase_ur_to_ihg_one_rewards_100pct_2026_07",
       "from_display": "Chase Ultimate Rewards",
@@ -171,6 +148,14 @@
       "to_display": "Virgin Atlantic Flying Club",
       "bonus_pct": 30,
       "end_date_inclusive": "2026-07-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "rove_to_qantas_50pct_2026_08",
+      "from_display": "Rove Miles",
+      "to_display": "Qantas Frequent Flyer",
+      "bonus_pct": 50,
+      "end_date_inclusive": "2026-08-14",
       "note": "Recently expired (auto-moved from active list)."
     }
   ],
