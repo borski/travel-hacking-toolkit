@@ -17,6 +17,7 @@ Search flights and hotels (Booking.com inventory) via RapidAPI. Secondary source
 
 `RAPIDAPI_KEY` is set in `.env`. All requests use the `x-rapidapi-key` and `x-rapidapi-host` headers.
 
+Note: apiheya consolidated their old Google Flights Live and Booking.com Live APIs into this single API. The old hosts (`booking-live-api.p.rapidapi.com`, `google-flights-live-api.p.rapidapi.com`) are dead and return 403 for every key. Always use `sky-scrapper.p.rapidapi.com`.
 
 ## Hotels (Booking.com pricing)
 
