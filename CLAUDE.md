@@ -171,7 +171,7 @@ If you change skills, CLAUDE.md, or MCP config, run `bash scripts/smoke-test.sh`
 
 - Seats.aero data is cached, not live. Check `ComputedLastSeen` for freshness. Stale data (24h+) means verify on the airline site before booking.
 - Always search for 2+ seats when booking for multiple people. Award availability for 1 seat doesn't guarantee 2.
-- RapidAPI free tier is 100 requests/month. Use sparingly. Prefer SerpAPI.
+- RapidAPI quotas are per API, not per account, and each API needs its own free subscription on top of the key. A key with no subscription returns 403, not 401. The flights free tier is 10 requests/month. Use sparingly. Prefer SerpAPI.
 - Atlas Obscura and Airbnb scrape websites. Be respectful with request volume.
 - Skiplagged, Kiwi.com, Trivago, and Ferryhopper need no setup. They just work.
 - Ferryhopper focuses on European/Mediterranean routes. Great for Greek islands, Croatia, Scandinavia.
