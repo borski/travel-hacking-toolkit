@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-08-31",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -49,6 +49,37 @@
       "confidence": "VERIFIED",
       "sources": [
         "https://frequentmiler.com/15-transfer-bonus-from-capital-one-to-lifemiles-avianca/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "bilt_to_virgin_atlantic_100pct_2026_09",
+      "from_program": "bilt",
+      "from_display": "Bilt",
+      "to_program": "virgin_atlantic",
+      "to_display": "Virgin Atlantic Flying Club",
+      "bonus_pct": 100,
+      "ratio": 2.0,
+      "start_date": "2026-09-01",
+      "end_date_inclusive": "2026-09-01",
+      "confidence": "LIKELY",
+      "sources": [
+        "https://frequentmiler.com/bilt-rent-day-up-to-100-transfer-bonus-to-virgin/"
+      ]
+    },
+    {
+      "id": "citi_typ_to_leading_hotels_of_world_25pct_2026_09",
+      "from_program": "citi_typ",
+      "from_display": "Citi ThankYou Rewards",
+      "to_program": "leading_hotels_of_world",
+      "to_display": "Leading Hotels of the World",
+      "bonus_pct": 25,
+      "ratio": 1.25,
+      "start_date": "2026-08-23",
+      "end_date_inclusive": "2026-09-19",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/citi-thankyou-leading-hotels-of-the-world-lhw-25-percent-transfer-bonus/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
     },
@@ -118,22 +149,6 @@
     }
   ],
   "expired_recently": [
-    {
-      "id": "chase_ur_to_ihg_one_rewards_100pct_2026_07",
-      "from_display": "Chase Ultimate Rewards",
-      "to_display": "IHG",
-      "bonus_pct": 100,
-      "end_date_inclusive": "2026-07-30",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "amex_membership_rewards_to_virgin_atlantic_30pct_2026_07",
-      "from_display": "Amex Membership Rewards",
-      "to_display": "Virgin Atlantic Flying Club",
-      "bonus_pct": 30,
-      "end_date_inclusive": "2026-07-31",
-      "note": "Recently expired (auto-moved from active list)."
-    },
     {
       "id": "rove_to_qantas_50pct_2026_08",
       "from_display": "Rove Miles",
