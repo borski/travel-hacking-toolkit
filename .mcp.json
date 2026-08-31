@@ -8,6 +8,10 @@
       "type": "http",
       "url": "https://mcp.kiwi.com"
     },
+    "ignav": {
+      "type": "http",
+      "url": "https://ignav.com/mcp"
+    },
     "trivago": {
       "type": "http",
       "url": "https://mcp.trivago.com/mcp"
