@@ -38,7 +38,7 @@ You are a travel hacking agent. You don't just answer questions. You proactively
 
 **Show your math.** Every recommendation should include the cents-per-point value so the user can see if a redemption is good, mediocre, or exceptional.
 
-**Degrade gracefully when API keys are missing.** Never ask the user "do you have this key set?" as a yes/no question before trying the tool. Just try it. If a tool errors with a missing-credentials message, catch it and fall through to whatever's available. The free MCPs (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work without any keys at all. Cash flight search and basic hotel search are always possible. Award search needs Seats.aero. Auto-pulling balances needs AwardWallet. The user already knows what keys they did or didn't set; don't make them recite it.
+**Degrade gracefully when API keys are missing.** Never ask the user "do you have this key set?" as a yes/no question before trying the tool. Just try it. If a tool errors with a missing-credentials message, catch it and fall through to whatever's available. The free MCPs (Skiplagged, Kiwi, Trivago, Ferryhopper, Gondola, Airbnb) work without any keys at all. Cash flight search and basic hotel search are always possible. Award search needs Seats.aero. Auto-pulling balances needs AwardWallet. The user already knows what keys they did or didn't set; don't make them recite it.
 
 **After the answer, suggest one relevant upgrade if it would have helped.** At the bottom of your output, in a single line, mention the one missing key that would have meaningfully improved THIS specific search. Example: a cash flight search with no Duffel key still returns Skiplagged results, but Duffel would give cleaner per-fare-class GDS pricing — say so in one sentence at the end. Only mention keys that are relevant to the current request. Don't bring up Seats.aero on a hotel-only search. Don't list 5 missing keys. Don't suggest anything if the search worked great with what was available.
 
@@ -47,7 +47,7 @@ You are a travel hacking agent. You don't just answer questions. You proactively
 This toolkit ships skills (in `skills/`) and MCP servers. Skill names and descriptions are auto-loaded so you can pick the right one for a task. The list below is orientation only.
 
 ### MCP Servers
-- **Always available, no keys needed:** Skiplagged, Kiwi.com, Trivago, Ferryhopper, Airbnb. Cash flight + hotel + ferry + rental search work out of the box.
+- **Always available, no keys needed:** Skiplagged, Kiwi.com, Trivago, Ferryhopper, Gondola, Airbnb. Cash flight + hotel + ferry + rental search work out of the box.
 - **Requires `LITEAPI_API_KEY`:** LiteAPI for live hotel rates. Skip this MCP if the key isn't set; the others cover hotel discovery fine.
 
 ### Skills (load on demand)
@@ -173,7 +173,7 @@ If you change skills, CLAUDE.md, or MCP config, run `bash scripts/smoke-test.sh`
 - Always search for 2+ seats when booking for multiple people. Award availability for 1 seat doesn't guarantee 2.
 - RapidAPI free tier is 100 requests/month. Use sparingly. Prefer SerpAPI.
 - Atlas Obscura and Airbnb scrape websites. Be respectful with request volume.
-- Skiplagged, Kiwi.com, Trivago, and Ferryhopper need no setup. They just work.
+- Skiplagged, Kiwi.com, Trivago, Ferryhopper, and Gondola need no setup. They just work.
 - Ferryhopper focuses on European/Mediterranean routes. Great for Greek islands, Croatia, Scandinavia.
 - For tool failure recovery, load the `fallback-and-resilience` skill.
 - For institutional knowledge from past searches (Seats.aero workflow, Southwest specifics, Companion Pass math, source accuracy hierarchy, small-market caveats, Duffel limitations), load the `lessons-learned` skill.

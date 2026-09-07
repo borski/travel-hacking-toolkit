@@ -16,6 +16,10 @@
       "type": "http",
       "url": "https://mcp.ferryhopper.com/mcp"
     },
+    "gondola": {
+      "type": "http",
+      "url": "https://mcp.gondola.ai/mcp"
+    },
     "liteapi": {
       "type": "http",
       "url": "https://mcp.liteapi.travel/api/mcp",
