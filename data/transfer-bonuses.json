@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-07",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -20,53 +20,6 @@
     }
   },
   "active_bonuses": [
-    {
-      "id": "chase_ur_to_ihg_one_rewards_70pct_2026_08",
-      "from_program": "chase_ur",
-      "from_display": "Chase Ultimate Rewards",
-      "to_program": "ihg_one_rewards",
-      "to_display": "IHG",
-      "bonus_pct": 70,
-      "ratio": 1.7,
-      "start_date": "2026-07-31",
-      "end_date_inclusive": "2026-08-31",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/chase-is-offering-a-70-100-transfer-bonus-to-ihg-one-rewards-give-it-a-miss/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
-    {
-      "id": "capital_one_to_avianca_lifemiles_15pct_2026_08",
-      "from_program": "capital_one",
-      "from_display": "Capital One Miles",
-      "to_program": "avianca_lifemiles",
-      "to_display": "Avianca LifeMiles",
-      "bonus_pct": 15,
-      "ratio": 1.15,
-      "start_date": "2026-08-01",
-      "end_date_inclusive": "2026-08-31",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/15-transfer-bonus-from-capital-one-to-lifemiles-avianca/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
-    {
-      "id": "bilt_to_virgin_atlantic_100pct_2026_09",
-      "from_program": "bilt",
-      "from_display": "Bilt",
-      "to_program": "virgin_atlantic",
-      "to_display": "Virgin Atlantic Flying Club",
-      "bonus_pct": 100,
-      "ratio": 2.0,
-      "start_date": "2026-09-01",
-      "end_date_inclusive": "2026-09-01",
-      "confidence": "LIKELY",
-      "sources": [
-        "https://frequentmiler.com/bilt-rent-day-up-to-100-transfer-bonus-to-virgin/"
-      ]
-    },
     {
       "id": "citi_typ_to_leading_hotels_of_world_25pct_2026_09",
       "from_program": "citi_typ",
@@ -146,6 +99,38 @@
         "https://frequentmiler.com/get-20-bonus-when-transferring-chase-ultimate-rewards-to-air-canada-aeroplan-stack-with-10-cardholder-bonus/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
+    },
+    {
+      "id": "capital_one_to_jal_mileage_bank_30pct_2026_09",
+      "from_program": "capital_one",
+      "from_display": "Capital One Miles",
+      "to_program": "jal_mileage_bank",
+      "to_display": "JAL (Japan Airlines) Mileage Bank",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-09-01",
+      "end_date_inclusive": "2026-09-30",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/capital-one-miles-jal-japan-airlines-30-percent-transfer-bonus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "amex_membership_rewards_to_hilton_honors_30pct_2026_10",
+      "from_program": "amex_membership_rewards",
+      "from_display": "Amex Membership Rewards",
+      "to_program": "hilton_honors",
+      "to_display": "Hilton",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-09-01",
+      "end_date_inclusive": "2026-10-14",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/amex-membership-rewards-hilton-honors-30-percent-transfer-bonus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
     }
   ],
   "expired_recently": [
@@ -163,6 +148,30 @@
       "to_display": "Air France KLM Flying Blue",
       "bonus_pct": 20,
       "end_date_inclusive": "2026-08-22",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "chase_ur_to_ihg_one_rewards_70pct_2026_08",
+      "from_display": "Chase Ultimate Rewards",
+      "to_display": "IHG",
+      "bonus_pct": 70,
+      "end_date_inclusive": "2026-08-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "capital_one_to_avianca_lifemiles_15pct_2026_08",
+      "from_display": "Capital One Miles",
+      "to_display": "Avianca LifeMiles",
+      "bonus_pct": 15,
+      "end_date_inclusive": "2026-08-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "bilt_to_virgin_atlantic_100pct_2026_09",
+      "from_display": "Bilt",
+      "to_display": "Virgin Atlantic Flying Club",
+      "bonus_pct": 100,
+      "end_date_inclusive": "2026-09-01",
       "note": "Recently expired (auto-moved from active list)."
     }
   ],
