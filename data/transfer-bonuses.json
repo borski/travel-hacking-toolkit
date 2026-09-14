@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-09-07",
+    "last_updated": "2026-09-14",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -134,14 +134,6 @@
     }
   ],
   "expired_recently": [
-    {
-      "id": "rove_to_qantas_50pct_2026_08",
-      "from_display": "Rove Miles",
-      "to_display": "Qantas Frequent Flyer",
-      "bonus_pct": 50,
-      "end_date_inclusive": "2026-08-14",
-      "note": "Recently expired (auto-moved from active list)."
-    },
     {
       "id": "citi_typ_to_flying_blue_20pct_2026_08",
       "from_display": "Citi ThankYou Rewards",
