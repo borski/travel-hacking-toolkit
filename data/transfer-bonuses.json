@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-09-14",
+    "last_updated": "2026-09-21",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -20,22 +20,6 @@
     }
   },
   "active_bonuses": [
-    {
-      "id": "citi_typ_to_leading_hotels_of_world_25pct_2026_09",
-      "from_program": "citi_typ",
-      "from_display": "Citi ThankYou Rewards",
-      "to_program": "leading_hotels_of_world",
-      "to_display": "Leading Hotels of the World",
-      "bonus_pct": 25,
-      "ratio": 1.25,
-      "start_date": "2026-08-23",
-      "end_date_inclusive": "2026-09-19",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/citi-thankyou-leading-hotels-of-the-world-lhw-25-percent-transfer-bonus/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
     {
       "id": "amex_membership_rewards_to_british_airways_avios_30pct_2026_09",
       "from_program": "amex_membership_rewards",
@@ -131,6 +115,38 @@
         "https://frequentmiler.com/amex-membership-rewards-hilton-honors-30-percent-transfer-bonus/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
+    },
+    {
+      "id": "chase_ur_to_marriott_bonvoy_70pct_2026_10",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "marriott_bonvoy",
+      "to_display": "Marriott Bonvoy",
+      "bonus_pct": 70,
+      "ratio": 1.7,
+      "start_date": "2026-09-15",
+      "end_date_inclusive": "2026-10-15",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/70-percent-transfer-bonus-chase-ultimate-rewards-marriott-bonvoy/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "citi_typ_to_jal_mileage_bank_30pct_2026_10",
+      "from_program": "citi_typ",
+      "from_display": "Citi ThankYou Rewards",
+      "to_program": "jal_mileage_bank",
+      "to_display": "JAL (Japan Airlines) Mileage Bank",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-09-20",
+      "end_date_inclusive": "2026-10-24",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/citi-adds-japan-airlines-as-a-11-partner-launches-30-transfer-bonus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
     }
   ],
   "expired_recently": [
@@ -164,6 +180,14 @@
       "to_display": "Virgin Atlantic Flying Club",
       "bonus_pct": 100,
       "end_date_inclusive": "2026-09-01",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "citi_typ_to_leading_hotels_of_world_25pct_2026_09",
+      "from_display": "Citi ThankYou Rewards",
+      "to_display": "Leading Hotels of the World",
+      "bonus_pct": 25,
+      "end_date_inclusive": "2026-09-19",
       "note": "Recently expired (auto-moved from active list)."
     }
   ],
