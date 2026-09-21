@@ -11,6 +11,11 @@
       "url": "https://mcp.kiwi.com",
       "enabled": true
     },
+    "ignav": {
+      "type": "remote",
+      "url": "https://ignav.com/mcp",
+      "enabled": true
+    },
     "trivago": {
       "type": "remote",
       "url": "https://mcp.trivago.com/mcp",
