@@ -231,5 +231,29 @@ class CredentialGuardTests(unittest.TestCase):
         self.assertIn("AMEX_BAD_CREDENTIALS", out.getvalue())
 
 
+class HotelTextFallbackTests(unittest.TestCase):
+    """The raw-text hotel parser used when no structured cards are found."""
+
+    def test_parses_a_hotel_block(self):
+        text = (
+            "$1,250.00 per night\n"
+            "Hotel Bel-Air\n"
+            "Fine Hotels + Resorts\n"
+            "12,500 points\n"
+            "Complimentary breakfast for two\n"
+        )
+        hotels = sf._parse_hotels_from_text(text)
+        self.assertEqual(len(hotels), 1)
+        hotel = hotels[0]
+        self.assertEqual(hotel["name"], "Hotel Bel-Air")
+        self.assertTrue(hotel["is_fhr"])
+        self.assertEqual(hotel["price_usd"], 1250.0)
+        self.assertEqual(hotel["points"], 12500)
+        self.assertEqual(hotel["benefits"], ["Complimentary breakfast for two"])
+
+    def test_block_without_pricing_is_skipped(self):
+        self.assertEqual(sf._parse_hotels_from_text("Some Hotel\n"), [])
+
+
 if __name__ == "__main__":
     unittest.main()
