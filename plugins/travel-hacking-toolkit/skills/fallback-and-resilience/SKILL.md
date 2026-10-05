@@ -24,6 +24,7 @@ Tools go down. APIs break. Have a backup plan for every search.
 | Airbnb | Scraping blocked | Suggest user check airbnb.com directly |
 | AwardWallet | API error | Ask user for their balances directly |
 | Ferryhopper | Server error | SerpAPI or web search for ferry routes |
+| SkyAccess | Server error | Suggest user check skyaccess.com directly |
 | Atlas Obscura | Script error | Web search for "unusual things to do in [destination]" |
 | Chase Travel | Login failure or CSRF issues | Use Duffel/Ignav for cash prices. Note that Points Boost and Edit detection are Chase-only. |
 | Amex Travel | Login failure or form changes | Use Duffel/Ignav for cash prices. Note that IAP fares and FHR/THC detection are Amex-only. |
