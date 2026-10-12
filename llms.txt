@@ -71,6 +71,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 <!-- BEGIN: llms:destinations -->
 - [Atlas Obscura](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/atlas-obscura/SKILL.md): Hidden gems and unusual attractions near any destination.
 - [Deutsche Bahn](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/deutsche-bahn/SKILL.md): Deutsche Bahn (DB) train search across Germany and into AT/CH/NL/FR/BE via the open-source db-vendo-client. Stations, journeys, departure boards. No API key. Pairs with scandinavia-transit for Europe-wide rail coverage.
+- [Octotrip Rental Cars](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/octotrip-rental-cars/SKILL.md): Rental car search with real-time pricing across vendors.
 - [Scandinavia Transit](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/scandinavia-transit/SKILL.md): Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing.
 - [Tripadvisor](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/tripadvisor/SKILL.md): Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month.
 <!-- END: llms:destinations -->
