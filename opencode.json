@@ -21,6 +21,11 @@
       "url": "https://mcp.ferryhopper.com/mcp",
       "enabled": true
     },
+    "skyaccess": {
+      "type": "remote",
+      "url": "https://mcp.skyaccess.com/mcp",
+      "enabled": true
+    },
     "liteapi": {
       "type": "remote",
       "url": "https://mcp.liteapi.travel/api/mcp",
