@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-10-12",
+    "last_updated": "2026-10-19",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -20,38 +20,6 @@
     }
   },
   "active_bonuses": [
-    {
-      "id": "amex_membership_rewards_to_hilton_honors_30pct_2026_10",
-      "from_program": "amex_membership_rewards",
-      "from_display": "Amex Membership Rewards",
-      "to_program": "hilton_honors",
-      "to_display": "Hilton",
-      "bonus_pct": 30,
-      "ratio": 1.3,
-      "start_date": "2026-09-01",
-      "end_date_inclusive": "2026-10-14",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/amex-membership-rewards-hilton-honors-30-percent-transfer-bonus/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
-    {
-      "id": "chase_ur_to_marriott_bonvoy_70pct_2026_10",
-      "from_program": "chase_ur",
-      "from_display": "Chase Ultimate Rewards",
-      "to_program": "marriott_bonvoy",
-      "to_display": "Marriott Bonvoy",
-      "bonus_pct": 70,
-      "ratio": 1.7,
-      "start_date": "2026-09-15",
-      "end_date_inclusive": "2026-10-15",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/70-percent-transfer-bonus-chase-ultimate-rewards-marriott-bonvoy/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
     {
       "id": "citi_typ_to_jal_mileage_bank_30pct_2026_10",
       "from_program": "citi_typ",
@@ -231,6 +199,22 @@
       "to_display": "Hilton",
       "bonus_pct": 200,
       "end_date_inclusive": "2026-10-01",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "amex_membership_rewards_to_hilton_honors_30pct_2026_10",
+      "from_display": "Amex Membership Rewards",
+      "to_display": "Hilton",
+      "bonus_pct": 30,
+      "end_date_inclusive": "2026-10-14",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "chase_ur_to_marriott_bonvoy_70pct_2026_10",
+      "from_display": "Chase Ultimate Rewards",
+      "to_display": "Marriott Bonvoy",
+      "bonus_pct": 70,
+      "end_date_inclusive": "2026-10-15",
       "note": "Recently expired (auto-moved from active list)."
     }
   ],
