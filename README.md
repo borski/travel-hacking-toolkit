@@ -19,7 +19,7 @@ Inside Claude Code, run:
 /plugin install travel-hacker@borski
 ```
 
-Done. 42 skills, 6 MCP servers (5 free + LiteAPI which needs a key), and the `travel-hacker` subagent are installed. Run `claude` from anywhere and ask it to plan a trip.
+Done. 42 skills, 7 MCP servers (6 free + LiteAPI which needs a key), and the `travel-hacker` subagent are installed. Run `claude` from anywhere and ask it to plan a trip.
 
 To verify the install, run `/travel-hacker:getting-started` inside Claude Code. It tells you which API keys are configured and points at the local setup script for the missing ones. Or in your shell: `claude plugin list | grep travel-hacker` should show the plugin.
 
@@ -45,7 +45,7 @@ Claude Desktop's chat UI doesn't support the plugin format yet, so use Cowork in
 
 ### Configure API keys
 
-The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work immediately with zero keys. Cash flight and hotel search work out of the box.
+The 6 free MCP servers (Skiplagged, Kiwi, Ignav, Trivago, Ferryhopper, Airbnb) work immediately with zero keys. Cash flight and hotel search work out of the box.
 
 To unlock award search and the rest of the toolkit, you need API keys set as environment variables in your shell. Run the local setup script:
 
@@ -146,6 +146,7 @@ source .env && codex
 |--------|-------------|---------|
 | [Skiplagged](https://skiplagged.com) | Flight search with hidden city fares | None (free) |
 | [Kiwi.com](https://www.kiwi.com) | Flights with virtual interlining (creative cross-airline routing) | None (free) |
+| [Ignav](https://ignav.com/docs/mcp) | Live flight prices and booking links for agents | None (free) |
 | [Trivago](https://mcp.trivago.com/docs) | Hotel metasearch across booking sites | None (free) |
 | [Ferryhopper](https://ferryhopper.github.io/fh-mcp/) | Ferry routes across 33 countries, 190+ operators | None (free) |
 | [Airbnb](https://github.com/openbnb-org/mcp-server-airbnb) | Search Airbnb listings, property details, pricing. Includes geocoding fix, property type filter, and DISABLE_GEOCODING opt-out. | None (free) |
@@ -360,7 +361,7 @@ MCP (Model Context Protocol) servers give your AI real-time tools it can call di
 - `.mcp.json` for Claude Code (auto-discovered from the repo root)
 - `plugins/travel-hacking-toolkit/.mcp.json` for Codex plugin installs
 
-Skiplagged, Kiwi.com, Trivago, Ferryhopper, and Airbnb need no setup at all. LiteAPI is also a remote server but needs an API key configured in your settings.
+Skiplagged, Kiwi.com, Ignav, Trivago, Ferryhopper, and Airbnb need no setup at all. LiteAPI is also a remote server but needs an API key configured in your settings.
 
 **Why Codex needs a plugin:** OpenCode and Claude Code both auto-discover MCP servers from a repo-local config file. Codex doesn't. It only loads MCP servers from `~/.codex/config.toml` or from an installed plugin. The toolkit ships a Codex plugin (under `plugins/travel-hacking-toolkit/`) that bundles the MCP config so Codex users get the same out-of-the-box experience as the other two tools. `setup.sh` wires this up automatically when you select the Codex option.
 
