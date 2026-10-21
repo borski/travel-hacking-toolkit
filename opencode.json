@@ -21,6 +21,11 @@
       "url": "https://mcp.ferryhopper.com/mcp",
       "enabled": true
     },
+    "gondola": {
+      "type": "remote",
+      "url": "https://mcp.gondola.ai/mcp",
+      "enabled": true
+    },
     "liteapi": {
       "type": "remote",
       "url": "https://mcp.liteapi.travel/api/mcp",
