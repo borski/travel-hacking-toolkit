@@ -19,7 +19,7 @@ Inside Claude Code, run:
 /plugin install travel-hacker@borski
 ```
 
-Done. 42 skills, 6 MCP servers (5 free + LiteAPI which needs a key), and the `travel-hacker` subagent are installed. Run `claude` from anywhere and ask it to plan a trip.
+Done. 42 skills, 7 MCP servers (6 free + LiteAPI which needs a key), and the `travel-hacker` subagent are installed. Run `claude` from anywhere and ask it to plan a trip.
 
 To verify the install, run `/travel-hacker:getting-started` inside Claude Code. It tells you which API keys are configured and points at the local setup script for the missing ones. Or in your shell: `claude plugin list | grep travel-hacker` should show the plugin.
 
@@ -45,7 +45,7 @@ Claude Desktop's chat UI doesn't support the plugin format yet, so use Cowork in
 
 ### Configure API keys
 
-The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work immediately with zero keys. Cash flight and hotel search work out of the box.
+The 6 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb, OctoTrip) work immediately with zero keys. Cash flight, hotel, and rental car search work out of the box.
 
 To unlock award search and the rest of the toolkit, you need API keys set as environment variables in your shell. Run the local setup script:
 
@@ -149,6 +149,7 @@ source .env && codex
 | [Trivago](https://mcp.trivago.com/docs) | Hotel metasearch across booking sites | None (free) |
 | [Ferryhopper](https://ferryhopper.github.io/fh-mcp/) | Ferry routes across 33 countries, 190+ operators | None (free) |
 | [Airbnb](https://github.com/openbnb-org/mcp-server-airbnb) | Search Airbnb listings, property details, pricing. Includes geocoding fix, property type filter, and DISABLE_GEOCODING opt-out. | None (free) |
+| [OctoTrip Rental Cars](https://github.com/octotrip/rental-cars) | Rental car search with real-time pricing across vendors, grouped by SIPP category | None (free) |
 | [LiteAPI](https://mcp.liteapi.travel) | Hotel search with live rates and booking | [LiteAPI](https://liteapi.travel) |
 
 ### Skills (API knowledge for your AI)
@@ -230,6 +231,7 @@ Also use **tripadvisor** (under Destinations) for hotel ratings, rankings, subra
 |-------|-------------|---------|
 | **atlas-obscura** | Hidden gems and unusual attractions near any destination. | None (free) |
 | **deutsche-bahn** | Deutsche Bahn (DB) train search across Germany and into AT/CH/NL/FR/BE via the open-source db-vendo-client. Stations, journeys, departure boards. No API key. Pairs with scandinavia-transit for Europe-wide rail coverage. | None |
+| **octotrip-rental-cars** | Rental car search with real-time pricing across vendors. No API key. | None (free) |
 | **scandinavia-transit** | Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing. | Entur + Trafiklab + Rejseplanen |
 | **tripadvisor** | Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month. | TripAdvisor |
 <!-- END: readme:destinations -->

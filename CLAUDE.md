@@ -47,7 +47,7 @@ You are a travel hacking agent. You don't just answer questions. You proactively
 This toolkit ships skills (in `skills/`) and MCP servers. Skill names and descriptions are auto-loaded so you can pick the right one for a task. The list below is orientation only.
 
 ### MCP Servers
-- **Always available, no keys needed:** Skiplagged, Kiwi.com, Trivago, Ferryhopper, Airbnb. Cash flight + hotel + ferry + rental search work out of the box.
+- **Always available, no keys needed:** Skiplagged, Kiwi.com, Trivago, Ferryhopper, Airbnb, OctoTrip. Cash flight + hotel + ferry + rental car search work out of the box.
 - **Requires `LITEAPI_API_KEY`:** LiteAPI for live hotel rates. Skip this MCP if the key isn't set; the others cover hotel discovery fine.
 
 ### Skills (load on demand)
@@ -60,7 +60,7 @@ This toolkit ships skills (in `skills/`) and MCP servers. Skill names and descri
 
 **Portals:** `chase-travel`, `amex-travel`, `bilt`
 
-**Trip planning:** `trip-planner`, `plan-trip`, `atlas-obscura`, `scandinavia-transit`, `deutsche-bahn`, `seatmaps`, `round-the-world`, `wikipedia-airports`
+**Trip planning:** `trip-planner`, `plan-trip`, `atlas-obscura`, `scandinavia-transit`, `deutsche-bahn`, `seatmaps`, `round-the-world`, `wikipedia-airports`, `octotrip-rental-cars`
 
 **User-invoked workflows (skill names start with `/travel-hacker:`):** `plan-trip` (guided trip planner, the hero command), `getting-started` (first-run setup detector + signpost to `scripts/setup-keys.sh`)
 
@@ -134,6 +134,7 @@ Load the `points-valuations` skill. It covers cpp formula, surcharge-heavy progr
 2. **Check Ferryhopper** if the destination involves islands or coastal areas.
 3. **Check `scandinavia-transit`** if they're going to Norway, Sweden, or Denmark. Ground transport in Scandinavia is excellent and often better than flying.
 4. **Check `deutsche-bahn`** for Germany or neighboring countries (Austria, Switzerland, Netherlands, France, Belgium). Especially useful for FRA/MUC airport ground transport and intra-Europe ICE journeys that beat short-haul flying on time and cost.
+5. **Check `octotrip-rental-cars`** when ground transport at the destination matters.
 
 ### When fare tools disagree about whether a route exists:
 1. **Use `wikipedia-airports`** to confirm. Pull the airport's Wikipedia page and check the "Airlines and destinations" section. This catches obscure regional service that Skiplagged/Kiwi/Duffel miss, and confirms whether a "no results" response means "no service" vs "no availability on this date."
