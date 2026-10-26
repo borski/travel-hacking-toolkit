@@ -50,7 +50,7 @@ Group the results:
 Be concrete. Examples:
 
 - All Tier 1 set: "You're fully configured. Skip to step 4 (sample prompts)."
-- All missing: "You haven't set any API keys yet. The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work without keys, so you can already search cash flights and hotels. Add keys to unlock award search and balance auto-pull."
+- All missing: "You haven't set any API keys yet. The 6 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, SkyAccess, Airbnb) work without keys, so you can already search cash flights and hotels. Add keys to unlock award search and balance auto-pull."
 - Some Tier 1 set: "You have X of 4 high-value keys. The setup script can add the missing ones."
 
 ## Step 3: Point the user at the local setup script
