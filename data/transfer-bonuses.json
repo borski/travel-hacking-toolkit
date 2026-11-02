@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-10-19",
+    "last_updated": "2026-11-02",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -21,186 +21,55 @@
   },
   "active_bonuses": [
     {
-      "id": "citi_typ_to_jal_mileage_bank_30pct_2026_10",
+      "id": "citi_typ_to_cathay_asia_miles_10pct_2026_11",
       "from_program": "citi_typ",
       "from_display": "Citi ThankYou Rewards",
-      "to_program": "jal_mileage_bank",
-      "to_display": "JAL (Japan Airlines) Mileage Bank",
-      "bonus_pct": 30,
-      "ratio": 1.3,
-      "start_date": "2026-09-20",
-      "end_date_inclusive": "2026-10-24",
-      "confidence": "LIKELY",
-      "sources": [
-        "https://frequentmiler.com/citi-adds-japan-airlines-as-a-11-partner-launches-30-transfer-bonus/"
-      ]
-    },
-    {
-      "id": "citi_typ_to_avianca_lifemiles_25pct_2026_10",
-      "from_program": "citi_typ",
-      "from_display": "Citi ThankYou Rewards",
-      "to_program": "avianca_lifemiles",
-      "to_display": "Avianca LifeMiles",
-      "bonus_pct": 25,
-      "ratio": 1.25,
-      "start_date": "2026-09-20",
-      "end_date_inclusive": "2026-10-24",
+      "to_program": "cathay_asia_miles",
+      "to_display": "Cathay Pacific Asia Miles",
+      "bonus_pct": 10,
+      "ratio": 1.1,
+      "start_date": "2026-10-25",
+      "end_date_inclusive": "2026-11-14",
       "confidence": "VERIFIED",
       "sources": [
-        "https://frequentmiler.com/25-transfer-bonus-to-avianca-lifemiles-from-citi-thankyou-rewards-2/",
+        "https://frequentmiler.com/10-transfer-bonus-citi-thankyou-rewards-to-cathay-pacific-asia-miles/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
     },
     {
-      "id": "amex_membership_rewards_to_aeromexico_clubpremier_20pct_2026_10",
-      "from_program": "amex_membership_rewards",
-      "from_display": "Amex Membership Rewards",
-      "to_program": "aeromexico_clubpremier",
-      "to_display": "AeroMexico ClubPremier",
-      "bonus_pct": 20,
-      "ratio": 1.2,
-      "start_date": "2026-10-01",
-      "end_date_inclusive": "2026-10-30",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/american-express-membership-rewards-offering-20-transfer-bonus-to-aeromexico/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
-    {
-      "id": "rove_to_jal_mileage_bank_50pct_2026_10",
-      "from_program": "rove",
-      "from_display": "Rove Miles",
-      "to_program": "jal_mileage_bank",
-      "to_display": "JAL (Japan Airlines) Mileage Bank",
-      "bonus_pct": 50,
-      "ratio": 1.5,
-      "start_date": "2026-10-01",
-      "end_date_inclusive": "2026-10-31",
-      "confidence": "LIKELY",
-      "sources": [
-        "https://frequentmiler.com/rove-transfer-bonus-bonanza-50-to-japan-airlines-40-to-flying-blue-up-to-35-to-qatar-airways/"
-      ]
-    },
-    {
-      "id": "rove_to_flying_blue_40pct_2026_10",
-      "from_program": "rove",
-      "from_display": "Rove Miles",
-      "to_program": "flying_blue",
-      "to_display": "Air France KLM Flying Blue",
-      "bonus_pct": 40,
-      "ratio": 1.4,
-      "start_date": "2026-10-01",
-      "end_date_inclusive": "2026-10-31",
-      "confidence": "LIKELY",
-      "sources": [
-        "https://frequentmiler.com/rove-transfer-bonus-bonanza-50-to-japan-airlines-40-to-flying-blue-up-to-35-to-qatar-airways/"
-      ]
-    },
-    {
-      "id": "rove_to_qatar_avios_35pct_2026_10",
-      "from_program": "rove",
-      "from_display": "Rove Miles",
-      "to_program": "qatar_avios",
-      "to_display": "Qatar Privilege Club Avios",
-      "bonus_pct": 35,
-      "ratio": 1.35,
-      "start_date": "2026-10-01",
-      "end_date_inclusive": "2026-10-31",
-      "confidence": "LIKELY",
-      "sources": [
-        "https://frequentmiler.com/rove-transfer-bonus-bonanza-50-to-japan-airlines-40-to-flying-blue-up-to-35-to-qatar-airways/"
-      ]
-    },
-    {
-      "id": "amex_membership_rewards_to_flying_blue_25pct_2026_10",
-      "from_program": "amex_membership_rewards",
-      "from_display": "Amex Membership Rewards",
-      "to_program": "flying_blue",
-      "to_display": "Air France KLM Flying Blue",
-      "bonus_pct": 25,
-      "ratio": 1.25,
-      "start_date": "2026-10-01",
-      "end_date_inclusive": "2026-10-31",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/get-a-25-bonus-when-transferring-amex-membership-rewards-to-air-france-klm-flying-blue/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
-    {
-      "id": "capital_one_to_british_airways_avios_20pct_2026_10",
+      "id": "capital_one_to_virgin_atlantic_30pct_2026_11",
       "from_program": "capital_one",
       "from_display": "Capital One Miles",
-      "to_program": "british_airways_avios",
-      "to_display": "British Airways Avios",
-      "bonus_pct": 20,
-      "ratio": 1.2,
-      "start_date": "2026-10-01",
-      "end_date_inclusive": "2026-10-31",
+      "to_program": "virgin_atlantic",
+      "to_display": "Virgin Atlantic Flying Club",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-10-21",
+      "end_date_inclusive": "2026-11-20",
       "confidence": "VERIFIED",
       "sources": [
-        "https://frequentmiler.com/20-transfer-bonus-from-capital-one-miles-to-british-airways-avios/",
+        "https://frequentmiler.com/30-percent-transfer-bonus-capital-one-virgin-atlantic/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
     },
     {
-      "id": "citi_typ_to_qatar_avios_35pct_2026_10",
-      "from_program": "citi_typ",
-      "from_display": "Citi ThankYou Rewards",
-      "to_program": "qatar_avios",
-      "to_display": "Qatar Privilege Club Avios",
+      "id": "amex_membership_rewards_to_marriott_bonvoy_35pct_2026_12",
+      "from_program": "amex_membership_rewards",
+      "from_display": "Amex Membership Rewards",
+      "to_program": "marriott_bonvoy",
+      "to_display": "Marriott Bonvoy",
       "bonus_pct": 35,
       "ratio": 1.35,
-      "start_date": "2026-10-01",
-      "end_date_inclusive": "2026-10-31",
-      "confidence": "LIKELY",
+      "start_date": "2026-10-20",
+      "end_date_inclusive": "2026-12-10",
+      "confidence": "VERIFIED",
       "sources": [
-        "https://frequentmiler.com/up-to-30-transfer-bonus-to-qatar-avios-from-citi-thankyou-rewards"
+        "https://frequentmiler.com/35-percent-transfer-bonus-american-express-membership-rewards-marriott-bonvoy/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
     }
   ],
   "expired_recently": [
-    {
-      "id": "citi_typ_to_leading_hotels_of_world_25pct_2026_09",
-      "from_display": "Citi ThankYou Rewards",
-      "to_display": "Leading Hotels of the World",
-      "bonus_pct": 25,
-      "end_date_inclusive": "2026-09-19",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "amex_membership_rewards_to_british_airways_avios_30pct_2026_09",
-      "from_display": "Amex Membership Rewards",
-      "to_display": "British Airways Avios",
-      "bonus_pct": 30,
-      "end_date_inclusive": "2026-09-27",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "chase_ur_to_aeroplan_20pct_2026_09",
-      "from_display": "Chase Ultimate Rewards",
-      "to_display": "Air Canada Aeroplan",
-      "bonus_pct": 20,
-      "end_date_inclusive": "2026-09-30",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "capital_one_to_jal_mileage_bank_30pct_2026_09",
-      "from_display": "Capital One Miles",
-      "to_display": "JAL (Japan Airlines) Mileage Bank",
-      "bonus_pct": 30,
-      "end_date_inclusive": "2026-09-30",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "bilt_to_hilton_honors_200pct_2026_10",
-      "from_display": "Bilt",
-      "to_display": "Hilton",
-      "bonus_pct": 200,
-      "end_date_inclusive": "2026-10-01",
-      "note": "Recently expired (auto-moved from active list)."
-    },
     {
       "id": "amex_membership_rewards_to_hilton_honors_30pct_2026_10",
       "from_display": "Amex Membership Rewards",
@@ -215,6 +84,78 @@
       "to_display": "Marriott Bonvoy",
       "bonus_pct": 70,
       "end_date_inclusive": "2026-10-15",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "citi_typ_to_jal_mileage_bank_30pct_2026_10",
+      "from_display": "Citi ThankYou Rewards",
+      "to_display": "JAL (Japan Airlines) Mileage Bank",
+      "bonus_pct": 30,
+      "end_date_inclusive": "2026-10-24",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "citi_typ_to_avianca_lifemiles_25pct_2026_10",
+      "from_display": "Citi ThankYou Rewards",
+      "to_display": "Avianca LifeMiles",
+      "bonus_pct": 25,
+      "end_date_inclusive": "2026-10-24",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "amex_membership_rewards_to_aeromexico_clubpremier_20pct_2026_10",
+      "from_display": "Amex Membership Rewards",
+      "to_display": "AeroMexico ClubPremier",
+      "bonus_pct": 20,
+      "end_date_inclusive": "2026-10-30",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "rove_to_jal_mileage_bank_50pct_2026_10",
+      "from_display": "Rove Miles",
+      "to_display": "JAL (Japan Airlines) Mileage Bank",
+      "bonus_pct": 50,
+      "end_date_inclusive": "2026-10-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "rove_to_flying_blue_40pct_2026_10",
+      "from_display": "Rove Miles",
+      "to_display": "Air France KLM Flying Blue",
+      "bonus_pct": 40,
+      "end_date_inclusive": "2026-10-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "rove_to_qatar_avios_35pct_2026_10",
+      "from_display": "Rove Miles",
+      "to_display": "Qatar Privilege Club Avios",
+      "bonus_pct": 35,
+      "end_date_inclusive": "2026-10-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "amex_membership_rewards_to_flying_blue_25pct_2026_10",
+      "from_display": "Amex Membership Rewards",
+      "to_display": "Air France KLM Flying Blue",
+      "bonus_pct": 25,
+      "end_date_inclusive": "2026-10-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "capital_one_to_british_airways_avios_20pct_2026_10",
+      "from_display": "Capital One Miles",
+      "to_display": "British Airways Avios",
+      "bonus_pct": 20,
+      "end_date_inclusive": "2026-10-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "citi_typ_to_qatar_avios_35pct_2026_10",
+      "from_display": "Citi ThankYou Rewards",
+      "to_display": "Qatar Privilege Club Avios",
+      "bonus_pct": 35,
+      "end_date_inclusive": "2026-10-31",
       "note": "Recently expired (auto-moved from active list)."
     }
   ],
