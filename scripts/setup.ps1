@@ -172,7 +172,7 @@ function Setup-ApiKeys {
     }
 
     Write-Host ""
-    Write-Host "  The 5 free MCP servers work without any keys."
+    Write-Host "  The 6 free MCP servers work without any keys."
     Write-Host "  For the full experience, add at minimum:"
     Write-Host "    SEATS_AERO_API_KEY     Award flight search (the main event)"
     Write-Host "    DUFFEL_API_KEY_LIVE    Primary cash flight prices (search free, pay per booking)"
