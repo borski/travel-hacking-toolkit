@@ -9,7 +9,7 @@ trip-planner	orchestration	Full trip planning. Flights + hotels + points in one 
 duffel	flights	Primary cash prices. Real GDS per-fare-class data.	Duffel	
 google-flights	flights	Browser-automated Google Flights. All airlines including Southwest.	None (requires agent-browser)	
 ignav	flights	Fast REST API cash prices. Market selection for arbitrage.	Ignav (1,000 free)	
-seats-aero	flights	Award availability across 27 mileage programs.	Seats.aero Pro/Partner	
+seats-aero	flights	Award availability across 27 mileage programs. Partner API, plus the official MCP (keyless for the next 60 days, Pro sign-in for live search and alerts).	Seats.aero Pro/Partner (MCP free for 60 days)	
 seatmaps	flights	Aircraft seat maps, cabin dimensions, seat recommendations.	None (requires agent-browser)	
 southwest	flights	SW fare classes, points pricing, Companion Pass. Change flight price drop monitor.	None (requires Patchright)	ghcr.io/borski/sw-fares
 amex-travel	portals	Amex MR portal for flights, hotels, IAP discounts, FHR/THC benefits. Requires Platinum.	None (requires Patchright)	ghcr.io/borski/amex-travel

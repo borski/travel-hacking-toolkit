@@ -1,9 +1,9 @@
 ---
 name: seats-aero
-description: Search award flight availability across 27 mileage programs via Seats.aero Partner API. Find cheapest award flights, compare programs, and get booking links.
+description: Search award flight availability across 27 mileage programs via the Seats.aero Partner API or the official seats.aero MCP server. Find cheapest award flights, compare programs, and get booking links. The MCP works with no key for flights in the next 60 days. Pro sign-in on the MCP adds live search, alerts, award hotels, upgrades, and deals.
 category: flights
-summary: Award availability across 27 mileage programs.
-api_key: Seats.aero Pro/Partner
+summary: Award availability across 27 mileage programs. Partner API, plus the official MCP (keyless for the next 60 days, Pro sign-in for live search and alerts).
+api_key: Seats.aero Pro/Partner (MCP free for 60 days)
 license: MIT
 ---
 
@@ -18,6 +18,64 @@ Search cached and live award flight availability across 27 mileage programs (inc
 Set `SEATS_AERO_API_KEY` in your `.env` file. Get from [Settings > API tab](https://seats.aero/settings) (Pro account required).
 
 All requests use the `Partner-Authorization` header. Pro users get **1,000 API calls per day** for non-commercial use.
+
+## Two Ways In: Partner API and Official MCP
+
+Seats.aero also runs an official remote MCP server at `https://seats.aero/mcp` (Streamable HTTP, OAuth 2.1). The toolkit configures it as the `seats-aero` MCP server in `.mcp.json`, `opencode.json`, and the Codex plugin.
+
+**Which to use:**
+
+| Situation | Use |
+|-----------|-----|
+| `SEATS_AERO_API_KEY` is set | **Partner API (curl, below) is primary.** Bulk Availability, `include_filtered`, Get Trips, and jq pipelines have no MCP equivalent. |
+| No key set | **MCP anonymously.** Cached award search works with zero setup, limited to flights departing within the next 60 days. |
+| Partner API errors, 401s, or hits the daily cap | **MCP as fallback.** Same underlying cached data. |
+| Alerts, live search, award hotels, upgrades, deals | **MCP, signed in with a Pro account.** These are MCP-only and need the OAuth sign-in. |
+| Transfer partners for a program | Either. `data/transfer-partners.json` stays the source of truth for ratios, and the MCP's `list_transfer_partners` is a live cross-check. |
+
+### Anonymous (no sign-in)
+
+Works out of the box. Calling `get_capabilities` anonymously returns: cached search only, no live search, no alerts, 60-day advance window, 60-day max date range, 50 results max per call, 1,000 requests/day per IP.
+
+Tools exposed anonymously:
+
+| Tool | Purpose |
+|------|---------|
+| `get_capabilities` | What the current session can do (scope, limits, live search, alerts). Call this first if unsure whether the user is signed in. |
+| `get_flights` | Cached award search. `origins`, `destinations` (arrays), `start_date`, `end_date` required. |
+| `get_flight_details` | Itinerary, freshness, and booking-instructions link for a `flight_ref` from `get_flights`. |
+| `search_airports` | Resolve cities, regions, and meta codes (NYC, LON, EUR) to airports. |
+| `list_routes` | Tracked routes. Pass exactly two of `mileage_program`, `origin`, `destination`. |
+| `list_transfer_partners` | Card programs that transfer into a mileage program, with base ratios. |
+| `list_transfer_program_mileage_programs` | Mileage programs reachable from a card program (`chaseus`, `amexus`, `bilt`, `capitalone`, `citius`, etc.). |
+| `search_help_docs` | Search docs.seats.aero (phantom availability, data freshness, Pro features). |
+
+### `get_flights` gotchas
+
+- **`max_stops` defaults to 0 (nonstop only).** Set it explicitly when connections are acceptable, or you'll silently miss one-stop itineraries. Connecting flights are a Pro feature, so this may still return nonstops only when anonymous.
+- **Leave `programs` empty** on the first search. Same rule as `lessons-learned`: pull every program, then gate on reachability.
+- **`transfer_partners`** filters to programs reachable from a card currency (e.g. `["chaseus"]`). Handy for a second pass, never for the first.
+- **`max_fees` is in USD cents.** `40000` means $400.
+- **`min_cabin_pct`** defaults to 100 (whole journey in the cabin). Only lower it when the user accepts mixed-cabin itineraries.
+- **Cabin values** are `economy`, `premium`, `business`, `first`.
+- **`minutes_old`** on each result is the freshness signal (the MCP equivalent of `ComputedLastSeen`).
+- Each response includes a `search_url` deep link to seats.aero. Hand it to the user for verification.
+
+### Signed in (Pro)
+
+Signing in grants more OAuth scopes (`seats.awards.live`, `seats.alerts.read`/`create`/`expire`, `seats.pricing.read`/`write`, `seats.profile.read`). Per seats.aero, Pro unlocks live search (uses the account's existing live search allowance), connecting flights, award alerts, and pricing preferences, and the signed-in tool set adds award hotels, upgrade availability, and deals. Call `get_capabilities` after sign-in to see the real limits, then list tools to see what's exposed.
+
+**Writes need explicit user approval.** Creating or expiring an alert, changing pricing preferences, and running a live search (spends the user's allowance) all act on the user's seats.aero account. Describe the action and get a yes first.
+
+**Sign-in is manual.** The server answers anonymously instead of returning 401, so clients won't prompt for OAuth on their own. The user signs in once:
+
+| Harness | Command |
+|---------|---------|
+| Claude Code | `/mcp`, pick `seats-aero`, Authenticate (or `claude mcp login seats-aero` for a repo-local config) |
+| OpenCode | `opencode mcp auth seats-aero` |
+| Codex | `codex mcp login seats-aero` |
+
+Never ask for the user's seats.aero password or paste tokens into chat. OAuth runs in the browser.
 
 ## API Base
 
@@ -386,6 +444,7 @@ When creating alerts on seats.aero:
 - **Time filters**: Departure and arrival time ranges are available as alert filters. Useful for avoiding red-eyes or ensuring morning arrivals.
 - **Cabin, route, and program filters**: Standard alert parameters.
 - Alerts notify via email or push when matching availability appears.
+- With a Pro sign-in, the `seats-aero` MCP can create, review, and expire alerts. Get the user's approval before creating or expiring one.
 
 ## Third-Party Integrations
 

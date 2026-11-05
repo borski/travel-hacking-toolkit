@@ -16,7 +16,9 @@ Tools go down. APIs break. Have a backup plan for every search.
 | Google Flights | agent-browser error | Duffel, Ignav, Skiplagged |
 | Skiplagged | 502/timeout (Cloudflare issues) | Kiwi.com MCP, Duffel, Ignav |
 | Kiwi.com | Server error | Skiplagged MCP, Duffel |
-| Seats.aero | API error or stale data | Check airline website directly, use Duffel for GDS inventory |
+| Seats.aero (Partner API) | API error, 401, or daily cap | `seats-aero` MCP (`get_flights`). Same cached data, keyless within 60 days. Then the airline website directly. |
+| Seats.aero (MCP) | Server error, or dates beyond the 60-day anonymous window | Partner API skill if `SEATS_AERO_API_KEY` is set. Otherwise check the airline website directly, and use Duffel for GDS inventory |
+| Seats.aero (either) | Stale data (`ComputedLastSeen` / `minutes_old` too old) | Check airline website directly, use Duffel for GDS inventory |
 | Southwest | SW rate limiting or bot detection | Wait a few minutes and retry. Use Docker (`ghcr.io/borski/sw-fares`) if running locally fails. Google Flights skill for SW cash prices as a fast fallback. |
 | SerpAPI | Rate limit (100/mo free) | Trivago for hotels, web search for destination discovery |
 | Trivago | Server error | LiteAPI for hotels, SerpAPI Google Hotels |

@@ -56,7 +56,7 @@ Run these in parallel where possible. **Never fail silently.** If a source error
 
 | Source | Skill | Speed | Notes |
 |--------|-------|-------|-------|
-| Seats.aero | `seats-aero` | ~5s | Cached award availability across 25+ programs. Primary award source. |
+| Seats.aero | `seats-aero` | ~5s | Cached award availability across 25+ programs. Primary award source. Partner API with a key, `seats-aero` MCP without one (next 60 days only). |
 
 ### Portal Pay-With-Points (run in parallel, Docker required)
 
