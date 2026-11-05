@@ -26,7 +26,8 @@ transfer-partners	loyalty	Cheapest transfer path from credit card points to mile
 wheretocredit	loyalty	Mileage earning rates by airline and booking class across 50+ programs.	None (free)	
 atlas-obscura	destinations	Hidden gems and unusual attractions near any destination.	None (free)	
 scandinavia-transit	destinations	Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing.	Entur + Trafiklab + Rejseplanen	
-tripadvisor	destinations	Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month.	TripAdvisor	
+tripadvisor	destinations	Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month.	TripAdvisor
+octotrip-rental-cars	destinations	Rental car search with real-time pricing across vendors. No API key.	None (free)
 flight-search-strategy	reference	The canonical multi-source search workflow. Source priority (Duffel > Ignav > Google Flights > others), market selection for international routes, source accuracy hierarchy, common failure modes.		
 transfer-bonuses	reference	Active credit card transfer bonuses with primary-source citations. Tells the agent the real effective ratio when transferring points during a promotion.		
 stopovers	reference	Per-program stopover rules for award redemptions. Includes Icelandair free stopover, Aeroplan, Alaska Atmos, Flying Blue, Singapore tiers, plus the negative space (BA, AA, Delta, JetBlue) that have no stopover programs.		

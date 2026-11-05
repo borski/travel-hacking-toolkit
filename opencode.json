@@ -33,6 +33,11 @@
       "type": "local",
       "command": ["npx", "-y", "@openbnb/mcp-server-airbnb@latest", "--ignore-robots-txt"],
       "enabled": true
+    },
+    "octotrip-rental-cars": {
+      "type": "remote",
+      "url": "https://mcp.octotrip.app/rental-cars/mcp",
+      "enabled": true
     }
   }
 }
