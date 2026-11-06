@@ -39,12 +39,13 @@ Run these in parallel where possible. **Never fail silently.** If a source error
 
 | Source | Skill | Speed | Notes |
 |--------|-------|-------|-------|
-| Duffel | `duffel` | ~3s | Primary. Real GDS fares with fare classes. No Southwest. |
+| Duffel | `duffel` | ~3s | Primary. Real GDS fares with fare classes. Southwest only if the org has that content enabled. |
 | Ignav | `ignav` | ~2s | Fast REST API. Good for price comparison. Booking links. |
 | Google Flights | `google-flights` | ~10s | Browser-automated. All airlines including Southwest cash. Good cross-check. |
 | Skiplagged | web search | ~5s | Hidden city ticketing. Often finds significantly cheaper fares. Search `skiplagged.com/flights/{origin}/{dest}/{date}`. |
 | Kiwi.com | web search | ~5s | Creative routings, self-transfer combos, multi-city. Search `kiwi.com`. |
 | Southwest | `southwest` | ~20s | Patchright, Docker only. Points + cash for all 4 fare classes. Only needed when SW flies the route. |
+| Bilt | `bilt` | ~15s | Keyless, Duffel-backed. Carries **Southwest cash fares** in all 4 brands. Filter on segment IATA, it quietly adds nearby airports. |
 
 **Skiplagged and Kiwi:** Use web search (tavily or exa) to find their prices. They don't have MCP skills but their URLs are predictable. Always note that Skiplagged fares have restrictions (can't check bags, must use the "missed" connection city as destination).
 

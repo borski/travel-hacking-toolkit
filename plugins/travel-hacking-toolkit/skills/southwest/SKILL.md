@@ -1,6 +1,6 @@
 ---
 name: southwest
-description: Search Southwest Airlines fares and points pricing via Patchright browser automation. SW is not in any GDS or API. Covers all fare classes, Companion Pass value, and fare drop monitoring.
+description: Search Southwest Airlines fares and points pricing via Patchright browser automation. The only source for Rapid Rewards points pricing and Companion Pass math. Covers all fare classes and fare drop monitoring.
 category: flights
 summary: SW fare classes, points pricing, Companion Pass. Change flight price drop monitor.
 api_key: None (requires Patchright)
@@ -10,7 +10,9 @@ allowed-tools: Bash(python3 *), Bash(docker *)
 
 # Southwest Airlines Search
 
-Search southwest.com via Patchright (undetected Playwright fork). Southwest is the only major US airline not in any GDS, API, or flight search tool. This skill is the only way to get SW-specific data: fare classes, points pricing, and Companion Pass qualification.
+Search southwest.com via Patchright (undetected Playwright fork). This is the only way to get **Rapid Rewards points pricing** and Companion Pass qualification.
+
+**Southwest cash fares are no longer exclusive to this skill.** As of Nov 2026 the keyless [bilt](../bilt/SKILL.md) endpoint returns SW in all four fare brands, matching southwest.com to the cent (Duffel-backed, enabled per organisation). Bilt is faster and needs no browser. **Points are still exclusive here**, so any Companion Pass or RR redemption decision still runs through this skill.
 
 **Requires Patchright** (undetected Playwright fork). Standard Playwright and agent-browser are detected and blocked by SW. Patchright patches the browser fingerprint to bypass detection.
 
@@ -84,7 +86,7 @@ docker build -t sw-fares skills/southwest/
 
 ## When NOT to Use
 
-- **Just need SW cash prices**: Use google-flights skill instead (faster)
+- **Just need SW cash prices**: Use the `bilt` skill (keyless API, exact fares, all 4 brands) or `google-flights`. Both are faster than a browser scrape.
 - **Completing purchases**: Find flights only. Do not book.
 - **Non-Southwest airlines**: Use duffel, ignav, google-flights, or other skills
 
