@@ -19,7 +19,7 @@ Inside Claude Code, run:
 /plugin install travel-hacker@borski
 ```
 
-Done. 42 skills, 6 MCP servers (5 free + LiteAPI which needs a key), and the `travel-hacker` subagent are installed. Run `claude` from anywhere and ask it to plan a trip.
+Done. 42 skills, 7 MCP servers (6 free + LiteAPI which needs a key), and the `travel-hacker` subagent are installed. Run `claude` from anywhere and ask it to plan a trip.
 
 To verify the install, run `/travel-hacker:getting-started` inside Claude Code. It tells you which API keys are configured and points at the local setup script for the missing ones. Or in your shell: `claude plugin list | grep travel-hacker` should show the plugin.
 
@@ -45,7 +45,7 @@ Claude Desktop's chat UI doesn't support the plugin format yet, so use Cowork in
 
 ### Configure API keys
 
-The 5 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb) work immediately with zero keys. Cash flight and hotel search work out of the box.
+The 6 free MCP servers (Skiplagged, Kiwi, Trivago, Ferryhopper, Airbnb, Seats.aero) work immediately with zero keys. Cash flight and hotel search work out of the box, and so does cached award search for flights in the next 60 days.
 
 To unlock award search and the rest of the toolkit, you need API keys set as environment variables in your shell. Run the local setup script:
 
@@ -149,6 +149,7 @@ source .env && codex
 | [Trivago](https://mcp.trivago.com/docs) | Hotel metasearch across booking sites | None (free) |
 | [Ferryhopper](https://ferryhopper.github.io/fh-mcp/) | Ferry routes across 33 countries, 190+ operators | None (free) |
 | [Airbnb](https://github.com/openbnb-org/mcp-server-airbnb) | Search Airbnb listings, property details, pricing. Includes geocoding fix, property type filter, and DISABLE_GEOCODING opt-out. | None (free) |
+| [Seats.aero](https://seats.aero/mcp) | Official award search MCP. Cached availability for the next 60 days with no sign-in. Pro sign-in (OAuth) adds live search, alerts, award hotels, upgrades, and deals. | None for 60 days. Seats.aero Pro for the rest |
 | [LiteAPI](https://mcp.liteapi.travel) | Hotel search with live rates and booking | [LiteAPI](https://liteapi.travel) |
 
 ### Skills (API knowledge for your AI)
@@ -182,7 +183,7 @@ Start here: the **orchestration skills** call everything else automatically.
 | **google-flights** | Browser-automated Google Flights. All airlines including Southwest. | None (requires agent-browser) |
 | **ignav** | Fast REST API cash prices. Market selection for arbitrage. | Ignav (1,000 free) |
 | **seatmaps** | Aircraft seat maps, cabin dimensions, seat recommendations. | None (requires agent-browser) |
-| **seats-aero** | Award availability across 27 mileage programs. | Seats.aero Pro/Partner |
+| **seats-aero** | Award availability across 27 mileage programs. Partner API, plus the official MCP (keyless for the next 60 days, Pro sign-in for live search and alerts). | Seats.aero Pro/Partner (MCP free for 60 days) |
 | **southwest** | SW fare classes, points pricing, Companion Pass. Change flight price drop monitor. Docker: `ghcr.io/borski/sw-fares`. | None (requires Patchright) |
 | **wikipedia-airports** | Route discovery and airline-service sanity check via Wikipedia airport pages. Answers "does carrier X fly A→B" and "what airports serve destination Y" when fare tools disagree or miss obscure regional service. No API key. | None |
 <!-- END: readme:flights -->

@@ -18,7 +18,7 @@ This is not a pick-one list. Each source returns different results, different pr
 | 3 | **Google Flights** (skill, agent-browser) | Covers ALL airlines including Southwest cash prices. Free. Economy/business comparison. | Prices can be inflated vs GDS. No points pricing. |
 | 4 | **Skiplagged** (MCP) | Hidden city fares. Zero config. | No Southwest. Can be noisy on small markets. |
 | 5 | **Kiwi.com** (MCP) | Virtual interlining (creative cross-airline routings). Zero config. | Returns garbage on small markets. No Southwest. |
-| 6 | **Seats.aero** (skill) | Award flight availability across 25+ programs. The crown jewel for points. | Cached data, not live. No cash prices. No Southwest. |
+| 6 | **Seats.aero** (skill + MCP) | Award flight availability across 25+ programs. The crown jewel for points. Partner API with a key, official MCP without one. | Cached data, not live. No cash prices. No Southwest. Keyless MCP only covers the next 60 days. |
 | 7 | **SerpAPI** (skill, optional) | Google Hotels search. Destination discovery (Google Travel Explore). | NOT for flights (inflated prices). Hotels and "where should I go?" only. |
 | 8 | **Southwest** (skill, Patchright) | Fare classes, points pricing, Companion Pass. All 4 fare classes, cash + points. | Pre-built Docker image: `ghcr.io/borski/sw-fares`. Or local Patchright (headed mode). ~20s per search. |
 
@@ -28,7 +28,7 @@ This is not a pick-one list. Each source returns different results, different pr
 
 Skiplagged and Kiwi are keyless MCP servers — they are available in every properly launched session. Attempt the tool call before ever claiming MCP is unavailable, and never substitute improvised browser scraping for these sources (see `fallback-and-resilience`).
 
-Always add Seats.aero for award comparison. Always run the Southwest skill if SW flies the route.
+Always add Seats.aero for award comparison. Use the Partner API skill when `SEATS_AERO_API_KEY` is set. Without a key, use the `seats-aero` MCP (`get_flights`), which covers flights departing in the next 60 days. See the `seats-aero` skill for the routing table. Always run the Southwest skill if SW flies the route.
 
 Don't skip sources. Don't assume one source has everything. Present the combined results with the best options highlighted regardless of which source found them.
 
