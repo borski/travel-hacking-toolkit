@@ -63,7 +63,8 @@
         "up": 2.0,
         "omaat": 1.7,
         "vftw": 1.65
-      }
+      },
+      "note": "VFTW publishes a split, 1.65 and 1.75, by card tier. The 1.65 applies to the lower-tier cards and 1.75 to Sapphire Reserve. A Reserve holder should use a 1.7 floor (OMAAT) rather than the blended 1.65."
     },
     "citi_thankyou": {
       "name": "Citi ThankYou Rewards",
