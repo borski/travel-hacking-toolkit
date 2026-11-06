@@ -235,29 +235,57 @@ SW bookings use the legal name on the reservation, not nicknames. Use the exact 
 3. **extract_results()** is read-only. Zero clicks after the leg selection + "Explore options" step
 4. The script selects legs and views alternatives but NEVER selects a replacement flight or confirms any change
 
-### Verified Working Selectors (Apr 5, 2026)
+### Verified Working Selectors (Nov 5, 2026)
 
-**Login flyout:**
+**Login flyout** (VERIFIED Nov 5, 2026, live):
 - Trigger: `button:has-text('Log in')`
 - Username: `input[aria-label*='Account']`
 - Password: `input[name='password']`
 - Submit: `button[type='submit']:has-text('Log in')`
 
-**Change flight lookup form:**
-- Confirmation: `input[id*='confirmationNumber']`
-- First name: `input#passengerFirstName`
-- Last name: `input#passengerLastName`
-- Submit: `button#form-mixin--submit-button` (text: "Continue")
+**My Account trips tab** (VERIFIED Nov 5, 2026, live):
+- Tab: `a[href*='/trips']` (the nav labels it just "Trips", not "My Trips")
+- The dashboard "Upcoming Trips" widget can fail server-side with
+  "We found some errors. Please try again later." That is NOT an empty trip
+  list. The script falls back to `/myaccount/trips` and reports status
+  `trips_unavailable` rather than claiming zero trips.
 
-**Leg selection:**
+**Change flight lookup form** (VERIFIED Nov 5, 2026, live — fields renamed):
+- Confirmation: `input[name='reservationForm.record_locator']`
+- First name: `input[name='reservationForm.first_name']`
+- Last name: `input[name='reservationForm.last_name']`
+- Submit: `button#lookupReservation` (text: "Lookup reservation")
+
+The ids match the names but contain a dot, so match on `name` to avoid CSS
+escaping. The old `passengerFirstName` / `confirmationNumber` selectors are
+dead. Note `[id*='firstName']` could never match `first_name` anyway, since
+CSS attribute matching is case-sensitive.
+
+**Leg selection** (UNVERIFIED since Apr 5, 2026):
 - Checkboxes: `label:has(input[type='checkbox'])` (visible labels, hidden inputs)
 - Continue: `button#form-mixin--submit-button` (text: "Explore options")
+
+Everything past the lookup submit is unverified against the Nov 2026 layout.
+Reaching it requires an actual upcoming reservation.
 
 ### Important Limitation: Companion Pass Linked Reservations
 
 The `change` command DOES NOT WORK on Companion Pass-linked reservations. SW shows a banner: "Companion itinerary linked. To change it, cancel the companion's flight first."
 
 For CP-linked reservations (or any monitoring scenario where you don't want to log in), use the `monitor` subcommand instead. It uses the public fare-search flow and matches your booked flight number against current results. No login needed.
+
+### Verification Status (Nov 5, 2026)
+
+| Stage | Status |
+|---|---|
+| Login | VERIFIED live |
+| `--list` trip discovery | VERIFIED live (account had zero upcoming trips) |
+| Change lookup form fill + submit | VERIFIED live |
+| Leg selection ("Explore options") | UNVERIFIED |
+| Change-results fare-diff parsing | Synthetic fixtures only, no live page |
+
+The change-results stages could not be exercised because the account had no
+upcoming reservations to look up. They need a real, non-CP-linked booking.
 
 ## Fare Drop Monitor (monitor.py)
 
