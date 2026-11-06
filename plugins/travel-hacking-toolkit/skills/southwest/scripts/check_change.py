@@ -32,6 +32,7 @@ import tempfile
 import shutil
 from pathlib import Path
 from patchright.sync_api import sync_playwright, TimeoutError as PwTimeout
+from search_fares import split_flight_blocks
 
 
 HOMEPAGE = "https://www.southwest.com"
@@ -625,13 +626,18 @@ def extract_results(page, debug=False):
     # or for Unavailable:
     #   "Unavailable"
 
-    blocks = re.findall(r"(# [\d/ ]+.*?View seats)", text, re.DOTALL)
+    # Nov 2026 layout: "# WN1234" headers, no "View seats" terminator.
+    # Fall back to the old pattern if the new splitter finds nothing.
+    blocks = split_flight_blocks(text) or re.findall(
+        r"(# [\d/ ]+.*?View seats)", text, re.DOTALL
+    )
     flights = []
     for block in blocks:
         flight = {}
-        m = re.search(r"# ([\d/ ]+)", block)
+        m = re.search(r"# ((?:WN)?\d+(?:\s*/\s*(?:WN)?\d+)*)", block)
         if m:
-            flight["flight_number"] = m.group(1).strip()
+            num = m.group(1).replace("WN", "")
+            flight["flight_number"] = re.sub(r"\s*/\s*", " / ", num).strip()
         times = re.findall(r"(\d{1,2}:\d{2}(?:AM|PM))", block)
         if len(times) >= 2:
             flight["depart_time"] = times[0]

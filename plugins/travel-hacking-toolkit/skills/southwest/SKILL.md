@@ -54,7 +54,9 @@ python3 scripts/search_fares.py --origin SJC --dest DEN --depart 2026-05-15 --po
 - Use `fareType=POINTS` URL parameter for points pricing. Don't try to click the Points toggle on the page.
 - Use a fresh persistent browser context (temp dir) each run to avoid fingerprint accumulation.
 - Extract text from `[role='main']` NOT `<main>`. The `<main>` element contains the booking form. `[role='main']` contains the flight results.
-- Flight blocks can be parsed by splitting on `# \d+` patterns and ending at `View seats`.
+- Flight cards start with a `# WN1234` (or `# WN1 / WN2`) header line. Each fare has its own accessibility label line (`Departs 7:00 AM, arrives 8:25 AM, nonstop, ... Basic`) with the price lines under it. Parse per label, not by position. Cash mode also shows `earn N Points` (Rapid Rewards earnings), which is NOT a price. (Layout changed Nov 2026. The old `View seats` terminator is gone. The parser keeps the old layout as a fallback.)
+- The `WN` prefix is stripped from `flight_number` so monitor configs (`"3657 / 4630"`) keep matching.
+- Points pricing can be non-monotonic. SJC↔SAN in Nov 2026 showed Choice (18,500) cheaper than Basic (20,000). Don't assume Basic is the floor.
 - Always dismiss the cookie banner first. It blocks interactions.
 
 ## Prerequisites
@@ -135,7 +137,7 @@ The script handles everything: homepage warmup, cookie dismissal, result extract
 3. Navigates to the results URL with `fareType=USD` for cash or `fareType=POINTS` for points
 4. Waits 15 seconds for SW's React app to render flight data
 5. Extracts flight text from `[role='main']` (NOT `<main>` which is the booking form)
-6. Parses flight blocks by splitting on `# \d+` patterns
+6. Splits cards on `# WN…` headers and reads each fare's own label block (retries the results load once if it comes back empty)
 7. Cleans up the browser and temp profile
 
 **Why fareType in the URL instead of clicking the Points toggle:** The Points label on the results page is in a different frame context than the flight cards. Clicking it via Playwright is unreliable. Using the URL parameter loads points results directly. Two page loads (cash + points) is more reliable than one load + a toggle click.
