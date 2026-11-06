@@ -4,29 +4,29 @@
       "tpg": {
         "name": "The Points Guy",
         "url": "https://thepointsguy.com/loyalty-programs/monthly-valuations/",
-        "edition": "March 2026",
+        "edition": "November 2026",
         "methodology": "Data-driven, 23K data points, weighted by route type. Systematically optimistic. Financial incentive to overvalue (affiliate revenue). Excludes partner awards for airlines but includes them for credit card currencies."
       },
       "up": {
         "name": "Upgraded Points",
         "url": "https://upgradedpoints.com/travel/points-and-miles-valuations/",
-        "edition": "March 2026",
+        "edition": "November 2026",
         "methodology": "Falls between TPG and conservative sources. Broadest coverage of programs."
       },
       "omaat": {
         "name": "One Mile at a Time (Ben Schlappig)",
         "url": "https://onemileatatime.com/guides/value-miles-points/",
-        "edition": "March 2026",
+        "edition": "November 2026",
         "methodology": "Intentionally conservative. Values all transferable credit card points equally at 1.7cpp (reflects transfer partner optionality). Independent, no affiliate incentive to inflate."
       },
       "vftw": {
         "name": "View From The Wing (Gary Leff)",
         "url": "https://viewfromthewing.com/value-of-frequent-flyer-miles/",
-        "edition": "November 2021",
+        "edition": "November 2026 (page undated; values re-read live)",
         "methodology": "Most conservative and theoretically rigorous. Frames value as 'amount at which you are indifferent to holding miles versus cash,' not 'how much airfare a mile can buy.' Accounts for devaluation risk, restricted use, and foregone mile-earning on award tickets. Older data but methodology is the gold standard."
       }
     },
-    "last_updated": "2026-03-21",
+    "last_updated": "2026-11-05",
     "staleness_days": 45,
     "staleness_note": "TPG, UP, and OMAAT update monthly. VFTW updates less frequently. If last_updated is more than 45 days ago, re-fetch from source URLs and update.",
     "methodology": "Each program has a 'floor' (conservative, min across sources) and 'ceiling' (optimistic, max across sources). Default to FLOOR for decision-making. A redemption that beats the ceiling is genuinely exceptional. A redemption below the floor is objectively poor. TPG systematically overvalues; VFTW/OMAAT are more conservative and more useful for 'should I burn points on this?' decisions. See: https://viewfromthewing.com/why-the-points-guy-systematically-overstates-the-value-of-miles/"
@@ -36,328 +36,555 @@
       "name": "American Express Membership Rewards",
       "floor": 1.7,
       "ceiling": 2.2,
-      "sources": { "tpg": 2.0, "up": 2.2, "omaat": 1.7, "vftw": 1.7 }
+      "sources": {
+        "tpg": 2.0,
+        "up": 2.2,
+        "omaat": 1.7,
+        "vftw": 1.7
+      }
     },
     "bilt_rewards": {
       "name": "Bilt Rewards",
       "floor": 1.7,
       "ceiling": 2.2,
-      "sources": { "tpg": 2.2, "up": 2.0, "omaat": 1.7, "vftw": 1.7 }
+      "sources": {
+        "tpg": 2.2,
+        "up": 2.0,
+        "omaat": 1.7,
+        "vftw": 1.7
+      }
     },
     "chase_ultimate_rewards": {
       "name": "Chase Ultimate Rewards",
-      "floor": 1.7,
+      "floor": 1.65,
       "ceiling": 2.05,
-      "sources": { "tpg": 2.05, "up": 2.0, "omaat": 1.7, "vftw": 1.7 }
+      "sources": {
+        "tpg": 2.05,
+        "up": 2.0,
+        "omaat": 1.7,
+        "vftw": 1.65
+      }
     },
     "citi_thankyou": {
       "name": "Citi ThankYou Rewards",
       "floor": 1.6,
-      "ceiling": 1.9,
-      "sources": { "tpg": 1.9, "up": 1.6, "omaat": 1.7, "vftw": 1.6 }
+      "ceiling": 1.95,
+      "sources": {
+        "tpg": 1.95,
+        "up": 1.6,
+        "omaat": 1.7,
+        "vftw": 1.6
+      }
     },
     "capital_one": {
       "name": "Capital One Miles",
       "floor": 1.6,
       "ceiling": 1.85,
-      "sources": { "tpg": 1.85, "up": 1.8, "omaat": 1.7, "vftw": 1.6 }
+      "sources": {
+        "tpg": 1.85,
+        "up": 1.8,
+        "omaat": 1.7,
+        "vftw": 1.6
+      }
     },
     "wells_fargo": {
       "name": "Wells Fargo Rewards",
       "floor": 1.5,
-      "ceiling": 1.65,
-      "sources": { "tpg": 1.65, "up": 1.5 }
+      "ceiling": 1.8,
+      "sources": {
+        "tpg": 1.8,
+        "up": 1.5
+      }
     },
     "diners_club": {
       "name": "Diners Club Rewards",
       "floor": 2.0,
       "ceiling": 2.0,
-      "sources": { "up": 2.0 }
+      "sources": {
+        "up": 2.0
+      }
     },
     "rove": {
       "name": "Rove Miles",
       "floor": 1.5,
-      "ceiling": 1.5,
-      "sources": { "up": 1.5 }
+      "ceiling": 2.05,
+      "sources": {
+        "tpg": 2.05,
+        "up": 1.5
+      }
     },
     "bank_of_america": {
       "name": "Bank of America Preferred Rewards",
       "floor": 1.0,
       "ceiling": 1.0,
-      "sources": { "up": 1.0 }
+      "sources": {
+        "up": 1.0
+      }
     },
     "barclaycard_arrival": {
       "name": "Barclaycard Arrival Miles",
       "floor": 1.0,
       "ceiling": 1.0,
-      "sources": { "up": 1.0 }
+      "sources": {
+        "up": 1.0
+      }
     },
     "brex": {
       "name": "Brex Rewards",
       "floor": 1.0,
       "ceiling": 1.3,
-      "sources": { "up": 1.0, "vftw": 1.3 }
+      "sources": {
+        "up": 1.0,
+        "vftw": 1.3
+      }
+    },
+    "us_bank": {
+      "name": "U.S. Bank Rewards",
+      "floor": 1.6,
+      "ceiling": 1.6,
+      "sources": {
+        "tpg": 1.6
+      }
     }
   },
   "airline_miles": {
     "aegean": {
       "name": "Aegean Miles+Bonus",
-      "floor": 1.3,
-      "ceiling": 1.3,
-      "sources": { "omaat": 1.3 }
+      "floor": 1.2,
+      "ceiling": 1.2,
+      "sources": {
+        "omaat": 1.2
+      }
     },
     "aer_lingus": {
       "name": "Aer Lingus AerClub Avios",
-      "floor": 1.25,
-      "ceiling": 1.3,
-      "sources": { "up": 1.25, "omaat": 1.3 }
+      "floor": 1.2,
+      "ceiling": 1.35,
+      "sources": {
+        "tpg": 1.35,
+        "up": 1.25,
+        "omaat": 1.2
+      }
     },
     "aeroplan": {
       "name": "Air Canada Aeroplan",
       "floor": 1.4,
       "ceiling": 1.5,
-      "sources": { "tpg": 1.4, "up": 1.5, "omaat": 1.5, "vftw": 1.4 }
+      "sources": {
+        "tpg": 1.45,
+        "up": 1.5,
+        "omaat": 1.4,
+        "vftw": 1.4
+      }
     },
     "aeromexico": {
       "name": "Aeromexico Rewards",
       "floor": 0.8,
       "ceiling": 0.8,
-      "sources": { "tpg": 0.8 }
+      "sources": {
+        "tpg": 0.8
+      }
     },
     "alaska": {
       "name": "Alaska Airlines Atmos Rewards",
       "floor": 1.5,
       "ceiling": 1.6,
-      "sources": { "tpg": 1.5, "up": 1.6, "omaat": 1.5, "vftw": 1.6 }
+      "sources": {
+        "tpg": 1.6,
+        "up": 1.6,
+        "omaat": 1.5,
+        "vftw": 1.6
+      }
     },
     "american": {
       "name": "American Airlines AAdvantage",
       "floor": 1.3,
-      "ceiling": 1.7,
-      "sources": { "tpg": 1.7, "up": 1.4, "omaat": 1.5, "vftw": 1.3 },
+      "ceiling": 1.5,
+      "sources": {
+        "tpg": 1.45,
+        "up": 1.4,
+        "omaat": 1.5,
+        "vftw": 1.3
+      },
       "note": "Wide spread. TPG's 1.7 is an outlier. Conservative sources cluster around 1.3-1.5."
     },
     "ana": {
       "name": "ANA Mileage Club",
-      "floor": 1.4,
+      "floor": 1.3,
       "ceiling": 1.5,
-      "sources": { "tpg": 1.4, "up": 1.4, "omaat": 1.4, "vftw": 1.5 }
+      "sources": {
+        "tpg": 1.3,
+        "up": 1.4,
+        "omaat": 1.4,
+        "vftw": 1.5
+      }
     },
     "asiana": {
       "name": "Asiana Airlines Asiana Club",
       "floor": 1.6,
       "ceiling": 1.6,
-      "sources": { "up": 1.6 }
+      "sources": {
+        "up": 1.6
+      }
     },
     "avianca": {
       "name": "Avianca LifeMiles",
       "floor": 1.3,
-      "ceiling": 1.4,
-      "sources": { "tpg": 1.4, "up": 1.4, "omaat": 1.3, "vftw": 1.4 }
+      "ceiling": 1.65,
+      "sources": {
+        "tpg": 1.65,
+        "up": 1.4,
+        "omaat": 1.3,
+        "vftw": 1.4
+      }
     },
     "avios": {
       "name": "Avios (British Airways / Iberia / Qatar)",
       "floor": 1.1,
-      "ceiling": 1.4,
-      "sources": { "tpg": 1.4, "up": 1.25, "omaat": 1.3, "vftw": 1.1 },
+      "ceiling": 1.35,
+      "sources": {
+        "tpg": 1.35,
+        "up": 1.25,
+        "omaat": 1.2,
+        "vftw": 1.1
+      },
       "note": "TPG groups all Avios programs at 1.4cpp. UP values BA/Iberia/Qatar/Aer Lingus each at 1.25cpp. VFTW's 1.1 is the most conservative."
     },
     "breeze": {
       "name": "Breeze Airways Breezy Rewards",
       "floor": 1.0,
       "ceiling": 1.0,
-      "sources": { "up": 1.0 }
+      "sources": {
+        "up": 1.0
+      }
     },
     "cathay": {
       "name": "Cathay Asia Miles",
       "floor": 1.2,
       "ceiling": 1.3,
-      "sources": { "tpg": 1.3, "up": 1.3, "omaat": 1.2, "vftw": 1.2 }
+      "sources": {
+        "tpg": 1.3,
+        "up": 1.3,
+        "omaat": 1.2,
+        "vftw": 1.2
+      }
     },
     "delta": {
       "name": "Delta SkyMiles",
       "floor": 1.0,
-      "ceiling": 1.25,
-      "sources": { "tpg": 1.25, "up": 1.2, "omaat": 1.1, "vftw": 1.0 },
+      "ceiling": 1.2,
+      "sources": {
+        "tpg": 1.2,
+        "up": 1.2,
+        "omaat": 1.1,
+        "vftw": 1.0
+      },
       "note": "Dynamic pricing makes SkyMiles unpredictable. Conservative valuation warranted."
     },
     "emirates": {
       "name": "Emirates Skywards",
-      "floor": 1.1,
+      "floor": 1.0,
       "ceiling": 1.2,
-      "sources": { "tpg": 1.2, "up": 1.1, "omaat": 1.2, "vftw": 1.1 }
+      "sources": {
+        "tpg": 1.0,
+        "up": 1.1,
+        "omaat": 1.2,
+        "vftw": 1.1
+      }
     },
     "etihad": {
       "name": "Etihad Guest",
       "floor": 1.1,
       "ceiling": 1.4,
-      "sources": { "tpg": 1.2, "up": 1.4, "omaat": 1.1, "vftw": 1.2 }
+      "sources": {
+        "tpg": 1.1,
+        "up": 1.4,
+        "omaat": 1.1,
+        "vftw": 1.2
+      }
     },
     "finnair": {
       "name": "Finnair Plus",
-      "floor": 1.3,
-      "ceiling": 1.3,
-      "sources": { "omaat": 1.3 }
+      "floor": 1.2,
+      "ceiling": 1.2,
+      "sources": {
+        "omaat": 1.2
+      }
     },
     "flying_blue": {
       "name": "Flying Blue (Air France/KLM)",
       "floor": 1.2,
-      "ceiling": 1.3,
-      "sources": { "tpg": 1.3, "up": 1.3, "omaat": 1.3, "vftw": 1.2 }
+      "ceiling": 1.45,
+      "sources": {
+        "tpg": 1.45,
+        "up": 1.3,
+        "omaat": 1.3,
+        "vftw": 1.2
+      }
     },
     "frontier": {
       "name": "Frontier Miles",
       "floor": 1.1,
       "ceiling": 1.3,
-      "sources": { "tpg": 1.3, "up": 1.1 }
+      "sources": {
+        "tpg": 1.3,
+        "up": 1.1
+      }
     },
     "hawaiian": {
       "name": "Hawaiian Airlines HawaiianMiles",
       "floor": 1.0,
       "ceiling": 1.0,
-      "sources": { "vftw": 1.0 }
+      "sources": {
+        "vftw": 1.0
+      }
     },
     "iberia": {
       "name": "Iberia Plus Avios",
-      "floor": 1.3,
-      "ceiling": 1.3,
-      "sources": { "omaat": 1.3 }
+      "floor": 1.2,
+      "ceiling": 1.35,
+      "sources": {
+        "tpg": 1.35,
+        "up": 1.25,
+        "omaat": 1.2
+      }
     },
     "jal": {
       "name": "Japan Airlines Mileage Bank",
       "floor": 1.3,
       "ceiling": 1.3,
-      "sources": { "omaat": 1.3 }
+      "sources": {
+        "up": 1.3,
+        "omaat": 1.3
+      }
     },
     "jetblue": {
       "name": "JetBlue TrueBlue",
       "floor": 1.3,
       "ceiling": 1.35,
-      "sources": { "tpg": 1.35, "up": 1.3, "omaat": 1.3, "vftw": 1.3 }
+      "sources": {
+        "tpg": 1.35,
+        "up": 1.3,
+        "omaat": 1.3,
+        "vftw": 1.3
+      }
     },
     "korean_air": {
       "name": "Korean Air SKYPASS",
-      "floor": 1.4,
+      "floor": 1.3,
       "ceiling": 1.6,
-      "sources": { "up": 1.6, "omaat": 1.5, "vftw": 1.4 }
+      "sources": {
+        "up": 1.6,
+        "omaat": 1.3,
+        "vftw": 1.4
+      }
     },
     "lufthansa": {
       "name": "Lufthansa Miles & More",
       "floor": 1.2,
       "ceiling": 1.3,
-      "sources": { "up": 1.3, "omaat": 1.2, "vftw": 1.2 }
+      "sources": {
+        "up": 1.3,
+        "omaat": 1.2,
+        "vftw": 1.2
+      }
     },
     "qantas": {
       "name": "Qantas Frequent Flyer",
       "floor": 1.3,
       "ceiling": 1.3,
-      "sources": { "tpg": 1.3 }
+      "sources": {
+        "tpg": 1.3
+      }
     },
     "singapore": {
       "name": "Singapore KrisFlyer",
-      "floor": 1.3,
-      "ceiling": 1.4,
-      "sources": { "tpg": 1.3, "up": 1.35, "omaat": 1.4, "vftw": 1.3 }
+      "floor": 1.25,
+      "ceiling": 1.35,
+      "sources": {
+        "tpg": 1.25,
+        "up": 1.35,
+        "omaat": 1.3,
+        "vftw": 1.3
+      }
     },
     "southwest": {
       "name": "Southwest Rapid Rewards",
       "floor": 1.2,
       "ceiling": 1.3,
-      "sources": { "tpg": 1.3, "up": 1.3, "omaat": 1.2, "vftw": 1.2 }
+      "sources": {
+        "tpg": 1.25,
+        "up": 1.3,
+        "omaat": 1.2,
+        "vftw": 1.2
+      }
     },
     "spirit": {
       "name": "Spirit Airlines Free Spirit",
       "floor": 1.1,
       "ceiling": 1.1,
-      "sources": { "tpg": 1.1, "up": 1.1 }
+      "sources": {
+        "tpg": 1.1,
+        "up": 1.1
+      },
+      "note": "STALE. No source published a Spirit valuation in the Nov 2026 refresh. Values carried over from Mar 2026. Treat as unverified."
     },
     "turkish": {
       "name": "Turkish Airlines Miles&Smiles",
       "floor": 1.1,
       "ceiling": 1.3,
-      "sources": { "tpg": 1.1, "up": 1.3, "omaat": 1.3 }
+      "sources": {
+        "tpg": 1.1,
+        "up": 1.3,
+        "omaat": 1.2
+      }
     },
     "united": {
       "name": "United MileagePlus",
-      "floor": 1.1,
-      "ceiling": 1.5,
-      "sources": { "tpg": 1.5, "up": 1.2, "omaat": 1.1, "vftw": 1.3 },
+      "floor": 1.2,
+      "ceiling": 1.3,
+      "sources": {
+        "tpg": 1.2,
+        "up": 1.2,
+        "omaat": 1.3,
+        "vftw": 1.3
+      },
       "note": "Massive spread. TPG's 1.5 is the outlier. OMAAT's 1.1 reflects dynamic pricing reality."
     },
     "virgin_atlantic": {
       "name": "Virgin Atlantic Flying Club",
       "floor": 1.0,
-      "ceiling": 1.4,
-      "sources": { "tpg": 1.3, "up": 1.4, "omaat": 1.1, "vftw": 1.0 }
+      "ceiling": 1.5,
+      "sources": {
+        "tpg": 1.5,
+        "up": 1.4,
+        "omaat": 1.1,
+        "vftw": 1.0
+      }
+    },
+    "qatar": {
+      "name": "Qatar Airways Privilege Club Avios",
+      "floor": 1.25,
+      "ceiling": 1.35,
+      "sources": {
+        "tpg": 1.35,
+        "up": 1.25
+      }
     }
   },
   "hotel_points": {
     "accor": {
       "name": "Accor Live Limitless",
       "floor": 2.0,
-      "ceiling": 2.2,
-      "sources": { "tpg": 2.0, "up": 2.2, "omaat": 2.0 }
+      "ceiling": 2.25,
+      "sources": {
+        "tpg": 2.25,
+        "up": 2.2,
+        "omaat": 2.0
+      }
     },
     "best_western": {
       "name": "Best Western Rewards",
       "floor": 0.5,
       "ceiling": 0.6,
-      "sources": { "tpg": 0.6, "up": 0.6, "omaat": 0.5 }
+      "sources": {
+        "tpg": 0.6,
+        "up": 0.6,
+        "omaat": 0.5
+      }
     },
     "choice": {
       "name": "Choice Privileges",
       "floor": 0.6,
-      "ceiling": 0.6,
-      "sources": { "tpg": 0.6, "up": 0.6, "omaat": 0.6, "vftw": 0.6 }
+      "ceiling": 0.85,
+      "sources": {
+        "tpg": 0.85,
+        "up": 0.6,
+        "omaat": 0.6,
+        "vftw": 0.6
+      }
     },
     "hilton": {
       "name": "Hilton Honors",
       "floor": 0.4,
       "ceiling": 0.5,
-      "sources": { "tpg": 0.5, "up": 0.5, "omaat": 0.5, "vftw": 0.4 }
+      "sources": {
+        "tpg": 0.4,
+        "up": 0.5,
+        "omaat": 0.5,
+        "vftw": 0.4
+      }
     },
     "hyatt": {
       "name": "World of Hyatt",
       "floor": 1.4,
-      "ceiling": 1.7,
-      "sources": { "tpg": 1.7, "up": 1.5, "omaat": 1.5, "vftw": 1.4 },
+      "ceiling": 1.65,
+      "sources": {
+        "tpg": 1.65,
+        "up": 1.55,
+        "omaat": 1.4,
+        "vftw": 1.4
+      },
       "note": "Consistently the most valuable hotel currency across all sources."
     },
     "ihg": {
       "name": "IHG One Rewards",
       "floor": 0.5,
-      "ceiling": 0.5,
-      "sources": { "tpg": 0.5, "up": 0.5, "omaat": 0.5, "vftw": 0.5 }
+      "ceiling": 0.6,
+      "sources": {
+        "tpg": 0.6,
+        "up": 0.5,
+        "omaat": 0.5,
+        "vftw": 0.5
+      }
     },
     "leading_hotels": {
       "name": "Leading Hotels of the World",
       "floor": 8.0,
       "ceiling": 8.0,
-      "sources": { "up": 8.0 }
+      "sources": {
+        "up": 8.0
+      }
     },
     "marriott": {
       "name": "Marriott Bonvoy",
       "floor": 0.6,
-      "ceiling": 0.7,
-      "sources": { "tpg": 0.7, "up": 0.7, "omaat": 0.7, "vftw": 0.6 }
+      "ceiling": 0.75,
+      "sources": {
+        "tpg": 0.75,
+        "up": 0.73,
+        "omaat": 0.7,
+        "vftw": 0.6
+      }
     },
     "preferred_hotels": {
       "name": "Preferred Hotels & Resorts",
       "floor": 0.5,
       "ceiling": 0.5,
-      "sources": { "up": 0.5 }
+      "sources": {
+        "up": 0.5
+      }
     },
     "radisson": {
       "name": "Radisson Rewards",
       "floor": 0.25,
       "ceiling": 0.3,
-      "sources": { "up": 0.25, "omaat": 0.3, "vftw": 0.3 }
+      "sources": {
+        "up": 0.25,
+        "omaat": 0.3,
+        "vftw": 0.3
+      }
     },
     "wyndham": {
       "name": "Wyndham Rewards",
-      "floor": 0.7,
-      "ceiling": 1.1,
-      "sources": { "tpg": 1.1, "up": 0.9, "omaat": 0.7, "vftw": 0.8 }
+      "floor": 0.55,
+      "ceiling": 0.9,
+      "sources": {
+        "tpg": 0.55,
+        "up": 0.9,
+        "omaat": 0.6,
+        "vftw": 0.8
+      }
     }
   }
 }
