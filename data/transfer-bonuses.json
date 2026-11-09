@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-11-02",
+    "last_updated": "2026-11-09",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -49,6 +49,118 @@
       "confidence": "VERIFIED",
       "sources": [
         "https://frequentmiler.com/30-percent-transfer-bonus-capital-one-virgin-atlantic/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "capital_one_to_flying_blue_20pct_2026_11",
+      "from_program": "capital_one",
+      "from_display": "Capital One Miles",
+      "to_program": "flying_blue",
+      "to_display": "Air France KLM Flying Blue",
+      "bonus_pct": 20,
+      "ratio": 1.2,
+      "start_date": "2026-11-01",
+      "end_date_inclusive": "2026-11-30",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/20-transfer-bonus-to-air-france-klm-flying-blue-from-capital-one/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "amex_membership_rewards_to_virgin_atlantic_30pct_2026_11",
+      "from_program": "amex_membership_rewards",
+      "from_display": "Amex Membership Rewards",
+      "to_program": "virgin_atlantic",
+      "to_display": "Virgin Atlantic Flying Club",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-11-02",
+      "end_date_inclusive": "2026-11-30",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/30-percent-transfer-bonus-american-express-membership-rewards-virgin-atlantic/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "chase_ur_to_british_airways_avios_30pct_2026_12",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "british_airways_avios",
+      "to_display": "British Airways Avios",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-11-01",
+      "end_date_inclusive": "2026-12-01",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/get-a-30-bonus-when-transferring-chase-ultimate-rewards-to-avios-programs-ba-iberia-aer-lingus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "chase_ur_to_iberia_avios_30pct_2026_12",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "iberia_avios",
+      "to_display": "Iberia Avios",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-11-01",
+      "end_date_inclusive": "2026-12-01",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/get-a-30-bonus-when-transferring-chase-ultimate-rewards-to-avios-programs-ba-iberia-aer-lingus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "chase_ur_to_aer_lingus_avios_30pct_2026_12",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "aer_lingus_avios",
+      "to_display": "Aer Lingus Avios",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-11-01",
+      "end_date_inclusive": "2026-12-01",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/get-a-30-bonus-when-transferring-chase-ultimate-rewards-to-avios-programs-ba-iberia-aer-lingus/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "chase_ur_to_ihg_one_rewards_80pct_2026_12",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "ihg_one_rewards",
+      "to_display": "IHG",
+      "bonus_pct": 80,
+      "ratio": 1.8,
+      "start_date": "2026-11-01",
+      "end_date_inclusive": "2026-12-03",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/chase-offering-80-bonus-when-transferring-points-to-ihg-but-dont/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "chase_ur_to_wyndham_30pct_2026_12",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "wyndham",
+      "to_display": "Wyndham",
+      "bonus_pct": 30,
+      "ratio": 1.3,
+      "start_date": "2026-11-01",
+      "end_date_inclusive": "2026-12-03",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/30-transfer-bonus-from-chase-ultimate-rewards-to-wyndham-rewards/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
     },
