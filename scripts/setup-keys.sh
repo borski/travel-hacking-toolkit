@@ -180,7 +180,7 @@ prompt_key AWARDWALLET_USER_ID \
   3
 
 echo ""
-printf "Continue with Tier 2 (SerpAPI, RapidAPI, LiteAPI, TripAdvisor)? [y/N] "
+printf "Continue with Tier 2 (SerpAPI, RapidAPI, LiteAPI, TripAdvisor, Firecrawl)? [y/N] "
 read -r more
 case "$more" in
   [Yy]*)
@@ -196,6 +196,9 @@ case "$more" in
     prompt_key TRIPADVISOR_API_KEY \
       "Hotel ratings, reviews, and rankings." \
       "https://tripadvisor-content-api.readme.io (5K calls/mo free)"
+    prompt_key FIRECRAWL_API_KEY \
+      "Agoda room-level hotel rates and guest reviews." \
+      "https://www.firecrawl.dev/?utm_source=travel-hacking-toolkit&utm_medium=integration (free plan, 1,000 credits/month)"
     ;;
 esac
 

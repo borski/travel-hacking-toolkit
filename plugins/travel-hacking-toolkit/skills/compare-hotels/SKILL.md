@@ -45,14 +45,16 @@ Run these in parallel where possible. **Never fail silently.**
 | Trivago | web search | ~5s | Metasearch across many OTAs. Use tavily/exa to search `trivago.com`. Finds the absolute cheapest OTA rate. |
 | LiteAPI | web search | ~5s | Hotel API aggregator with negotiated rates. Check `liteapi.travel`. Can find rates below public OTA pricing. |
 | RapidAPI | `rapidapi` | ~3s | Booking.com inventory and pricing. Optional, use when user asks for Booking.com specifically. |
+| Agoda | `firecrawl` | ~2s | Agoda rates for exact dates with tax-inclusive totals. `hotels/property_rooms` adds refundable and non-refundable totals per room type with cancellation terms. Run `hotels/suggest` first to get the city or property id. Needs `FIRECRAWL_API_KEY`. |
 
 ### Quality and Ratings
 
 | Source | Skill/Tool | Speed | What It Finds |
 |--------|------------|-------|---------------|
 | TripAdvisor | `tripadvisor` | ~2s | Ratings, rankings, subratings (location/service/cleanliness), reviews, photos, amenities, awards. 5K calls/month. |
+| Agoda reviews | `firecrawl` | ~5s | Agoda and Booking.com guest reviews, with category grades next to the city average. |
 
-**SerpAPI, Trivago, and LiteAPI are all default.** Always search all three. Only add RapidAPI if the user asks for Booking.com specifically. Use TripAdvisor for quality data (ratings, rankings, reviews) to complement pricing from other sources.
+**SerpAPI, Trivago, and LiteAPI are all default.** Always search all three. Add Agoda through the `firecrawl` skill when `FIRECRAWL_API_KEY` is set. Only add RapidAPI if the user asks for Booking.com specifically. Use TripAdvisor for quality data (ratings, rankings, reviews) to complement pricing from other sources.
 
 ### Vacation Rentals
 
@@ -78,6 +80,7 @@ PARALLEL GROUP 1 (fast — HTTP/API/MCP calls, no browser, ~3-5s):
   - SerpAPI: Google Hotels cash prices
   - Trivago: metasearch across OTAs (web search)
   - LiteAPI: negotiated hotel rates (web search)
+  - Agoda: firecrawl skill, hotels/suggest then hotels/search (only if FIRECRAWL_API_KEY is set)
   - Airbnb: vacation rentals in the area (npx MCP — lightweight scrape, not a browser)
   - Local data: check premium-hotels databases for the city
 
