@@ -2268,6 +2268,16 @@ def _parse_offer_card_text(card_data):
 
     return hotel
 
+
+def _parse_hotel_card_text(text):
+    """Parse one hotel block of raw page text into structured data.
+
+    Text-only counterpart to _parse_offer_card_text(), used by
+    _parse_hotels_from_text() when no structured card data is available.
+    """
+    hotel = {}
+    lines = [l.strip() for l in text.split("\n") if l.strip()]
+
     # First substantial line is usually the hotel name
     for line in lines:
         if len(line) > 3 and not line.startswith("$") and not re.match(r"^\d", line):
