@@ -253,6 +253,7 @@ seats-aero|Seats.aero|https://seats.aero|Award flight availability across 27 mil
 rapidapi|RapidAPI|https://rapidapi.com|Marketplace; subscribe to Booking.com Live + Google Flights Live.
 serpapi|SerpAPI|https://serpapi.com|Google Flights, Google Hotels, Travel Explore.
 tripadvisor|TripAdvisor|https://www.tripadvisor.com/developers|Hotel/restaurant/attraction data. 5K calls/month free.
+firecrawl|Firecrawl|https://www.firecrawl.dev/?utm_source=travel-hacking-toolkit&utm_medium=integration|Agoda hotel rates and reviews via Firecrawl Alexandria. Free plan with 1,000 credits a month.
 awardwallet|AwardWallet|https://business.awardwallet.com|Loyalty program balance aggregator. Business tier required.
 ticketsatwork|TicketsAtWork|https://www.ticketsatwork.com|Corporate-perks portal. Account requires employer affiliation. Same credentials work for Working Advantage, Plum, Beneplace (shared EBG backend).
 scandinavia-transit|Trafiklab (Sweden)|https://www.trafiklab.se|Sweden transit. Free API key. 30,000 calls/month.

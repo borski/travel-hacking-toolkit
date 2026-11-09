@@ -132,12 +132,13 @@ Prompt-Key 'AWARDWALLET_USER_ID' `
 # --- Tier 2 ---
 
 Write-Host ""
-$more = Read-Host "Continue with Tier 2 (SerpAPI, RapidAPI, LiteAPI, TripAdvisor)? [y/N]"
+$more = Read-Host "Continue with Tier 2 (SerpAPI, RapidAPI, LiteAPI, TripAdvisor, Firecrawl)? [y/N]"
 if ($more -match '^[Yy]') {
     Prompt-Key 'SERPAPI_API_KEY' 'Google Flights/Hotels comparison data.' 'https://serpapi.com (100 searches/mo free)'
     Prompt-Key 'RAPIDAPI_KEY'    'Booking.com Live + Google Flights Live as fallback sources.' 'https://rapidapi.com'
     Prompt-Key 'LITEAPI_API_KEY' 'Hotel rate inventory via LiteAPI MCP.' 'https://liteapi.travel'
     Prompt-Key 'TRIPADVISOR_API_KEY' 'Hotel ratings, reviews, and rankings.' 'https://tripadvisor-content-api.readme.io (5K calls/mo free)'
+    Prompt-Key 'FIRECRAWL_API_KEY' 'Agoda room-level hotel rates and guest reviews.' 'https://www.firecrawl.dev/?utm_source=travel-hacking-toolkit&utm_medium=integration (free plan, 1,000 credits/month)'
 }
 
 # --- Tier 3 ---
