@@ -50,9 +50,10 @@ Run these in parallel where possible. **Never fail silently.**
 
 | Source | Skill/Tool | Speed | What It Finds |
 |--------|------------|-------|---------------|
-| TripAdvisor | `tripadvisor` | ~2s | Ratings, rankings, subratings (location/service/cleanliness), reviews, photos, amenities, awards. 5K calls/month. |
+| Google Reviews | `serpapi` (Google Reviews section) | ~3s | Google rating, review count, location rating (free with the Google Hotels price search). Star distribution and per-topic sentiment for finalists via `property_token`. |
+| TripAdvisor | `tripadvisor` | ~2s | Optional. Rankings and subratings. Only when the user asks for TripAdvisor specifically. |
 
-**SerpAPI, Trivago, and LiteAPI are all default.** Always search all three. Only add RapidAPI if the user asks for Booking.com specifically. Use TripAdvisor for quality data (ratings, rankings, reviews) to complement pricing from other sources.
+**SerpAPI, Trivago, and LiteAPI are all default.** Always search all three. Only add RapidAPI if the user asks for Booking.com specifically. **Google Reviews is the default quality source.** Show Google rating + review count for every hotel in the table, then pull the property details (star distribution, topic sentiment) for the top 2-3 finalists only.
 
 ### Vacation Rentals
 
@@ -133,13 +134,15 @@ Edit adjusted = total_price - $100 credit - (breakfast_value × nights)
 
 #### Example: Paris, Aug 11-15 (4 nights, 2 guests)
 
-| # | Hotel | Program | Stars | Per Night | Total | Points | Benefits | Adj Total |
-|---|-------|---------|-------|-----------|-------|--------|----------|-----------|
-| 1 | SO/ Paris | EDIT+BOOST | 5★ | $639 | $2,555 | 127,756 UR | Breakfast, $100 credit, upgrade | ~$1,855 |
-| 2 | Hotel Balzac | EDIT+BOOST | 5★ | $614 | $2,455 | 122,769 UR | Breakfast, $100 credit, upgrade | ~$1,755 |
-| 3 | Le Bristol | FHR | 5★ | $1,849 | $8,284 | n/a | $100 credit, breakfast, upgrade, 4pm checkout | ~$6,884 |
-| 4 | Marriott Champs-Élysées | — | 4★ | $289 | $1,156 | — | — | $1,156 |
-| 5 | Airbnb: Marais 2BR | — | — | $195 | $780 | — | Kitchen, washing machine | $780 |
+| # | Hotel | Program | Stars | Google | Per Night | Total | Points | Benefits | Adj Total |
+|---|-------|---------|-------|--------|-----------|-------|--------|----------|-----------|
+| 1 | SO/ Paris | EDIT+BOOST | 5★ | 4.5 (1,210) | $639 | $2,555 | 127,756 UR | Breakfast, $100 credit, upgrade | ~$1,855 |
+| 2 | Hotel Balzac | EDIT+BOOST | 5★ | 4.6 (890) | $614 | $2,455 | 122,769 UR | Breakfast, $100 credit, upgrade | ~$1,755 |
+| 3 | Le Bristol | FHR | 5★ | 4.8 (2,340) | $1,849 | $8,284 | n/a | $100 credit, breakfast, upgrade, 4pm checkout | ~$6,884 |
+| 4 | Marriott Champs-Élysées | — | 4★ | 4.3 (3,105) | $289 | $1,156 | — | — | $1,156 |
+| 5 | Airbnb: Marais 2BR | — | — | 4.9 (Airbnb, 64) | $195 | $780 | — | Kitchen, washing machine | $780 |
+
+The Google column is `overall_rating (reviews)` from SerpAPI. Hotels from other sources (Chase, Amex, LiteAPI) get their Google rating by matching names against the SerpAPI results. Airbnb listings show their own Airbnb rating, labeled as such.
 
 **Sources checked:**
 - ✅ Chase Travel: 21 hotels (15 Edit, 6 standard)

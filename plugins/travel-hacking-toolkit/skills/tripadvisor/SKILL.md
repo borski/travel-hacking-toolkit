@@ -1,6 +1,6 @@
 ---
 name: tripadvisor
-description: TripAdvisor Content API for hotel ratings, restaurant search, attraction reviews, rankings, and nearby locations. Use when evaluating hotels or researching destinations. 5K calls/month.
+description: TripAdvisor Content API for rankings, restaurant search, attraction reviews, and nearby locations. Optional; Google Reviews via serpapi is the default hotel quality source. Use only when the user asks for TripAdvisor specifically. 5K calls/month.
 category: destinations
 summary: Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month.
 api_key: TripAdvisor

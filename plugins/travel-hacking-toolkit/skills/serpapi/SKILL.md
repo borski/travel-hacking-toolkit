@@ -98,8 +98,10 @@ Capital One Venture X: 1 cpp via portal, but transfer partners can be better.
 Search hotels and vacation rentals with pricing from multiple OTAs.
 
 ```bash
-curl -s "https://serpapi.com/search?engine=google_hotels&q=hotels+Tokyo+Japan&check_in_date=2026-08-10&check_out_date=2026-08-13&adults=2&currency=USD&sort_by=3&api_key=$SERPAPI_API_KEY" | jq '[.properties[]? | {name: .name, type: .type, rating: .overall_rating, reviews: .reviews, price: .rate_per_night.extracted_lowest, class: .extracted_hotel_class, amenities: .amenities}] | .[0:10]'
+curl -s "https://serpapi.com/search?engine=google_hotels&q=hotels+Tokyo+Japan&check_in_date=2026-08-10&check_out_date=2026-08-13&adults=2&currency=USD&sort_by=3&api_key=$SERPAPI_API_KEY" | jq '[.properties[]? | {name: .name, type: .type, rating: .overall_rating, reviews: .reviews, location: .location_rating, price: .rate_per_night.extracted_lowest, class: .extracted_hotel_class, amenities: .amenities, token: .property_token}] | .[0:10]'
 ```
+
+`overall_rating` (Google review stars, 1-5), `reviews` (Google review count), and `location_rating` come back on every property in the list search at no extra cost. This is the default quality signal for hotel comparisons.
 
 ### Parameters
 
@@ -117,6 +119,28 @@ curl -s "https://serpapi.com/search?engine=google_hotels&q=hotels+Tokyo+Japan&ch
 | `rating` | No | `7` = 3.5+, `8` = 4.0+, `9` = 4.5+ |
 | `vacation_rentals` | No | Set to `true` for Airbnb-style results |
 | `property_token` | No | Get details for a specific property |
+
+### Google Reviews (Hotel Quality)
+
+Default source for hotel ratings and reviews. Three levels of depth, each costing more searches:
+
+1. **List search (free with pricing):** `overall_rating`, `reviews`, `location_rating` per property. Use this for every comparison table.
+2. **Property details (1 search per hotel):** re-run the same query with `property_token` to get the star distribution and per-topic sentiment. Only for finalists (top 2-3).
+
+```bash
+curl -s "https://serpapi.com/search?engine=google_hotels&q=hotels+Lisbon+Portugal&check_in_date=2026-12-10&check_out_date=2026-12-12&adults=2&currency=USD&property_token=$TOKEN&api_key=$SERPAPI_API_KEY" | jq '{name, overall_rating, reviews, location_rating, ratings, topics: [.reviews_breakdown[]? | {name, total_mentioned, positive, negative}]}'
+```
+
+- `ratings`: count per star level (`[{stars: 5, count: 4987}, ...]`). A high 1-star share on a 4.5 average flags polarizing stays.
+- `reviews_breakdown`: topics (Service, Rooms, Location, Breakfast, Wellness, ...) with positive/negative/neutral mention counts. Negative share per topic is the most useful signal ("Rooms: 18% negative").
+
+3. **Review text (1 search per page):** `engine=google_hotels_reviews` with the same `property_token`. Add `category_token` from a `reviews_breakdown` entry to read only that topic's reviews (e.g., why "Noise" is negative). Use only when the user asks about a specific hotel or a red flag needs explaining.
+
+```bash
+curl -s "https://serpapi.com/search?engine=google_hotels_reviews&property_token=$TOKEN&api_key=$SERPAPI_API_KEY" | jq '[.reviews[]? | {rating, date, snippet}] | .[0:5]'
+```
+
+**Budget:** every SerpAPI call counts against the monthly quota (free plan: 250/month). Level 1 is free with the price search; keep levels 2-3 to finalists.
 
 ## Google Travel Explore
 
