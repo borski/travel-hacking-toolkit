@@ -49,7 +49,10 @@ Data files are reference material, not gospel. Airline partnerships change const
 
 ## Southwest Is Special
 
-1. **Southwest is NOT in any GDS.** Duffel, Skiplagged, Kiwi, and Seats.aero will never return SW flights. The only sources are: the Southwest website directly or user-provided screenshots.
+1. **Southwest cash fares ARE reachable now. Southwest points are not.** This rule was "SW is in no GDS, period" and that is out of date.
+   - **VERIFIED Nov 5, 2026:** the [bilt](../bilt/SKILL.md) flight endpoint returned 418 Southwest offers on SJC→SAN across all four fare brands, matching southwest.com to the cent. Bilt is whitelabel-Duffel, so Southwest content is enabled per Duffel **organisation**. A personal Duffel key returned zero WN offers on the identical query.
+   - **The practical rule:** try Bilt for SW cash fares. Do not assume your own Duffel key has them, and do not assume it never will.
+   - **Rapid Rewards points pricing still only exists on southwest.com.** No aggregator has it. Bilt's `totalPointsRequired` is Bilt Points at 1.25 cpp, not RR. **Any Companion Pass decision still needs the [southwest](../southwest/SKILL.md) skill.**
 2. **SerpAPI does return SW prices** but they're often inflated like all SerpAPI flight prices. Treat as directional only.
 3. **SW Companion Pass math is different from everything else.** With CP, you buy ONE ticket and the companion flies free. The cash comparison is the Choice fare for one ticket (not two Basic fares). Points comparison: total points covers both travelers. This changes cpp calculations significantly.
 4. **Cash SW flights require Choice fare (or higher) for the companion to fly free.** Wanna Get Away (Basic) does NOT qualify. Critical detail.
@@ -88,7 +91,7 @@ Store their answers and apply to all subsequent searches in the session.
 
 ## Duffel Limitations
 
-- **No Southwest.** SW is not in any GDS. Period.
+- **Southwest depends on your Duffel organisation.** A personal key returned zero WN offers on SJC→SAN while Bilt's Duffel-backed endpoint returned 418 on the same query (verified Nov 5, 2026). Check rather than assume, and fall back to [bilt](../bilt/SKILL.md) for SW cash fares.
 - **No award pricing.** Duffel shows cash fares only. Use Seats.aero for award availability.
 - **Offers expire in 15-30 minutes.** Don't cache Duffel results across sessions.
 - **60 requests per 60 seconds rate limit.** Parallel searches are fine but don't go crazy.

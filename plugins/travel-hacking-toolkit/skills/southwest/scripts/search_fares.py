@@ -41,8 +41,109 @@ def build_url(origin, dest, depart, return_date=None, fare_type="USD"):
     return RESULTS_URL + "?" + "&".join(f"{k}={v}" for k, v in params.items())
 
 
-def parse_flight_block(text):
-    """Parse a single flight block into structured data."""
+FLIGHT_HEADER_RE = re.compile(r"^# ((?:WN)?\d+(?:\s*/\s*(?:WN)?\d+)*)\s*$", re.M)
+FARE_LABEL_RE = re.compile(
+    r"^Departs [^\n]*?\.\s*(Basic|Choice Preferred|Choice Extra|Choice)\s*$", re.M
+)
+
+
+def split_flight_blocks(text):
+    """Split [role='main'] text into one chunk per flight card.
+
+    SW renders each card as a "# WN1234" (or "# WN1 / WN2") header line,
+    followed by times, stops, duration, then one accessibility label per
+    fare ("Departs 7:00 AM, arrives 8:25 AM, nonstop, ... Basic") with the
+    price lines beneath it. The last card runs into the footer, so each
+    block is trimmed at the first blank line after its final fare.
+    """
+    heads = list(FLIGHT_HEADER_RE.finditer(text))
+    blocks = []
+    for i, h in enumerate(heads):
+        stop = heads[i + 1].start() if i + 1 < len(heads) else len(text)
+        chunk = text[h.start():stop]
+        labels = list(FARE_LABEL_RE.finditer(chunk))
+        if labels:
+            tail = chunk[labels[-1].end():]
+            cut = re.search(r"\n\s*\n", tail)
+            if cut:
+                chunk = chunk[: labels[-1].end() + cut.start()]
+        blocks.append(chunk)
+    return blocks
+
+
+def parse_fare_cell(cell, fare_type):
+    """Parse the lines under one fare label. Returns (price_str, seats_left)."""
+    cell = cell.strip()
+    left = re.search(r"^(\d+) left$", cell, re.M)
+    seats_left = int(left.group(1)) if left else None
+    if not cell or cell.startswith("Unavailable") or cell.startswith("Sold out"):
+        return "Unavail", None
+    if fare_type == "points":
+        pts = re.search(r"^([\d,]+) Points$", cell, re.M)
+        if not pts:
+            return "Unavail", None
+        tax = re.search(r"^([\d,]+(?:\.\d{2})?) Dollars$", cell, re.M)
+        tax_str = f" +${tax.group(1)}" if tax else ""
+        return f"{pts.group(1)} pts{tax_str}", seats_left
+    # Cash: the first "N Dollars" line is the fare. "earn N Points" lines are
+    # Rapid Rewards earnings, not a price, so ignore them.
+    usd = re.search(r"^([\d,]+) Dollars$", cell, re.M)
+    if not usd:
+        return "Unavail", None
+    return f"${usd.group(1)}", seats_left
+
+
+def parse_flight_block(text, fare_type="cash"):
+    """Parse a single flight card into structured data."""
+    flight = {}
+
+    m = FLIGHT_HEADER_RE.search(text)
+    if m:
+        # SW now prints "WN2335" / "WN2427 / WN955". Strip the carrier
+        # prefix so numbers stay "2335" / "2427 / 955", matching the
+        # flight_number format monitor.py configs already use.
+        num = re.sub(r"WN", "", m.group(1))
+        flight["flight_number"] = re.sub(r"\s*/\s*", " / ", num).strip()
+
+    header = FARE_LABEL_RE.split(text, maxsplit=1)[0]
+
+    times = re.findall(r"(\d{1,2}:\d{2}\s?(?:AM|PM))", header)
+    if len(times) >= 2:
+        flight["depart_time"] = times[0].replace(" ", "")
+        flight["arrive_time"] = times[1].replace(" ", "")
+
+    if re.search(r"^Nonstop$", header, re.M | re.I):
+        flight["stops"] = "Nonstop"
+    else:
+        sm = re.search(r"(\d+)\s*stops?", header, re.I)
+        flight["stops"] = f"{sm.group(1)} stop" if sm else "?"
+        conn = re.search(r"(?:plane change|Change planes)\s+([A-Z]{3})", header, re.I)
+        if conn:
+            flight["connection"] = conn.group(1).upper()
+
+    m = re.search(r"(\d+h\s*\d+m)", header)
+    if m:
+        flight["duration"] = m.group(1)
+
+    labels = list(FARE_LABEL_RE.finditer(text))
+    if labels:
+        flight["fares"] = {}
+        flight["fare_type"] = fare_type
+        low = False
+        for i, lab in enumerate(labels):
+            end = labels[i + 1].start() if i + 1 < len(labels) else len(text)
+            price, left = parse_fare_cell(text[lab.end():end], fare_type)
+            flight["fares"][lab.group(1)] = price
+            if left is not None:
+                low = True
+        if low:
+            flight["low_inventory"] = True
+
+    return flight
+
+
+def _legacy_parse_flight_block(text):
+    """Pre-Nov-2026 SW layout parser, kept as a fallback."""
     flight = {}
 
     # Flight number
@@ -100,9 +201,8 @@ def parse_flight_block(text):
     return flight
 
 
-def fetch_flights(page, origin, dest, depart, return_date=None, fare_type="USD"):
-    """Navigate to SW results and extract flight data."""
-    url = build_url(origin, dest, depart, return_date, fare_type)
+def _load_results_text(page, url):
+    """Load a results URL and return the [role='main'] text ('' on failure)."""
     page.goto(url, wait_until="networkidle", timeout=30000)
     page.wait_for_timeout(WAIT_FOR_RESULTS * 1000)
 
@@ -110,26 +210,55 @@ def fetch_flights(page, origin, dest, depart, return_date=None, fare_type="USD")
     try:
         page.locator("button:has-text('Dismiss')").click(timeout=3000)
         page.wait_for_timeout(1000)
-    except:
+    except Exception:
         pass
 
     # Verify we're on the results page
     if "select-depart" not in page.url and "select.html" not in page.url:
-        return []
+        print(f"[sw] not a results page: {page.url}", file=sys.stderr)
+        return ""
 
     # Extract from [role='main'] (NOT <main> which is the booking form)
-    text = page.frames[0].evaluate(
+    return page.frames[0].evaluate(
         """() => { var el = document.querySelector("[role='main']"); return el ? el.innerText : ''; }"""
     )
 
-    blocks = re.findall(r"(# [\d/ ]+.*?View seats)", text, re.DOTALL)
+
+def _parse_results_text(text, fare_type):
+    kind = "points" if fare_type == "POINTS" else "cash"
     flights = []
-    for block in blocks:
-        flight = parse_flight_block(block)
+    for block in split_flight_blocks(text):
+        flight = parse_flight_block(block, kind)
         if flight.get("fares"):
             flights.append(flight)
 
+    if not flights:
+        # Older layout: "# 1234 ... View seats"
+        for block in re.findall(r"(# [\d/ ]+.*?View seats)", text, re.DOTALL):
+            flight = _legacy_parse_flight_block(block)
+            if flight.get("fares"):
+                flights.append(flight)
     return flights
+
+
+def fetch_flights(page, origin, dest, depart, return_date=None, fare_type="USD", attempts=2):
+    """Navigate to SW results and extract flight data.
+
+    The first results load after the homepage warmup sometimes renders an
+    empty shell, so retry once before giving up.
+    """
+    url = build_url(origin, dest, depart, return_date, fare_type)
+    for attempt in range(1, attempts + 1):
+        text = _load_results_text(page, url)
+        flights = _parse_results_text(text, fare_type)
+        if flights:
+            return flights
+        print(
+            f"[sw] {fare_type} attempt {attempt}: 0 flights "
+            f"(text {len(text)} chars, url {page.url})",
+            file=sys.stderr,
+        )
+    return []
 
 
 def search(origin, dest, depart, return_date=None, show_points=False, as_json=False):
@@ -191,10 +320,10 @@ def fmt_stops(f):
 def print_flights(flights, label):
     print(f"\n{label}")
     is_points = flights[0].get("fare_type") == "points" if flights else False
-    w = 14 if is_points else 9
+    w = 18 if is_points else 9
 
     header = (
-        f"{'Flight':<12} {'Depart':<8} {'Arrive':<10} {'Stops':<16} {'Dur':<8} "
+        f"{'Flight':<18} {'Depart':<8} {'Arrive':<10} {'Stops':<16} {'Dur':<8} "
         f"{'Basic':<{w}} {'Choice':<{w}} {'Ch Pref':<{w}} {'Ch Extra':<{w}}"
     )
     print(header)
@@ -212,7 +341,7 @@ def print_flights(flights, label):
         ch_pref = fares.get("Choice Preferred", "")
         ch_extra = fares.get("Choice Extra", "")
         print(
-            f"{num:<12} {dep:<8} {arr:<10} {stops:<16} {dur:<8} "
+            f"{num:<18} {dep:<8} {arr:<10} {stops:<16} {dur:<8} "
             f"{basic:<{w}} {choice:<{w}} {ch_pref:<{w}} {ch_extra:<{w}}"
         )
 

@@ -13,7 +13,7 @@ This is not a pick-one list. Each source returns different results, different pr
 
 | Priority | Source | Strengths | Blind Spots |
 |----------|--------|-----------|-------------|
-| 1 | **Duffel** (skill) | Most accurate cash prices. Real GDS per-fare-class data. Bookable. | No Southwest. No award pricing. Offers expire in 15-30 min. |
+| 1 | **Duffel** (skill) | Most accurate cash prices. Real GDS per-fare-class data. Bookable. | Southwest depends on the org's enabled content (a personal key had none as of Nov 2026). No award pricing. Offers expire in 15-30 min. |
 | 2 | **Ignav** (skill) | Fast REST API. Market selection for price arbitrage. Free. | No Southwest. No award pricing. |
 | 3 | **Google Flights** (skill, agent-browser) | Covers ALL airlines including Southwest cash prices. Free. Economy/business comparison. | Prices can be inflated vs GDS. No points pricing. |
 | 4 | **Skiplagged** (MCP) | Hidden city fares. Zero config. | No Southwest. Can be noisy on small markets. |
@@ -21,10 +21,13 @@ This is not a pick-one list. Each source returns different results, different pr
 | 6 | **Seats.aero** (skill + MCP) | Award flight availability across 25+ programs. The crown jewel for points. Partner API with a key, official MCP without one. | Cached data, not live. No cash prices. No Southwest. Keyless MCP only covers the next 60 days. |
 | 7 | **SerpAPI** (skill, optional) | Google Hotels search. Destination discovery (Google Travel Explore). | NOT for flights (inflated prices). Hotels and "where should I go?" only. |
 | 8 | **Southwest** (skill, Patchright) | Fare classes, points pricing, Companion Pass. All 4 fare classes, cash + points. | Pre-built Docker image: `ghcr.io/borski/sw-fares`. Or local Patchright (headed mode). ~20s per search. |
+| 9 | **Bilt** (skill) | Keyless. Duffel-backed. **Carries Southwest cash fares in all 4 brands** when a personal Duffel key does not. | Expands origin/destination to the whole metro without flagging it, so filter on segment IATA. Bilt Points only, never Rapid Rewards. Hotels are behind auth. |
 
 ## The Standard Flight Search Workflow
 
-**Run ALL of these in parallel:** Duffel + Ignav + Google Flights + Skiplagged + Kiwi.
+**Run ALL of these in parallel:** Duffel + Ignav + Google Flights + Skiplagged + Kiwi + Bilt.
+
+Bilt is keyless and is the one source here that may return Southwest cash fares, so include it on domestic routes rather than treating it as a points-only tool.
 
 Skiplagged and Kiwi are keyless MCP servers — they are available in every properly launched session. Attempt the tool call before ever claiming MCP is unavailable, and never substitute improvised browser scraping for these sources (see `fallback-and-resilience`).
 
