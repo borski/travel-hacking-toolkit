@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-11-09",
+    "last_updated": "2026-11-16",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -20,22 +20,6 @@
     }
   },
   "active_bonuses": [
-    {
-      "id": "citi_typ_to_cathay_asia_miles_10pct_2026_11",
-      "from_program": "citi_typ",
-      "from_display": "Citi ThankYou Rewards",
-      "to_program": "cathay_asia_miles",
-      "to_display": "Cathay Pacific Asia Miles",
-      "bonus_pct": 10,
-      "ratio": 1.1,
-      "start_date": "2026-10-25",
-      "end_date_inclusive": "2026-11-14",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/10-transfer-bonus-citi-thankyou-rewards-to-cathay-pacific-asia-miles/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
     {
       "id": "capital_one_to_virgin_atlantic_30pct_2026_11",
       "from_program": "capital_one",
@@ -183,22 +167,6 @@
   ],
   "expired_recently": [
     {
-      "id": "amex_membership_rewards_to_hilton_honors_30pct_2026_10",
-      "from_display": "Amex Membership Rewards",
-      "to_display": "Hilton",
-      "bonus_pct": 30,
-      "end_date_inclusive": "2026-10-14",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
-      "id": "chase_ur_to_marriott_bonvoy_70pct_2026_10",
-      "from_display": "Chase Ultimate Rewards",
-      "to_display": "Marriott Bonvoy",
-      "bonus_pct": 70,
-      "end_date_inclusive": "2026-10-15",
-      "note": "Recently expired (auto-moved from active list)."
-    },
-    {
       "id": "citi_typ_to_jal_mileage_bank_30pct_2026_10",
       "from_display": "Citi ThankYou Rewards",
       "to_display": "JAL (Japan Airlines) Mileage Bank",
@@ -268,6 +236,14 @@
       "to_display": "Qatar Privilege Club Avios",
       "bonus_pct": 35,
       "end_date_inclusive": "2026-10-31",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "citi_typ_to_cathay_asia_miles_10pct_2026_11",
+      "from_display": "Citi ThankYou Rewards",
+      "to_display": "Cathay Pacific Asia Miles",
+      "bonus_pct": 10,
+      "end_date_inclusive": "2026-11-14",
       "note": "Recently expired (auto-moved from active list)."
     }
   ],
