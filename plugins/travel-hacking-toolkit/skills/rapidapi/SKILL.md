@@ -1,6 +1,6 @@
 ---
 name: rapidapi
-description: Google Flights Live and Booking.com Live search via RapidAPI. Secondary source for cash flight prices and hotel availability when SerpAPI needs a second opinion.
+description: Search flights and hotels (Booking.com pricing) via the RapidAPI Air Scraper API. Secondary source for cash flight prices and hotel availability when SerpAPI needs a second opinion.
 category: hotels
 summary: Booking.com hotel prices.
 api_key: RapidAPI
@@ -9,115 +9,95 @@ license: MIT
 
 # RapidAPI Skill
 
-Search Google Flights and Booking.com via RapidAPI scrapers. Secondary source for cash flight prices and hotel/vacation rental pricing.
+Search flights and hotels (Booking.com inventory) via RapidAPI. Secondary source for cash flight prices and hotel/vacation rental pricing.
 
-**Sources:**
-- [Google Flights Live API on RapidAPI](https://rapidapi.com/apiheya/api/google-flights-live-api)
-- [Booking.com Live API on RapidAPI](https://rapidapi.com/apiheya/api/booking-live-api)
+**Source:** [Air Scraper (Sky Scrapper) by apiheya](https://rapidapi.com/apiheya/api/sky-scrapper). Host: `sky-scrapper.p.rapidapi.com`.
 
 ## Authentication
 
-`RAPIDAPI_KEY` is set in `.env`. All requests use `x-rapidapi-key` header.
+`RAPIDAPI_KEY` is set in `.env`. All requests use the `x-rapidapi-key` and `x-rapidapi-host` headers.
 
-## Google Flights Live API
+Note: apiheya consolidated their old Google Flights Live and Booking.com Live APIs into this single API. The old hosts (`booking-live-api.p.rapidapi.com`, `google-flights-live-api.p.rapidapi.com`) are dead and return 403 for every key. Always use `sky-scrapper.p.rapidapi.com`.
 
-Real-time Google Flights scraping. Use when SerpAPI results seem stale or you want a second price opinion.
+## Hotels (Booking.com pricing)
 
-### Search One-Way
+Two-step flow: resolve the city to an `entityId`, then search.
+
+### 1. Location Lookup
 
 ```bash
-curl -s -X POST "https://google-flights-live-api.p.rapidapi.com/api/v1/searchFlights" \
+curl -s "https://sky-scrapper.p.rapidapi.com/api/v1/hotels/searchDestinationOrHotel?query=Tokyo" \
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \
-  -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "origin": "SFO",
-    "destination": "NRT",
-    "date": "2026-08-10",
-    "adults": 2,
-    "cabinClass": "economy",
-    "currency": "USD"
-  }' | jq '.'
+  -H "x-rapidapi-host: sky-scrapper.p.rapidapi.com" | jq '.'
 ```
 
-### Search Round Trip
+### 2. Search Hotels
+
+Use the `entityId` from step 1.
 
 ```bash
-curl -s -X POST "https://google-flights-live-api.p.rapidapi.com/api/v1/searchFlights" \
+curl -s "https://sky-scrapper.p.rapidapi.com/api/v1/hotels/searchHotels?entityId=ENTITY_ID&checkin=2026-08-10&checkout=2026-08-13&adults=2&rooms=1&currency=USD&market=en-US&limit=20" \
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \
-  -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "origin": "SFO",
-    "destination": "NRT",
-    "date": "2026-08-10",
-    "returnDate": "2026-08-26",
-    "adults": 2,
-    "cabinClass": "economy",
-    "currency": "USD"
-  }' | jq '.'
+  -H "x-rapidapi-host: sky-scrapper.p.rapidapi.com" | jq '.'
 ```
 
-### Parameters
+### 3. Hotel Details and Live OTA Prices
 
-| Param | Required | Description |
-|-------|----------|-------------|
-| `origin` | Yes | Airport IATA code |
-| `destination` | Yes | Airport IATA code |
-| `date` | Yes | `YYYY-MM-DD` departure |
-| `returnDate` | No | `YYYY-MM-DD` for round trip |
-| `adults` | No | Default 1 |
-| `children` | No | Default 0 |
-| `infants` | No | Default 0 |
-| `cabinClass` | No | `economy`, `premium_economy`, `business`, `first` |
-| `currency` | No | Default `USD` |
-
-## Booking.com Live API
-
-Search hotels and vacation rentals with real Booking.com pricing. Good complement to SerpAPI Hotels and LiteAPI.
-
-### Search Hotels
+`hotelId` comes from step 2. `getHotelPrices` returns live rates from Booking.com, Expedia, and Hotels.com with booking links.
 
 ```bash
-curl -s "https://booking-live-api.p.rapidapi.com/api/v1/searchHotels?location=Tokyo%2C%20Japan&checkin=2026-08-10&checkout=2026-08-13&adults=2&rooms=1&currency=USD" \
+curl -s "https://sky-scrapper.p.rapidapi.com/api/v1/hotels/getHotelDetails?hotelId=HOTEL_ID&entityId=ENTITY_ID&currency=USD&market=en-US" \
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \
-  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" | jq '.'
+  -H "x-rapidapi-host: sky-scrapper.p.rapidapi.com" | jq '.'
+
+curl -s "https://sky-scrapper.p.rapidapi.com/api/v1/hotels/getHotelPrices?hotelId=HOTEL_ID&entityId=ENTITY_ID&checkin=2026-08-10&checkout=2026-08-13&adults=2&rooms=1&currency=USD&market=en-US" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -H "x-rapidapi-host: sky-scrapper.p.rapidapi.com" | jq '.'
 ```
 
 ### Parameters
 
 | Param | Required | Description |
 |-------|----------|-------------|
-| `location` | Yes | City/area name: `Tokyo, Japan` |
+| `query` | Yes | City/landmark name for `searchDestinationOrHotel` |
+| `entityId` | Yes | From the location lookup |
+| `hotelId` | Yes | From `searchHotels` results (for detail/pricing calls) |
 | `checkin` | Yes | `YYYY-MM-DD` |
 | `checkout` | Yes | `YYYY-MM-DD` |
 | `adults` | No | Default 2 |
-| `children` | No | Default 0 |
 | `rooms` | No | Default 1 |
 | `currency` | No | Default `USD` |
-| `sortBy` | No | `price`, `rating`, `popularity` |
-| `minPrice` | No | Minimum price filter |
-| `maxPrice` | No | Maximum price filter |
-| `starRating` | No | `3,4,5` comma-separated |
+| `market` | No | e.g. `en-US` |
+| `limit` | No | Results per page |
 
-### Get Hotel Details
+## Flights
+
+### 1. Airport Lookup
+
+Returns matching airports with `skyId` and `entityId` under `navigation.relevantFlightParams`:
 
 ```bash
-curl -s "https://booking-live-api.p.rapidapi.com/api/v1/getHotelDetails?hotelId=HOTEL_ID&checkin=2026-08-10&checkout=2026-08-13&adults=2" \
+curl -s "https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchAirport?query=JFK" \
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \
-  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" | jq '.'
+  -H "x-rapidapi-host: sky-scrapper.p.rapidapi.com" | jq '.'
 ```
+
+### 2. Search Flights
+
+`GET /api/v1/flights/searchFlights` and `/api/v2/flights/searchFlights` take `originSkyId`, `destinationSkyId`, `originEntityId`, `destinationEntityId`, `date`, `adults`, `cabinClass`, `currency`. Both return a server error (`status: false`) in testing — prefer SerpAPI for flight search until apiheya fixes this.
 
 ## Rate Limits
 
-Free tier: 100 requests/month across all RapidAPI APIs.
-Use sparingly. Prefer SerpAPI for flights and LiteAPI/SerpAPI for hotels as primary sources.
+- **BASIC** (free): 20 requests/month — very tight.
+- **PRO** $9.99/mo: 10,600 requests/month.
+
+A full hotel search is 3+ calls (location + search + prices), so the free tier covers roughly one trip. Use sparingly.
 
 ## When to Use
 
-- **Google Flights Live**: Secondary price check when SerpAPI results seem off, or for routes SerpAPI doesn't cover well.
-- **Booking.com Live**: When you want Booking.com specific pricing/availability (different inventory than Google Hotels).
+- **Air Scraper flights**: Secondary price check when SerpAPI results seem off, or for routes SerpAPI doesn't cover well.
+- **Air Scraper hotels**: When you want Booking.com specific pricing/availability (different inventory than Google Hotels).
 
 Do not:
 - Use as primary search (SerpAPI and Seats.aero are primary).
-- Burn through free tier on broad searches. Be targeted.
+- Burn through the free tier on broad searches. Be targeted.
