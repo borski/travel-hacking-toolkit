@@ -74,7 +74,7 @@ The 4 highest-value keys:
 | `IGNAV_API_KEY` | Backup cash flight prices. Fast REST API. | 1,000 free requests/month |
 | `AWARDWALLET_API_KEY` + `AWARDWALLET_USER_ID` | Auto-pull your loyalty balances, elite status, transfer ratios. | Business account required |
 
-Other keys (SerpAPI, RapidAPI, LiteAPI, TripAdvisor, RESROBOT, Rejseplanen, Entur) extend specific skills. The setup skill covers them too. See the [full API key reference](#api-keys--signup-links) for signup links.
+Other keys (SerpAPI, RapidAPI, LiteAPI, TripAdvisor, Firecrawl, RESROBOT, Rejseplanen, Entur) extend specific skills. The setup skill covers them too. See the [full API key reference](#api-keys--signup-links) for signup links.
 
 Five Docker-based skills (Southwest, American Airlines, Chase, Amex, TicketsAtWork) handle sites that don't have public APIs, plus a shared base image. They auto-pull on first use. See the [Docker Images](#docker-images) section for credentials and configuration.
 
@@ -203,6 +203,7 @@ Start here: the **orchestration skills** call everything else automatically.
 <!-- BEGIN: readme:hotels -->
 | Skill | What It Does | API Key |
 |-------|-------------|---------|
+| **firecrawl** | Agoda room-level rates with cancellation terms, city search, and review grades vs the city average, via Firecrawl Alexandria. | Firecrawl (free tier) |
 | **premium-hotels** | Search 4,659 Amex FHR/THC + Chase Edit hotels by city. Stacking opportunities. | None (local data) |
 | **rapidapi** | Booking.com hotel prices. | RapidAPI |
 | **serpapi** | Google Hotels search and destination discovery. | SerpAPI |
@@ -272,6 +273,7 @@ These skills require an external account or API key signup. See [`.env.example`]
 | `rapidapi` | RapidAPI | [rapidapi.com](https://rapidapi.com) | Marketplace; subscribe to Booking.com Live + Google Flights Live. |
 | `serpapi` | SerpAPI | [serpapi.com](https://serpapi.com) | Google Flights, Google Hotels, Travel Explore. |
 | `tripadvisor` | TripAdvisor | [www.tripadvisor.com/developers](https://www.tripadvisor.com/developers) | Hotel/restaurant/attraction data. 5K calls/month free. |
+| `firecrawl` | Firecrawl | [www.firecrawl.dev/?utm_source=travel-hacking-toolkit&utm_medium=integration](https://www.firecrawl.dev/?utm_source=travel-hacking-toolkit&utm_medium=integration) | Agoda hotel rates and reviews via Firecrawl Alexandria. Free plan with 1,000 credits a month. |
 | `awardwallet` | AwardWallet | [business.awardwallet.com](https://business.awardwallet.com) | Loyalty program balance aggregator. Business tier required. |
 | `ticketsatwork` | TicketsAtWork | [www.ticketsatwork.com](https://www.ticketsatwork.com) | Corporate-perks portal. Account requires employer affiliation. Same credentials work for Working Advantage, Plum, Beneplace (shared EBG backend). |
 | `scandinavia-transit` | Trafiklab (Sweden) | [www.trafiklab.se](https://www.trafiklab.se) | Sweden transit. Free API key. 30,000 calls/month. |

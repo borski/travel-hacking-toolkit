@@ -49,6 +49,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 ## Hotels and Accommodation
 
 <!-- BEGIN: llms:hotels -->
+- [Firecrawl](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/firecrawl/SKILL.md): Agoda room-level rates with cancellation terms, city search, and review grades vs the city average, via Firecrawl Alexandria.
 - [Premium Hotels](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/premium-hotels/SKILL.md): Search 4,659 Amex FHR/THC + Chase Edit hotels by city. Stacking opportunities.
 - [Rapidapi](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/rapidapi/SKILL.md): Booking.com hotel prices.
 - [Serpapi](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/serpapi/SKILL.md): Google Hotels search and destination discovery.
