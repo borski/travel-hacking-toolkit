@@ -21,6 +21,8 @@ This is not a pick-one list. Each source returns different results, different pr
 | 6 | **Seats.aero** (skill + MCP) | Award flight availability across 25+ programs. The crown jewel for points. Partner API with a key, official MCP without one. | Cached data, not live. No cash prices. No Southwest. Keyless MCP only covers the next 60 days. |
 | 7 | **SerpAPI** (skill, optional) | Google Hotels search. Destination discovery (Google Travel Explore). | NOT for flights (inflated prices). Hotels and "where should I go?" only. |
 | 8 | **Southwest** (skill, Patchright) | Fare classes, points pricing, Companion Pass. All 4 fare classes, cash + points. | Pre-built Docker image: `ghcr.io/borski/sw-fares`. Or local Patchright (headed mode). ~20s per search. |
+| 9 | **ViajaNet / Decolar** (skill, Patchright) | BRL cash fares for trips touching Brazil. Catches Arajet and Brazilian promos that Kiwi misses. Per-leg baggage and separate-ticket flag. | Brazil-focused storefront. Local Patchright (headed mode), ~30s per search. |
+| 10 | **Azul Pelo Mundo** (skill, Patchright) | Azul Fidelidade points and points + cash for Azul, TAP, United and partners. No login. | Azul points only. Seats.aero does not cover it. Points are per adult. |
 
 ## The Standard Flight Search Workflow
 
@@ -29,6 +31,8 @@ This is not a pick-one list. Each source returns different results, different pr
 Skiplagged and Kiwi are keyless MCP servers — they are available in every properly launched session. Attempt the tool call before ever claiming MCP is unavailable, and never substitute improvised browser scraping for these sources (see `fallback-and-resilience`).
 
 Always add Seats.aero for award comparison. Use the Partner API skill when `SEATS_AERO_API_KEY` is set. Without a key, use the `seats-aero` MCP (`get_flights`), which covers flights departing in the next 60 days. See the `seats-aero` skill for the routing table. Always run the Southwest skill if SW flies the route.
+
+When the trip departs from or arrives in Brazil, also run `viajanet` for BRL cash fares, and run `azul-pelo-mundo` when the user holds Azul points or Esfera / Livelo points that transfer to Azul.
 
 Don't skip sources. Don't assume one source has everything. Present the combined results with the best options highlighted regardless of which source found them.
 

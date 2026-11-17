@@ -20,6 +20,8 @@ Tools go down. APIs break. Have a backup plan for every search.
 | Seats.aero (MCP) | Server error, or dates beyond the 60-day anonymous window | Partner API skill if `SEATS_AERO_API_KEY` is set. Otherwise check the airline website directly, and use Duffel for GDS inventory |
 | Seats.aero (either) | Stale data (`ComputedLastSeen` / `minutes_old` too old) | Check airline website directly, use Duffel for GDS inventory |
 | Southwest | SW rate limiting or bot detection | Wait a few minutes and retry. Use Docker (`ghcr.io/borski/sw-fares`) if running locally fails. Google Flights skill for SW cash prices as a fast fallback. |
+| ViajaNet / Decolar | No search response captured, or throttling | Retry once with `--site decolar` (same inventory, different domain). Otherwise fall back to Kiwi + Skiplagged and tell the user Brazilian promos may be missing. |
+| Azul Pelo Mundo | Akamai / reCAPTCHA wall (exit 1) | Wait a few minutes and retry from a residential connection. Otherwise give the user the search URL from the skill to open in their own browser. |
 | SerpAPI | Rate limit (100/mo free) | Trivago for hotels, web search for destination discovery |
 | Trivago | Server error | LiteAPI for hotels, SerpAPI Google Hotels |
 | LiteAPI | Auth error (401) | Trivago MCP, SerpAPI Google Hotels |

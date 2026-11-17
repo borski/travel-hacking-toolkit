@@ -185,6 +185,7 @@ Start here: the **orchestration skills** call everything else automatically.
 | **seatmaps** | Aircraft seat maps, cabin dimensions, seat recommendations. | None (requires agent-browser) |
 | **seats-aero** | Award availability across 27 mileage programs. Partner API, plus the official MCP (keyless for the next 60 days, Pro sign-in for live search and alerts). | Seats.aero Pro/Partner (MCP free for 60 days) |
 | **southwest** | SW fare classes, points pricing, Companion Pass. Change flight price drop monitor. Docker: `ghcr.io/borski/sw-fares`. | None (requires Patchright) |
+| **viajanet** | ViajaNet / Decolar BRL cash fares with per-leg baggage via Patchright. Catches Arajet and Brazilian promos. | None (requires Patchright) |
 | **wikipedia-airports** | Route discovery and airline-service sanity check via Wikipedia airport pages. Answers "does carrier X fly A→B" and "what airports serve destination Y" when fare tools disagree or miss obscure regional service. No API key. | None |
 <!-- END: readme:flights -->
 
@@ -220,6 +221,7 @@ Also use **tripadvisor** (under Destinations) for hotel ratings, rankings, subra
 |-------|-------------|---------|
 | **american-airlines** | AAdvantage balance and elite status. AwardWallet does not support AA. Docker: `ghcr.io/borski/aa-miles-check`. | None (requires Patchright) |
 | **awardwallet** | All loyalty balances, elite status, history. | AwardWallet Business |
+| **azul-pelo-mundo** | Azul Fidelidade points + points-and-cash pricing (Azul, TAP, United and partners) via Patchright. No login. | None (requires Patchright) |
 | **transfer-partners** | Cheapest transfer path from credit card points to mileage programs. | None (local data) |
 | **wheretocredit** | Mileage earning rates by airline and booking class across 50+ programs. | None (free) |
 <!-- END: readme:loyalty -->
