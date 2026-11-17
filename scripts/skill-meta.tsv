@@ -43,3 +43,5 @@ lessons-learned	reference	Hard-won knowledge from real searches. The mandatory S
 round-the-world	reference	RTW + Pacific Circle + Asia-Pacific Circle + regional distance-award reference. 13 active programs, 4 discontinued.		
 status-match	reference	Per-program status match rules with lifetime / once-per-N-years warnings, free vs paid concierge distinction, real fees, plus card-granted renewable status as the alternative.		
 vrbo	hotels	VRBO whole-home, condo, and cabin search via Patchright. Complements Airbnb for group stays.	None (requires Patchright)	ghcr.io/borski/vrbo
+azul-pelo-mundo	loyalty	Azul Fidelidade points + points-and-cash pricing (Azul, TAP, United and partners) via Patchright. No login.	None (requires Patchright)	
+viajanet	flights	ViajaNet / Decolar BRL cash fares with per-leg baggage via Patchright. Catches Arajet and Brazilian promos.	None (requires Patchright)	
