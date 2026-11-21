@@ -9,6 +9,7 @@ api_key: Uses individual skill keys
 **Companion reference skills.** Load these for deeper context:
 - `hotel-chains` — branded property to loyalty program mapping
 - `premium-hotels` — FHR / THC / Chase Edit credits and stacking strategy
+- `rooms-aero` — hotel award availability across Hyatt, Marriott, Hilton, IHG, Choice, Wyndham, and I Prefer
 - `points-valuations` — CPP floor/ceiling for hotel programs (Hyatt 1.4-1.7cpp, Hilton 0.4cpp floor, etc.)
 - `fallback-and-resilience` — recovery when a hotel source fails
 
@@ -36,6 +37,12 @@ Run these in parallel where possible. **Never fail silently.**
 |--------|-------|-------|---------------|
 | Chase Travel | `chase-travel` | ~45s | Edit hotels ($100 credit, breakfast, upgrade), Points Boost, standard hotels |
 | Amex Travel | `amex-travel` | ~45s | FHR ($100+ credit, breakfast, upgrade, late checkout), THC ($100 credit on 2+ nights) |
+
+### Award Availability
+
+| Source | Skill | Speed | What It Finds |
+|--------|-------|-------|---------------|
+| Rooms.aero | `rooms-aero` | ~2s | Hotel award space across Hyatt, Marriott, Hilton, IHG, Choice, Wyndham, and I Prefer. Points cost, cash comparison, cpp, room types, and direct booking links. |
 
 ### Cash Prices and Metasearch
 
@@ -75,6 +82,7 @@ Run these in parallel where possible. **Never fail silently.**
 
 ```
 PARALLEL GROUP 1 (fast — HTTP/API/MCP calls, no browser, ~3-5s):
+  - Rooms.aero: hotel award availability across 7 loyalty programs (rooms-aero)
   - SerpAPI: Google Hotels cash prices
   - Trivago: metasearch across OTAs (web search)
   - LiteAPI: negotiated hotel rates (web search)
@@ -119,6 +127,11 @@ Stacking means: book through one portal, pay with the other card separately. For
 - The points price shown is the actual MR cost. Calculate CPP from cash/points ratio.
 - FHR benefits ($100+ credit, breakfast) offset the rate significantly.
 
+**Hotel awards (Rooms.aero):**
+- `rooms-aero` returns a `cpp` field in US cents per point. Use it directly.
+- Compare against the `points-valuations` floor (Hyatt ~1.4-1.7, Hilton ~0.4, Marriott ~0.5-0.8, IHG ~0.5).
+- Factor in 5th-night-free where the program allows it (Hilton Silver+, Marriott Silver+).
+
 **Calculate benefit-adjusted price:**
 ```
 FHR adjusted = total_price - $100 credit - (breakfast_value × nights)
@@ -144,6 +157,7 @@ Edit adjusted = total_price - $100 credit - (breakfast_value × nights)
 **Sources checked:**
 - ✅ Chase Travel: 21 hotels (15 Edit, 6 standard)
 - ✅ Amex Travel: 17 hotels (13 FHR, 4 THC)
+- ✅ Rooms.aero: 12 award hotels (Hyatt 4, Marriott 5, Hilton 3)
 - ✅ SerpAPI: 25 hotels
 - ✅ Trivago: 30 hotels (cheapest OTA per hotel)
 - ✅ LiteAPI: 22 hotels (negotiated rates)
@@ -224,3 +238,4 @@ If premium databases show FHR/Edit properties in the city but the portal search 
 - Amex hotel points pricing is variable (not 1 cpp). Use the actual points price from the portal.
 - Chase portal pricing is dynamic Points Boost (~1.5-2.0 cpp on select bookings, not a guaranteed floor). The historical static 1.5x multiplier is gone.
 - Direct booking prices (via SerpAPI) may differ from portal prices for the same hotel.
+- Rooms.aero award searches cap stay length at 5 nights; split longer stays. No guest/room-count parameter, so verify occupancy and edit booking-link query params before booking.

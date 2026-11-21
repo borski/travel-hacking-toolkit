@@ -205,6 +205,7 @@ Start here: the **orchestration skills** call everything else automatically.
 |-------|-------------|---------|
 | **premium-hotels** | Search 4,659 Amex FHR/THC + Chase Edit hotels by city. Stacking opportunities. | None (local data) |
 | **rapidapi** | Booking.com hotel prices. | RapidAPI |
+| **rooms-aero** | Hotel award search across 7 loyalty programs via rooms.aero. Uses the same seats.aero key. | Seats.aero Pro or Partner |
 | **serpapi** | Google Hotels search and destination discovery. | SerpAPI |
 | **sutochno** | Sutochno.ru Russian apartment search via Patchright. Ruble / Mir payment for Georgia / CIS stays. Docker: `ghcr.io/borski/sutochno`. | None |
 | **ticketsatwork** | TicketsAtWork (EBG) corporate-perks portal. Hotels, theme park tickets, attractions, live events. Often beats portals by 10-30%. Docker: `ghcr.io/borski/ticketsatwork`. | None (requires TaW account + Patchright) |
@@ -269,6 +270,7 @@ These skills require an external account or API key signup. See [`.env.example`]
 | `duffel` | Duffel | [duffel.com](https://duffel.com) | Real GDS flight search. Free tier available. |
 | `ignav` | Ignav | [ignav.com](https://ignav.com) | Fast flight search REST API. 1,000 free requests, no credit card. |
 | `seats-aero` | Seats.aero | [seats.aero](https://seats.aero) | Award flight availability across 27 mileage programs. Pro tier ($99/yr) includes API access. |
+| `rooms-aero` | Rooms.aero | [rooms.aero](https://rooms.aero) | Hotel award availability across 7 loyalty programs. Uses the same seats.aero Pro key. |
 | `rapidapi` | RapidAPI | [rapidapi.com](https://rapidapi.com) | Marketplace; subscribe to Booking.com Live + Google Flights Live. |
 | `serpapi` | SerpAPI | [serpapi.com](https://serpapi.com) | Google Flights, Google Hotels, Travel Explore. |
 | `tripadvisor` | TripAdvisor | [www.tripadvisor.com/developers](https://www.tripadvisor.com/developers) | Hotel/restaurant/attraction data. 5K calls/month free. |

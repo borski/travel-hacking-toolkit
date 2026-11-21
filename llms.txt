@@ -51,6 +51,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 <!-- BEGIN: llms:hotels -->
 - [Premium Hotels](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/premium-hotels/SKILL.md): Search 4,659 Amex FHR/THC + Chase Edit hotels by city. Stacking opportunities.
 - [Rapidapi](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/rapidapi/SKILL.md): Booking.com hotel prices.
+- [Rooms Aero](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/rooms-aero/SKILL.md): Hotel award search across 7 loyalty programs via rooms.aero. Uses the same seats.aero key.
 - [Serpapi](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/serpapi/SKILL.md): Google Hotels search and destination discovery.
 - [Sutochno](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/sutochno/SKILL.md): Sutochno.ru Russian apartment search via Patchright. Ruble / Mir payment for Georgia / CIS stays. Docker: `ghcr.io/borski/sutochno`.
 - [Ticketsatwork](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/ticketsatwork/SKILL.md): TicketsAtWork (EBG) corporate-perks portal. Hotels, theme park tickets, attractions, live events. Often beats portals by 10-30%. Docker: `ghcr.io/borski/ticketsatwork`.
