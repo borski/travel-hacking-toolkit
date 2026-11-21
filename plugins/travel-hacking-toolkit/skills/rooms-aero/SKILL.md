@@ -109,10 +109,10 @@ curl -s -H "Partner-Authorization: $SEATS_AERO_API_KEY" \
 | Field | Meaning |
 |---|---|
 | `hotel` | Full hotel object (`id`, `source`, `program`, `name`, `city`, `country`, `latitude`, `longitude`, `url`, etc.) |
-| `lowest_award_standard` | Cheapest standard-room award for the whole stay, points; `0` = none |
-| `lowest_award_suite` | Cheapest suite award, points; `0` = none |
-| `lowest_cash_standard` | Cheapest standard-room cash rate for the whole stay, **minor currency units** |
-| `lowest_cash_suite` | Cheapest suite cash rate, minor units |
+| `lowest_award_standard` | Cheapest standard-room award **per night**, points; `0` = none |
+| `lowest_award_suite` | Cheapest suite award **per night**, points; `0` = none |
+| `lowest_cash_standard` | Cheapest standard-room cash rate **per night**, **minor currency units** |
+| `lowest_cash_suite` | Cheapest suite cash rate **per night**, minor units |
 | `currency_code` | ISO 4217 currency for the cash fields |
 | `standard_date` / `standard_nights` | Check-in date and stay length of the cheapest standard rate |
 | `suite_date` / `suite_nights` | Same for the cheapest suite rate |
@@ -187,7 +187,7 @@ curl -s -H "Partner-Authorization: $SEATS_AERO_API_KEY" \
   | jq -r '.data[] | "\(.id) | \(.hotel.name) | \(.arrival_date) x\(.num_nights)n | \(.standard_award_cost) pts | $\(.standard_cash_cost/100) \(.cash_currency_code) | \(.standard_cpp) cpp"'
 ```
 
-Key fields per row: `id`, `hotel_id`, `hotel`, `arrival_date`, `departure_date`, `num_nights`, `standard_award_available`, `standard_award_cost` (points for the whole stay), `standard_cash_available`, `standard_cash_cost` (minor units), `standard_cpp`, `suite_*` equivalents, `booking_link`, `last_checked_at`.
+Key fields per row: `id`, `hotel_id`, `hotel`, `arrival_date`, `departure_date`, `num_nights`, `standard_award_available`, `standard_award_cost` (**points per night**), `standard_cash_available`, `standard_cash_cost` (**minor units per night**), `standard_cpp`, `suite_*` equivalents, `booking_link`, `last_checked_at`.
 
 ---
 
@@ -208,12 +208,13 @@ curl -s -H "Partner-Authorization: $SEATS_AERO_API_KEY" \
            (.rooms[] | "  \(.name) | suite:\(.suite) | award:\(.award_cost) | cash:\(.cash_cost/100) \(.cash_cost_currency)")'
 ```
 
-Important semantics:
-- `standard_award_cost` and `suite_award_cost` are **points for the entire stay**.
-- `standard_cash_cost` and `suite_cash_cost` are **minor currency units for the entire stay** (divide by 100 for USD/SAR/etc.).
-- `standard_cpp` / `suite_cpp` are **US cents per point**; `0` when a comparison is unavailable.
+Important semantics (verified live, Nov 2026):
+- `standard_award_cost` and `suite_award_cost` are **points per night**.
+- `standard_cash_cost` and `suite_cash_cost` are **minor currency units per night** (divide by 100 for USD/SAR/etc.).
+- The API docs say "entire stay", but live responses return **per-night** costs. This was confirmed against trivago cash rates and identical costs across 1-, 2-, 3-, and 5-night rows. Multiply by `num_nights` for the stay total.
+- `standard_cpp` / `suite_cpp` are **US dollars per point** in live responses (e.g., `0.0070` = 0.70¢/pt). Multiply by 100 to get cents per point. The **search** endpoint's `cpp` field is already in US cents per point. Normalize before comparing.
 - `booking_link` is a direct deep link into the loyalty program's booking flow.
-- `rooms[]` includes `name`, `room_code`, `suite`, `accessible`, `award_cost`, `cash_cost`, `cash_cost_currency`.
+- `rooms[]` includes `name`, `room_code`, `suite`, `accessible`, `award_cost` (**points per night**), `cash_cost` (**minor units per night**), `cash_cost_currency`.
 
 ---
 
@@ -235,7 +236,7 @@ The API caps `nights` at 5. For a 7-night stay, run two searches (e.g. 5 + 2 or 
 
 ## CPP Interpretation
 
-`cpp` is **US cents per point**. Use it directly:
+`cpp` is **US cents per point** on the search endpoint. On availability endpoints, `standard_cpp` / `suite_cpp` are **US dollars per point** in live responses — multiply by 100 first. Once normalized, use it directly:
 
 | cpp | Verdict |
 |---|---|
@@ -316,6 +317,8 @@ jq -r '.booking_link | "\(.label) -> \(.url)"'
 | `429 user_rate_limit_exceeded` | 1,000/day cap | Wait until midnight UTC; reduce fan-out |
 | Empty results | Dates outside cached range, or no award space | Widen the date range; try `rate_type=any`; check `last_checked_at` |
 | `nights` rejected | Value > 5 | Split the stay |
+| cpp unit mismatch | Search `cpp` is cents/point; availability `standard_cpp` is dollars/point | Multiply availability `standard_cpp` by 100 |
+| Costs look like stay totals | Live API returns per-night costs despite the docs | Multiply by `num_nights` for the stay total |
 | Guests/rooms wrong in booking link | API has no occupancy parameter | Edit the `rooms=` and `adults=` query params in the returned URL before booking |
 
 **Data freshness:** rooms.aero is cached. `last_checked_at` is the freshness signal. For anything the user is about to book or transfer points for, verify the rate on the hotel's own site first.
@@ -338,7 +341,7 @@ GET /hotels?city=Makkah
   marriott| Four Points Makkah Al Naseem         | lowest_award 11,200
 ```
 
-This example also illustrates the main lesson: Makkah hotel awards routinely price under 0.5 cpp — always compare against cash.
+These are **per-night** costs. The search `cpp` field is in cents per point; the availability `standard_cpp` field is in dollars per point, so multiply it by 100. Makkah hotel awards routinely price under 0.5 cpp — always compare against cash.
 
 ---
 
