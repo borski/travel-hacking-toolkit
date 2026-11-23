@@ -232,6 +232,7 @@ Also use **tripadvisor** (under Destinations) for hotel ratings, rankings, subra
 | **atlas-obscura** | Hidden gems and unusual attractions near any destination. | None (free) |
 | **deutsche-bahn** | Deutsche Bahn (DB) train search across Germany and into AT/CH/NL/FR/BE via the open-source db-vendo-client. Stations, journeys, departure boards. No API key. Pairs with scandinavia-transit for Europe-wide rail coverage. | None |
 | **scandinavia-transit** | Trains, buses, ferries in Norway, Sweden, and Denmark. Includes Danish fare/zone pricing. | Entur + Trafiklab + Rejseplanen |
+| **ski-resorts** | Top 1000 global ski resorts by airport proximity, passes, price tier, and live snow forecasts. | None (free, local data and Open-Meteo) |
 | **tripadvisor** | Hotel ratings, restaurant search, attraction reviews, nearby search. 5K calls/month. | TripAdvisor |
 <!-- END: readme:destinations -->
 

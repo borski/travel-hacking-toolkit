@@ -62,6 +62,8 @@ If anything is ambiguous, ask. Don't guess dates or travelers.
 
 ### Step 2: Run Searches in Parallel
 
+If the request is for a **ski/snowboard trip** without a fixed airport (e.g., "ski resort close to an airport for spring break"), load `ski-resorts` first to shortlist matching resorts, check live snow/14-day forecasts, and resolve their nearest hub airport IATA codes before launching the parallel searches below.
+
 Launch ALL searches simultaneously. Don't wait for one to finish before starting another.
 
 ```

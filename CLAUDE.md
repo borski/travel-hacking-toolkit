@@ -135,6 +135,7 @@ Load the `points-valuations` skill. It covers cpp formula, surcharge-heavy progr
 2. **Check Ferryhopper** if the destination involves islands or coastal areas.
 3. **Check `scandinavia-transit`** if they're going to Norway, Sweden, or Denmark. Ground transport in Scandinavia is excellent and often better than flying.
 4. **Check `deutsche-bahn`** for Germany or neighboring countries (Austria, Switzerland, Netherlands, France, Belgium). Especially useful for FRA/MUC airport ground transport and intra-Europe ICE journeys that beat short-haul flying on time and cost.
+5. **Check `ski-resorts`** for any ski or snowboarding trip request to filter the top 1,000 global resorts by crow-flies airport proximity, hemisphere/seasonality, pass networks, price tier, and live snow/14-day forecasts before running `compare-flights` and `compare-hotels`.
 
 ### When fare tools disagree about whether a route exists:
 1. **Use `wikipedia-airports`** to confirm. Pull the airport's Wikipedia page and check the "Airlines and destinations" section. This catches obscure regional service that Skiplagged/Kiwi/Duffel miss, and confirms whether a "no results" response means "no service" vs "no availability on this date."
