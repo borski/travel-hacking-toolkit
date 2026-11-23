@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-11-16",
+    "last_updated": "2026-11-23",
     "staleness_days": 7,
     "description": "Active credit card transfer bonuses. Each bonus shows the current promotional ratio along with primary sources verifying it. Refreshed weekly via scripts/refresh-transfer-bonuses.py which scrapes Frequent Miler and cross-checks against AwardWallet. Confidence levels per Research Integrity Protocol: VERIFIED = both FM and AwardWallet agree; LIKELY = only FM; UNVERIFIED = inferred or single mention without strong source.",
     "primary_sources": [
@@ -20,22 +20,6 @@
     }
   },
   "active_bonuses": [
-    {
-      "id": "capital_one_to_virgin_atlantic_30pct_2026_11",
-      "from_program": "capital_one",
-      "from_display": "Capital One Miles",
-      "to_program": "virgin_atlantic",
-      "to_display": "Virgin Atlantic Flying Club",
-      "bonus_pct": 30,
-      "ratio": 1.3,
-      "start_date": "2026-10-21",
-      "end_date_inclusive": "2026-11-20",
-      "confidence": "VERIFIED",
-      "sources": [
-        "https://frequentmiler.com/30-percent-transfer-bonus-capital-one-virgin-atlantic/",
-        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
-      ]
-    },
     {
       "id": "capital_one_to_flying_blue_20pct_2026_11",
       "from_program": "capital_one",
@@ -163,6 +147,53 @@
         "https://frequentmiler.com/35-percent-transfer-bonus-american-express-membership-rewards-marriott-bonvoy/",
         "https://awardwallet.com/news/credit-card-transfer-bonuses/"
       ]
+    },
+    {
+      "id": "capital_one_to_qatar_avios_15pct_2026_12",
+      "from_program": "capital_one",
+      "from_display": "Capital One Miles",
+      "to_program": "qatar_avios",
+      "to_display": "Qatar Privilege Club Avios",
+      "bonus_pct": 15,
+      "ratio": 1.15,
+      "start_date": "2026-11-15",
+      "end_date_inclusive": "2026-12-14",
+      "confidence": "LIKELY",
+      "sources": [
+        "https://frequentmiler.com/15-transfer-bonus-to-qatar-privilege-club-from-capital-one-miles/"
+      ]
+    },
+    {
+      "id": "amex_membership_rewards_to_avianca_lifemiles_10pct_2026_12",
+      "from_program": "amex_membership_rewards",
+      "from_display": "Amex Membership Rewards",
+      "to_program": "avianca_lifemiles",
+      "to_display": "Avianca LifeMiles",
+      "bonus_pct": 10,
+      "ratio": 1.1,
+      "start_date": "2026-11-16",
+      "end_date_inclusive": "2026-12-16",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/10-transfer-bonus-to-avianca-lifemiles-from-amex-membership-rewards/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
+    },
+    {
+      "id": "chase_ur_to_virgin_atlantic_40pct_2026_12",
+      "from_program": "chase_ur",
+      "from_display": "Chase Ultimate Rewards",
+      "to_program": "virgin_atlantic",
+      "to_display": "Virgin Atlantic Flying Club",
+      "bonus_pct": 40,
+      "ratio": 1.4,
+      "start_date": "2026-11-17",
+      "end_date_inclusive": "2026-12-30",
+      "confidence": "VERIFIED",
+      "sources": [
+        "https://frequentmiler.com/40-percent-transfer-bonus-chase-ultimate-rewards-virgin-atlantic-flying-club/",
+        "https://awardwallet.com/news/credit-card-transfer-bonuses/"
+      ]
     }
   ],
   "expired_recently": [
@@ -244,6 +275,14 @@
       "to_display": "Cathay Pacific Asia Miles",
       "bonus_pct": 10,
       "end_date_inclusive": "2026-11-14",
+      "note": "Recently expired (auto-moved from active list)."
+    },
+    {
+      "id": "capital_one_to_virgin_atlantic_30pct_2026_11",
+      "from_display": "Capital One Miles",
+      "to_display": "Virgin Atlantic Flying Club",
+      "bonus_pct": 30,
+      "end_date_inclusive": "2026-11-20",
       "note": "Recently expired (auto-moved from active list)."
     }
   ],
