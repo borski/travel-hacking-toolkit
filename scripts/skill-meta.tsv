@@ -43,3 +43,4 @@ lessons-learned	reference	Hard-won knowledge from real searches. The mandatory S
 round-the-world	reference	RTW + Pacific Circle + Asia-Pacific Circle + regional distance-award reference. 13 active programs, 4 discontinued.		
 status-match	reference	Per-program status match rules with lifetime / once-per-N-years warnings, free vs paid concierge distinction, real fees, plus card-granted renewable status as the alternative.		
 vrbo	hotels	VRBO whole-home, condo, and cabin search via Patchright. Complements Airbnb for group stays.	None (requires Patchright)	ghcr.io/borski/vrbo
+rooms-aero	hotels	Hotel award search across 7 loyalty programs via rooms.aero. Uses the same seats.aero key.	Seats.aero Pro or Partner	

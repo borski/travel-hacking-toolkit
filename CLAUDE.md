@@ -55,7 +55,7 @@ This toolkit ships skills (in `skills/`) and MCP servers. Skill names and descri
 
 **Flight search:** `duffel`, `google-flights`, `ignav`, `southwest`, `seats-aero`, `compare-flights`, `award-calendar`, `flight-search-strategy`
 
-**Hotels:** `premium-hotels`, `compare-hotels`, `hotel-chains`, `ticketsatwork`
+**Hotels:** `premium-hotels`, `rooms-aero`, `compare-hotels`, `hotel-chains`, `ticketsatwork`
 
 **Loyalty / points:** `awardwallet`, `transfer-partners`, `trip-calculator`, `points-valuations`, `partner-awards`, `alliances`, `award-sweet-spots`, `cabin-codes`, `american-airlines`, `wheretocredit`, `transfer-bonuses`, `status-match`
 

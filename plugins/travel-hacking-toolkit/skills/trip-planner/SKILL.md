@@ -9,6 +9,7 @@ api_key: Uses individual skill keys
 **Companion reference skills.** Load these for deeper context:
 - `flight-search-strategy` — full search workflow and source priority
 - `lessons-learned` — Seats.aero workflow and common failure modes (load before any award search)
+- `rooms-aero` — hotel award availability across Hyatt, Marriott, Hilton, IHG, Choice, Wyndham, and I Prefer
 - `points-valuations` — CPP rules, opportunity cost
 - `partner-awards` — reachability through alliance + bilateral partnerships
 - `award-sweet-spots` — flag legendary redemptions
@@ -69,6 +70,7 @@ PARALLEL:
   1. compare-flights: origin → destination, departure date, cabin
   2. compare-flights: destination → origin, return date, cabin (if round-trip)
   3. compare-hotels: destination, checkin = departure, checkout = return
+  4. rooms-aero: award hotel availability across Hyatt, Marriott, Hilton, IHG, Choice, Wyndham, I Prefer
 ```
 
 Each of these internally runs their own parallel sub-searches (Duffel, Ignav, seats.aero, Chase, Amex, SerpAPI, Trivago, LiteAPI, Airbnb, etc).
@@ -161,6 +163,7 @@ Always report which sources succeeded and which failed:
 ✅ Duffel: 45 outbound, 38 return
 ✅ Ignav: 40 outbound, 35 return
 ✅ Seats.aero: 12 award options outbound, 8 return
+✅ Rooms.aero: 14 award hotels (Hyatt 4, Marriott 6, Hilton 4)
 ✅ Chase Travel: 300 outbound flights, 21 hotels
 ✅ Amex Travel: 292 outbound flights, 17 hotels
 ✅ SerpAPI: 25 hotels
@@ -191,5 +194,6 @@ If ALL sources fail for one component, say so:
 - Round-trip cash prices from Duffel/Ignav may be cheaper than two one-ways. Note when this is the case.
 - Award pricing is one-way. The combined outbound + return award cost is the correct comparison against a round-trip cash fare.
 - Hotel pricing may vary between portal and direct booking. Note significant differences.
+- Rooms.aero award searches cap stay length at 5 nights; split longer stays. It has no guest/room-count parameter, so booking links default to 1 room and 1 adult.
 - Chase portal pricing is dynamic Points Boost (~1.5-2.0 cpp on select bookings, not a guaranteed floor). The historical static 1.5x multiplier is gone. Pull the actual quote.
 - Trip totals are estimates. Taxes, fees, and exchange rates can change actual booking costs.
