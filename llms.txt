@@ -35,6 +35,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 - [Seatmaps](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/seatmaps/SKILL.md): Aircraft seat maps, cabin dimensions, seat recommendations.
 - [Seats Aero](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/seats-aero/SKILL.md): Award availability across 27 mileage programs. Partner API, plus the official MCP (keyless for the next 60 days, Pro sign-in for live search and alerts).
 - [Southwest](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/southwest/SKILL.md): SW fare classes, points pricing, Companion Pass. Change flight price drop monitor. Docker: `ghcr.io/borski/sw-fares`.
+- [Viajanet](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/viajanet/SKILL.md): ViajaNet / Decolar BRL cash fares with per-leg baggage via Patchright. Catches Arajet and Brazilian promos.
 - [Wikipedia Airports](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/wikipedia-airports/SKILL.md): Route discovery and airline-service sanity check via Wikipedia airport pages. Answers "does carrier X fly A→B" and "what airports serve destination Y" when fare tools disagree or miss obscure regional service. No API key.
 <!-- END: llms:flights -->
 
@@ -62,6 +63,7 @@ Skill listings below are auto-generated from `skills/*/SKILL.md` frontmatter by 
 <!-- BEGIN: llms:loyalty -->
 - [American Airlines](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/american-airlines/SKILL.md): AAdvantage balance and elite status. AwardWallet does not support AA. Docker: `ghcr.io/borski/aa-miles-check`.
 - [Awardwallet](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/awardwallet/SKILL.md): All loyalty balances, elite status, history.
+- [Azul Pelo Mundo](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/azul-pelo-mundo/SKILL.md): Azul Fidelidade points + points-and-cash pricing (Azul, TAP, United and partners) via Patchright. No login.
 - [Transfer Partners](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/transfer-partners/SKILL.md): Cheapest transfer path from credit card points to mileage programs.
 - [Wheretocredit](https://github.com/borski/travel-hacking-toolkit/blob/main/skills/wheretocredit/SKILL.md): Mileage earning rates by airline and booking class across 50+ programs.
 <!-- END: llms:loyalty -->
