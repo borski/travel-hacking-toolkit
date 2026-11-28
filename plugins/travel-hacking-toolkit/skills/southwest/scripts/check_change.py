@@ -32,10 +32,17 @@ import tempfile
 import shutil
 from pathlib import Path
 from patchright.sync_api import sync_playwright, TimeoutError as PwTimeout
+from search_fares import split_flight_blocks
 
 
 HOMEPAGE = "https://www.southwest.com"
+TRIPS_URL = "https://www.southwest.com/myaccount/trips"
 DEBUG_DIR = Path("/tmp/sw_change_debug")
+
+# SW's My Account widgets render this when their backend call fails. It means
+# "we could not load your trips", NOT "you have no trips". Treating it as an
+# empty list would silently report a reservation-free account.
+TRIPS_ERROR = "we found some errors"
 
 # Timing (ms)
 WAIT_SHORT = 3000
@@ -310,6 +317,8 @@ def lookup_change(page, conf_number, first_name, last_name, debug=False):
 
     # Fill confirmation number
     conf_selectors = [
+        # Nov 2026 layout. The id contains a dot, so match on name instead.
+        "input[name='reservationForm.record_locator']",
         "input[name='recordLocator']",
         "input#recordLocator",
         "input[id*='confirmationNumber']",
@@ -344,6 +353,7 @@ def lookup_change(page, conf_number, first_name, last_name, debug=False):
 
     # Fill first name
     first_selectors = [
+        "input[name='reservationForm.first_name']",
         "input[name='passengerFirstName']",
         "input#passengerFirstName",
         "input[id*='firstName']",
@@ -362,6 +372,7 @@ def lookup_change(page, conf_number, first_name, last_name, debug=False):
 
     # Fill last name
     last_selectors = [
+        "input[name='reservationForm.last_name']",
         "input[name='passengerLastName']",
         "input#passengerLastName",
         "input[id*='lastName']",
@@ -382,6 +393,7 @@ def lookup_change(page, conf_number, first_name, last_name, debug=False):
 
     # Submit the lookup (ONLY the lookup form, nothing else)
     submit_selectors = [
+        "button#lookupReservation",  # Nov 2026: text is "Lookup reservation"
         "button#form-mixin--submit-button",
         "button[type='submit']",
         "button:has-text('Search')",
@@ -625,13 +637,18 @@ def extract_results(page, debug=False):
     # or for Unavailable:
     #   "Unavailable"
 
-    blocks = re.findall(r"(# [\d/ ]+.*?View seats)", text, re.DOTALL)
+    # Nov 2026 layout: "# WN1234" headers, no "View seats" terminator.
+    # Fall back to the old pattern if the new splitter finds nothing.
+    blocks = split_flight_blocks(text) or re.findall(
+        r"(# [\d/ ]+.*?View seats)", text, re.DOTALL
+    )
     flights = []
     for block in blocks:
         flight = {}
-        m = re.search(r"# ([\d/ ]+)", block)
+        m = re.search(r"# ((?:WN)?\d+(?:\s*/\s*(?:WN)?\d+)*)", block)
         if m:
-            flight["flight_number"] = m.group(1).strip()
+            num = m.group(1).replace("WN", "")
+            flight["flight_number"] = re.sub(r"\s*/\s*", " / ", num).strip()
         times = re.findall(r"(\d{1,2}:\d{2}(?:AM|PM))", block)
         if len(times) >= 2:
             flight["depart_time"] = times[0]
@@ -659,30 +676,18 @@ def extract_results(page, debug=False):
         # Each cell is one of: "CURRENT FLIGHT", "Unavailable", or "N,NNN Points\n+/-N,NNN\n+$X.XX"
         fare_names = ["Basic", "Choice", "Choice Preferred", "Choice Extra"]
 
-        if is_current:
-            # This is the booked flight. "CURRENT FLIGHT" replaces Basic.
-            flight["fares"] = {"Basic": "CURRENT"}
-            # The remaining diffs map to Choice, Choice Preferred, Choice Extra
-            for i, diff_val in enumerate(diffs):
-                name = (
-                    fare_names[i + 1] if (i + 1) < len(fare_names) else f"Fare {i + 2}"
-                )
-                flight["fares"][name] = diff_val
-            flight["fare_type"] = "change_diff"
-        elif diffs:
-            # Not the current flight. All 4 fare classes may have diffs.
-            # But "Unavailable" slots don't produce a diff value.
-            # Count Unavailable occurrences before each diff to align.
+        if diffs or is_current:
+            # Walk the fare cells in document order. This handles the booked
+            # flight too: its "CURRENT FLIGHT" cell is just another cell.
+            # Positional mapping of diffs alone would misalign every fare class
+            # after a sold-out one, since "Unavailable" produces no diff value.
             flight["fares"] = {}
 
-            # Build ordered list of fare cells from the block
-            # Look for patterns: Unavailable, CURRENT FLIGHT, or N Points
+            # Build an ordered list of fare cells from the block.
+            # Each is one of: Unavailable, CURRENT FLIGHT, or "N,NNN Points".
             cells = []
-            # Split by "View seats" to avoid trailing content
-            fare_section = block
-            # Find fare entries in order
             cell_pattern = re.finditer(
-                r"(?:Unavailable|CURRENT FLIGHT|[\d,]+ Points)", fare_section
+                r"(?:Unavailable|CURRENT FLIGHT|[\d,]+ Points)", block
             )
             for cm in cell_pattern:
                 cells.append(cm.group())
@@ -750,6 +755,7 @@ def list_upcoming_trips(as_json=False, debug=False):
         sys.exit(1)
 
     log(f"Credentials loaded (user length: {len(username)})")
+    trips_unavailable = False
     tmpdir = tempfile.mkdtemp(prefix="sw_trips_")
 
     try:
@@ -810,12 +816,15 @@ def list_upcoming_trips(as_json=False, debug=False):
             page.wait_for_timeout(WAIT_LONG)
             screenshot(page, "trips_page", debug)
 
-            # Look for "Upcoming Trips" section or tab and click it if needed
+            # Look for "Upcoming Trips" section or tab and click it if needed.
+            # Nov 2026: the My Account nav labels this tab just "Trips".
             for sel in [
                 "a:has-text('Upcoming Trips')",
                 "button:has-text('Upcoming Trips')",
                 "[data-qa='upcoming-trips']",
                 "a:has-text('My Trips')",
+                "a[href*='/trips']",
+                "nav a:has-text('Trips')",
             ]:
                 try:
                     el = page.locator(sel).first
@@ -827,6 +836,20 @@ def list_upcoming_trips(as_json=False, debug=False):
                         break
                 except (PwTimeout, Exception):
                     continue
+
+            # The dashboard widget sometimes fails server-side. Fall back to the
+            # dedicated trips page before concluding anything about the account.
+            if TRIPS_ERROR in get_text(page).lower():
+                log("Upcoming Trips widget errored. Trying dedicated trips page...")
+                try:
+                    page.goto(TRIPS_URL, wait_until="networkidle", timeout=30000)
+                    page.wait_for_timeout(WAIT_LONG)
+                    screenshot(page, "trips_page_direct", debug)
+                except (PwTimeout, Exception) as e:
+                    log(f"Direct trips page failed: {e}")
+                if TRIPS_ERROR in get_text(page).lower():
+                    trips_unavailable = True
+                    log("Southwest could not return trip data. Result is UNKNOWN.")
 
             # SW uses an accordion: only one trip expanded at a time.
             # Click each trip header individually, grab its conf number, repeat.
@@ -931,10 +954,15 @@ def list_upcoming_trips(as_json=False, debug=False):
         trips.append(trip)
 
     result = {
-        "status": "completed",
+        "status": "trips_unavailable" if trips_unavailable else "completed",
         "trips": trips,
         "raw_conf_numbers": unique_confs,
     }
+    if trips_unavailable:
+        result["error"] = (
+            "Southwest returned 'We found some errors' for Upcoming Trips. "
+            "The trip list is UNKNOWN, not necessarily empty. Retry later."
+        )
 
     if debug:
         result["page_text_preview"] = text[:3000]
@@ -953,6 +981,9 @@ def list_upcoming_trips(as_json=False, debug=False):
                 if t.get("dates"):
                     dates_str = ", ".join(t["dates"])
                 print(f"  {t['confirmation']}  {routes_str}  {dates_str}")
+        elif trips_unavailable:
+            print("  Southwest could not load your trips right now.")
+            print("  This is a SW-side error. Trip list is UNKNOWN, not empty.")
         else:
             print("  No upcoming trips found.")
         if debug:

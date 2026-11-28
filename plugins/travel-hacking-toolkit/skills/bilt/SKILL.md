@@ -1,15 +1,33 @@
 ---
 name: bilt
-description: Search Bilt Rewards travel portal for cash and Bilt Points pricing on hotels and flights. Public REST API, no auth required. Includes Home Away From Home (HaFH) properties with $300+ benefits.
+description: Search Bilt Rewards travel portal for cash and Bilt Points pricing on flights. Flight search is a public REST API with no auth. Hotel search now requires a login and is unavailable, including the Home Away From Home (HaFH) data.
 category: portals
-summary: Bilt Rewards travel portal for hotels and flights. 1.25 cpp on Bilt Points. Home Away From Home properties give $300+ in benefits to Gold/Platinum members.
-api_key: None (public API)
+summary: Bilt Rewards travel portal. Flight search works unauthenticated and returns Southwest. 1.25 cpp on Bilt Points. Hotel endpoints went behind auth in Nov 2026.
+api_key: None for flights. Hotels require an authenticated session (not supported).
 allowed-tools: Bash(curl *), Bash(jq *)
 ---
 
 # Bilt Travel Portal Search
 
-Search [Bilt Rewards](https://www.bilt.com) travel portal via the public REST API. No authentication required for search. Returns both cash prices in USD and Bilt Points cost for hotels and flights.
+Search [Bilt Rewards](https://www.bilt.com) travel portal via its REST API. Returns both cash prices in USD and Bilt Points cost.
+
+## ⚠️ Status (verified Nov 5, 2026)
+
+| Endpoint | Status |
+|---|---|
+| `/public/travel/flights/search` | ✅ **Works, no auth.** Returns Southwest. |
+| `/public/travel/hotels/*` | ❌ **401 `AUTHENTICATION_REQUIRED`.** |
+| `/public/travel/cars/auto-complete` | ✅ Still public (autocomplete only) |
+
+**The hotel endpoints are gone.** Every `/public/travel/hotels/*` path now returns:
+
+```json
+{"error":{"source":"travel-svc","code":"AUTHENTICATION_REQUIRED","message":"Authentication is required for this request."}}
+```
+
+This is not a header, User-Agent, or Origin problem. It was checked with browser-like headers and it still 401s. Reading bilt.com's own JS bundles confirms the cause: the hotel endpoints are now declared `auth:!0` (auth required) and have moved off the `/public/` prefix to `/travel/hotels/search` and `/travel/hotels/auto-complete`. Only `/public/travel/cars/auto-complete` is still declared `auth:!1`.
+
+**So there is no unauthenticated path to Bilt hotel rates, HaFH flags, or hotel points pricing.** The hotel sections below are kept for reference and for the day Bilt reopens them, but they will fail today. For hotel work use [premium-hotels](../premium-hotels/SKILL.md), [serpapi](../serpapi/SKILL.md), or Trivago/LiteAPI instead, and get Bilt hotel pricing from a screenshot of the app.
 
 ## Important: Bilt is Whitelabel Duffel
 
@@ -38,7 +56,8 @@ Bilt's travel search is built directly on top of [Duffel](https://duffel.com). A
 - **Home Away From Home (HaFH)** is Bilt's premium hotel program. Gold and Platinum members get $300+ in benefits per stay (daily breakfast for two, $100 property credit, room upgrades on arrival, early check-in / late check-out, dedicated Virtuoso Travel Advisor).
 - **Bilt Points transfer 1:1** to Hyatt, Marriott, Hilton, IHG, United, AA, Air Canada Aeroplan, Air France/KLM, Virgin Atlantic, Cathay, Turkish, and more — so this portal is a 1.25 cpp "bottom-of-the-barrel" comparison point for transfer-partner award searches.
 - **Flights are Duffel-backed.** Same response shape as the [duffel skill](../duffel/SKILL.md). Same airlines, same fare classes, same segment structure.
-- **No auth needed for search.** Browser automation, login, 2FA all unnecessary. Just curl.
+- **Bilt returns Southwest. Your own Duffel key probably does not.** See the Southwest section below. This is currently the single best reason to call Bilt for a cash flight search.
+- **No auth needed for flight search.** Browser automation, login, 2FA all unnecessary. Just curl. (Hotels are a different story, see Status above.)
 
 ## When to Use
 
@@ -50,10 +69,11 @@ Bilt's travel search is built directly on top of [Duffel](https://duffel.com). A
 
 ## When NOT to Use
 
-- **Cash-only flight searches without Bilt Points context.** Use [duffel](../duffel/SKILL.md) instead. Bilt is whitelabel-Duffel, so Duffel returns the same cash prices and offer shape, faster, with more parameters supported.
+- **Any hotel search.** The endpoints are behind auth. See Status above.
 - **Booking flights or hotels.** This skill finds offers only. Booking requires login + Bilt Mastercard. Out of scope.
 - **Award flight search.** Use [seats-aero](../seats-aero/SKILL.md) for award availability across loyalty programs.
-- **Hotel research outside Bilt's program.** Use [premium-hotels](../premium-hotels/SKILL.md) for Amex FHR/THC + Chase Edit, [serpapi](../serpapi/SKILL.md) for general Google Hotels metasearch.
+
+Note the old guidance here said to prefer [duffel](../duffel/SKILL.md) for cash-only flight searches. That is no longer automatic: Duffel and Bilt return different carrier sets even though Bilt is whitelabel-Duffel. Run both.
 
 ## Bilt Points Valuation
 
@@ -71,9 +91,11 @@ Bilt's travel search is built directly on top of [Duffel](https://duffel.com). A
 https://api.biltrewards.com/public/travel
 ```
 
-All endpoints are public, no API key required. Standard JSON responses.
+Standard JSON responses. Flight endpoints need no API key. Hotel endpoints return 401 (see Status above).
 
-## Hotel Search
+## Hotel Search (❌ BROKEN, 401s as of Nov 5, 2026)
+
+Everything in this section returns `AUTHENTICATION_REQUIRED`. Kept for reference only.
 
 ### Step 1: Look up location searchId
 
@@ -190,7 +212,31 @@ curl -s "$URL" | jq '
   | sort_by(.cash)'
 ```
 
-## Flight Search
+## Flight Search (✅ works, no auth)
+
+### ⚠️ Bilt returns Southwest. Run it on every domestic search.
+
+**VERIFIED Nov 5, 2026, SJC→SAN 2026-11-13.** Bilt returned **418 Southwest offers** across all four fare brands (Basic, Choice, Choice Preferred, Choice Extra), `isNDC: false`, with real fare basis codes. The **same query against a personal Duffel API key returned zero WN offers.**
+
+Both are Duffel. Southwest content is enabled per Duffel organisation, and Bilt's org has it. So "Southwest is not in any GDS or API" is no longer true in general, and the right statement is: *your* Duffel key may not have Southwest, but Bilt's does.
+
+**Spot-check against southwest.com:** every SJC→SAN nonstop matched to the cent. Bilt $238.40 / $268.40 / $293.40 / $308.40 against southwest.com's rounded-up $239 / $269 / $294 / $309. Bilt is quoting the real fares, not an inflated resale.
+
+What this does and does not replace:
+- ✅ Fast, keyless cash fares for all four SW fare brands. No Patchright, no Docker, no 20-second scrape.
+- ❌ **No points pricing for Southwest.** `totalPointsRequired` is the *Bilt* points cost at 1.25 cpp, not Rapid Rewards. For RR points and Companion Pass math you still need the [southwest](../southwest/SKILL.md) skill.
+
+### ⚠️ Bilt silently expands origin and destination to the whole metro area
+
+**This will burn you.** A search for `origin=SJC` also returns SFO and OAK departures, with no flag on the offer saying so. On the test search the cheapest "SJC" Southwest fare was $188.40, which turned out to be **SFO→SAN**, while actual SJC was $238.40. That is a $50 difference that silently answers a different question than the one asked.
+
+**Always filter on the segment's own IATA code before reporting a price:**
+
+```bash
+jq '[.data.offers[] | select(.slices[0].segments[0].origin.iataCode == "SJC")]' results.json
+```
+
+Treat the extra airports as a feature once you know it is happening. It is a free nearby-airport comparison, but it has to be reported as "SFO is $50 cheaper than SJC," never as "SJC is $188."
 
 ### Step 1: Submit search
 
@@ -363,12 +409,15 @@ For a complete trip cost analysis:
 2. **Award alternatives** via [seats-aero](../seats-aero/SKILL.md). Compare to portal price at 1.25 cpp.
 3. **Transfer partners** via [transfer-partners](../transfer-partners/SKILL.md). If a partner program redeems Bilt Points at >1.25 cpp, transfer instead of using portal.
 4. **Other portals** via [chase-travel](../chase-travel/SKILL.md) (dynamic Points Boost on CSR/CSP, ~1.5-2.0 cpp on select bookings, not a guaranteed floor) and [amex-travel](../amex-travel/SKILL.md) (~1.0 cpp on flights). Pull actual portal quotes, not assumed rates.
-5. **HaFH benefits** add ~$300+ in value per stay if the user has Bilt Gold or Platinum status. Apply this when computing effective rate.
+5. **HaFH benefits** add ~$300+ in value per stay if the user has Bilt Gold or Platinum status. Apply this when computing effective rate. **Ask for a screenshot**, since the API no longer returns the HaFH flag.
 
 ## Important Notes
 
-- **`isHafh: true`** identifies Home Away From Home properties. Roughly 200 to 300 luxury hotels worldwide. Always flag when present.
+- **Filter offers by segment IATA code.** Bilt expands to nearby airports without saying so. See the metro-expansion warning in Flight Search.
+- **Southwest is in Bilt's results but not necessarily in your own Duffel key's.** Run both on domestic routes.
+- **`totalPointsRequired` is always Bilt Points at 1.25 cpp.** It is never the airline's own award price. Do not present it as Rapid Rewards, AAdvantage, or anything else.
+- **`isHafh: true`** identified Home Away From Home properties, roughly 200 to 300 luxury hotels worldwide. No longer reachable, the hotel endpoints are behind auth.
 - **Bilt has no transfer fees.** Unlike some portal-points conversions, Bilt → partner transfers are 1:1 instant.
 - **Booking requires the Bilt card.** Most premium benefits (HaFH, Rent Day points multipliers, status) are gated by holding the Bilt Mastercard.
-- **API responses don't include the agent's user context.** This is the public unauthenticated path. Authenticated calls would return personalized data (your saved searches, points balance), but those require login. Out of scope for this skill.
-- **Stellate (`bilt-rewards.stellate.sh`)** is Bilt's CMS endpoint, not a search backend. It serves marketing copy and benefit descriptions. The actual hotel/flight search data comes from `api.biltrewards.com/public/travel` and is fully covered above.
+- **Stellate (`bilt-rewards.stellate.sh`)** is Bilt's CMS endpoint, not a search backend. It serves marketing copy and benefit descriptions.
+- **If hotels start working again,** the unauthenticated paths to retry are `/public/travel/hotels/auto-complete` and `/public/travel/hotels/search`. The authenticated replacements are `/travel/hotels/auto-complete` and `/travel/hotels/search`.

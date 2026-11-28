@@ -1,6 +1,6 @@
 ---
 name: southwest
-description: Search Southwest Airlines fares and points pricing via Patchright browser automation. SW is not in any GDS or API. Covers all fare classes, Companion Pass value, and fare drop monitoring.
+description: Search Southwest Airlines fares and points pricing via Patchright browser automation. The only source for Rapid Rewards points pricing and Companion Pass math. Covers all fare classes and fare drop monitoring.
 category: flights
 summary: SW fare classes, points pricing, Companion Pass. Change flight price drop monitor.
 api_key: None (requires Patchright)
@@ -10,7 +10,9 @@ allowed-tools: Bash(python3 *), Bash(docker *)
 
 # Southwest Airlines Search
 
-Search southwest.com via Patchright (undetected Playwright fork). Southwest is the only major US airline not in any GDS, API, or flight search tool. This skill is the only way to get SW-specific data: fare classes, points pricing, and Companion Pass qualification.
+Search southwest.com via Patchright (undetected Playwright fork). This is the only way to get **Rapid Rewards points pricing** and Companion Pass qualification.
+
+**Southwest cash fares are no longer exclusive to this skill.** As of Nov 2026 the keyless [bilt](../bilt/SKILL.md) endpoint returns SW in all four fare brands, matching southwest.com to the cent (Duffel-backed, enabled per organisation). Bilt is faster and needs no browser. **Points are still exclusive here**, so any Companion Pass or RR redemption decision still runs through this skill.
 
 **Requires Patchright** (undetected Playwright fork). Standard Playwright and agent-browser are detected and blocked by SW. Patchright patches the browser fingerprint to bypass detection.
 
@@ -54,7 +56,9 @@ python3 scripts/search_fares.py --origin SJC --dest DEN --depart 2026-05-15 --po
 - Use `fareType=POINTS` URL parameter for points pricing. Don't try to click the Points toggle on the page.
 - Use a fresh persistent browser context (temp dir) each run to avoid fingerprint accumulation.
 - Extract text from `[role='main']` NOT `<main>`. The `<main>` element contains the booking form. `[role='main']` contains the flight results.
-- Flight blocks can be parsed by splitting on `# \d+` patterns and ending at `View seats`.
+- Flight cards start with a `# WN1234` (or `# WN1 / WN2`) header line. Each fare has its own accessibility label line (`Departs 7:00 AM, arrives 8:25 AM, nonstop, ... Basic`) with the price lines under it. Parse per label, not by position. Cash mode also shows `earn N Points` (Rapid Rewards earnings), which is NOT a price. (Layout changed Nov 2026. The old `View seats` terminator is gone. The parser keeps the old layout as a fallback.)
+- The `WN` prefix is stripped from `flight_number` so monitor configs (`"3657 / 4630"`) keep matching.
+- Points pricing can be non-monotonic. SJC↔SAN in Nov 2026 showed Choice (18,500) cheaper than Basic (20,000). Don't assume Basic is the floor.
 - Always dismiss the cookie banner first. It blocks interactions.
 
 ## Prerequisites
@@ -82,7 +86,7 @@ docker build -t sw-fares skills/southwest/
 
 ## When NOT to Use
 
-- **Just need SW cash prices**: Use google-flights skill instead (faster)
+- **Just need SW cash prices**: Use the `bilt` skill (keyless API, exact fares, all 4 brands) or `google-flights`. Both are faster than a browser scrape.
 - **Completing purchases**: Find flights only. Do not book.
 - **Non-Southwest airlines**: Use duffel, ignav, google-flights, or other skills
 
@@ -135,7 +139,7 @@ The script handles everything: homepage warmup, cookie dismissal, result extract
 3. Navigates to the results URL with `fareType=USD` for cash or `fareType=POINTS` for points
 4. Waits 15 seconds for SW's React app to render flight data
 5. Extracts flight text from `[role='main']` (NOT `<main>` which is the booking form)
-6. Parses flight blocks by splitting on `# \d+` patterns
+6. Splits cards on `# WN…` headers and reads each fare's own label block (retries the results load once if it comes back empty)
 7. Cleans up the browser and temp profile
 
 **Why fareType in the URL instead of clicking the Points toggle:** The Points label on the results page is in a different frame context than the flight cards. Clicking it via Playwright is unreliable. Using the URL parameter loads points results directly. Two page loads (cash + points) is more reliable than one load + a toggle click.
@@ -231,29 +235,57 @@ SW bookings use the legal name on the reservation, not nicknames. Use the exact 
 3. **extract_results()** is read-only. Zero clicks after the leg selection + "Explore options" step
 4. The script selects legs and views alternatives but NEVER selects a replacement flight or confirms any change
 
-### Verified Working Selectors (Apr 5, 2026)
+### Verified Working Selectors (Nov 5, 2026)
 
-**Login flyout:**
+**Login flyout** (VERIFIED Nov 5, 2026, live):
 - Trigger: `button:has-text('Log in')`
 - Username: `input[aria-label*='Account']`
 - Password: `input[name='password']`
 - Submit: `button[type='submit']:has-text('Log in')`
 
-**Change flight lookup form:**
-- Confirmation: `input[id*='confirmationNumber']`
-- First name: `input#passengerFirstName`
-- Last name: `input#passengerLastName`
-- Submit: `button#form-mixin--submit-button` (text: "Continue")
+**My Account trips tab** (VERIFIED Nov 5, 2026, live):
+- Tab: `a[href*='/trips']` (the nav labels it just "Trips", not "My Trips")
+- The dashboard "Upcoming Trips" widget can fail server-side with
+  "We found some errors. Please try again later." That is NOT an empty trip
+  list. The script falls back to `/myaccount/trips` and reports status
+  `trips_unavailable` rather than claiming zero trips.
 
-**Leg selection:**
+**Change flight lookup form** (VERIFIED Nov 5, 2026, live — fields renamed):
+- Confirmation: `input[name='reservationForm.record_locator']`
+- First name: `input[name='reservationForm.first_name']`
+- Last name: `input[name='reservationForm.last_name']`
+- Submit: `button#lookupReservation` (text: "Lookup reservation")
+
+The ids match the names but contain a dot, so match on `name` to avoid CSS
+escaping. The old `passengerFirstName` / `confirmationNumber` selectors are
+dead. Note `[id*='firstName']` could never match `first_name` anyway, since
+CSS attribute matching is case-sensitive.
+
+**Leg selection** (UNVERIFIED since Apr 5, 2026):
 - Checkboxes: `label:has(input[type='checkbox'])` (visible labels, hidden inputs)
 - Continue: `button#form-mixin--submit-button` (text: "Explore options")
+
+Everything past the lookup submit is unverified against the Nov 2026 layout.
+Reaching it requires an actual upcoming reservation.
 
 ### Important Limitation: Companion Pass Linked Reservations
 
 The `change` command DOES NOT WORK on Companion Pass-linked reservations. SW shows a banner: "Companion itinerary linked. To change it, cancel the companion's flight first."
 
 For CP-linked reservations (or any monitoring scenario where you don't want to log in), use the `monitor` subcommand instead. It uses the public fare-search flow and matches your booked flight number against current results. No login needed.
+
+### Verification Status (Nov 5, 2026)
+
+| Stage | Status |
+|---|---|
+| Login | VERIFIED live |
+| `--list` trip discovery | VERIFIED live (account had zero upcoming trips) |
+| Change lookup form fill + submit | VERIFIED live |
+| Leg selection ("Explore options") | UNVERIFIED |
+| Change-results fare-diff parsing | Synthetic fixtures only, no live page |
+
+The change-results stages could not be exercised because the account had no
+upcoming reservations to look up. They need a real, non-CP-linked booking.
 
 ## Fare Drop Monitor (monitor.py)
 
